@@ -1,0 +1,68 @@
+name: Security & Availability Check
+
+on:
+  schedule:
+    - cron: '0 7 * * 1'   # chaque lundi à 7h
+  workflow_dispatch:
+
+jobs:
+  security-check:
+    runs-on: ubuntu-latest
+    name: Check headers, HTTPS and links
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check HTTPS availability
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://access-ia.pro)
+          echo "HTTP status: $STATUS"
+          if [ "$STATUS" != "200" ]; then
+            echo "ERROR: Site returned $STATUS" && exit 1
+          fi
+
+      - name: Verify HTTP redirects to HTTPS
+        run: |
+          REDIRECT=$(curl -s -o /dev/null -w "%{redirect_url}" http://access-ia.pro)
+          echo "Redirect target: $REDIRECT"
+          if [[ "$REDIRECT" != https* ]]; then
+            echo "ERROR: HTTP does not redirect to HTTPS" && exit 1
+          fi
+
+      - name: Check security headers
+        run: |
+          HEADERS=$(curl -s -I https://access-ia.pro)
+          echo "$HEADERS"
+          for HEADER in "strict-transport-security" "x-content-type-options" "x-frame-options" "content-security-policy"; do
+            if echo "$HEADERS" | grep -qi "$HEADER"; then
+              echo "OK: $HEADER present"
+            else
+              echo "MISSING: $HEADER" && exit 1
+            fi
+          done
+
+      - name: Check SSL certificate expiry
+        run: |
+          EXPIRY=$(echo | openssl s_client -connect access-ia.pro:443 -servername access-ia.pro 2>/dev/null \
+            | openssl x509 -noout -enddate 2>/dev/null | cut -d= -f2)
+          echo "Certificate expires: $EXPIRY"
+          EXPIRY_EPOCH=$(date -d "$EXPIRY" +%s)
+          NOW_EPOCH=$(date +%s)
+          DAYS_LEFT=$(( (EXPIRY_EPOCH - NOW_EPOCH) / 86400 ))
+          echo "Days until expiry: $DAYS_LEFT"
+          if [ "$DAYS_LEFT" -lt 30 ]; then
+            echo "WARNING: Certificate expires in less than 30 days" && exit 1
+          fi
+
+      - name: HTML validation (basic)
+        run: |
+          curl -s https://access-ia.pro | grep -q "ACCESSIA Pro" \
+            && echo "OK: Page content valid" \
+            || (echo "ERROR: Page content missing" && exit 1)
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "Security check failed — check GitHub Actions logs"
+          echo "Contact: accessiapro@gmail.com"
