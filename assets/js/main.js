@@ -56,12 +56,13 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-// ── Contact form ───────────────────────────────
+// ── Contact form (Formspree) ────────────────────
+const FORMSPREE_ID = 'REMPLACER_PAR_VOTRE_ID'; // ex: xpzvwqkb
 const form = document.getElementById('contact-form');
 if (form) {
-  form.addEventListener('submit', function(e) {
+  form.addEventListener('submit', async function(e) {
     e.preventDefault();
-    const btn = form.querySelector('[type="submit"]');
+    const btn  = form.querySelector('[type="submit"]');
     const name    = form.querySelector('#fname')?.value.trim();
     const email   = form.querySelector('#femail')?.value.trim();
     const message = form.querySelector('#fmessage')?.value.trim();
@@ -71,18 +72,39 @@ if (form) {
       return;
     }
 
-    // Build mailto link
-    const subject = encodeURIComponent(`[ACCESSIA Pro] Demande de contact — ${name}`);
-    const body    = encodeURIComponent(
-      `Bonjour,\n\nNom : ${name}\nEmail : ${email}\nSociété : ${form.querySelector('#fcompany')?.value.trim() || 'N/A'}\nBesoin : ${form.querySelector('#fneed')?.value || 'N/A'}\n\nMessage :\n${message}\n\n--\nEnvoyé depuis accessia.pro`
-    );
     btn.textContent = 'Envoi en cours…';
     btn.disabled = true;
-    setTimeout(() => {
-      window.location.href = `mailto:accessiapro@gmail.com?subject=${subject}&body=${body}`;
-      btn.textContent = 'Message envoyé ✓';
-      btn.style.background = '#17A09D';
-    }, 600);
+
+    try {
+      const data = {
+        name,
+        email,
+        company:  form.querySelector('#fcompany')?.value.trim() || '',
+        need:     form.querySelector('#fneed')?.value || '',
+        message,
+        _subject: `[ACCESSIA Pro] Demande de contact — ${name}`,
+        _replyto: email,
+      };
+
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method:  'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body:    JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        btn.textContent = 'Message envoyé ✓';
+        btn.style.background = '#17A09D';
+        form.reset();
+        showNotif('Votre message a bien été envoyé. Nous vous répondrons sous 48h.', 'success');
+      } else {
+        throw new Error('Erreur serveur');
+      }
+    } catch {
+      btn.textContent = 'Envoyer ma demande →';
+      btn.disabled = false;
+      showNotif('Une erreur est survenue. Contactez-nous directement à accessiapro@gmail.com', 'error');
+    }
   });
 }
 
