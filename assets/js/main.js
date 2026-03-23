@@ -57,7 +57,7 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
 // ── Contact form (Formspree) ────────────────────
-const FORMSPREE_ID = 'REMPLACER_PAR_VOTRE_ID'; // ex: xpzvwqkb
+const FORMSPREE_ID = 'xlgpykzj';
 const form = document.getElementById('contact-form');
 if (form) {
   form.addEventListener('submit', async function(e) {
