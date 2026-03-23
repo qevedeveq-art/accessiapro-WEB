@@ -4,3 +4,5 @@ Thumbs.db
 .env
 .env.*
 node_modules/
+gcp-sa-key.json
+http-redirect.yaml

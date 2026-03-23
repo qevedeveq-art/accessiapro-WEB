@@ -28,15 +28,21 @@ jobs:
 
       - name: Deploy files to GCS bucket
         run: |
-          gsutil -m rsync -r -d \
-            -x '\.github/|\.git/|README\.md' \
-            . gs://accessia-pro-web/
+          gsutil -m cp index.html gs://accessia-pro-web/
+          gsutil -m cp 404.html gs://accessia-pro-web/
+          gsutil -m cp -r assets/css gs://accessia-pro-web/assets/
+          gsutil -m cp -r assets/js  gs://accessia-pro-web/assets/
+          gsutil -m cp -r assets/images gs://accessia-pro-web/assets/
 
       - name: Set cache headers for static assets
         run: |
           gsutil -m setmeta \
             -h "Cache-Control:public, max-age=31536000, immutable" \
-            "gs://accessia-pro-web/assets/**"
+            gs://accessia-pro-web/assets/css/style.css \
+            gs://accessia-pro-web/assets/js/main.js \
+            gs://accessia-pro-web/assets/images/logo.jpg \
+            gs://accessia-pro-web/assets/images/logo-icon.png \
+            gs://accessia-pro-web/assets/images/favicon.png
           gsutil -m setmeta \
             -h "Cache-Control:public, max-age=300, must-revalidate" \
             gs://accessia-pro-web/index.html \
