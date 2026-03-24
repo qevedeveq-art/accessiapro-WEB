@@ -578,6 +578,49 @@ a:hover { color: var(--teal-light); }
 .step-card h3 { font-size: 1rem; margin-bottom: 8px; color: var(--navy); }
 .step-card p { font-size: .85rem; }
 
+/* ── Qui sommes-nous ───────────────────────── */
+.about { background: var(--gray-50); }
+.about-card {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 56px;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 48px;
+  box-shadow: var(--shadow-sm);
+}
+.about-photo-wrap {
+  display: flex;
+  justify-content: center;
+}
+.about-photo {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--teal);
+  box-shadow: var(--shadow-md);
+}
+.about-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.about-role {
+  font-size: .95rem;
+  color: var(--teal);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.about-content p { margin-bottom: 12px; }
+@media (max-width: 768px) {
+  .about-card { grid-template-columns: 1fr; text-align: center; gap: 32px; padding: 32px 24px; }
+  .about-photo { width: 160px; height: 160px; }
+}
+
 /* ── Temoignages / Social proof ─────────────── */
 .preuves { background: var(--gray-50); }
 .preuve-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
