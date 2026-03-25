@@ -30,19 +30,34 @@ jobs:
         run: |
           gsutil -m cp index.html gs://accessia-pro-web/
           gsutil -m cp 404.html gs://accessia-pro-web/
+          gsutil -m cp robots.txt gs://accessia-pro-web/
+          gsutil -m cp sitemap.xml gs://accessia-pro-web/
           gsutil -m cp -r assets/css gs://accessia-pro-web/assets/
           gsutil -m cp -r assets/js  gs://accessia-pro-web/assets/
           gsutil -m cp -r assets/images gs://accessia-pro-web/assets/
+          gsutil -m cp -r assets/fonts gs://accessia-pro-web/assets/
+          gsutil -m cp -r .well-known gs://accessia-pro-web/
+
+      - name: Set content-type for fonts
+        run: |
+          gsutil -m setmeta \
+            -h "Content-Type:font/woff2" \
+            "gs://accessia-pro-web/assets/fonts/*.woff2" || true
 
       - name: Set cache headers for static assets
         run: |
           gsutil -m setmeta \
             -h "Cache-Control:public, max-age=31536000, immutable" \
             gs://accessia-pro-web/assets/css/style.css \
-            gs://accessia-pro-web/assets/js/main.js \
-            gs://accessia-pro-web/assets/images/logo.jpg \
-            gs://accessia-pro-web/assets/images/logo-icon.png \
-            gs://accessia-pro-web/assets/images/favicon.png
+            gs://accessia-pro-web/assets/js/main.v2.js \
+            "gs://accessia-pro-web/assets/images/*.webp" \
+            "gs://accessia-pro-web/assets/images/*.png" \
+            "gs://accessia-pro-web/assets/images/*.jpg" \
+            "gs://accessia-pro-web/assets/fonts/*.woff2" || true
+          gsutil -m setmeta \
+            -h "Cache-Control:public, max-age=3600, must-revalidate" \
+            gs://accessia-pro-web/robots.txt \
+            gs://accessia-pro-web/sitemap.xml
           gsutil -m setmeta \
             -h "Cache-Control:public, max-age=300, must-revalidate" \
             gs://accessia-pro-web/index.html \
