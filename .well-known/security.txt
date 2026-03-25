@@ -1,0 +1,4 @@
+Contact: mailto:contact@access-ia.pro
+Preferred-Languages: fr, en
+Canonical: https://access-ia.pro/.well-known/security.txt
+Expires: 2027-03-25T00:00:00.000Z
