@@ -1060,3 +1060,103 @@ footer {
   .value-grid { margin-bottom: 32px; }
   .avantage-row:last-child { margin-bottom: 0; }
 }
+
+/* ─── RESSOURCES ────────────────────────────────────────── */
+.ressources { background: var(--bg-light); }
+.ressources-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.ressource-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 28px 24px 24px;
+  border: 1px solid rgba(0,0,0,.07);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow .25s, transform .25s;
+}
+.ressource-card:hover {
+  box-shadow: 0 8px 32px rgba(10,37,64,.1);
+  transform: translateY(-3px);
+}
+.ressource-tag {
+  display: inline-block;
+  background: var(--teal);
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  width: fit-content;
+}
+.ressource-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--navy-dark);
+  margin: 0;
+}
+.ressource-title a {
+  color: inherit;
+  text-decoration: none;
+}
+.ressource-title a:hover { color: var(--teal); }
+.ressource-excerpt {
+  font-size: .9rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  flex: 1;
+  margin: 0;
+}
+.ressource-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0,0,0,.07);
+  font-size: .8rem;
+}
+.ressource-read { color: var(--text-light); }
+.ressource-lire {
+  color: var(--teal);
+  font-weight: 600;
+  text-decoration: none;
+}
+.ressource-lire:hover { text-decoration: underline; }
+
+/* Article pages */
+.article-layout { max-width: 760px; margin: 0 auto; padding: 40px 24px 80px; }
+.article-back { display: inline-flex; align-items: center; gap: 6px; color: var(--teal); font-weight: 600; text-decoration: none; font-size: .9rem; margin-bottom: 32px; }
+.article-back:hover { text-decoration: underline; }
+.article-tag { display: inline-block; background: var(--teal); color: #fff; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; margin-bottom: 16px; }
+.article-title { font-size: 2rem; font-weight: 800; color: var(--navy-dark); line-height: 1.25; margin-bottom: 16px; }
+.article-meta { color: var(--text-light); font-size: .85rem; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 2px solid var(--bg-light); }
+.article-body h2 { font-size: 1.35rem; font-weight: 700; color: var(--navy-dark); margin: 40px 0 16px; }
+.article-body h3 { font-size: 1.1rem; font-weight: 600; color: var(--navy-dark); margin: 28px 0 12px; }
+.article-body p { color: #374151; line-height: 1.75; margin-bottom: 20px; }
+.article-body ul, .article-body ol { padding-left: 24px; margin-bottom: 20px; }
+.article-body li { color: #374151; line-height: 1.75; margin-bottom: 8px; }
+.article-body strong { color: var(--navy-dark); }
+.article-body a { color: var(--teal); }
+.article-cta-box { background: var(--navy-dark); color: #fff; border-radius: 12px; padding: 40px; text-align: center; margin-top: 60px; }
+.article-cta-box h3 { font-size: 1.4rem; margin-bottom: 12px; }
+.article-cta-box p { color: rgba(255,255,255,.8); margin-bottom: 24px; }
+.article-related { margin-top: 60px; }
+.article-related h3 { font-size: 1.1rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 20px; }
+.article-related-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+.article-related-card { background: var(--bg-light); border-radius: 10px; padding: 20px; text-decoration: none; color: inherit; border: 1px solid rgba(0,0,0,.07); }
+.article-related-card:hover { border-color: var(--teal); }
+.article-related-card span { display: block; font-size: .75rem; color: var(--teal); font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
+.article-related-card strong { font-size: .9rem; color: var(--navy-dark); line-height: 1.4; }
+
+@media(max-width:768px) {
+  .ressources-grid { grid-template-columns: 1fr; }
+  .article-title { font-size: 1.5rem; }
+  .article-related-grid { grid-template-columns: 1fr; }
+}

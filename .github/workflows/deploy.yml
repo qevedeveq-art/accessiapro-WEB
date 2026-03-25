@@ -37,6 +37,7 @@ jobs:
           gsutil -m cp -r assets/images gs://accessia-pro-web/assets/
           gsutil -m cp -r assets/fonts gs://accessia-pro-web/assets/
           gsutil -m cp -r .well-known gs://accessia-pro-web/
+          gsutil -m cp -r articles gs://accessia-pro-web/
 
       - name: Set content-type for fonts
         run: |
@@ -62,6 +63,9 @@ jobs:
             -h "Cache-Control:public, max-age=300, must-revalidate" \
             gs://accessia-pro-web/index.html \
             gs://accessia-pro-web/404.html
+          gsutil -m setmeta \
+            -h "Cache-Control:public, max-age=3600, must-revalidate" \
+            "gs://accessia-pro-web/articles/*.html" || true
 
       - name: Invalidate CDN cache
         run: |
