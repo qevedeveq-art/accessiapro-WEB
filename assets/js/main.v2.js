@@ -54,10 +54,16 @@ document.querySelectorAll('.faq-question').forEach(btn => {
   btn.addEventListener('click', () => {
     const item = btn.closest('.faq-item');
     const isOpen = item.classList.contains('open');
-    // Close all
-    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-    // Toggle clicked
-    if (!isOpen) item.classList.add('open');
+
+    document.querySelectorAll('.faq-item.open').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+    });
+
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
   });
 });
 
@@ -100,6 +106,7 @@ if (form) {
     const btn     = form.querySelector('[type="submit"]');
     const name    = form.querySelector('#fname')?.value.trim();
     const email   = form.querySelector('#femail')?.value.trim();
+    const company = form.querySelector('#fcompany')?.value.trim() || '';
     const message = form.querySelector('#fmessage')?.value.trim();
 
     // Client-side validation
@@ -109,6 +116,10 @@ if (form) {
     }
     if (!isValidEmail(email)) {
       showNotif('Veuillez entrer une adresse email valide.', 'error');
+      return;
+    }
+    if (name.length > 120 || email.length > 160 || company.length > 160 || message.length > 2000) {
+      showNotif('Votre message dépasse la longueur autorisée.', 'error');
       return;
     }
 
@@ -134,7 +145,7 @@ if (form) {
         setTimeout(() => {
           submitLocked = false;
           btn.disabled = false;
-          btn.textContent = 'Envoyer ma demande →';
+          btn.textContent = 'Envoyer ma demande';
           btn.classList.remove('btn-sent');
         }, 30000);
       } else {
@@ -144,7 +155,7 @@ if (form) {
       showNotif('Une erreur est survenue. Contactez-nous directement à contact@access-ia.pro', 'error');
       submitLocked = false;
       btn.disabled = false;
-      btn.textContent = 'Envoyer ma demande →';
+      btn.textContent = 'Envoyer ma demande';
     }
   });
 }
