@@ -141,5 +141,5 @@ jobs:
             --exclude='.DS_Store' \
             --exclude='graphify-out/' \
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p 22" \
-            . qevedeveq@access-ia.pro:/var/www/my_webapp/www/
+            . root@access-ia.pro:/var/www/my_webapp/www/
           echo "OVHcloud deploy complete"
