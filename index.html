@@ -7,7 +7,9 @@
   <meta name="description" content="ACCESSIA Pro aide les dirigeants de PME à gagner du temps, protéger leurs données et intégrer l'IA avec méthode. Conseil, automatisation, formation et accompagnement en France.">
   <meta name="keywords" content="conseil IA PME France, intégration intelligence artificielle, diagnostic IA entreprise, formation IA, RGPD IA, open source IA, consultant IA PME">
   <meta name="author" content="Quentin DEVESA — ACCESSIA Pro">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#17306f">
+  <meta name="format-detection" content="telephone=no">
 
   <!-- Open Graph -->
   <meta property="og:type"        content="website">
@@ -33,6 +35,8 @@
 
   <!-- Canonical -->
   <link rel="canonical" href="https://access-ia.pro/">
+  <link rel="alternate" type="text/plain" href="https://access-ia.pro/llms.txt" title="ACCESSIA Pro — contexte pour assistants IA">
+  <link rel="preload" as="image" href="assets/images/og-image.webp" type="image/webp" fetchpriority="high">
 
   <!-- Styles (self-hosted — aucune requête Google) -->
   <link rel="stylesheet" href="assets/css/style.css">
@@ -210,7 +214,7 @@
       <a class="navbar-logo" href="#accueil" aria-label="ACCESSIA Pro — Accueil">
         <picture>
           <source srcset="assets/images/logo-icon.webp" type="image/webp">
-          <img src="assets/images/favicon-32.png" alt="ACCESSIA Pro logo" width="36" height="36">
+          <img src="assets/images/favicon-32.png" alt="ACCESSIA Pro logo" width="36" height="36" decoding="async">
         </picture>
         <span class="navbar-logo-text">ACCESSIA <span>Pro</span></span>
       </a>
@@ -705,7 +709,8 @@
                alt="Quentin DEVESA, fondateur d'ACCESSIA Pro"
                class="about-photo"
                width="220" height="220"
-               loading="lazy">
+               loading="lazy"
+               decoding="async">
         </picture>
       </div>
       <div class="about-content">
@@ -1145,7 +1150,7 @@
       <div class="footer-brand">
         <picture>
           <source srcset="assets/images/logo-icon.webp" type="image/webp">
-          <img src="assets/images/favicon-32.png" alt="ACCESSIA Pro" width="36" height="36" loading="lazy">
+          <img src="assets/images/favicon-32.png" alt="ACCESSIA Pro" width="36" height="36" loading="lazy" decoding="async">
         </picture>
         <p>Conseil et accompagnement IA pour PME: cas d'usage utiles, données protégées, équipes formées et gains mesurables.</p>
         <p class="footer-email">

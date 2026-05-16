@@ -3,11 +3,20 @@ declare(strict_types=1);
 
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
+header('Referrer-Policy: strict-origin-when-cross-origin');
+header("Content-Security-Policy: default-src 'none'; frame-ancestors 'none'; base-uri 'none'");
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
-    echo json_encode(['ok' => false, 'error' => 'method_not_allowed']);
+    echo json_encode(['ok' => false, 'error' => 'method_not_allowed'], JSON_UNESCAPED_UNICODE);
     exit;
+}
+
+if (isset($_SERVER['HTTP_ORIGIN'])) {
+    $originHost = parse_url((string) $_SERVER['HTTP_ORIGIN'], PHP_URL_HOST);
+    if ($originHost !== 'access-ia.pro') {
+        fail(403, 'invalid_origin');
+    }
 }
 
 function field(string $name, int $max): string
@@ -20,12 +29,12 @@ function field(string $name, int $max): string
 function fail(int $status, string $error): void
 {
     http_response_code($status);
-    echo json_encode(['ok' => false, 'error' => $error]);
+    echo json_encode(['ok' => false, 'error' => $error], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
 if (field('website', 200) !== '') {
-    echo json_encode(['ok' => true]);
+    echo json_encode(['ok' => true], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
@@ -97,4 +106,4 @@ if (!$sent) {
     fail(500, 'mail_send_failed');
 }
 
-echo json_encode(['ok' => true]);
+echo json_encode(['ok' => true], JSON_UNESCAPED_UNICODE);

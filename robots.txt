@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# Plain-language context for AI assistants and crawlers.
+Allow: /llms.txt
+
 Sitemap: https://access-ia.pro/sitemap.xml
