@@ -90,6 +90,7 @@ function showNotif(msg, type) {
 
 // ── Contact form (FormSubmit + honeypot + rate-limit) ──
 const CONTACT_FORM_ENDPOINT = 'https://formsubmit.co/ajax/contact@access-ia.pro';
+const CONTACT_EMAIL = 'contact@access-ia.pro';
 const form = document.getElementById('contact-form');
 if (form) {
   let submitLocked = false;
@@ -97,6 +98,25 @@ if (form) {
   // Email validation helper
   function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+  }
+
+  function buildMailtoUrl(formData) {
+    const need = formData.get('need') || 'Non précise';
+    const body = [
+      `Nom : ${formData.get('name') || ''}`,
+      `Email : ${formData.get('email') || ''}`,
+      `Société : ${formData.get('company') || ''}`,
+      `Besoin : ${need}`,
+      '',
+      'Message :',
+      formData.get('message') || '',
+    ].join('\n');
+
+    return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('[ACCESSIA Pro] Demande de contact')}&body=${encodeURIComponent(body)}`;
+  }
+
+  function openMailFallback(formData) {
+    window.location.href = buildMailtoUrl(formData);
   }
 
   form.addEventListener('submit', async function(e) {
@@ -128,8 +148,9 @@ if (form) {
     btn.textContent = 'Envoi en cours…';
     btn.disabled = true;
 
+    const formData = new FormData(form);
+
     try {
-      const formData = new FormData(form);
       const res = await fetch(CONTACT_FORM_ENDPOINT, {
         method:  'POST',
         headers: { 'Accept': 'application/json' },
@@ -149,10 +170,11 @@ if (form) {
           btn.classList.remove('btn-sent');
         }, 30000);
       } else {
-        throw new Error('Erreur serveur');
+        throw new Error(`Erreur serveur ${res.status}`);
       }
     } catch {
-      showNotif('Une erreur est survenue. Contactez-nous directement à contact@access-ia.pro', 'error');
+      openMailFallback(formData);
+      showNotif('Le service d’envoi est indisponible. Votre messagerie va s’ouvrir avec le message prérempli.', 'error');
       submitLocked = false;
       btn.disabled = false;
       btn.textContent = 'Envoyer ma demande';
