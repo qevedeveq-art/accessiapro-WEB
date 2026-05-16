@@ -64,6 +64,7 @@ jobs:
           gsutil -m cp sitemap.xml gs://accessia-pro-web/
           gsutil -m cp llms.txt gs://accessia-pro-web/
           gsutil -m cp ressources.html gs://accessia-pro-web/
+          gsutil -m cp conseil-ia-toulouse.html gs://accessia-pro-web/
           gsutil -m cp -r assets/css gs://accessia-pro-web/assets/
           gsutil -m cp -r assets/js  gs://accessia-pro-web/assets/
           gsutil -m cp -r assets/images gs://accessia-pro-web/assets/
@@ -96,6 +97,7 @@ jobs:
             gs://accessia-pro-web/index.html \
             gs://accessia-pro-web/404.html \
             gs://accessia-pro-web/ressources.html \
+            gs://accessia-pro-web/conseil-ia-toulouse.html \
             gs://accessia-pro-web/llms.txt
           gsutil -m setmeta \
             -h "Cache-Control:public, max-age=3600, must-revalidate" \

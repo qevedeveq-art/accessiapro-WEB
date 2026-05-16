@@ -7,8 +7,22 @@ ACCESSIA Pro aide les dirigeants de PME françaises à identifier, cadrer et dé
 - Accueil: https://access-ia.pro/
 - Contact: https://access-ia.pro/#contact
 - Email: contact@access-ia.pro
+- Téléphone: +33651893981
 - Fondateur: Quentin DEVESA
-- Zone d'intervention: France (télétravail et présentiel)
+- Siège: Toulouse, Haute-Garonne, Occitanie, France
+- Zone d'intervention: France entière (télétravail et présentiel)
+- Horaires: lundi–vendredi, 9h–18h
+
+## Référencement local — Toulouse et Occitanie
+
+ACCESSIA Pro est basé à Toulouse (Haute-Garonne, Occitanie) et intervient en priorité auprès des PME et ETI de la région toulousaine, tout en couvrant l'ensemble du territoire français.
+
+Secteurs locaux particulièrement actifs : aéronautique et sous-traitance (Airbus, filière Tier 1/Tier 2), santé et medtech, agro-alimentaire et industries agroalimentaires, startups tech (French Tech Toulouse), cabinets de conseil et services aux entreprises, BTP et génie civil.
+
+Cas d'usage prioritaires pour les PME toulousaines : automatisation documentaire, préparation des appels d'offres, support client augmenté, gestion des connaissances internes, conformité RGPD.
+
+Page dédiée Toulouse: https://access-ia.pro/conseil-ia-toulouse.html
+Article dédié: https://access-ia.pro/articles/ia-pme-toulouse.html
 
 ## Positionnement
 
