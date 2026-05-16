@@ -1,4 +1,4 @@
-name: Deploy to Google Cloud Storage
+name: Deploy — OVHcloud + GCS
 
 on:
   push:
@@ -126,3 +126,20 @@ jobs:
             --path "/*" \
             --global \
             --async || echo "CDN invalidation skipped (LB may not be configured yet)"
+
+      - name: Deploy to OVHcloud via SSH
+        env:
+          OVH_SSH_KEY: ${{ secrets.OVH_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$OVH_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H access-ia.pro >> ~/.ssh/known_hosts 2>/dev/null
+          rsync -az --checksum \
+            --exclude='.git*' \
+            --exclude='.github/' \
+            --exclude='.DS_Store' \
+            --exclude='graphify-out/' \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p 22" \
+            . qevedeveq@access-ia.pro:/home/qevedeveq/www/
+          echo "OVHcloud deploy complete"
