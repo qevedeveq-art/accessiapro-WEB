@@ -88,8 +88,8 @@ function showNotif(msg, type) {
   toastTimer = setTimeout(() => toast.classList.remove('show'), 4500);
 }
 
-// ── Contact form (FormSubmit + honeypot + rate-limit) ──
-const CONTACT_FORM_ENDPOINT = 'https://formsubmit.co/ajax/contact@access-ia.pro';
+// ── Contact form (local mail endpoint + honeypot + rate-limit) ──
+const CONTACT_FORM_ENDPOINT = '/contact.php';
 const CONTACT_EMAIL = 'contact@access-ia.pro';
 const form = document.getElementById('contact-form');
 if (form) {
@@ -156,8 +156,9 @@ if (form) {
         headers: { 'Accept': 'application/json' },
         body:    formData,
       });
+      const payload = await res.json().catch(() => ({}));
 
-      if (res.ok) {
+      if (res.ok && payload.ok) {
         btn.textContent = 'Message envoyé ✓';
         btn.classList.add('btn-sent');
         form.reset();
@@ -170,11 +171,11 @@ if (form) {
           btn.classList.remove('btn-sent');
         }, 30000);
       } else {
-        throw new Error(`Erreur serveur ${res.status}`);
+        throw new Error(payload.error || `Erreur serveur ${res.status}`);
       }
     } catch {
       openMailFallback(formData);
-      showNotif('Le service d’envoi est indisponible. Votre messagerie va s’ouvrir avec le message prérempli.', 'error');
+      showNotif('L’envoi automatique a échoué. Votre messagerie va s’ouvrir avec le message prérempli.', 'error');
       submitLocked = false;
       btn.disabled = false;
       btn.textContent = 'Envoyer ma demande';
