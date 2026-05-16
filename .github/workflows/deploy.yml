@@ -26,6 +26,36 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
 
+      - name: Minify CSS and JS
+        run: |
+          npm install -g clean-css-cli uglify-js --silent
+          cleancss assets/css/style.css > /tmp/style.min.css && mv /tmp/style.min.css assets/css/style.css
+          uglifyjs assets/js/main.v2.js -c -m > /tmp/main.min.js && mv /tmp/main.min.js assets/js/main.v2.js
+
+      - name: Subset fonts
+        run: |
+          pip install fonttools brotli --quiet
+          python3 - <<'PYEOF'
+          import os, re, sys
+          chars = set()
+          for root, dirs, files in os.walk('.'):
+              for f in files:
+                  if f.endswith('.html'):
+                      with open(os.path.join(root, f), encoding='utf-8', errors='ignore') as fh:
+                          chars.update(re.sub('<[^>]+>', ' ', fh.read()))
+          with open('/tmp/used_chars.txt', 'w') as out:
+              out.write(''.join(sorted(chars)))
+          PYEOF
+          echo "Unique chars: $(wc -c < /tmp/used_chars.txt)"
+          for weight in 400 500 600 700 800; do
+            pyftsubset "assets/fonts/inter-${weight}.woff2" \
+              --text-file=/tmp/used_chars.txt \
+              --flavor=woff2 \
+              --output-file="/tmp/inter-${weight}.woff2" 2>/dev/null \
+              && mv "/tmp/inter-${weight}.woff2" "assets/fonts/inter-${weight}.woff2" \
+              || echo "Subset skipped for inter-${weight}.woff2"
+          done
+
       - name: Deploy files to GCS bucket
         run: |
           gsutil -m cp index.html gs://accessia-pro-web/
@@ -66,6 +96,23 @@ jobs:
           gsutil -m setmeta \
             -h "Cache-Control:public, max-age=3600, must-revalidate" \
             "gs://accessia-pro-web/articles/*.html" || true
+
+      - name: Set security response headers on backend bucket
+        run: |
+          BACKEND=$(gcloud compute backend-buckets list \
+            --format="value(name)" 2>/dev/null | grep -i accessia | head -1)
+          if [ -n "$BACKEND" ]; then
+            gcloud compute backend-buckets update "$BACKEND" \
+              --custom-response-header='Strict-Transport-Security:max-age=63072000; includeSubDomains; preload' \
+              --custom-response-header='X-Frame-Options:DENY' \
+              --custom-response-header='X-Content-Type-Options:nosniff' \
+              --custom-response-header='Referrer-Policy:strict-origin-when-cross-origin' \
+              --custom-response-header='Permissions-Policy:camera=(), microphone=(), geolocation=(), payment=(), interest-cohort=()' \
+              2>/dev/null && echo "Security headers applied to $BACKEND" \
+              || echo "Could not update headers on $BACKEND — apply manually in GCP console"
+          else
+            echo "No backend bucket found — apply security headers manually in GCP console"
+          fi
 
       - name: Invalidate CDN cache
         run: |

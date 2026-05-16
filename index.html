@@ -19,6 +19,7 @@
   <meta property="og:image"       content="https://access-ia.pro/assets/images/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"   content="ACCESSIA Pro — Conseil IA pour PME en France">
   <meta property="og:locale"      content="fr_FR">
   <meta property="og:site_name"   content="ACCESSIA Pro">
 
@@ -27,6 +28,7 @@
   <meta name="twitter:title"       content="ACCESSIA Pro — L'IA utile et sécurisée pour les PME">
   <meta name="twitter:description" content="Gagnez du temps avec l'IA, sans mettre vos données en risque.">
   <meta name="twitter:image"       content="https://access-ia.pro/assets/images/og-image.jpg">
+  <meta name="twitter:image:alt"  content="ACCESSIA Pro — Conseil IA pour PME en France">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
@@ -69,6 +71,12 @@
       "areaServed": {
         "@type": "Country",
         "name": "France"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Toulouse",
+        "addressRegion": "Occitanie",
+        "addressCountry": "FR"
       },
       "knowsAbout": ["Intelligence Artificielle", "RGPD", "Transformation Numérique", "Automatisation", "Cybersécurité"],
       "priceRange": "$$",
@@ -205,6 +213,8 @@
 </head>
 <body>
 
+<a href="#accueil" class="skip-link">Aller au contenu principal</a>
+
 <!-- ════════════════════════════════════════════
      NAVIGATION
 ════════════════════════════════════════════ -->
@@ -226,7 +236,7 @@
         <li role="none"><a href="#avantages"  role="menuitem">Résultats</a></li>
         <li role="none"><a href="#approche"   role="menuitem">Méthode</a></li>
         <li role="none"><a href="#faq"        role="menuitem">FAQ</a></li>
-        <li role="none"><a href="#ressources" role="menuitem">Ressources</a></li>
+        <li role="none"><a href="/ressources.html" role="menuitem">Ressources</a></li>
         <li role="none"><a href="#about"      role="menuitem">À propos</a></li>
         <li role="none"><a href="#contact"    role="menuitem">Contact</a></li>
       </ul>
@@ -1100,6 +1110,39 @@
         </div>
       </article>
 
+      <article class="ressource-card">
+        <div class="ressource-tag">Comparatif outils</div>
+        <h3 class="ressource-title"><a href="articles/chatgpt-claude-mistral-pme.html">ChatGPT, Claude ou Mistral : quel outil IA choisir pour sa PME ?</a></h3>
+        <p class="ressource-excerpt">Tarifs, confidentialité RGPD, recommandations par profil. Un comparatif honnête des 4 principaux outils IA du marché pour les PME françaises.</p>
+        <div class="ressource-meta">
+          <span class="ressource-read">8 min de lecture</span>
+          <a href="articles/chatgpt-claude-mistral-pme.html" class="ressource-lire">Lire l'article →</a>
+        </div>
+      </article>
+
+      <article class="ressource-card">
+        <div class="ressource-tag">Cas concret</div>
+        <h3 class="ressource-title"><a href="articles/premier-projet-ia-pme-exemple.html">Premier projet IA en PME : un exemple concret de A à Z</a></h3>
+        <p class="ressource-excerpt">Une TPE de 18 personnes, un problème précis, 6 semaines de déploiement. Toutes les étapes et les résultats mesurés, sans jargon.</p>
+        <div class="ressource-meta">
+          <span class="ressource-read">9 min de lecture</span>
+          <a href="articles/premier-projet-ia-pme-exemple.html" class="ressource-lire">Lire l'article →</a>
+        </div>
+      </article>
+
+      <article class="ressource-card">
+        <div class="ressource-tag">Sécurité & Données</div>
+        <h3 class="ressource-title"><a href="articles/securite-ia-pme-fuites-donnees.html">IA et sécurité des données : éviter les fuites et erreurs fréquentes</a></h3>
+        <p class="ressource-excerpt">Les 6 erreurs les plus fréquentes dans les PME, les règles d'or pour une IA sécurisée et la hiérarchie des outils selon la sensibilité des données.</p>
+        <div class="ressource-meta">
+          <span class="ressource-read">8 min de lecture</span>
+          <a href="articles/securite-ia-pme-fuites-donnees.html" class="ressource-lire">Lire l'article →</a>
+        </div>
+      </article>
+
+    </div>
+    <div style="text-align:center; margin-top:2rem;">
+      <a href="/ressources.html" class="btn btn-outline">Voir toutes les ressources →</a>
     </div>
   </div>
 </section>
@@ -1165,6 +1208,7 @@
           <li><a href="#solutions">Formation des équipes</a></li>
           <li><a href="#solutions">Suivi et amélioration</a></li>
           <li><a href="#cas-usages">Cas d'usage PME</a></li>
+          <li><a href="/ressources.html">Toutes les ressources</a></li>
         </ul>
       </nav>
       <nav class="footer-col" aria-label="À propos">
@@ -1199,6 +1243,6 @@
 <!-- Scroll to top -->
 <button class="scroll-top" aria-label="Retour en haut de page" title="Retour en haut">↑</button>
 
-<script src="assets/js/main.v2.js"></script>
+<script src="assets/js/main.v2.js" defer></script>
 </body>
 </html>

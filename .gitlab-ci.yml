@@ -1,5 +1,6 @@
+image: alpine
+
 pages:
-  stage: deploy
   script:
     - mkdir .public
     - cp -r * .public
@@ -7,5 +8,5 @@ pages:
   artifacts:
     paths:
       - public
-  rules:
-    - if: $CI_COMMIT_BRANCH == "main"
+  only:
+    - main

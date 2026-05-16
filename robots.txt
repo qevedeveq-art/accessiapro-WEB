@@ -1,7 +1,38 @@
 User-agent: *
 Allow: /
 
-# Plain-language context for AI assistants and crawlers.
+# Contexte en langage naturel pour les assistants IA
 Allow: /llms.txt
 
 Sitemap: https://access-ia.pro/sitemap.xml
+
+# ── Crawlers IA — tous autorisés ─────────────────
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
