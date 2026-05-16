@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
 
   <!-- Security meta -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; form-action https://formspree.io; connect-src 'self' https://formspree.io; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; form-action https://formsubmit.co; connect-src 'self' https://formsubmit.co; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer"                     content="strict-origin-when-cross-origin">
 
@@ -774,10 +774,12 @@
       <div class="contact-form-box">
         <h3 class="contact-form-title">Demande de contact</h3>
         <p class="contact-form-desc">Décrivez votre besoin et nous vous répondrons rapidement.</p>
-        <form id="contact-form" method="post" action="https://formspree.io/f/xlgpykzj" novalidate>
-          <!-- Honeypot anti-spam (Formspree _gotcha) -->
-          <input type="text" name="_gotcha" class="form-honeypot" tabindex="-1" autocomplete="off">
+        <form id="contact-form" method="post" action="https://formsubmit.co/contact@access-ia.pro" novalidate>
+          <!-- Honeypot anti-spam (FormSubmit _honey) -->
+          <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off">
           <input type="hidden" name="_subject" value="[ACCESSIA Pro] Demande de contact">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
 
           <div class="form-row">
             <div class="form-group">
@@ -813,7 +815,7 @@
             Envoyer ma demande
           </button>
           <p class="form-rgpd">
-            Vos données servent uniquement à répondre à votre demande. Le formulaire est traité par Formspree, notre sous-traitant technique.
+            Vos données servent uniquement à répondre à votre demande. Le formulaire est traité par FormSubmit, notre sous-traitant technique.
           </p>
         </form>
       </div>
@@ -1122,13 +1124,13 @@
         <h3>Hébergement</h3>
         <p>
           Ce site est hébergé chez <strong>OVHcloud</strong>, hébergeur français et européen.<br>
-          Les données transmises via le formulaire de contact sont traitées par <strong>Formspree</strong>, sous-traitant technique du formulaire.
+          Les données transmises via le formulaire de contact sont traitées par <strong>FormSubmit</strong>, sous-traitant technique du formulaire.
         </p>
       </div>
       <div class="mentions-card">
         <h3>Données personnelles &amp; RGPD</h3>
         <p>
-          Ce site ne dépose aucun cookie et n'utilise aucun outil de tracking. Les données collectées via le formulaire (nom, email, société, sujet, message) sont utilisées uniquement pour répondre à votre demande. Elles sont transmises à Formspree comme sous-traitant technique du formulaire, puis traitées par ACCESSIA Pro. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression. Contactez-nous à <a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a>.
+          Ce site ne dépose aucun cookie et n'utilise aucun outil de tracking. Les données collectées via le formulaire (nom, email, société, sujet, message) sont utilisées uniquement pour répondre à votre demande. Elles sont transmises à FormSubmit comme sous-traitant technique du formulaire, puis traitées par ACCESSIA Pro. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression. Contactez-nous à <a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a>.
         </p>
       </div>
     </div>

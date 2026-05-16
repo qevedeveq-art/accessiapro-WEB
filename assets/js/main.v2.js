@@ -88,8 +88,8 @@ function showNotif(msg, type) {
   toastTimer = setTimeout(() => toast.classList.remove('show'), 4500);
 }
 
-// ── Contact form (Formspree + honeypot + rate-limit) ──
-const FORMSPREE_ID = 'xlgpykzj';
+// ── Contact form (FormSubmit + honeypot + rate-limit) ──
+const CONTACT_FORM_ENDPOINT = 'https://formsubmit.co/ajax/contact@access-ia.pro';
 const form = document.getElementById('contact-form');
 if (form) {
   let submitLocked = false;
@@ -130,7 +130,7 @@ if (form) {
 
     try {
       const formData = new FormData(form);
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      const res = await fetch(CONTACT_FORM_ENDPOINT, {
         method:  'POST',
         headers: { 'Accept': 'application/json' },
         body:    formData,
