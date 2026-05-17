@@ -1,0 +1,323 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "main.js",
+      "file_type": "code",
+      "source_file": "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/main.js",
+      "source_location": "L1",
+      "id": "users_quentin_documents_projects_web_access_ia_accessiapro_web_assets_js_main_js",
+      "community": 1,
+      "norm_label": "main.js"
+    },
+    {
+      "label": "handleScroll()",
+      "file_type": "code",
+      "source_file": "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/main.js",
+      "source_location": "L8",
+      "id": "main_handlescroll",
+      "community": 1,
+      "norm_label": "handlescroll()"
+    },
+    {
+      "label": "showNotif()",
+      "file_type": "code",
+      "source_file": "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/main.js",
+      "source_location": "L111",
+      "id": "main_shownotif",
+      "community": 1,
+      "norm_label": "shownotif()"
+    },
+    {
+      "label": "analytics.js",
+      "file_type": "code",
+      "source_file": "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/analytics.js",
+      "source_location": "L1",
+      "id": "users_quentin_documents_projects_web_access_ia_accessiapro_web_assets_js_analytics_js",
+      "community": 2,
+      "norm_label": "analytics.js"
+    },
+    {
+      "label": "gtag()",
+      "file_type": "code",
+      "source_file": "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/analytics.js",
+      "source_location": "L2",
+      "id": "analytics_gtag",
+      "community": 2,
+      "norm_label": "gtag()"
+    },
+    {
+      "label": "main.v2.js",
+      "file_type": "code",
+      "source_file": "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/main.v2.js",
+      "source_location": "L1",
+      "id": "users_quentin_documents_projects_web_access_ia_accessiapro_web_assets_js_main_v2_js",
+      "community": 0,
+      "norm_label": "main.v2.js"
+    },
+    {
+      "label": "handleScroll()",
+      "file_type": "code",
+      "source_file": "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/main.v2.js",
+      "source_location": "L8",
+      "id": "main_v2_handlescroll",
+      "community": 0,
+      "norm_label": "handlescroll()"
+    },
+    {
+      "label": "showNotif()",
+      "file_type": "code",
+      "source_file": "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/main.v2.js",
+      "source_location": "L66",
+      "id": "main_v2_shownotif",
+      "community": 0,
+      "norm_label": "shownotif()"
+    },
+    {
+      "label": "isValidEmail()",
+      "file_type": "code",
+      "source_file": "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/main.v2.js",
+      "source_location": "L92",
+      "id": "main_v2_isvalidemail",
+      "community": 0,
+      "norm_label": "isvalidemail()"
+    },
+    {
+      "label": "404.html",
+      "file_type": "document",
+      "source_file": "404.html",
+      "community": 3,
+      "norm_label": "404.html",
+      "id": "file_404_html"
+    },
+    {
+      "label": "formation-equipe-ia.html",
+      "file_type": "document",
+      "source_file": "articles/formation-equipe-ia.html",
+      "community": 4,
+      "norm_label": "formation-equipe-ia.html",
+      "id": "file_articles_formation_equipe_ia_html"
+    },
+    {
+      "label": "ia-open-source-entreprise.html",
+      "file_type": "document",
+      "source_file": "articles/ia-open-source-entreprise.html",
+      "community": 5,
+      "norm_label": "ia-open-source-entreprise.html",
+      "id": "file_articles_ia_open_source_entreprise_html"
+    },
+    {
+      "label": "integrer-ia-pme.html",
+      "file_type": "document",
+      "source_file": "articles/integrer-ia-pme.html",
+      "community": 6,
+      "norm_label": "integrer-ia-pme.html",
+      "id": "file_articles_integrer_ia_pme_html"
+    },
+    {
+      "label": "rgpd-ia-entreprise.html",
+      "file_type": "document",
+      "source_file": "articles/rgpd-ia-entreprise.html",
+      "community": 7,
+      "norm_label": "rgpd-ia-entreprise.html",
+      "id": "file_articles_rgpd_ia_entreprise_html"
+    },
+    {
+      "label": "roi-ia-pme-france.html",
+      "file_type": "document",
+      "source_file": "articles/roi-ia-pme-france.html",
+      "community": 8,
+      "norm_label": "roi-ia-pme-france.html",
+      "id": "file_articles_roi_ia_pme_france_html"
+    },
+    {
+      "label": "apple-touch-icon.png",
+      "file_type": "document",
+      "source_file": "assets/images/apple-touch-icon.png",
+      "community": 9,
+      "norm_label": "apple-touch-icon.png",
+      "id": "file_assets_images_apple_touch_icon_png"
+    },
+    {
+      "label": "favicon-16.png",
+      "file_type": "document",
+      "source_file": "assets/images/favicon-16.png",
+      "community": 10,
+      "norm_label": "favicon-16.png",
+      "id": "file_assets_images_favicon_16_png"
+    },
+    {
+      "label": "favicon-32.png",
+      "file_type": "document",
+      "source_file": "assets/images/favicon-32.png",
+      "community": 11,
+      "norm_label": "favicon-32.png",
+      "id": "file_assets_images_favicon_32_png"
+    },
+    {
+      "label": "favicon-32.webp",
+      "file_type": "document",
+      "source_file": "assets/images/favicon-32.webp",
+      "community": 12,
+      "norm_label": "favicon-32.webp",
+      "id": "file_assets_images_favicon_32_webp"
+    },
+    {
+      "label": "favicon.png",
+      "file_type": "document",
+      "source_file": "assets/images/favicon.png",
+      "community": 13,
+      "norm_label": "favicon.png",
+      "id": "file_assets_images_favicon_png"
+    },
+    {
+      "label": "logo-icon.png",
+      "file_type": "document",
+      "source_file": "assets/images/logo-icon.png",
+      "community": 14,
+      "norm_label": "logo-icon.png",
+      "id": "file_assets_images_logo_icon_png"
+    },
+    {
+      "label": "logo-icon.webp",
+      "file_type": "document",
+      "source_file": "assets/images/logo-icon.webp",
+      "community": 15,
+      "norm_label": "logo-icon.webp",
+      "id": "file_assets_images_logo_icon_webp"
+    },
+    {
+      "label": "logo.jpg",
+      "file_type": "document",
+      "source_file": "assets/images/logo.jpg",
+      "community": 16,
+      "norm_label": "logo.jpg",
+      "id": "file_assets_images_logo_jpg"
+    },
+    {
+      "label": "og-image.jpg",
+      "file_type": "document",
+      "source_file": "assets/images/og-image.jpg",
+      "community": 17,
+      "norm_label": "og-image.jpg",
+      "id": "file_assets_images_og_image_jpg"
+    },
+    {
+      "label": "og-image.webp",
+      "file_type": "document",
+      "source_file": "assets/images/og-image.webp",
+      "community": 18,
+      "norm_label": "og-image.webp",
+      "id": "file_assets_images_og_image_webp"
+    },
+    {
+      "label": "quentin-devesa.jpeg",
+      "file_type": "document",
+      "source_file": "assets/images/quentin-devesa.jpeg",
+      "community": 19,
+      "norm_label": "quentin-devesa.jpeg",
+      "id": "file_assets_images_quentin_devesa_jpeg"
+    },
+    {
+      "label": "quentin-devesa.webp",
+      "file_type": "document",
+      "source_file": "assets/images/quentin-devesa.webp",
+      "community": 20,
+      "norm_label": "quentin-devesa.webp",
+      "id": "file_assets_images_quentin_devesa_webp"
+    },
+    {
+      "label": "index.html",
+      "file_type": "document",
+      "source_file": "index.html",
+      "community": 21,
+      "norm_label": "index.html",
+      "id": "file_index_html"
+    },
+    {
+      "label": "robots.txt",
+      "file_type": "document",
+      "source_file": "robots.txt",
+      "community": 22,
+      "norm_label": "robots.txt",
+      "id": "file_robots_txt"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/main.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "users_quentin_documents_projects_web_access_ia_accessiapro_web_assets_js_main_js",
+      "_tgt": "main_handlescroll",
+      "source": "users_quentin_documents_projects_web_access_ia_accessiapro_web_assets_js_main_js",
+      "target": "main_handlescroll",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/main.js",
+      "source_location": "L111",
+      "weight": 1.0,
+      "_src": "users_quentin_documents_projects_web_access_ia_accessiapro_web_assets_js_main_js",
+      "_tgt": "main_shownotif",
+      "source": "users_quentin_documents_projects_web_access_ia_accessiapro_web_assets_js_main_js",
+      "target": "main_shownotif",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/analytics.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_src": "users_quentin_documents_projects_web_access_ia_accessiapro_web_assets_js_analytics_js",
+      "_tgt": "analytics_gtag",
+      "source": "users_quentin_documents_projects_web_access_ia_accessiapro_web_assets_js_analytics_js",
+      "target": "analytics_gtag",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/main.v2.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "users_quentin_documents_projects_web_access_ia_accessiapro_web_assets_js_main_v2_js",
+      "_tgt": "main_v2_handlescroll",
+      "source": "users_quentin_documents_projects_web_access_ia_accessiapro_web_assets_js_main_v2_js",
+      "target": "main_v2_handlescroll",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/main.v2.js",
+      "source_location": "L66",
+      "weight": 1.0,
+      "_src": "users_quentin_documents_projects_web_access_ia_accessiapro_web_assets_js_main_v2_js",
+      "_tgt": "main_v2_shownotif",
+      "source": "users_quentin_documents_projects_web_access_ia_accessiapro_web_assets_js_main_v2_js",
+      "target": "main_v2_shownotif",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/main.v2.js",
+      "source_location": "L92",
+      "weight": 1.0,
+      "_src": "users_quentin_documents_projects_web_access_ia_accessiapro_web_assets_js_main_v2_js",
+      "_tgt": "main_v2_isvalidemail",
+      "source": "users_quentin_documents_projects_web_access_ia_accessiapro_web_assets_js_main_v2_js",
+      "target": "main_v2_isvalidemail",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": []
+}

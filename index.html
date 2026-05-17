@@ -856,11 +856,11 @@
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="fname">Nom *</label>
-              <input class="form-input" type="text" id="fname" name="name" required maxlength="120" autocomplete="name" placeholder="Votre nom">
+              <input class="form-input" type="text" id="fname" name="name" required aria-required="true" maxlength="120" autocomplete="name" placeholder="Votre nom">
             </div>
             <div class="form-group">
               <label class="form-label" for="femail">Email *</label>
-              <input class="form-input" type="email" id="femail" name="email" required maxlength="160" autocomplete="email" placeholder="votre@email.com">
+              <input class="form-input" type="email" id="femail" name="email" required aria-required="true" maxlength="160" autocomplete="email" placeholder="votre@email.com">
             </div>
           </div>
           <div class="form-group">
@@ -881,7 +881,7 @@
           </div>
           <div class="form-group">
             <label class="form-label" for="fmessage">Message *</label>
-            <textarea class="form-textarea" id="fmessage" name="message" required maxlength="2000" placeholder="Décrivez votre besoin, vos enjeux ou vos questions…"></textarea>
+            <textarea class="form-textarea" id="fmessage" name="message" required aria-required="true" maxlength="2000" placeholder="Décrivez votre besoin, vos enjeux ou vos questions…"></textarea>
           </div>
           <button type="submit" class="btn btn-navy btn-full">
             Envoyer ma demande

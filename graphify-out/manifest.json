@@ -1,0 +1,45 @@
+{
+  "mode": "deterministic-bootstrap",
+  "code_files": 3,
+  "detected": {
+    "files": {
+      "code": [
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/main.js",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/analytics.js",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/js/main.v2.js"
+      ],
+      "document": [
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/index.html",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/404.html",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/robots.txt",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/articles/rgpd-ia-entreprise.html",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/articles/integrer-ia-pme.html",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/articles/ia-open-source-entreprise.html",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/articles/formation-equipe-ia.html",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/articles/roi-ia-pme-france.html"
+      ],
+      "paper": [],
+      "image": [
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/images/logo-icon.webp",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/images/og-image.webp",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/images/apple-touch-icon.png",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/images/logo-icon.png",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/images/favicon-16.png",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/images/og-image.jpg",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/images/quentin-devesa.webp",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/images/favicon.png",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/images/favicon-32.webp",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/images/logo.jpg",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/images/favicon-32.png",
+        "/Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB/assets/images/quentin-devesa.jpeg"
+      ],
+      "video": []
+    },
+    "total_files": 23,
+    "total_words": 283674,
+    "needs_graph": true,
+    "warning": null,
+    "skipped_sensitive": [],
+    "graphifyignore_patterns": 0
+  }
+}

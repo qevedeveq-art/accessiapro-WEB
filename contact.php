@@ -4,6 +4,7 @@ declare(strict_types=1);
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 header('Referrer-Policy: strict-origin-when-cross-origin');
+header('Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), interest-cohort=()');
 header("Content-Security-Policy: default-src 'none'; frame-ancestors 'none'; base-uri 'none'");
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -54,7 +55,11 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 $rateKey = preg_replace('/[^a-zA-Z0-9_.:-]/', '_', $ip);
-$rateFile = sys_get_temp_dir() . '/accessia_contact_' . sha1($rateKey);
+$rateDir = sys_get_temp_dir() . '/accessia_rl';
+if (!is_dir($rateDir)) {
+    @mkdir($rateDir, 0700, true);
+}
+$rateFile = $rateDir . '/c_' . sha1($rateKey);
 $now = time();
 $window = 3600;
 $maxAttempts = 5;
@@ -89,11 +94,19 @@ $body = implode("\n", [
     $message,
 ]);
 
-$safeName = trim(preg_replace('/[\r\n]+/', ' ', $name) ?? '');
+$safeNameRaw = trim(preg_replace('/[^\p{L}\p{N} \-\'\.]/u', '', $name) ?? '');
+$safeName = $safeNameRaw !== '' ? mb_encode_mimeheader($safeNameRaw, 'UTF-8', 'Q') : '';
+$safeEmail = preg_match('/[\r\n]/', $email) === 1 ? '' : $email;
+if ($safeEmail === '') {
+    fail(422, 'invalid_email');
+}
+$replyTo = $safeName !== ''
+    ? 'Reply-To: ' . $safeName . ' <' . $safeEmail . '>'
+    : 'Reply-To: <' . $safeEmail . '>';
 
 $headers = [
     'From: ACCESSIA Pro <contact@access-ia.pro>',
-    'Reply-To: ' . $safeName . ' <' . $email . '>',
+    $replyTo,
     'MIME-Version: 1.0',
     'Content-Type: text/plain; charset=UTF-8',
     'Content-Transfer-Encoding: 8bit',

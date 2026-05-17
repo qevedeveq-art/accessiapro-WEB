@@ -1,0 +1,79 @@
+# ACCESSIA Pro - Apache hardening
+# YunoHost uses Nginx, but this file is kept as a defence-in-depth
+# fallback in case Apache is ever used to serve the app.
+
+# Disable directory listing
+Options -Indexes -MultiViews
+
+# Default charset
+AddDefaultCharset UTF-8
+
+# Security headers (applied if mod_headers is available)
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), interest-cohort=()"
+    Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+    Header always set Cross-Origin-Opener-Policy "same-origin"
+    Header always set Cross-Origin-Resource-Policy "same-origin"
+    Header unset X-Powered-By
+    Header always unset Server
+</IfModule>
+
+# Hide server signature
+ServerSignature Off
+
+# Block access to sensitive files
+<FilesMatch "\.(env|log|sh|bak|sql|json|yml|yaml|ini|conf|lock|gitignore|gitattributes)$">
+    Require all denied
+</FilesMatch>
+
+# Block access to dotfiles and dot-directories (.git, .github, .well-known stays handled below)
+RedirectMatch 404 /\.git
+RedirectMatch 404 /\.github
+RedirectMatch 404 /\.claude
+RedirectMatch 404 /\.DS_Store
+
+# Allow .well-known/ explicitly (security.txt, ACME challenges, etc.)
+<IfModule mod_alias.c>
+    RedirectMatch 200 ^/\.well-known/.*$
+</IfModule>
+
+# Block direct execution of files that should not be served
+<FilesMatch "^(composer\.(json|lock)|package(-lock)?\.json|\.gitlab-ci\.yml)$">
+    Require all denied
+</FilesMatch>
+
+# Cache policy
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault                          "access plus 1 month"
+    ExpiresByType text/html                 "access plus 5 minutes"
+    ExpiresByType text/css                  "access plus 1 year"
+    ExpiresByType application/javascript    "access plus 1 year"
+    ExpiresByType text/javascript           "access plus 1 year"
+    ExpiresByType font/woff2                "access plus 1 year"
+    ExpiresByType image/webp                "access plus 1 year"
+    ExpiresByType image/png                 "access plus 1 year"
+    ExpiresByType image/jpeg                "access plus 1 year"
+    ExpiresByType image/svg+xml             "access plus 1 year"
+    ExpiresByType image/x-icon              "access plus 1 year"
+</IfModule>
+
+# Long-cache hashed assets and immutable static resources
+<IfModule mod_headers.c>
+    <FilesMatch "\.(woff2|webp|png|jpg|jpeg|svg|ico|css|js)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    <FilesMatch "\.html$">
+        Header set Cache-Control "public, max-age=300, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+    AddOutputFilterByType DEFLATE application/javascript application/json
+    AddOutputFilterByType DEFLATE image/svg+xml font/woff2
+</IfModule>
