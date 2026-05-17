@@ -13,11 +13,19 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-if (isset($_SERVER['HTTP_ORIGIN'])) {
-    $originHost = parse_url((string) $_SERVER['HTTP_ORIGIN'], PHP_URL_HOST);
-    if ($originHost !== 'access-ia.pro') {
-        fail(403, 'invalid_origin');
-    }
+if (($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') !== 'XMLHttpRequest') {
+    fail(403, 'invalid_request');
+}
+
+$origin   = $_SERVER['HTTP_ORIGIN']  ?? '';
+$referer  = $_SERVER['HTTP_REFERER'] ?? '';
+$originOk = $origin  !== '' && parse_url($origin,  PHP_URL_HOST) === 'access-ia.pro';
+$refOk    = $referer !== '' && str_starts_with($referer, 'https://access-ia.pro/');
+if ($origin !== '' && !$originOk) {
+    fail(403, 'invalid_origin');
+}
+if ($origin === '' && !$refOk) {
+    fail(403, 'invalid_origin');
 }
 
 function field(string $name, int $max): string

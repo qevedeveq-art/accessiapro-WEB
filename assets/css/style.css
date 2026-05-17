@@ -345,10 +345,11 @@ textarea:focus-visible {
   border-radius: 50%;
   background: var(--teal-light);
   animation: pulse 2s infinite;
+  will-change: opacity;
 }
 @keyframes pulse {
-  0%,100% { opacity: 1; transform: scale(1); }
-  50%      { opacity: .5; transform: scale(1.4); }
+  0%,100% { opacity: 1; }
+  50%      { opacity: .4; }
 }
 .hero h1 {
   color: var(--white);
@@ -497,69 +498,6 @@ textarea:focus-visible {
 .hero-panel-footer div {
   min-width: 0;
 }
-.hero-card-stack {
-  position: relative;
-  width: 100%;
-  max-width: 440px;
-}
-.hero-card {
-  background: rgba(255,255,255,.11);
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: 10px;
-  padding: 24px;
-  backdrop-filter: blur(8px);
-  color: var(--white);
-}
-.hero-card-main {
-  position: relative;
-  z-index: 2;
-}
-.hero-card-float {
-  position: absolute;
-  top: -28px;
-  right: -28px;
-  background: rgba(23,160,157,.15);
-  border: 1px solid rgba(23,160,157,.3);
-  padding: 16px 20px;
-  border-radius: 8px;
-  z-index: 3;
-  backdrop-filter: blur(8px);
-  font-size: .85rem;
-  color: var(--teal-light);
-  font-weight: 600;
-}
-.hero-card-float-2 {
-  position: absolute;
-  bottom: -24px;
-  left: -24px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.12);
-  padding: 14px 18px;
-  border-radius: 8px;
-  z-index: 3;
-  backdrop-filter: blur(8px);
-  font-size: .85rem;
-  color: rgba(255,255,255,.8);
-  font-weight: 500;
-}
-.metric-row {
-  display: flex;
-  gap: 16px;
-  margin-top: 20px;
-}
-.metric-item {
-  flex: 1;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 10px;
-  padding: 14px;
-  text-align: center;
-}
-.metric-item .val { font-size: 1.4rem; font-weight: 800; color: var(--teal-light); }
-.metric-item .lbl { font-size: .72rem; color: rgba(255,255,255,.55); margin-top: 2px; }
-.card-title { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
-.card-sub { font-size: .82rem; color: rgba(255,255,255,.55); }
-
 /* ── Logos Bar ──────────────────────────────── */
 .logos-bar {
   background: var(--gray-50);

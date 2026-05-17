@@ -106,7 +106,7 @@ jobs:
         with:
           name: site-build
           path: ${{ env.SITE_DIR }}
-          retention-days: 1
+          retention-days: 7
 
   deploy-gcs:
     needs: build
@@ -161,7 +161,7 @@ jobs:
             "$GCS_BUCKET/llms.txt" \
             "$GCS_BUCKET/contact.php"
           gsutil -m setmeta \
-            -h "Cache-Control:public, max-age=3600, must-revalidate" \
+            -h "Cache-Control:public, max-age=86400, must-revalidate" \
             "$GCS_BUCKET/articles/*.html" || true
 
       - name: Set security response headers on backend bucket

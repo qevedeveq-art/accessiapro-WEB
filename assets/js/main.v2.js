@@ -153,7 +153,7 @@ if (form) {
     try {
       const res = await fetch(CONTACT_FORM_ENDPOINT, {
         method:  'POST',
-        headers: { 'Accept': 'application/json' },
+        headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
         body:    formData,
       });
       const payload = await res.json().catch(() => ({}));
