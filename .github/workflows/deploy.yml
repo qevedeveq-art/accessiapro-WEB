@@ -209,34 +209,19 @@ jobs:
 
           echo "SSH security setup complete"
 
-      - name: Deploy to staging directory
+      - name: Deploy directly to production
         env:
           DEPLOY_KEY_PATH: ~/.ssh/deploy_key
         run: |
           rsync -az --checksum --delete \
             -e "ssh -i $DEPLOY_KEY_PATH -o StrictHostKeyChecking=yes -o ConnectTimeout=10 -p 22" \
-            "$SITE_DIR/" "$YNH_USER@$YNH_HOST:$YNH_STAGE_PATH" \
+            "$SITE_DIR/" "$YNH_USER@$YNH_HOST:$YNH_PATH" \
             || {
-              echo "::error::Failed to sync to staging directory. Check SSH key and network connectivity."
+              echo "::error::Deploy failed. Ensure qevedeveq owns $YNH_PATH on the server."
+              echo "Run once on server: sudo chown -R qevedeveq:www-data $YNH_PATH && sudo chmod -R u=rwX,g=rX,o=rX $YNH_PATH"
               exit 1
             }
-          echo "Staging sync completed successfully"
-
-      - name: Promote staging to production
-        env:
-          DEPLOY_KEY_PATH: ~/.ssh/deploy_key
-        run: |
-          ssh -i $DEPLOY_KEY_PATH -o StrictHostKeyChecking=yes -o ConnectTimeout=10 -p 22 \
-            "$YNH_USER@$YNH_HOST" \
-            "sudo -n rsync -az --checksum --delete '$YNH_STAGE_PATH' '$YNH_PATH'" \
-            || {
-              echo "::error::OVH promotion failed. Check sudoers configuration on server."
-              echo "Required setup:"
-              echo "  $YNH_USER ALL=(root) NOPASSWD: /usr/bin/rsync"
-              echo "See DEPLOY_SETUP.md for complete instructions."
-              exit 1
-            }
-          echo "Production promotion completed successfully"
+          echo "Production deploy completed successfully"
 
       - name: Verify production homepage
         run: |
