@@ -14,12 +14,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check HTTPS availability
+      - name: Check HTTPS availability (primary CDN)
         run: |
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://access-ia.pro)
-          echo "HTTP status: $STATUS"
+          echo "HTTP status (CDN): $STATUS"
           if [ "$STATUS" != "200" ]; then
-            echo "ERROR: Site returned $STATUS" && exit 1
+            echo "ERROR: Primary domain returned $STATUS" && exit 1
+          fi
+
+      - name: Check YunoHost backend availability
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://srv.access-ia.pro)
+          echo "HTTP status (YunoHost): $STATUS"
+          if [ "$STATUS" != "200" ] && [ "$STATUS" != "301" ] && [ "$STATUS" != "302" ]; then
+            echo "WARNING: YunoHost backend returned $STATUS (may be expected if redirecting)"
           fi
 
       - name: Verify HTTP redirects to HTTPS
@@ -30,7 +38,7 @@ jobs:
             echo "ERROR: HTTP does not redirect to HTTPS" && exit 1
           fi
 
-      - name: Check security headers
+      - name: Check security headers (CDN)
         run: |
           HEADERS=$(curl -s -I https://access-ia.pro)
           echo "$HEADERS"
@@ -42,7 +50,16 @@ jobs:
             fi
           done
 
-      - name: Check SSL certificate expiry
+      - name: Check referrer-policy header
+        run: |
+          HEADERS=$(curl -s -I https://access-ia.pro)
+          if echo "$HEADERS" | grep -qi "referrer-policy"; then
+            echo "OK: referrer-policy present"
+          else
+            echo "WARNING: referrer-policy missing (recommended for privacy)"
+          fi
+
+      - name: Check SSL certificate expiry (CDN domain)
         run: |
           EXPIRY=$(echo | openssl s_client -connect access-ia.pro:443 -servername access-ia.pro 2>/dev/null \
             | openssl x509 -noout -enddate 2>/dev/null | cut -d= -f2)
@@ -55,6 +72,19 @@ jobs:
             echo "WARNING: Certificate expires in less than 30 days" && exit 1
           fi
 
+      - name: Check SSL certificate expiry (YunoHost domain)
+        run: |
+          EXPIRY=$(echo | openssl s_client -connect srv.access-ia.pro:443 -servername srv.access-ia.pro 2>/dev/null \
+            | openssl x509 -noout -enddate 2>/dev/null | cut -d= -f2)
+          echo "YunoHost certificate expires: $EXPIRY"
+          EXPIRY_EPOCH=$(date -d "$EXPIRY" +%s)
+          NOW_EPOCH=$(date +%s)
+          DAYS_LEFT=$(( (EXPIRY_EPOCH - NOW_EPOCH) / 86400 ))
+          echo "Days until expiry: $DAYS_LEFT"
+          if [ "$DAYS_LEFT" -lt 30 ]; then
+            echo "WARNING: YunoHost certificate expires in less than 30 days" && exit 1
+          fi
+
       - name: HTML validation (basic)
         run: |
           curl -s https://access-ia.pro | grep -q "ACCESSIA Pro" \
@@ -65,4 +95,4 @@ jobs:
         if: failure()
         run: |
           echo "Security check failed — check GitHub Actions logs"
-          echo "Contact: accessiapro@gmail.com"
+          echo "Contact: qevedeveq@gmail.com"

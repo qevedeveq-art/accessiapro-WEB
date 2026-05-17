@@ -17,15 +17,15 @@ env:
   SITE_DIR: /tmp/accessia-site
   GCS_BUCKET: gs://accessia-pro-web
   GCP_URL_MAP: accessia-pro-lb
-  OVH_HOST: access-ia.pro
-  OVH_USER: qevedeveq
-  OVH_STAGE_PATH: /home/qevedeveq/accessiapro-WEB-deploy/
-  OVH_PATH: /var/www/my_webapp/www/
+  YNH_HOST: srv.access-ia.pro
+  YNH_USER: qevedeveq
+  YNH_STAGE_PATH: /home/qevedeveq/accessiapro-WEB-deploy/
+  YNH_PATH: /var/www/my_webapp/www/
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    name: Deploy website automatically
+    name: Build & prepare deploy artifacts
 
     steps:
       - name: Checkout repository
@@ -78,12 +78,32 @@ jobs:
 
       - name: Verify deploy directory
         run: |
-          test -f "$SITE_DIR/index.html"
-          test -f "$SITE_DIR/contact.php"
-          test -f "$SITE_DIR/sitemap.xml"
-          test -f "$SITE_DIR/robots.txt"
-          test -d "$SITE_DIR/assets"
-          test -d "$SITE_DIR/articles"
+          test -f "$SITE_DIR/index.html" || (echo "ERROR: index.html missing" && exit 1)
+          test -f "$SITE_DIR/contact.php" || (echo "ERROR: contact.php missing" && exit 1)
+          test -f "$SITE_DIR/sitemap.xml" || (echo "ERROR: sitemap.xml missing" && exit 1)
+          test -f "$SITE_DIR/robots.txt" || (echo "ERROR: robots.txt missing" && exit 1)
+          test -d "$SITE_DIR/assets" || (echo "ERROR: assets/ missing" && exit 1)
+          test -d "$SITE_DIR/articles" || (echo "ERROR: articles/ missing" && exit 1)
+          echo "Build verification PASSED"
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-build
+          path: ${{ env.SITE_DIR }}
+          retention-days: 1
+
+  deploy-gcs:
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy to Google Cloud Storage + CDN
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: site-build
+          path: ${{ env.SITE_DIR }}
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
@@ -153,25 +173,77 @@ jobs:
             --global \
             --async || echo "CDN invalidation skipped (LB may not be configured yet)"
 
-      - name: Deploy to OVHcloud via SSH
+  deploy-yunohost:
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy to YunoHost (OVHcloud)
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: site-build
+          path: ${{ env.SITE_DIR }}
+
+      - name: Setup SSH with hardened security
         env:
-          OVH_SSH_KEY: ${{ secrets.OVH_SSH_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.OVH_SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
         run: |
           mkdir -p ~/.ssh
-          echo "$OVH_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 700 ~/.ssh
+
+          # Write private key
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H "$OVH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+          # Write pre-verified known_hosts (prevents MITM)
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+          # Verify known_hosts is not empty
+          if [ ! -s ~/.ssh/known_hosts ]; then
+            echo "::error::SSH_KNOWN_HOSTS secret is empty. See DEPLOY_SETUP.md for setup instructions."
+            exit 1
+          fi
+
+          echo "SSH security setup complete"
+
+      - name: Deploy to staging directory
+        env:
+          DEPLOY_KEY_PATH: ~/.ssh/deploy_key
+        run: |
           rsync -az --checksum --delete \
-            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p 22" \
-            "$SITE_DIR/" "$OVH_USER@$OVH_HOST:$OVH_STAGE_PATH"
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p 22 "$OVH_USER@$OVH_HOST" \
-            "sudo -n rsync -az --checksum --delete '$OVH_STAGE_PATH' '$OVH_PATH'" \
+            -e "ssh -i $DEPLOY_KEY_PATH -o StrictHostKeyChecking=yes -o ConnectTimeout=10 -p 22" \
+            "$SITE_DIR/" "$YNH_USER@$YNH_HOST:$YNH_STAGE_PATH" \
             || {
-              echo "::error::OVH promotion failed. Configure passwordless sudo for rsync on the server: qevedeveq ALL=(root) NOPASSWD: /usr/bin/rsync"
+              echo "::error::Failed to sync to staging directory. Check SSH key and network connectivity."
               exit 1
             }
-          echo "OVHcloud deploy complete"
+          echo "Staging sync completed successfully"
+
+      - name: Promote staging to production
+        env:
+          DEPLOY_KEY_PATH: ~/.ssh/deploy_key
+        run: |
+          ssh -i $DEPLOY_KEY_PATH -o StrictHostKeyChecking=yes -o ConnectTimeout=10 -p 22 \
+            "$YNH_USER@$YNH_HOST" \
+            "sudo -n rsync -az --checksum --delete '$YNH_STAGE_PATH' '$YNH_PATH'" \
+            || {
+              echo "::error::OVH promotion failed. Check sudoers configuration on server."
+              echo "Required setup:"
+              echo "  $YNH_USER ALL=(root) NOPASSWD: /usr/bin/rsync"
+              echo "See DEPLOY_SETUP.md for complete instructions."
+              exit 1
+            }
+          echo "Production promotion completed successfully"
 
       - name: Verify production homepage
         run: |
-          curl -fsSL https://access-ia.pro | grep -F "Conseil IA pour PME"
+          curl -fsSL https://access-ia.pro \
+            | grep -F "Conseil IA pour PME" \
+            && echo "Production verification PASSED" \
+            || {
+              echo "::error::Production verification FAILED"
+              exit 1
+            }
