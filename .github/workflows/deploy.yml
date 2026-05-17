@@ -51,6 +51,21 @@ jobs:
           uglifyjs "$SITE_DIR/assets/js/main.v2.js" -c -m > /tmp/main.min.js
           mv /tmp/main.min.js "$SITE_DIR/assets/js/main.v2.js"
 
+      - name: Minify HTML
+        run: |
+          npm install -g html-minifier-terser --silent
+          find "$SITE_DIR" -name "*.html" | while read f; do
+            html-minifier-terser \
+              --collapse-whitespace \
+              --remove-comments \
+              --remove-optional-tags \
+              --remove-redundant-attributes \
+              --use-short-doctype \
+              --minify-css true \
+              --minify-js true \
+              "$f" -o "$f"
+          done
+
       - name: Subset fonts
         run: |
           pip install fonttools brotli --quiet
