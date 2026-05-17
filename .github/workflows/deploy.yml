@@ -19,7 +19,7 @@ env:
   GCP_URL_MAP: accessia-pro-lb
   OVH_HOST: access-ia.pro
   OVH_USER: qevedeveq
-  OVH_PATH: /var/www/my_webapp/www/
+  OVH_PATH: /home/qevedeveq/accessiapro-WEB-deploy/
 
 jobs:
   deploy:
@@ -161,7 +161,6 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H "$OVH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
           rsync -az --checksum --delete \
-            --rsync-path="sudo rsync" \
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p 22" \
             "$SITE_DIR/" "$OVH_USER@$OVH_HOST:$OVH_PATH"
           echo "OVHcloud deploy complete"
