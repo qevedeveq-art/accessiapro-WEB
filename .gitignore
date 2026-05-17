@@ -1,8 +1,9 @@
+# Claude Code artifacts
+.claude/worktrees/
+graphify-out/
+
+# macOS
 .DS_Store
-Thumbs.db
-*.log
-.env
-.env.*
+
+# Node
 node_modules/
-gcp-sa-key.json
-http-redirect.yaml
