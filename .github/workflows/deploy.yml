@@ -19,7 +19,8 @@ env:
   GCP_URL_MAP: accessia-pro-lb
   OVH_HOST: access-ia.pro
   OVH_USER: qevedeveq
-  OVH_PATH: /home/qevedeveq/accessiapro-WEB-deploy/
+  OVH_STAGE_PATH: /home/qevedeveq/accessiapro-WEB-deploy/
+  OVH_PATH: /var/www/my_webapp/www/
 
 jobs:
   deploy:
@@ -162,5 +163,15 @@ jobs:
           ssh-keyscan -H "$OVH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
           rsync -az --checksum --delete \
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p 22" \
-            "$SITE_DIR/" "$OVH_USER@$OVH_HOST:$OVH_PATH"
+            "$SITE_DIR/" "$OVH_USER@$OVH_HOST:$OVH_STAGE_PATH"
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p 22 "$OVH_USER@$OVH_HOST" \
+            "sudo -n rsync -az --checksum --delete '$OVH_STAGE_PATH' '$OVH_PATH'" \
+            || {
+              echo "::error::OVH promotion failed. Configure passwordless sudo for rsync on the server: qevedeveq ALL=(root) NOPASSWD: /usr/bin/rsync"
+              exit 1
+            }
           echo "OVHcloud deploy complete"
+
+      - name: Verify production homepage
+        run: |
+          curl -fsSL https://access-ia.pro | grep -F "Conseil IA pour PME"
