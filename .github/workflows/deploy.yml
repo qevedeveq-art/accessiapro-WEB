@@ -5,40 +5,59 @@ on:
     branches: [main]
   workflow_dispatch:
 
+concurrency:
+  group: production-deploy
+  cancel-in-progress: true
+
 permissions:
   contents: read
   id-token: write
 
+env:
+  SITE_DIR: /tmp/accessia-site
+  GCS_BUCKET: gs://accessia-pro-web
+  GCP_URL_MAP: accessia-pro-lb
+  OVH_HOST: access-ia.pro
+  OVH_USER: qevedeveq
+  OVH_PATH: /var/www/my_webapp/www/
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: Deploy static site to GCS
+    name: Deploy website automatically
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
-
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
+      - name: Prepare deploy directory
+        run: |
+          rm -rf "$SITE_DIR"
+          mkdir -p "$SITE_DIR"
+          rsync -az \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='.DS_Store' \
+            --exclude='graphify-out/' \
+            --exclude='node_modules/' \
+            ./ "$SITE_DIR/"
 
       - name: Minify CSS and JS
         run: |
           npm install -g clean-css-cli uglify-js --silent
-          cleancss assets/css/style.css > /tmp/style.min.css && mv /tmp/style.min.css assets/css/style.css
-          uglifyjs assets/js/main.v2.js -c -m > /tmp/main.min.js && mv /tmp/main.min.js assets/js/main.v2.js
+          cleancss "$SITE_DIR/assets/css/style.css" > /tmp/style.min.css
+          mv /tmp/style.min.css "$SITE_DIR/assets/css/style.css"
+          uglifyjs "$SITE_DIR/assets/js/main.v2.js" -c -m > /tmp/main.min.js
+          mv /tmp/main.min.js "$SITE_DIR/assets/js/main.v2.js"
 
       - name: Subset fonts
         run: |
           pip install fonttools brotli --quiet
           python3 - <<'PYEOF'
-          import os, re, sys
+          import os, re
           chars = set()
-          for root, dirs, files in os.walk('.'):
+          site_dir = os.environ['SITE_DIR']
+          for root, dirs, files in os.walk(site_dir):
               for f in files:
                   if f.endswith('.html'):
                       with open(os.path.join(root, f), encoding='utf-8', errors='ignore') as fh:
@@ -48,60 +67,66 @@ jobs:
           PYEOF
           echo "Unique chars: $(wc -c < /tmp/used_chars.txt)"
           for weight in 400 500 600 700 800; do
-            pyftsubset "assets/fonts/inter-${weight}.woff2" \
+            pyftsubset "$SITE_DIR/assets/fonts/inter-${weight}.woff2" \
               --text-file=/tmp/used_chars.txt \
               --flavor=woff2 \
               --output-file="/tmp/inter-${weight}.woff2" 2>/dev/null \
-              && mv "/tmp/inter-${weight}.woff2" "assets/fonts/inter-${weight}.woff2" \
+              && mv "/tmp/inter-${weight}.woff2" "$SITE_DIR/assets/fonts/inter-${weight}.woff2" \
               || echo "Subset skipped for inter-${weight}.woff2"
           done
 
-      - name: Deploy files to GCS bucket
+      - name: Verify deploy directory
         run: |
-          gsutil -m cp index.html gs://accessia-pro-web/
-          gsutil -m cp 404.html gs://accessia-pro-web/
-          gsutil -m cp robots.txt gs://accessia-pro-web/
-          gsutil -m cp sitemap.xml gs://accessia-pro-web/
-          gsutil -m cp llms.txt gs://accessia-pro-web/
-          gsutil -m cp ressources.html gs://accessia-pro-web/
-          gsutil -m cp conseil-ia-toulouse.html gs://accessia-pro-web/
-          gsutil -m cp -r assets/css gs://accessia-pro-web/assets/
-          gsutil -m cp -r assets/js  gs://accessia-pro-web/assets/
-          gsutil -m cp -r assets/images gs://accessia-pro-web/assets/
-          gsutil -m cp -r assets/fonts gs://accessia-pro-web/assets/
-          gsutil -m cp -r .well-known gs://accessia-pro-web/
-          gsutil -m cp -r articles gs://accessia-pro-web/
+          test -f "$SITE_DIR/index.html"
+          test -f "$SITE_DIR/contact.php"
+          test -f "$SITE_DIR/sitemap.xml"
+          test -f "$SITE_DIR/robots.txt"
+          test -d "$SITE_DIR/assets"
+          test -d "$SITE_DIR/articles"
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Sync files to GCS bucket
+        run: |
+          gsutil -m rsync -r -d "$SITE_DIR" "$GCS_BUCKET"
 
       - name: Set content-type for fonts
         run: |
           gsutil -m setmeta \
             -h "Content-Type:font/woff2" \
-            "gs://accessia-pro-web/assets/fonts/*.woff2" || true
+            "$GCS_BUCKET/assets/fonts/*.woff2" || true
 
       - name: Set cache headers for static assets
         run: |
           gsutil -m setmeta \
             -h "Cache-Control:public, max-age=31536000, immutable" \
-            gs://accessia-pro-web/assets/css/style.css \
-            gs://accessia-pro-web/assets/js/main.v2.js \
-            "gs://accessia-pro-web/assets/images/*.webp" \
-            "gs://accessia-pro-web/assets/images/*.png" \
-            "gs://accessia-pro-web/assets/images/*.jpg" \
-            "gs://accessia-pro-web/assets/fonts/*.woff2" || true
+            "$GCS_BUCKET/assets/css/style.css" \
+            "$GCS_BUCKET/assets/js/main.v2.js" \
+            "$GCS_BUCKET/assets/images/*.webp" \
+            "$GCS_BUCKET/assets/images/*.png" \
+            "$GCS_BUCKET/assets/images/*.jpg" \
+            "$GCS_BUCKET/assets/fonts/*.woff2" || true
           gsutil -m setmeta \
             -h "Cache-Control:public, max-age=3600, must-revalidate" \
-            gs://accessia-pro-web/robots.txt \
-            gs://accessia-pro-web/sitemap.xml
+            "$GCS_BUCKET/robots.txt" \
+            "$GCS_BUCKET/sitemap.xml"
           gsutil -m setmeta \
             -h "Cache-Control:public, max-age=300, must-revalidate" \
-            gs://accessia-pro-web/index.html \
-            gs://accessia-pro-web/404.html \
-            gs://accessia-pro-web/ressources.html \
-            gs://accessia-pro-web/conseil-ia-toulouse.html \
-            gs://accessia-pro-web/llms.txt
+            "$GCS_BUCKET/index.html" \
+            "$GCS_BUCKET/404.html" \
+            "$GCS_BUCKET/ressources.html" \
+            "$GCS_BUCKET/conseil-ia-toulouse.html" \
+            "$GCS_BUCKET/llms.txt" \
+            "$GCS_BUCKET/contact.php"
           gsutil -m setmeta \
             -h "Cache-Control:public, max-age=3600, must-revalidate" \
-            "gs://accessia-pro-web/articles/*.html" || true
+            "$GCS_BUCKET/articles/*.html" || true
 
       - name: Set security response headers on backend bucket
         run: |
@@ -122,7 +147,7 @@ jobs:
 
       - name: Invalidate CDN cache
         run: |
-          gcloud compute url-maps invalidate-cdn-cache accessia-pro-lb \
+          gcloud compute url-maps invalidate-cdn-cache "$GCP_URL_MAP" \
             --path "/*" \
             --global \
             --async || echo "CDN invalidation skipped (LB may not be configured yet)"
@@ -134,13 +159,9 @@ jobs:
           mkdir -p ~/.ssh
           echo "$OVH_SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H access-ia.pro >> ~/.ssh/known_hosts 2>/dev/null
-          rsync -az --checksum \
-            --exclude='.git*' \
-            --exclude='.github/' \
-            --exclude='.DS_Store' \
-            --exclude='graphify-out/' \
+          ssh-keyscan -H "$OVH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          rsync -az --checksum --delete \
             --rsync-path="sudo rsync" \
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p 22" \
-            . qevedeveq@access-ia.pro:/var/www/my_webapp/www/
+            "$SITE_DIR/" "$OVH_USER@$OVH_HOST:$OVH_PATH"
           echo "OVHcloud deploy complete"
