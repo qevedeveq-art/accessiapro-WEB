@@ -97,6 +97,8 @@ jobs:
           test -f "$SITE_DIR/contact.php" || (echo "ERROR: contact.php missing" && exit 1)
           test -f "$SITE_DIR/sitemap.xml" || (echo "ERROR: sitemap.xml missing" && exit 1)
           test -f "$SITE_DIR/robots.txt" || (echo "ERROR: robots.txt missing" && exit 1)
+          test -f "$SITE_DIR/favicon.ico" || (echo "ERROR: favicon.ico missing" && exit 1)
+          test -f "$SITE_DIR/assets/images/favicon.svg" || (echo "ERROR: favicon.svg missing" && exit 1)
           test -d "$SITE_DIR/assets" || (echo "ERROR: assets/ missing" && exit 1)
           test -d "$SITE_DIR/articles" || (echo "ERROR: articles/ missing" && exit 1)
           echo "Build verification PASSED"
@@ -147,11 +149,13 @@ jobs:
             "$GCS_BUCKET/assets/images/*.webp" \
             "$GCS_BUCKET/assets/images/*.png" \
             "$GCS_BUCKET/assets/images/*.jpg" \
+            "$GCS_BUCKET/assets/images/*.svg" \
             "$GCS_BUCKET/assets/fonts/*.woff2" || true
           gsutil -m setmeta \
             -h "Cache-Control:public, max-age=3600, must-revalidate" \
             "$GCS_BUCKET/robots.txt" \
-            "$GCS_BUCKET/sitemap.xml"
+            "$GCS_BUCKET/sitemap.xml" \
+            "$GCS_BUCKET/favicon.ico"
           gsutil -m setmeta \
             -h "Cache-Control:public, max-age=300, must-revalidate" \
             "$GCS_BUCKET/index.html" \
