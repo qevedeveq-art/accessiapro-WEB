@@ -27,9 +27,9 @@
     "author": { "@type": "Person", "name": "Quentin DEVESA", "url": "https://access-ia.pro" },
     "publisher": { "@type": "Organization", "name": "ACCESSIA Pro", "url": "https://access-ia.pro", "logo": { "@type": "ImageObject", "url": "https://access-ia.pro/assets/images/logo-icon.webp" } },
     "datePublished": "2026-05-16",
-    "dateModified": "2026-05-16",
+    "dateModified": "2026-05-20",
     "image": { "@type": "ImageObject", "url": "https://access-ia.pro/assets/images/og-image.jpg", "width": 1200, "height": 630 },
-    "wordCount": 400,
+    "wordCount": 730,
     "inLanguage": "fr-FR",
     "mainEntityOfPage": "https://access-ia.pro/articles/cas-usage-factures-comptabilite.html"
   }
@@ -93,6 +93,20 @@
 
     <h2>Gain typique pour une PME</h2>
     <p>70 % de temps économisé sur la saisie des factures, soit 8 à 10 heures récupérées par mois sur un volume de 150 factures. Les doublons détectables automatiquement sont réduits de 90 %, ce qui évite des erreurs de double paiement et simplifie les rapprochements de fin de mois avec le cabinet comptable.</p>
+
+    <h2>Erreurs fréquentes à éviter</h2>
+    <ul>
+      <li>Confondre HT et TTC sur des factures en devises étrangères ou avec multi-TVA (5,5 %, 10 %, 20 %).</li>
+      <li>Ne pas traiter correctement les acomptes, avoirs partiels et factures de régularisation : la comptabilité se déséquilibre rapidement.</li>
+      <li>Laisser l'IA classer seule les comptes comptables sans validation : un mauvais compte fausse les analyses de gestion.</li>
+      <li>Mettre en production sans rapprochement systématique facture / bon de commande / réception, ce qui ouvre la porte aux fraudes au fournisseur.</li>
+    </ul>
+
+    <h2>Méthode de déploiement en 4 semaines</h2>
+    <p>Semaine 1 : sélectionner 3 fournisseurs récurrents au format de facture stable et cadrer les champs à extraire (n° facture, date, HT, TVA, TTC, IBAN, code analytique). Semaine 2 : test sur un mois de factures avec double saisie (IA + manuelle) pour mesurer le taux d'erreur réel. Semaine 3 : corriger les cas particuliers (factures multi-lignes, avoirs, acomptes) et figer la grille d'extraction. Semaine 4 : ouvrir au volume complet avec règle absolue : validation humaine de chaque écriture comptable avant comptabilisation.</p>
+
+    <h2>Cadrage RGPD et sécurité des données comptables</h2>
+    <p>Les factures contiennent des données personnelles (noms, adresses, IBAN) et des informations commerciales sensibles. Exiger un contrat de sous-traitance article 28 RGPD avec l'éditeur de l'outil, conserver les pièces selon les délais légaux (10 ans pour les pièces comptables), et restreindre l'accès aux personnes habilitées comptabilité. Voir notre guide <a href="rgpd-ia-entreprise.html">RGPD et IA en entreprise</a> et l'article sur la <a href="securite-ia-pme-fuites-donnees.html">prévention des fuites de données IA</a>.</p>
   </div>
   <div class="article-cta-box"><h3>Vous voulez fiabiliser le traitement des factures ?</h3><p>ACCESSIA Pro vous aide à cadrer un pilote court et contrôlé.</p><a href="/#contact" class="btn btn-primary">Cadrer un pilote finance</a></div>
 <div class="article-related">
