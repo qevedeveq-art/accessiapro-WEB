@@ -229,7 +229,7 @@ jobs:
           DEPLOY_KEY_PATH: ~/.ssh/deploy_key
         run: |
           rsync -az --checksum --delete \
-            -e "ssh -i $DEPLOY_KEY_PATH -o StrictHostKeyChecking=yes -o ConnectTimeout=10 -p 22" \
+            -e "ssh -4 -i $DEPLOY_KEY_PATH -o StrictHostKeyChecking=yes -o ConnectTimeout=10 -p 22" \
             "$SITE_DIR/" "$YNH_USER@$YNH_HOST:$YNH_PATH" \
             || {
               echo "::error::Deploy failed. Ensure qevedeveq owns $YNH_PATH on the server."
