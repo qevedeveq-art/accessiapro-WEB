@@ -71,6 +71,46 @@
   ]
 }
   </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Faut-il commencer par un chatbot client ou un assistant interne ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Toujours par un assistant interne pour les agents support. Le chatbot client public concentre tous les risques (image, hallucination, escalade ratée) alors que l'assistant interne apporte un gain immédiat avec un contrôle humain à chaque réponse."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quel gain attendre sur le temps de traitement des tickets ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "30 à 50 % de réduction du temps moyen de résolution sur les tickets de niveau 1 et 2. Les tickets complexes restent traités au même rythme : l'IA n'accélère pas la résolution réelle, elle accélère la recherche d'information et la rédaction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "L'IA peut-elle être ouverte 24/7 aux clients ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Techniquement oui, mais avec un garde-fou strict : ne traiter que les questions à faible risque (statut commande, horaires, FAQ), escalader systématiquement les réclamations, les questions contractuelles et les demandes sensibles vers un humain dès le lendemain matin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelles données clients ne pas envoyer dans un outil IA ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les numéros de carte bancaire (PCI DSS), les données de santé, les éléments de procédure judiciaire en cours et tout ce qui relève du secret professionnel. Anonymiser les exemples avant de les envoyer à un modèle externe et privilégier un hébergement européen avec contrat article 28."
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -141,6 +181,16 @@
 
       <h2>Cadrage RGPD et données clients</h2>
       <p>Les échanges support contiennent des données personnelles (identité, adresse, parfois données bancaires ou de santé). Exiger un contrat de sous-traitance article 28 RGPD, journaliser les requêtes et respecter le droit d'accès, de rectification et d'effacement des clients. Anonymiser les exemples utilisés pour entraîner l'outil. Voir notre guide <a href="rgpd-ia-entreprise.html">RGPD et IA en entreprise</a> et l'article sur la <a href="securite-ia-pme-fuites-donnees.html">prévention des fuites de données IA</a>.</p>
+      <h2>Questions fréquentes</h2>
+      <h3>Faut-il commencer par un chatbot client ou un assistant interne ?</h3>
+      <p>Toujours par un assistant interne pour les agents support. Le chatbot client public concentre tous les risques (image, hallucination, escalade ratée) alors que l'assistant interne apporte un gain immédiat avec un contrôle humain à chaque réponse.</p>
+      <h3>Quel gain attendre sur le temps de traitement des tickets ?</h3>
+      <p>30 à 50 % de réduction du temps moyen de résolution sur les tickets de niveau 1 et 2. Les tickets complexes restent traités au même rythme : l'IA n'accélère pas la résolution réelle, elle accélère la recherche d'information et la rédaction.</p>
+      <h3>L'IA peut-elle être ouverte 24/7 aux clients ?</h3>
+      <p>Techniquement oui, mais avec un garde-fou strict : ne traiter que les questions à faible risque (statut commande, horaires, FAQ), escalader systématiquement les réclamations, les questions contractuelles et les demandes sensibles vers un humain dès le lendemain matin.</p>
+      <h3>Quelles données clients ne pas envoyer dans un outil IA ?</h3>
+      <p>Les numéros de carte bancaire (PCI DSS), les données de santé, les éléments de procédure judiciaire en cours et tout ce qui relève du secret professionnel. Anonymiser les exemples avant de les envoyer à un modèle externe et privilégier un hébergement européen avec contrat article 28.</p>
+    
     </div>
 
     <div class="article-cta-box">
