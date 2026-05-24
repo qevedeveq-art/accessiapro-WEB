@@ -251,3 +251,21 @@ jobs:
               echo "::error::Production verification FAILED"
               exit 1
             }
+
+  notify-indexnow:
+    needs: [deploy-gcs, deploy-yunohost]
+    runs-on: ubuntu-latest
+    name: Notify search engines (IndexNow — Bing, Yandex, Naver, Seznam)
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify IndexNow key file is reachable
+        run: |
+          curl -fsSL https://access-ia.pro/89c0ec51c78fbd47f1dcc08b1443d075.txt \
+            | grep -q "89c0ec51c78fbd47f1dcc08b1443d075" \
+            && echo "Key file OK" \
+            || { echo "::error::IndexNow key file unreachable"; exit 1; }
+
+      - name: Ping IndexNow with all sitemap URLs
+        run: bash scripts/ping-indexnow.sh
