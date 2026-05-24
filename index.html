@@ -35,6 +35,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
   <!-- Canonical -->
   <link rel="canonical" href="https://access-ia.pro/">
   <link rel="alternate" type="text/plain" href="https://access-ia.pro/llms.txt" title="ACCESSIA Pro — contexte pour assistants IA">
@@ -152,9 +153,20 @@
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
+      "@id": "https://access-ia.pro/#website",
       "name": "ACCESSIA Pro",
-      "url": "https://access-ia.pro",
-      "publisher": { "@id": "https://access-ia.pro/#organization" }
+      "alternateName": "AccessIA Pro",
+      "url": "https://access-ia.pro/",
+      "inLanguage": "fr-FR",
+      "publisher": { "@id": "https://access-ia.pro/#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://access-ia.pro/ressources.html?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
     },
     {
       "@context": "https://schema.org",
@@ -164,7 +176,13 @@
       "url": "https://access-ia.pro/",
       "isPartOf": { "@type": "WebSite", "url": "https://access-ia.pro" },
       "about": { "@id": "https://access-ia.pro/#organization" },
-      "inLanguage": "fr"
+      "author": { "@id": "https://access-ia.pro/#founder" },
+      "primaryImageOfPage": { "@type": "ImageObject", "url": "https://access-ia.pro/assets/images/og-image.jpg" },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["#hero-title", ".hero-desc", "#faq h3"]
+      },
+      "inLanguage": "fr-FR"
     },
     {
       "@context": "https://schema.org",
@@ -243,12 +261,11 @@
 
       <ul class="navbar-links" id="nav-links" role="menubar">
         <li role="none"><a href="#solutions"  role="menuitem">Offres</a></li>
+        <li role="none"><a href="/tarifs-ia-pme.html" role="menuitem">Tarifs</a></li>
         <li role="none"><a href="#cas-usages" role="menuitem">Cas d'usage</a></li>
-        <li role="none"><a href="#valeur"     role="menuitem">Sécurité</a></li>
-        <li role="none"><a href="#avantages"  role="menuitem">Résultats</a></li>
-        <li role="none"><a href="#approche"   role="menuitem">Méthode</a></li>
         <li role="none"><a href="#faq"        role="menuitem">FAQ</a></li>
         <li role="none"><a href="/ressources.html" role="menuitem">Ressources</a></li>
+        <li role="none"><a href="/conseil-ia-toulouse.html" role="menuitem">Toulouse</a></li>
         <li role="none"><a href="#about"      role="menuitem">À propos</a></li>
         <li role="none"><a href="#contact"    role="menuitem">Contact</a></li>
       </ul>
@@ -1284,6 +1301,7 @@
           <li><a href="#approche">Notre méthode</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#about">Qui sommes-nous</a></li>
+          <li><a href="/a-propos-quentin-devesa.html">Quentin DEVESA</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -1294,6 +1312,8 @@
           <li><a href="#valeur">EU AI Act</a></li>
           <li><a href="#valeur">Cybersécurité</a></li>
           <li><a href="#valeur">Open Source</a></li>
+          <li><a href="/plan-du-site.html">Plan du site</a></li>
+          <li><a href="/llms.txt">llms.txt</a></li>
           <li><a href="#mentions">Mentions légales</a></li>
         </ul>
       </nav>

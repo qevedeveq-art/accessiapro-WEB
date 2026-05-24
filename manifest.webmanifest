@@ -1,0 +1,56 @@
+{
+  "name": "ACCESSIA Pro — Conseil IA pour PME",
+  "short_name": "ACCESSIA Pro",
+  "description": "Conseil IA pour PME françaises : diagnostic, automatisation, formation, RGPD. Basé à Toulouse.",
+  "lang": "fr-FR",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#17306f",
+  "categories": ["business", "productivity", "education"],
+  "icons": [
+    {
+      "src": "/assets/images/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Tarifs",
+      "short_name": "Tarifs",
+      "url": "/tarifs-ia-pme.html"
+    },
+    {
+      "name": "Ressources",
+      "short_name": "Ressources",
+      "url": "/ressources.html"
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "url": "/#contact"
+    }
+  ]
+}

@@ -27,6 +27,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
   <link rel="stylesheet" href="assets/css/style.css">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
   <script type="application/ld+json">
@@ -47,6 +48,40 @@
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://access-ia.pro/" },
       { "@type": "ListItem", "position": 2, "name": "Ressources", "item": "https://access-ia.pro/ressources.html" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Ressources IA pour PME — ACCESSIA Pro",
+    "description": "Guides stratégiques, comparatifs et cas d'usage IA pour PME françaises.",
+    "numberOfItems": 22,
+    "itemListOrder": "https://schema.org/ItemListOrderAscending",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "url": "https://access-ia.pro/tarifs-ia-pme.html", "name": "Combien coûte un projet IA pour PME en 2026 ?" },
+      { "@type": "ListItem", "position": 2, "url": "https://access-ia.pro/articles/integrer-ia-pme.html", "name": "Comment intégrer l'IA dans une PME : le guide complet" },
+      { "@type": "ListItem", "position": 3, "url": "https://access-ia.pro/articles/roi-ia-pme-france.html", "name": "ROI de l'IA pour les PME françaises : chiffres et méthode" },
+      { "@type": "ListItem", "position": 4, "url": "https://access-ia.pro/articles/rgpd-ia-entreprise.html", "name": "RGPD et IA : ce que chaque PME française doit savoir" },
+      { "@type": "ListItem", "position": 5, "url": "https://access-ia.pro/articles/ia-open-source-entreprise.html", "name": "IA open source pour les entreprises : avantages et limites" },
+      { "@type": "ListItem", "position": 6, "url": "https://access-ia.pro/articles/formation-equipe-ia.html", "name": "Former son équipe à l'IA : méthodes et erreurs à éviter" },
+      { "@type": "ListItem", "position": 7, "url": "https://access-ia.pro/articles/chatgpt-claude-mistral-pme.html", "name": "ChatGPT, Claude ou Mistral : quel outil IA choisir ?" },
+      { "@type": "ListItem", "position": 8, "url": "https://access-ia.pro/articles/premier-projet-ia-pme-exemple.html", "name": "Premier projet IA en PME : un exemple concret" },
+      { "@type": "ListItem", "position": 9, "url": "https://access-ia.pro/articles/securite-ia-pme-fuites-donnees.html", "name": "IA et sécurité des données en PME" },
+      { "@type": "ListItem", "position": 10, "url": "https://access-ia.pro/articles/cas-usage-assistant-documentaire.html", "name": "Assistant documentaire interne" },
+      { "@type": "ListItem", "position": 11, "url": "https://access-ia.pro/articles/cas-usage-emails-devis.html", "name": "Emails, demandes entrantes et devis" },
+      { "@type": "ListItem", "position": 12, "url": "https://access-ia.pro/articles/cas-usage-support-client.html", "name": "Support client augmenté" },
+      { "@type": "ListItem", "position": 13, "url": "https://access-ia.pro/articles/cas-usage-crm-prospection.html", "name": "CRM et prospection commerciale" },
+      { "@type": "ListItem", "position": 14, "url": "https://access-ia.pro/articles/cas-usage-marketing-contenu.html", "name": "Marketing et contenu" },
+      { "@type": "ListItem", "position": 15, "url": "https://access-ia.pro/articles/cas-usage-controle-gestion.html", "name": "Pilotage et contrôle de gestion" },
+      { "@type": "ListItem", "position": 16, "url": "https://access-ia.pro/articles/cas-usage-factures-comptabilite.html", "name": "Factures et comptabilité" },
+      { "@type": "ListItem", "position": 17, "url": "https://access-ia.pro/articles/cas-usage-achats-fournisseurs.html", "name": "Achats et fournisseurs" },
+      { "@type": "ListItem", "position": 18, "url": "https://access-ia.pro/articles/cas-usage-appels-offres.html", "name": "Appels d'offres" },
+      { "@type": "ListItem", "position": 19, "url": "https://access-ia.pro/articles/cas-usage-contrats-juridique.html", "name": "Contrats et juridique" },
+      { "@type": "ListItem", "position": 20, "url": "https://access-ia.pro/articles/cas-usage-qualite-conformite.html", "name": "Qualité et conformité" },
+      { "@type": "ListItem", "position": 21, "url": "https://access-ia.pro/articles/cas-usage-rh-recrutement-onboarding.html", "name": "RH, recrutement et onboarding" },
+      { "@type": "ListItem", "position": 22, "url": "https://access-ia.pro/articles/cas-usage-maintenance-production.html", "name": "Maintenance et production industrielle" }
     ]
   }
   </script>
@@ -79,6 +114,10 @@
 
       <h2>Guides stratégiques</h2>
       <div class="article-related-grid" style="margin-bottom:2rem;">
+        <a href="tarifs-ia-pme.html" class="article-related-card">
+          <span>Tarifs · 7 min</span>
+          <strong>Combien coûte un projet IA pour PME en 2026 ?</strong>
+        </a>
         <a href="articles/integrer-ia-pme.html" class="article-related-card">
           <span>Guide · 8 min</span>
           <strong>Comment intégrer l'IA dans une PME : le guide complet</strong>
@@ -188,7 +227,7 @@
 </main>
 
 <footer class="article-footer" role="contentinfo">
-  <p>© 2026 <strong>ACCESSIA Pro</strong> — <a href="/">Retour à l'accueil</a> · <a href="/#mentions">Mentions légales</a></p>
+  <p>© 2026 <strong>ACCESSIA Pro</strong> — Conseil IA pour PME · <a href="/">Accueil</a> · <a href="/tarifs-ia-pme.html">Tarifs</a> · <a href="/conseil-ia-toulouse.html">Toulouse</a> · <a href="/articles/">Articles</a> · <a href="/a-propos-quentin-devesa.html">À propos</a> · <a href="/llms.txt">llms.txt</a> · <a href="/#mentions">Mentions légales</a></p>
 </footer>
 </body>
 </html>

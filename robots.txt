@@ -7,12 +7,17 @@ Allow: /llms.txt
 Sitemap: https://access-ia.pro/sitemap.xml
 
 # ── Crawlers IA — tous autorisés ─────────────────
+# OpenAI (ChatGPT, training, search)
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic (Claude)
 User-agent: Claude-Web
 Allow: /
 
@@ -22,17 +27,87 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
+User-agent: Claude-SearchBot
+Allow: /
+
+# Google (Gemini, AI Overviews)
 User-agent: Google-Extended
 Allow: /
 
+User-agent: GoogleOther
+Allow: /
+
+# Perplexity
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: Perplexity-User
+Allow: /
+
+# Apple (Apple Intelligence)
+User-agent: Applebot-Extended
+Allow: /
+
+# Microsoft (Copilot, Bing)
+User-agent: bingbot
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+# DuckDuckGo (DuckAssist)
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# You.com
 User-agent: YouBot
 Allow: /
 
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+User-agent: cohere-training-data-crawler
+Allow: /
+
+# Common Crawl (utilisé par de nombreux LLM en entraînement)
 User-agent: CCBot
 Allow: /
 
-User-agent: cohere-ai
+# Mistral
+User-agent: MistralAI-User
 Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# ByteDance (TikTok / Doubao)
+User-agent: Bytespider
+Allow: /
+
+# Diffbot
+User-agent: Diffbot
+Allow: /
+
+# Amazon (Alexa, Q)
+User-agent: Amazonbot
+Allow: /
+
+# Kagi Search
+User-agent: Kagibot
+Allow: /
+
+# Neeva / autres
+User-agent: NeevaBot
+Allow: /
+
