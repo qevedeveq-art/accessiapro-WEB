@@ -14,6 +14,13 @@
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="stylesheet" href="/assets/css/style.css">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", ".article-title", ".article-body p:first-of-type", ".section-header h2", ".hero h1"]
+  }
+  </script>
 </head>
 <body>
 
@@ -24,7 +31,7 @@
     <a href="/" class="navbar-brand" aria-label="ACCESSIA Pro — retour à l'accueil">
       <picture>
         <source srcset="/assets/images/logo-icon.webp" type="image/webp">
-        <img src="/assets/images/logo-icon.webp" alt="ACCESSIA Pro" width="36" height="36" decoding="async">
+        <img src="/assets/images/logo-icon.webp" alt="ACCESSIA Pro" width="36" height="36" loading="lazy" decoding="async">
       </picture>
       <span class="navbar-name">ACCESSIA <span class="navbar-pro">Pro</span></span>
     </a>
