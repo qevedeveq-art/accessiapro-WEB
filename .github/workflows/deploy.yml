@@ -21,6 +21,7 @@ env:
   YNH_USER: qevedeveq
   YNH_STAGE_PATH: /home/qevedeveq/accessiapro-WEB-deploy/
   YNH_PATH: /var/www/my_webapp/www/
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build:

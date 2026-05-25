@@ -5,6 +5,9 @@ on:
     - cron: '0 7 * * 1'   # chaque lundi à 7h
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   security-check:
     runs-on: ubuntu-latest
