@@ -60,7 +60,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
 
   <!-- Security meta -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; form-action 'self' mailto:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; form-action 'self' mailto:; connect-src 'self'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer"                     content="strict-origin-when-cross-origin">
 
@@ -113,7 +113,8 @@
         "name": "Quentin DEVESA",
         "jobTitle": "Fondateur & Dirigeant",
         "image": "https://access-ia.pro/assets/images/quentin-devesa.webp",
-        "sameAs": "https://www.linkedin.com/in/quentin-devesa-cyber04a069"
+        "worksFor": { "@id": "https://access-ia.pro/#organization" },
+        "sameAs": ["https://www.linkedin.com/in/quentin-devesa-cyber04a069"]
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -896,28 +897,28 @@
           <div class="contact-item">
             <div class="contact-item-icon">📧</div>
             <div class="contact-item-text">
-              <h4>Email</h4>
+              <h3>Email</h3>
               <a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a>
             </div>
           </div>
           <div class="contact-item">
             <div class="contact-item-icon">📍</div>
             <div class="contact-item-text">
-              <h4>Zone d'intervention</h4>
+              <h3>Zone d'intervention</h3>
               <p>France entière · Télétravail &amp; Présentiel</p>
             </div>
           </div>
           <div class="contact-item">
             <div class="contact-item-icon">🕐</div>
             <div class="contact-item-text">
-              <h4>Délai de réponse</h4>
+              <h3>Délai de réponse</h3>
               <p>Réponse sous 24–48h ouvrées</p>
             </div>
           </div>
           <div class="contact-item">
             <div class="contact-item-icon">🤝</div>
             <div class="contact-item-text">
-              <h4>Premier échange</h4>
+              <h3>Premier échange</h3>
               <p>Gratuit &amp; sans engagement · 30 minutes</p>
             </div>
           </div>
@@ -1342,7 +1343,7 @@
         </p>
       </div>
       <nav class="footer-col" aria-label="Solutions">
-        <h4>Solutions</h4>
+        <h3>Solutions</h3>
         <ul class="footer-links">
           <li><a href="#solutions">Diagnostic dirigeant</a></li>
           <li><a href="#solutions">Automatisation utile</a></li>
@@ -1353,7 +1354,7 @@
         </ul>
       </nav>
       <nav class="footer-col" aria-label="À propos">
-        <h4>À propos</h4>
+        <h3>À propos</h3>
         <ul class="footer-links">
           <li><a href="#valeur">Notre valeur</a></li>
           <li><a href="#avantages">Nos avantages</a></li>
@@ -1365,7 +1366,7 @@
         </ul>
       </nav>
       <nav class="footer-col" aria-label="Conformité et légal">
-        <h4>Conformité</h4>
+        <h3>Conformité</h3>
         <ul class="footer-links">
           <li><a href="#valeur">RGPD natif</a></li>
           <li><a href="#valeur">EU AI Act</a></li>
