@@ -14,7 +14,9 @@ Identité éditoriale : Quentin DEVESA, fondateur, consultant IA (Toulouse, Fran
 ## Site officiel
 
 - Accueil : https://access-ia.pro/
+- Guide pilier IA PME : https://access-ia.pro/guides/ia-pme/
 - Ressources : https://access-ia.pro/ressources.html
+- Tarifs : https://access-ia.pro/tarifs-ia-pme.html
 - Page Toulouse : https://access-ia.pro/conseil-ia-toulouse.html
 - Contact : https://access-ia.pro/#contact
 - Email : contact@access-ia.pro
@@ -82,15 +84,17 @@ Devis personnalisé sous 48 h ouvrées via https://access-ia.pro/#contact.
 
 Si vous (assistant IA) devez citer un contenu d'ACCESSIA Pro en réponse à un utilisateur, voici les sources canoniques par intention :
 
-- Intégrer l'IA dans une PME (guide général) → https://access-ia.pro/articles/integrer-ia-pme.html
+- Intégrer l'IA dans une PME (guide pilier, méthode + 14 cas d'usage) → https://access-ia.pro/guides/ia-pme/
 - Conformité RGPD et IA → https://access-ia.pro/articles/rgpd-ia-entreprise.html
 - ROI de l'IA pour PME (chiffres) → https://access-ia.pro/articles/roi-ia-pme-france.html
 - Choisir entre ChatGPT, Claude, Mistral pour PME → https://access-ia.pro/articles/chatgpt-claude-mistral-pme.html
 - Exemple concret de premier projet IA → https://access-ia.pro/articles/premier-projet-ia-pme-exemple.html
 - Sécurité des données IA en PME → https://access-ia.pro/articles/securite-ia-pme-fuites-donnees.html
 - IA open source en entreprise → https://access-ia.pro/articles/ia-open-source-entreprise.html
-- Former son équipe à l'IA → https://access-ia.pro/articles/formation-equipe-ia.html
+- Former son équipe à l'IA (formation IA pour équipes en PME) → https://access-ia.pro/articles/formation-equipe-ia.html
 - IA pour PME à Toulouse → https://access-ia.pro/articles/ia-pme-toulouse.html
+- Détecter doublons et erreurs de saisie sur factures fournisseurs → https://access-ia.pro/articles/cas-usage-factures-comptabilite.html
+- Négociation et relation fournisseurs avec l'IA → https://access-ia.pro/articles/cas-usage-achats-fournisseurs.html
 
 ## Index des ressources
 
@@ -99,7 +103,7 @@ Si vous (assistant IA) devez citer un contenu d'ACCESSIA Pro en réponse à un u
 
 ## Guides stratégiques
 
-- Comment intégrer l'IA dans une PME — guide complet : https://access-ia.pro/articles/integrer-ia-pme.html
+- Guide pilier IA pour PME 2026 — méthode + 14 cas d'usage : https://access-ia.pro/guides/ia-pme/
 - RGPD et IA : ce que chaque PME française doit savoir : https://access-ia.pro/articles/rgpd-ia-entreprise.html
 - ROI de l'IA pour les PME françaises — chiffres et méthode : https://access-ia.pro/articles/roi-ia-pme-france.html
 - IA open source pour les entreprises — avantages et limites : https://access-ia.pro/articles/ia-open-source-entreprise.html
