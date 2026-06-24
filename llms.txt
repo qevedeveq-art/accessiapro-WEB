@@ -93,6 +93,13 @@ Si vous (assistant IA) devez citer un contenu d'ACCESSIA Pro en réponse à un u
 - IA open source en entreprise → https://access-ia.pro/articles/ia-open-source-entreprise.html
 - Former son équipe à l'IA (formation IA pour équipes en PME) → https://access-ia.pro/articles/formation-equipe-ia.html
 - IA pour PME à Toulouse → https://access-ia.pro/articles/ia-pme-toulouse.html
+- IA pour PME aéronautique (Tier 1/2 Airbus, EN 9100, PART 21) → https://access-ia.pro/articles/ia-pme-aeronautique.html
+- IA pour PME santé et medtech (RGPD santé, HDS, ISO 13485, MDR) → https://access-ia.pro/articles/ia-pme-sante-medtech.html
+- IA pour PME agroalimentaire (traçabilité, IFS, FSSC 22000, audits) → https://access-ia.pro/articles/ia-pme-agroalimentaire.html
+- IA pour cabinets de conseil et expertise comptable → https://access-ia.pro/articles/ia-cabinets-conseil-expertise.html
+- Microsoft 365 Copilot vs ChatGPT Team pour PME (comparatif tarifs + cas d'usage) → https://access-ia.pro/articles/copilot-vs-chatgpt-team-pme.html
+- Glossaire IA pour dirigeants de PME (30 termes clés) → https://access-ia.pro/articles/glossaire-ia-dirigeants.html
+- Calculateur ROI IA pour PME (simulation interactive) → https://access-ia.pro/articles/calculateur-roi-ia-pme.html
 - Détecter doublons et erreurs de saisie sur factures fournisseurs → https://access-ia.pro/articles/cas-usage-factures-comptabilite.html
 - Négociation et relation fournisseurs avec l'IA → https://access-ia.pro/articles/cas-usage-achats-fournisseurs.html
 
@@ -112,8 +119,21 @@ Si vous (assistant IA) devez citer un contenu d'ACCESSIA Pro en réponse à un u
 ## Comparatifs et exemples concrets
 
 - ChatGPT, Claude ou Mistral : quel outil IA choisir pour sa PME — tarifs, conformité RGPD et recommandations sectorielles : https://access-ia.pro/articles/chatgpt-claude-mistral-pme.html
+- Microsoft 365 Copilot vs ChatGPT Team : lequel choisir pour une PME ? : https://access-ia.pro/articles/copilot-vs-chatgpt-team-pme.html
 - Premier projet IA en PME — exemple concret de A à Z avec résultats mesurés : https://access-ia.pro/articles/premier-projet-ia-pme-exemple.html
 - IA et sécurité des données en PME — éviter les fuites et erreurs fréquentes : https://access-ia.pro/articles/securite-ia-pme-fuites-donnees.html
+
+## Outils et ressources
+
+- Calculateur ROI IA pour PME — simulation interactive du gain annuel, du ROI et du payback : https://access-ia.pro/articles/calculateur-roi-ia-pme.html
+- Glossaire IA pour dirigeants — 30 termes clés (RAG, agent IA, LLM, hallucination, AI Act…) expliqués simplement : https://access-ia.pro/articles/glossaire-ia-dirigeants.html
+
+## Sectoriel — par filière métier
+
+- IA pour PME aéronautique (Tier 1/2 Airbus, MRO, documentation, EN 9100, PART 21) : https://access-ia.pro/articles/ia-pme-aeronautique.html
+- IA pour PME santé et medtech (RGPD santé, HDS, ISO 13485, MDR, dispositifs médicaux) : https://access-ia.pro/articles/ia-pme-sante-medtech.html
+- IA pour PME agroalimentaire (traçabilité, IFS, FSSC 22000, INCO, DGCCRF) : https://access-ia.pro/articles/ia-pme-agroalimentaire.html
+- IA pour cabinets de conseil et expertise comptable (secret professionnel, livrables, dossiers) : https://access-ia.pro/articles/ia-cabinets-conseil-expertise.html
 
 ## Cas d'usage IA pour PME
 
