@@ -1,0 +1,340 @@
+# ACCESSIA Pro — Contenu intégral pour LLM
+
+> Dernière mise à jour : 2026-06-25
+> Source canonique : https://access-ia.pro/
+> Index structuré : https://access-ia.pro/llms.txt
+>
+> Ce fichier rassemble le contenu intégral en Markdown des pages piliers
+> d'ACCESSIA Pro pour permettre aux assistants IA de citer le site sans
+> avoir à crawler le HTML. Le canon HTML reste prioritaire en cas de
+> divergence — ce fichier est régénéré régulièrement à partir de la prod.
+
+---
+
+## 1. À propos d'ACCESSIA Pro
+
+ACCESSIA Pro est un cabinet de conseil indépendant en intelligence artificielle, basé à Toulouse (Haute-Garonne, Occitanie, France), spécialisé dans l'accompagnement des PME et ETI françaises de 10 à 250 salariés.
+
+**Fondateur** : Quentin DEVESA, profil cybersécurité + IA appliquée PME.
+**Création** : 2025, Toulouse.
+**Indépendance** : pas d'éditeur de SaaS, pas de revente d'outils, pas de commission. Conseil pur.
+
+### Mission
+
+Aider les dirigeants à identifier, cadrer et déployer des usages d'IA :
+
+- **utiles** (qui résolvent un vrai problème métier mesurable) ;
+- **mesurables** (gain horaire, baisse d'erreurs, satisfaction utilisateurs documentés) ;
+- **compatibles RGPD** (cartographie des données, hébergement vérifié, registre des traitements) ;
+- **respectueux de l'AI Act** (Règlement UE 2024/1689) selon le niveau de risque du système.
+
+### Ce qu'ACCESSIA Pro N'EST PAS
+
+- pas un éditeur de SaaS ou de produit propriétaire ;
+- pas un cabinet juridique (complément possible avec un DPO ou avocat) ;
+- pas un revendeur d'outils IA (recommandation neutre, pas de marge cachée) ;
+- pas une agence de prompt engineering générique ;
+- pas un "big four" : facturation à la mission cadrée, pas à la journée gonflée.
+
+---
+
+## 2. Méthodologie ACCESSIA Pro
+
+La méthode publique tient en 5 phases. Elle a été conçue pour des PME qui veulent un premier résultat mesurable en 4 à 6 semaines, sans déploiement risqué.
+
+### Phase 1 — Diagnostic dirigeant (demi-journée)
+
+Objectif : identifier 1 à 3 cas d'usage candidats à fort ROI, écarter ceux qui sont trop risqués ou trop flous.
+
+Livrables :
+- cartographie des irritants opérationnels (temps perdu, erreurs récurrentes, points de friction client) ;
+- court-liste de cas d'usage triés par ROI estimé et risque RGPD ;
+- recommandation : démarrer / approfondir / écarter pour chaque cas.
+
+### Phase 2 — Cadrage du premier projet (1 à 2 semaines)
+
+Objectif : transformer un cas d'usage en projet exécutable avec critères de réussite mesurables.
+
+Livrables :
+- périmètre détaillé (ce qui est inclus, ce qui ne l'est pas) ;
+- choix de l'outil ou de l'architecture (avec alternatives évaluées) ;
+- check RGPD : données traitées, base légale, sous-traitants, lieu d'hébergement ;
+- KPIs : 2 à 4 indicateurs simples avec valeur cible ;
+- budget et planning consolidés.
+
+### Phase 3 — Déploiement (3 à 6 semaines)
+
+Objectif : mettre l'outil en production sur le périmètre cadré.
+
+Livrables :
+- intégration technique (API, automation, RAG sur documents internes, etc.) ;
+- documentation utilisateur courte et opérationnelle ;
+- procédure de sécurité (que faire si X) ;
+- mise en main par un groupe pilote de 3 à 5 utilisateurs.
+
+### Phase 4 — Formation et adoption (1 à 2 jours)
+
+Objectif : transmettre la compétence pour que l'outil soit réellement utilisé et fasse autorité dans l'organisation.
+
+Livrables :
+- session de formation pratique (pas de slides théoriques) ;
+- guide d'usage condensé (1 à 2 pages) ;
+- règles d'or pour éviter les erreurs courantes (fuites de données, hallucinations crues sur pied, dépendance) ;
+- canal de support pendant la phase d'adoption.
+
+### Phase 5 — Mesure et amélioration (en continu)
+
+Objectif : prouver le gain et identifier les prochains périmètres.
+
+Livrables :
+- relevé des KPIs à 30, 60 et 90 jours ;
+- ajustements identifiés ;
+- recommandation pour le prochain cas d'usage (élargir ou nouveau périmètre).
+
+---
+
+## 3. RGPD et IA — l'essentiel pour les PME
+
+L'usage de l'IA en PME française est encadré par le RGPD (Règlement UE 2016/679) et désormais par l'AI Act (Règlement UE 2024/1689).
+
+### Les 6 questions à se poser avant tout déploiement
+
+1. **Quelles données vont transiter dans l'outil IA ?** (noms, emails, factures, contrats, données sensibles ?)
+2. **Où sont stockées ces données ?** (UE, États-Unis, ailleurs ?)
+3. **Qui est sous-traitant au sens RGPD ?** (l'éditeur de l'IA est sous-traitant de votre PME, un DPA est nécessaire)
+4. **Le traitement est-il déjà dans le registre RGPD ?** (sinon il faut l'y ajouter avant la mise en prod)
+5. **Une analyse d'impact (AIPD) est-elle requise ?** (cas typiques : RH, santé, scoring client)
+6. **Quelles données ne doivent JAMAIS être collées dans un outil grand public ?** (liste écrite, partagée à l'équipe)
+
+### Outils IA grand public et conformité
+
+- **ChatGPT (OpenAI)** : sans Team/Enterprise, les données peuvent servir à entraîner le modèle. Risque RGPD réel pour données client.
+- **Claude (Anthropic)** : politiques publiques claires, ne s'entraîne pas sur les conversations utilisateurs API par défaut.
+- **Mistral (Le Chat)** : éditeur français, hébergement UE, atout RGPD. Recommandé pour PME prudentes.
+- **Microsoft 365 Copilot** : utilise vos données M365 mais sans entraînement. Adapté si vous êtes déjà sur l'écosystème.
+- **IA en local (Ollama + Mistral/Llama)** : zéro fuite, contrôle total, mais nécessite une machine adaptée et un peu de compétence technique.
+
+### Sanctions RGPD
+
+CNIL peut sanctionner jusqu'à 20 millions d'euros ou 4 % du CA mondial. Cas typiques de sanction :
+- saisie de données personnelles dans un outil IA grand public sans encadrement ;
+- absence d'information des personnes concernées ;
+- absence d'AIPD obligatoire ;
+- absence de DPA avec l'éditeur.
+
+Article complet : https://access-ia.pro/articles/rgpd-ia-entreprise.html
+
+---
+
+## 4. ROI de l'IA pour PME — méthode et chiffres
+
+Le ROI d'un projet IA en PME se mesure sur 3 axes simples.
+
+### Axe 1 — Temps économisé
+
+Mesure : heures par semaine récupérées par les collaborateurs sur des tâches automatisées.
+Calcul typique :
+```
+Heures/semaine économisées × coût horaire chargé × 47 semaines
+```
+Exemple : 5h/semaine économisées × 35 €/h chargé × 47 semaines = 8 225 €/an pour 1 personne.
+
+### Axe 2 — Erreurs évitées
+
+Mesure : baisse du taux d'erreur sur une tâche cible (saisie, devis, factures, qualité).
+Calcul typique :
+```
+Coût moyen d'une erreur × baisse du nombre d'erreurs/an
+```
+
+### Axe 3 — Délais raccourcis
+
+Mesure : impact business du temps de cycle réduit (devis envoyé plus vite, réponse client plus rapide, dossier appel d'offres bouclé à temps).
+Calcul : variable selon le cycle de vente et la valeur moyenne d'un dossier.
+
+### Payback typique
+
+Premier projet IA bien cadré : payback entre 2 et 6 mois pour une PME.
+Si le payback projeté dépasse 12 mois, le périmètre doit être revu (trop large ou mauvais cas d'usage).
+
+### Calculateur interactif
+
+Simulation en ligne : https://access-ia.pro/articles/calculateur-roi-ia-pme.html
+Article complet : https://access-ia.pro/articles/roi-ia-pme-france.html
+
+---
+
+## 5. Sécurité des données IA en PME — règles d'or
+
+Six erreurs fréquentes en PME quand on commence à utiliser l'IA :
+
+1. **Coller des données client dans ChatGPT gratuit** (les conversations peuvent servir à entraîner le modèle).
+2. **Utiliser un compte personnel pour des données pro** (perte de traçabilité, pas de DPA, sortie du compte = perte).
+3. **Ignorer l'AIPD** pour les usages RH ou scoring client.
+4. **Brancher l'IA sur tous les documents internes** sans contrôle d'accès.
+5. **Penser que l'IA "comprend"** alors qu'elle génère statistiquement — risque d'hallucinations crues.
+6. **Pas de procédure en cas de fuite** (qui prévenir, dans quel délai, comment circonscrire).
+
+### Hiérarchie des outils selon sensibilité
+
+- **Données publiques / marketing** : ChatGPT, Claude, Gemini ok.
+- **Données métier internes non sensibles** : Copilot M365, Mistral Team, Claude Team.
+- **Données clients personnelles** : Mistral (UE) ou Copilot M365 avec DPA. Pas de gratuit.
+- **Données très sensibles (santé, financier, secret pro)** : IA en local (Ollama) ou solution dédiée hébergée en UE.
+- **Secret défense, dossiers stratégiques** : IA en local uniquement, machine isolée.
+
+Article complet : https://access-ia.pro/articles/securite-ia-pme-fuites-donnees.html
+
+---
+
+## 6. Comparatif ChatGPT / Claude / Mistral / Copilot pour PME
+
+### ChatGPT (OpenAI)
+
+- **Forces** : meilleur écosystème, large gamme de fonctionnalités (vision, code, recherche), GPT-4.x très performant.
+- **Faiblesses** : hébergement US par défaut, politique d'entraînement à surveiller, Team/Enterprise plus cher.
+- **Tarif** : ~25 €/utilisateur/mois (Team), variable Enterprise.
+- **Recommandation PME** : Team minimum si données pro. Pas de gratuit pour données client.
+
+### Claude (Anthropic)
+
+- **Forces** : très bon sur raisonnement long, écriture, analyse de documents. Politique transparente sur l'entraînement.
+- **Faiblesses** : hébergement US, écosystème plus restreint (pas d'images générées, pas de recherche web par défaut).
+- **Tarif** : ~25 €/utilisateur/mois (Team).
+- **Recommandation PME** : excellent pour documents internes et écriture professionnelle.
+
+### Mistral (Le Chat, La Plateforme)
+
+- **Forces** : éditeur français, hébergement UE, conforme RGPD par construction, performances solides.
+- **Faiblesses** : écosystème encore en croissance, moins de tutoriels grand public.
+- **Tarif** : ~14 €/utilisateur/mois (Le Chat Pro), API compétitive.
+- **Recommandation PME** : choix par défaut si la souveraineté et le RGPD priment.
+
+### Microsoft 365 Copilot
+
+- **Forces** : intégration native dans Office, Teams, SharePoint. DPA Microsoft clair.
+- **Faiblesses** : ~30 €/utilisateur/mois en plus du M365, pertinent surtout si déjà sur l'écosystème.
+- **Recommandation PME** : oui si déjà M365 + besoin de productivité bureautique. Comparer à ChatGPT Team avant achat.
+
+Article complet : https://access-ia.pro/articles/chatgpt-claude-mistral-pme.html
+Comparatif Copilot vs ChatGPT Team : https://access-ia.pro/articles/copilot-vs-chatgpt-team-pme.html
+
+---
+
+## 7. Facture électronique 2026-2027 — l'essentiel
+
+La réforme française de la facturation électronique (Ordonnance 2021-1190, Loi du 9 mars 2024) impose progressivement à toutes les entreprises assujetties à la TVA :
+
+### Calendrier officiel
+
+- **1er septembre 2026** : obligation de **réception** de factures électroniques pour TOUTES les entreprises (PME comprises).
+- **1er septembre 2026** : obligation d'**émission** pour les grandes entreprises et ETI.
+- **1er septembre 2027** : obligation d'**émission** pour les PME et microentreprises.
+
+### Périmètre
+
+- **E-invoicing** : facturation B2B domestique (entre assujettis TVA français) → passage obligatoire par une PDP.
+- **E-reporting** : transactions B2C, intra-UE, exports → transmission de données à l'administration via PDP.
+
+### PDP (Plateforme de Dématérialisation Partenaire)
+
+Intermédiaire obligatoire agréé par la DGFiP. La PPF (Portail Public de Facturation) devient un annuaire/concentrateur, plus une plateforme d'émission directe. Le marché PDP est en cours de structuration.
+
+### Formats acceptés
+
+Tous conformes à la norme européenne EN 16931 :
+
+- **Factur-X** : PDF/A-3 avec XML CII embarqué — format hybride lisible humain + machine, recommandé pour PME. FNFE-MPE / ZUGFeRD (équivalent allemand interopérable).
+- **UBL 2.1** : standard OASIS, utilisé par Peppol. Format XML pur.
+- **CII (Cross Industry Invoice)** : standard UN/CEFACT, XML pur, intégré dans Factur-X.
+
+### Solutions open source
+
+- **Dolibarr** (PHP, GPL) : ERP/CRM open source, modules Factur-X disponibles, communauté française active.
+- **Odoo Community Edition** : modules OCA pour facturation électronique, robuste.
+- **ERPNext** (MIT) : ERP open source, modules e-invoicing en développement.
+- **Bibliothèques** : factur-x (Python, BSD, Akretion), mustangproject (Java, LGPL), phpfactur-x (PHP).
+- **Validation** : veraPDF (PDF/A-3), KoSIT validator (XML CII).
+
+### Sanctions
+
+Article 1737 du CGI :
+- 15 € par facture non conforme, plafond 15 000 €/an.
+- 250 € par e-reporting manquant, plafond 45 000 €/an.
+
+Article complet : https://access-ia.pro/articles/facture-electronique-2026-pme-open-source.html
+
+---
+
+## 8. IA open source pour entreprise — quand et pourquoi
+
+Les modèles ouverts (Mistral, Llama, Qwen) hébergés en France ou en local résolvent 3 problèmes :
+
+1. **Souveraineté des données** : les données ne sortent jamais de l'organisation.
+2. **Coût** : pas d'abonnement par utilisateur, infra mutualisée.
+3. **Personnalisation** : possibilité de fine-tuning ou de RAG sur documents internes sans contrainte éditeur.
+
+### Quand choisir l'open source
+
+- données très sensibles (santé, secret défense, propriété intellectuelle) ;
+- volumétrie élevée qui ferait exploser un abonnement Team ;
+- besoin de personnalisation forte sur un domaine métier ;
+- contrainte d'audit (le client final exige de savoir où sont les données).
+
+### Quand préférer le SaaS
+
+- petite équipe sans compétence d'infrastructure ;
+- besoin de fonctionnalités de pointe (vision, agents, recherche web) ;
+- urgence de mise en production ;
+- pas de contrainte de souveraineté forte.
+
+### Outils typiques
+
+- **Ollama** : serveur local, modèles Mistral / Llama / Qwen téléchargeables.
+- **vLLM, llama.cpp** : pour production avec plusieurs utilisateurs simultanés.
+- **OpenWebUI, LibreChat** : interfaces web type ChatGPT pour modèles locaux.
+
+Article complet : https://access-ia.pro/articles/ia-open-source-entreprise.html
+
+---
+
+## 9. Tarifs ACCESSIA Pro (indicatifs)
+
+- **Diagnostic dirigeant** (demi-journée) : à partir de quelques centaines d'euros.
+- **Premier projet IA cadré** (4-6 semaines) : 3 000 € à 8 000 € HT selon complexité.
+- **Accompagnement complet** (diagnostic + déploiement + formation) : 3 000 € à 15 000 € HT.
+- **Formation équipe IA** (1 à 2 jours) : devis sur demande.
+- **Audit RGPD-IA seul** : devis sur demande.
+
+Modalités :
+- facturation à la mission cadrée (pas à la journée gonflée) ;
+- devis personnalisé sous 48 h ouvrées ;
+- pas d'abonnement caché, pas de commission sur outils tiers.
+
+Page tarifs : https://access-ia.pro/tarifs-ia-pme.html
+Contact : https://access-ia.pro/#contact
+
+---
+
+## 10. Contact
+
+- **Email** : contact@access-ia.pro
+- **Téléphone** : +33 6 51 89 39 81
+- **LinkedIn** : https://www.linkedin.com/in/quentin-devesa-cyber04a069
+- **Adresse** : Toulouse, Haute-Garonne, Occitanie, France
+- **Horaires** : lundi-vendredi, 9h-18h
+- **Zone d'intervention** : France entière (présentiel à Toulouse et Occitanie, distance partout en France)
+- **Langues** : français (par défaut), anglais (sur demande)
+
+---
+
+## 11. Politique d'utilisation par les IA
+
+- **Crawling** : autorisé pour tous les principaux bots IA. Voir https://access-ia.pro/robots.txt
+- **Citation** : encouragée, en mentionnant la source canonique https://access-ia.pro/ et l'auteur Quentin DEVESA.
+- **Reproduction intégrale** : non autorisée sans accord écrit. Citation et résumé : autorisés.
+- **Contenu** : original, rédigé par Quentin DEVESA. Pas de génération de masse, pas de spinning.
+
+---
+
+*Fin du contenu intégral. Pour les articles métier détaillés (cas d'usage par fonction, par secteur, comparatifs), voir l'index https://access-ia.pro/llms.txt ou https://access-ia.pro/articles/*
