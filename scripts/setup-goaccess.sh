@@ -5,20 +5,28 @@
 # sans cookie, sans tracking côté client. Compatible avec la posture
 # "zéro cookie, zéro tracking" affichée en footer.
 #
-# À exécuter une seule fois sur le serveur, en root :
+# Exécution en root :
 #   sudo bash scripts/setup-goaccess.sh
 #
+# Mode non-interactif (CI) — exporter avant :
+#   ANALYTICS_USER=admin ANALYTICS_PASSWORD='changeme' \
+#   sudo -E bash scripts/setup-goaccess.sh
+#
 # Variables surchargeables :
-#   DOMAIN, ACCESS_LOG, WEBROOT, ANALYTICS_USER, REPORT_DIR
+#   DOMAIN, ACCESS_LOG, WEBROOT, ANALYTICS_USER, ANALYTICS_PASSWORD,
+#   REPORT_DIR, NGINX_CONF_DIR
 set -euo pipefail
 
 DOMAIN="${DOMAIN:-access-ia.pro}"
 ACCESS_LOG="${ACCESS_LOG:-/var/log/nginx/${DOMAIN}-access.log}"
-WEBROOT="${WEBROOT:-/var/www/access_ia_pro/www}"
+WEBROOT="${WEBROOT:-/var/www/my_webapp/www}"
 REPORT_DIR="${REPORT_DIR:-${WEBROOT}/analytics}"
 ANALYTICS_USER="${ANALYTICS_USER:-admin}"
+ANALYTICS_PASSWORD="${ANALYTICS_PASSWORD:-}"
 HTPASSWD_FILE="/etc/nginx/.htpasswd-analytics"
 CRON_FILE="/etc/cron.d/goaccess-${DOMAIN//./-}"
+NGINX_CONF_DIR="${NGINX_CONF_DIR:-/etc/nginx/conf.d/${DOMAIN}.d}"
+NGINX_SNIPPET="${NGINX_CONF_DIR}/analytics-goaccess.conf"
 GEO_DB="/var/lib/GeoIP/GeoLite2-City.mmdb"
 
 if [[ "$EUID" -ne 0 ]]; then
@@ -42,8 +50,13 @@ chown www-data:www-data "$REPORT_DIR"
 chmod 755 "$REPORT_DIR"
 
 if [[ ! -f "$HTPASSWD_FILE" ]]; then
-  echo "→ Création identifiant Basic Auth pour /analytics (user: ${ANALYTICS_USER})"
-  htpasswd -c "$HTPASSWD_FILE" "$ANALYTICS_USER"
+  if [[ -n "$ANALYTICS_PASSWORD" ]]; then
+    echo "→ Création htpasswd non-interactive (user: ${ANALYTICS_USER})"
+    htpasswd -bc "$HTPASSWD_FILE" "$ANALYTICS_USER" "$ANALYTICS_PASSWORD"
+  else
+    echo "→ Création htpasswd interactive (user: ${ANALYTICS_USER})"
+    htpasswd -c "$HTPASSWD_FILE" "$ANALYTICS_USER"
+  fi
   chmod 640 "$HTPASSWD_FILE"
   chown root:www-data "$HTPASSWD_FILE"
 else
@@ -79,16 +92,47 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 EOF
 chmod 644 "$CRON_FILE"
 
+# Installation du snippet Nginx (auto-include via .d/*.conf)
+if [[ -d "$NGINX_CONF_DIR" ]]; then
+  echo "→ Installation du snippet Nginx: $NGINX_SNIPPET"
+  cat > "$NGINX_SNIPPET" <<'EOF'
+# ACCESSIA Pro — Protection du rapport GoAccess (généré par setup-goaccess.sh)
+location ^~ /analytics/ {
+    auth_basic           "ACCESSIA Pro — Analytics";
+    auth_basic_user_file /etc/nginx/.htpasswd-analytics;
+
+    add_header X-Robots-Tag "noindex, nofollow, noarchive" always;
+    add_header Cache-Control "private, no-store, no-cache, must-revalidate" always;
+
+    limit_except GET HEAD {
+        deny all;
+    }
+
+    try_files $uri $uri/ =404;
+}
+EOF
+  chmod 644 "$NGINX_SNIPPET"
+
+  if nginx -t 2>&1; then
+    systemctl reload nginx
+    echo "→ Nginx rechargé."
+  else
+    echo "::error::nginx -t a échoué. Snippet retiré pour ne pas casser le site."
+    rm -f "$NGINX_SNIPPET"
+    exit 1
+  fi
+else
+  echo "::warning::Dossier de conf Nginx introuvable: $NGINX_CONF_DIR"
+  echo "Copie manuellement scripts/goaccess.nginx.conf dans la conf du domaine, puis reload nginx."
+fi
+
 cat <<EOF
 
 ✅ Setup terminé.
 
-Prochaines étapes manuelles :
-  1. Ajouter le bloc location de scripts/goaccess.nginx.conf dans
-     /etc/nginx/conf.d/${DOMAIN}.d/my_webapp.conf (avant la directive 'location /')
-  2. nginx -t && systemctl reload nginx
-  3. Tester: curl -u ${ANALYTICS_USER}:<password> https://${DOMAIN}/analytics/
+Rapport: https://${DOMAIN}/analytics/
+User:    ${ANALYTICS_USER}
+Cron:    ${CRON_FILE} (horaire)
 
-Rapport stocké en clair (pas de PII grâce à --anonymize-ip).
-IPs anonymisées, crawlers exclus, mise à jour toutes les heures.
+IPs anonymisées, crawlers exclus, X-Robots-Tag noindex, Basic Auth obligatoire.
 EOF

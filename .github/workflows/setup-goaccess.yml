@@ -1,0 +1,105 @@
+name: Setup — GoAccess analytics (YunoHost)
+
+# Déploiement manuel one-shot du rapport GoAccess (analytics serveur, sans tracking).
+# Réutilise les secrets déjà configurés pour deploy.yml :
+#   - OVH_SSH_KEY        : clé privée SSH (qevedeveq@srv.access-ia.pro)
+#   - SSH_KNOWN_HOSTS    : empreinte vérifiée du serveur
+# Secret supplémentaire requis :
+#   - ANALYTICS_PASSWORD : mot de passe Basic Auth pour /analytics/
+#
+# Prérequis serveur : le compte `qevedeveq` doit pouvoir exécuter `sudo` sans
+# mot de passe (au moins pour apt-get, htpasswd, nginx -t, systemctl, mkdir).
+# Si ce n'est pas le cas, lance le script en SSH manuellement une fois.
+
+on:
+  workflow_dispatch:
+    inputs:
+      analytics_user:
+        description: "Utilisateur Basic Auth pour /analytics/"
+        required: true
+        default: "admin"
+
+concurrency:
+  group: setup-goaccess
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  YNH_HOST: srv.access-ia.pro
+  YNH_USER: qevedeveq
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    name: Install GoAccess on YunoHost server
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup SSH with hardened security
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.OVH_SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+          if [ ! -s ~/.ssh/known_hosts ]; then
+            echo "::error::SSH_KNOWN_HOSTS secret is empty. See DEPLOY_SETUP.md."
+            exit 1
+          fi
+
+      - name: Validate ANALYTICS_PASSWORD secret
+        env:
+          ANALYTICS_PASSWORD: ${{ secrets.ANALYTICS_PASSWORD }}
+        run: |
+          if [ -z "$ANALYTICS_PASSWORD" ]; then
+            echo "::error::Secret ANALYTICS_PASSWORD vide. Ajoute-le dans Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+          echo "Password secret OK (length: ${#ANALYTICS_PASSWORD})"
+
+      - name: Upload setup script to server
+        run: |
+          scp -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=yes \
+            -o ConnectTimeout=10 \
+            -P 22 \
+            scripts/setup-goaccess.sh \
+            "$YNH_USER@$YNH_HOST:/tmp/setup-goaccess.sh"
+
+      - name: Run setup script (non-interactive)
+        env:
+          ANALYTICS_USER: ${{ github.event.inputs.analytics_user }}
+          ANALYTICS_PASSWORD: ${{ secrets.ANALYTICS_PASSWORD }}
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=yes \
+            -o ConnectTimeout=10 \
+            -p 22 \
+            "$YNH_USER@$YNH_HOST" \
+            "chmod +x /tmp/setup-goaccess.sh && \
+             sudo ANALYTICS_USER='$ANALYTICS_USER' ANALYTICS_PASSWORD='$ANALYTICS_PASSWORD' \
+             bash /tmp/setup-goaccess.sh && \
+             rm -f /tmp/setup-goaccess.sh" \
+          || {
+            echo "::error::setup-goaccess.sh failed. Vérifie que qevedeveq a passwordless sudo, ou lance le script en SSH manuel."
+            exit 1
+          }
+
+      - name: Verify /analytics/ is protected (expect 401)
+        run: |
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" "https://access-ia.pro/analytics/")
+          echo "HTTP code: $CODE"
+          if [ "$CODE" = "401" ]; then
+            echo "✅ /analytics/ correctement protégé par Basic Auth"
+          else
+            echo "::error::Code inattendu $CODE (attendu 401). Vérifier la config Nginx."
+            exit 1
+          fi

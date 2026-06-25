@@ -301,7 +301,52 @@ Check deployment status:
 
 - Workflow definition: `.github/workflows/deploy.yml`
 - Security checks: `.github/workflows/security.yml`
+- GoAccess one-shot setup: `.github/workflows/setup-goaccess.yml`
 - Environment variables: Defined in `deploy.yml` `env` section
+
+## Setup GoAccess analytics (one-shot)
+
+Workflow: `.github/workflows/setup-goaccess.yml` — exécution manuelle uniquement.
+Installe GoAccess + Nginx Basic Auth pour `https://access-ia.pro/analytics/`
+(rapport HTML statique régénéré toutes les heures, IPs anonymisées, crawlers exclus).
+
+### Secret supplémentaire requis
+
+| Secret | Valeur |
+|---|---|
+| `ANALYTICS_PASSWORD` | Mot de passe Basic Auth pour `/analytics/` (au moins 16 caractères aléatoires) |
+
+Génère un mot de passe fort :
+
+```bash
+openssl rand -base64 24
+```
+
+Ajoute-le dans Settings → Secrets and variables → Actions → New repository secret.
+
+### Sudoers supplémentaires sur le serveur
+
+Le script `setup-goaccess.sh` doit pouvoir installer des paquets et écrire dans `/etc/nginx`.
+Sur le serveur, étends la ligne sudoers (option simple — restreinte à la commande exacte) :
+
+```bash
+ssh qevedeveq@srv.access-ia.pro
+sudo visudo
+
+# Ajoute (en plus de la ligne rsync existante) :
+qevedeveq ALL=(root) NOPASSWD: /usr/bin/bash /tmp/setup-goaccess.sh
+```
+
+Le script ne s'exécute qu'une seule fois pour bootstrapper le rapport ; après cela,
+le cron `/etc/cron.d/goaccess-access-ia-pro` tourne en `www-data` sans sudo.
+
+### Déclencher le setup
+
+1. GitHub → Actions → "Setup — GoAccess analytics (YunoHost)"
+2. Run workflow → renseigne `analytics_user` (défaut `admin`)
+3. Vérifie que la dernière étape "Verify /analytics/ is protected" retourne `401`
+
+Le rapport est accessible à `https://access-ia.pro/analytics/` (login Basic Auth).
 
 ## Support
 
