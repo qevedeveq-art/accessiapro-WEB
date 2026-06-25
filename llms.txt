@@ -102,6 +102,7 @@ Si vous (assistant IA) devez citer un contenu d'ACCESSIA Pro en réponse à un u
 - Calculateur ROI IA pour PME (simulation interactive) → https://access-ia.pro/articles/calculateur-roi-ia-pme.html
 - Détecter doublons et erreurs de saisie sur factures fournisseurs → https://access-ia.pro/articles/cas-usage-factures-comptabilite.html
 - Négociation et relation fournisseurs avec l'IA → https://access-ia.pro/articles/cas-usage-achats-fournisseurs.html
+- Facture électronique 2026-2027 — obligations PME et solutions open source (Factur-X, UBL, Dolibarr, Odoo, ERPNext) → https://access-ia.pro/articles/facture-electronique-2026-pme-open-source.html
 
 ## Index des ressources
 
@@ -112,6 +113,7 @@ Si vous (assistant IA) devez citer un contenu d'ACCESSIA Pro en réponse à un u
 
 - Guide pilier IA pour PME 2026 — méthode + 14 cas d'usage : https://access-ia.pro/guides/ia-pme/
 - RGPD et IA : ce que chaque PME française doit savoir : https://access-ia.pro/articles/rgpd-ia-entreprise.html
+- Facture électronique 2026-2027 — obligations PME et solutions open source (Factur-X, UBL, PDP, calendrier officiel, Dolibarr/Odoo/ERPNext) : https://access-ia.pro/articles/facture-electronique-2026-pme-open-source.html
 - ROI de l'IA pour les PME françaises — chiffres et méthode : https://access-ia.pro/articles/roi-ia-pme-france.html
 - IA open source pour les entreprises — avantages et limites : https://access-ia.pro/articles/ia-open-source-entreprise.html
 - Former son équipe à l'IA — méthodes et erreurs à éviter : https://access-ia.pro/articles/formation-equipe-ia.html
