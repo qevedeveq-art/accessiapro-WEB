@@ -95,11 +95,15 @@ jobs:
 
       - name: Verify /analytics/ is protected (expect 401)
         run: |
-          CODE=$(curl -s -o /dev/null -w "%{http_code}" "https://access-ia.pro/analytics/")
-          echo "HTTP code: $CODE"
-          if [ "$CODE" = "401" ]; then
-            echo "✅ /analytics/ correctement protégé par Basic Auth"
-          else
-            echo "::error::Code inattendu $CODE (attendu 401). Vérifier la config Nginx."
-            exit 1
-          fi
+          # Laisse à Nginx le temps de finir son reload + propagation
+          for i in 1 2 3 4 5; do
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" "https://access-ia.pro/analytics/")
+            echo "Attempt $i: HTTP $CODE"
+            if [ "$CODE" = "401" ]; then
+              echo "✅ /analytics/ correctement protégé par Basic Auth"
+              exit 0
+            fi
+            sleep 3
+          done
+          echo "::error::Code inattendu $CODE (attendu 401). Vérifier la config Nginx."
+          exit 1
