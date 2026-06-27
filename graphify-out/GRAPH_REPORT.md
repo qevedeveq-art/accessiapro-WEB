@@ -1,11 +1,11 @@
-# Graph Report - /Users/quentin/Documents/Projects/Web_Access-ia/accessiapro-WEB  (2026-05-15)
+# Graph Report - /Users/quentin/Documents/PRO/access-ia/apps/web/accessiapro-WEB  (2026-06-27)
 
 ## Corpus Check
-- 3 files · ~286,818 words
+- 4 files · ~106,508 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 29 nodes · 6 edges · 23 communities detected
+- 38 nodes · 18 edges · 24 communities detected
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
@@ -33,8 +33,16 @@
 - [[_COMMUNITY_Community 20|Community 20]]
 - [[_COMMUNITY_Community 21|Community 21]]
 - [[_COMMUNITY_Community 22|Community 22]]
+- [[_COMMUNITY_Community 23|Community 23]]
 
 ## God Nodes (most connected - your core abstractions)
+1. `normalize()` - 3 edges
+2. `clamp()` - 2 edges
+3. `computeAndRender()` - 2 edges
+4. `cardCategory()` - 2 edges
+5. `applyFilter()` - 2 edges
+6. `buildMailtoUrl()` - 2 edges
+7. `openMailFallback()` - 2 edges
 
 ## Surprising Connections (you probably didn't know these)
 - None detected - all connections are within the same source files.
@@ -42,19 +50,19 @@
 ## Communities
 
 ### Community 0 - "Community 0"
-Cohesion: 0.5
-Nodes (0): 
+Cohesion: 0.29
+Nodes (2): buildMailtoUrl(), openMailFallback()
 
 ### Community 1 - "Community 1"
-Cohesion: 0.67
-Nodes (0): 
+Cohesion: 0.83
+Nodes (3): applyFilter(), cardCategory(), normalize()
 
 ### Community 2 - "Community 2"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (2): clamp(), computeAndRender()
 
 ### Community 3 - "Community 3"
-Cohesion: 1.0
+Cohesion: 0.67
 Nodes (0): 
 
 ### Community 4 - "Community 4"
@@ -133,48 +141,50 @@ Nodes (0):
 Cohesion: 1.0
 Nodes (0): 
 
+### Community 23 - "Community 23"
+Cohesion: 1.0
+Nodes (0): 
+
 ## Knowledge Gaps
-- **Thin community `Community 2`** (2 nodes): `gtag()`, `analytics.js`
+- **Thin community `Community 4`** (1 nodes): `404.html`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 3`** (1 nodes): `404.html`
+- **Thin community `Community 5`** (1 nodes): `formation-equipe-ia.html`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 4`** (1 nodes): `formation-equipe-ia.html`
+- **Thin community `Community 6`** (1 nodes): `ia-open-source-entreprise.html`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 5`** (1 nodes): `ia-open-source-entreprise.html`
+- **Thin community `Community 7`** (1 nodes): `integrer-ia-pme.html`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 6`** (1 nodes): `integrer-ia-pme.html`
+- **Thin community `Community 8`** (1 nodes): `rgpd-ia-entreprise.html`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 7`** (1 nodes): `rgpd-ia-entreprise.html`
+- **Thin community `Community 9`** (1 nodes): `roi-ia-pme-france.html`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 8`** (1 nodes): `roi-ia-pme-france.html`
+- **Thin community `Community 10`** (1 nodes): `apple-touch-icon.png`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 9`** (1 nodes): `apple-touch-icon.png`
+- **Thin community `Community 11`** (1 nodes): `favicon-16.png`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 10`** (1 nodes): `favicon-16.png`
+- **Thin community `Community 12`** (1 nodes): `favicon-32.png`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 11`** (1 nodes): `favicon-32.png`
+- **Thin community `Community 13`** (1 nodes): `favicon-32.webp`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 12`** (1 nodes): `favicon-32.webp`
+- **Thin community `Community 14`** (1 nodes): `favicon.png`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 13`** (1 nodes): `favicon.png`
+- **Thin community `Community 15`** (1 nodes): `logo-icon.png`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 14`** (1 nodes): `logo-icon.png`
+- **Thin community `Community 16`** (1 nodes): `logo-icon.webp`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 15`** (1 nodes): `logo-icon.webp`
+- **Thin community `Community 17`** (1 nodes): `logo.jpg`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 16`** (1 nodes): `logo.jpg`
+- **Thin community `Community 18`** (1 nodes): `og-image.jpg`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 17`** (1 nodes): `og-image.jpg`
+- **Thin community `Community 19`** (1 nodes): `og-image.webp`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 18`** (1 nodes): `og-image.webp`
+- **Thin community `Community 20`** (1 nodes): `quentin-devesa.jpeg`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 19`** (1 nodes): `quentin-devesa.jpeg`
+- **Thin community `Community 21`** (1 nodes): `quentin-devesa.webp`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 20`** (1 nodes): `quentin-devesa.webp`
+- **Thin community `Community 22`** (1 nodes): `index.html`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 21`** (1 nodes): `index.html`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 22`** (1 nodes): `robots.txt`
+- **Thin community `Community 23`** (1 nodes): `robots.txt`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 
 ## Suggested Questions
