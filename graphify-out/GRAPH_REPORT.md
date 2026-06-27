@@ -58,12 +58,12 @@ Cohesion: 0.83
 Nodes (3): applyFilter(), cardCategory(), normalize()
 
 ### Community 2 - "Community 2"
-Cohesion: 1.0
-Nodes (2): clamp(), computeAndRender()
-
-### Community 3 - "Community 3"
 Cohesion: 0.67
 Nodes (0): 
+
+### Community 3 - "Community 3"
+Cohesion: 1.0
+Nodes (2): clamp(), computeAndRender()
 
 ### Community 4 - "Community 4"
 Cohesion: 1.0

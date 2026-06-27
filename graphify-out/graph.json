@@ -9,7 +9,7 @@
       "source_file": "/Users/quentin/Documents/PRO/access-ia/apps/web/accessiapro-WEB/contact.php",
       "source_location": "L1",
       "id": "users_quentin_documents_pro_access_ia_apps_web_accessiapro_web_contact_php",
-      "community": 3,
+      "community": 2,
       "norm_label": "contact.php"
     },
     {
@@ -18,7 +18,7 @@
       "source_file": "/Users/quentin/Documents/PRO/access-ia/apps/web/accessiapro-WEB/contact.php",
       "source_location": "L31",
       "id": "contact_field",
-      "community": 3,
+      "community": 2,
       "norm_label": "field()"
     },
     {
@@ -27,7 +27,7 @@
       "source_file": "/Users/quentin/Documents/PRO/access-ia/apps/web/accessiapro-WEB/contact.php",
       "source_location": "L38",
       "id": "contact_fail",
-      "community": 3,
+      "community": 2,
       "norm_label": "fail()"
     },
     {
@@ -36,7 +36,7 @@
       "source_file": "/Users/quentin/Documents/PRO/access-ia/apps/web/accessiapro-WEB/assets/js/calculateur-roi.js",
       "source_location": "L1",
       "id": "users_quentin_documents_pro_access_ia_apps_web_accessiapro_web_assets_js_calculateur_roi_js",
-      "community": 2,
+      "community": 3,
       "norm_label": "calculateur-roi.js"
     },
     {
@@ -45,7 +45,7 @@
       "source_file": "/Users/quentin/Documents/PRO/access-ia/apps/web/accessiapro-WEB/assets/js/calculateur-roi.js",
       "source_location": "L22",
       "id": "calculateur_roi_clamp",
-      "community": 2,
+      "community": 3,
       "norm_label": "clamp()"
     },
     {
@@ -54,7 +54,7 @@
       "source_file": "/Users/quentin/Documents/PRO/access-ia/apps/web/accessiapro-WEB/assets/js/calculateur-roi.js",
       "source_location": "L27",
       "id": "calculateur_roi_computeandrender",
-      "community": 2,
+      "community": 3,
       "norm_label": "computeandrender()"
     },
     {
