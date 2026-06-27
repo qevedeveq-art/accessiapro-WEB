@@ -159,14 +159,19 @@ jobs:
             "$GCS_BUCKET/favicon.ico"
           gsutil -m setmeta \
             -h "Cache-Control:public, max-age=300, must-revalidate" \
+            -h "Content-Type:text/html; charset=utf-8" \
             "$GCS_BUCKET/index.html" \
             "$GCS_BUCKET/404.html" \
             "$GCS_BUCKET/ressources.html" \
             "$GCS_BUCKET/conseil-ia-toulouse.html" \
-            "$GCS_BUCKET/llms.txt" \
             "$GCS_BUCKET/contact.php"
           gsutil -m setmeta \
+            -h "Cache-Control:public, max-age=300, must-revalidate" \
+            -h "Content-Type:text/plain; charset=utf-8" \
+            "$GCS_BUCKET/llms.txt"
+          gsutil -m setmeta \
             -h "Cache-Control:public, max-age=86400, must-revalidate" \
+            -h "Content-Type:text/html; charset=utf-8" \
             "$GCS_BUCKET/articles/*.html" || true
 
       - name: Set security response headers on backend bucket
