@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ressources IA pour PME — Guides, comparatifs et cas d'usage | ACCESSIA Pro</title>
+  <title>Ressources IA pour PME — guides et cas d'usage | ACCESSIA Pro</title>
   <meta name="description" content="Tous les guides, comparatifs et cas d'usage IA pour les PME françaises : intégration, ROI, RGPD, outils, formation et exemples concrets par ACCESSIA Pro.">
   <meta name="author" content="Quentin DEVESA — ACCESSIA Pro">
   <meta name="robots" content="index, follow, max-image-preview:large">
@@ -57,11 +57,11 @@
     "@type": "ItemList",
     "name": "Ressources IA pour PME — ACCESSIA Pro",
     "description": "Guides stratégiques, comparatifs et cas d'usage IA pour PME françaises.",
-    "numberOfItems": 23,
+    "numberOfItems": 24,
     "itemListOrder": "https://schema.org/ItemListOrderAscending",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "url": "https://access-ia.pro/tarifs-ia-pme.html", "name": "Combien coûte un projet IA pour PME en 2026 ?" },
-      { "@type": "ListItem", "position": 2, "url": "https://access-ia.pro/articles/integrer-ia-pme.html", "name": "Comment intégrer l'IA dans une PME : le guide complet" },
+      { "@type": "ListItem", "position": 2, "url": "https://access-ia.pro/guides/ia-pme/", "name": "Comment intégrer l'IA dans une PME : le guide complet" },
       { "@type": "ListItem", "position": 3, "url": "https://access-ia.pro/articles/roi-ia-pme-france.html", "name": "ROI de l'IA pour les PME françaises : chiffres et méthode" },
       { "@type": "ListItem", "position": 4, "url": "https://access-ia.pro/articles/rgpd-ia-entreprise.html", "name": "RGPD et IA : ce que chaque PME française doit savoir" },
       { "@type": "ListItem", "position": 5, "url": "https://access-ia.pro/articles/ia-open-source-entreprise.html", "name": "IA open source pour les entreprises : avantages et limites" },
@@ -81,16 +81,10 @@
       { "@type": "ListItem", "position": 19, "url": "https://access-ia.pro/articles/cas-usage-contrats-juridique.html", "name": "Contrats et juridique" },
       { "@type": "ListItem", "position": 20, "url": "https://access-ia.pro/articles/cas-usage-qualite-conformite.html", "name": "Qualité et conformité" },
       { "@type": "ListItem", "position": 21, "url": "https://access-ia.pro/articles/cas-usage-rh-recrutement-onboarding.html", "name": "RH, recrutement et onboarding" },
-      { "@type": "ListItem", "position": 22, "url": "https://access-ia.pro/articles/cas-usage-maintenance-production.html", "name": "Maintenance et production industrielle" },
-      { "@type": "ListItem", "position": 23, "url": "https://access-ia.pro/articles/facture-electronique-2026-pme-open-source.html", "name": "Facture électronique 2026-2027 : obligations PME et open source" }
+      { "@type": "ListItem", "position": 22, "url": "https://access-ia.pro/articles/cas-usage-planning-ressources.html", "name": "Planning et ressources humaines" },
+      { "@type": "ListItem", "position": 23, "url": "https://access-ia.pro/articles/cas-usage-maintenance-production.html", "name": "Maintenance et production industrielle" },
+      { "@type": "ListItem", "position": 24, "url": "https://access-ia.pro/articles/facture-electronique-2026-pme-open-source.html", "name": "Facture électronique 2026-2027 : obligations PME et open source" }
     ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SpeakableSpecification",
-    "cssSelector": ["h1", ".article-title", ".article-body p:first-of-type", ".section-header h2", ".hero h1"]
   }
   </script>
 </head>
@@ -107,6 +101,12 @@
       </picture>
       <span class="navbar-name">ACCESSIA <span class="navbar-pro">Pro</span></span>
     </a>
+    <nav class="navbar-mini" aria-label="Navigation principale">
+      <a href="/tarifs-ia-pme.html">Tarifs</a>
+      <a href="/conseil-ia-toulouse.html">Toulouse</a>
+      <a href="/ressources.html" aria-current="page">Ressources</a>
+      <a href="/articles/">Articles</a>
+    </nav>
     <a href="/#contact" class="btn btn-primary btn-sm">Prendre contact</a>
   </div>
 </header>
@@ -119,6 +119,21 @@
     <p class="article-meta">Guides pratiques, comparatifs et cas d'usage concrets — par <strong>Quentin DEVESA</strong></p>
 
     <div class="article-body">
+      <form class="resource-search" role="search" action="/ressources.html" method="get" data-resource-filter>
+        <label for="resource-search-input">Rechercher une ressource</label>
+        <div class="resource-search-row">
+          <input id="resource-search-input" type="search" name="q" autocomplete="off" placeholder="Ex. RGPD, ROI, support client, Toulouse">
+          <button type="submit" class="btn btn-navy btn-sm">Rechercher</button>
+        </div>
+        <div class="resource-filter-tabs" aria-label="Filtres rapides">
+          <button type="button" data-filter="all" aria-pressed="true">Tout</button>
+          <button type="button" data-filter="guide">Guides</button>
+          <button type="button" data-filter="comparatif">Comparatifs</button>
+          <button type="button" data-filter="cas">Cas d'usage</button>
+          <button type="button" data-filter="conformite">Conformité</button>
+        </div>
+        <p class="resource-search-count" aria-live="polite"></p>
+      </form>
 
       <h2>Guides stratégiques</h2>
       <div class="article-related-grid" style="margin-bottom:2rem;">
@@ -241,5 +256,6 @@
 <footer class="article-footer" role="contentinfo">
   <p>© 2026 <strong>ACCESSIA Pro</strong> — Conseil IA pour PME · <a href="/">Accueil</a> · <a href="/tarifs-ia-pme.html">Tarifs</a> · <a href="/conseil-ia-toulouse.html">Toulouse</a> · <a href="/articles/">Articles</a> · <a href="/a-propos-quentin-devesa.html">À propos</a> · <a href="/llms.txt">llms.txt</a> · <a href="/#mentions">Mentions légales</a></p>
 </footer>
+<script src="assets/js/resource-filter.js" defer></script>
 </body>
 </html>

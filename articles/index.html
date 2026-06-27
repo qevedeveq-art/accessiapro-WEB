@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Articles IA pour PME — Index complet | ACCESSIA Pro</title>
-  <meta name="description" content="Tous les articles d'ACCESSIA Pro sur l'IA pour PME : guides stratégiques, comparatifs d'outils, conformité RGPD et facture électronique 2026, ROI, sécurité, 4 pages sectorielles, glossaire, calculateur ROI et 14 cas d'usage par département.">
-  <meta name="keywords" content="articles IA PME, guide IA entreprise, RGPD IA, facture électronique 2026, ROI IA PME, ChatGPT PME, Claude PME, Mistral PME, Copilot PME, IA aéronautique, IA santé, IA agroalimentaire, cabinets conseil IA, glossaire IA, calculateur ROI IA">
+  <title>Articles IA pour PME — guides et cas d'usage | ACCESSIA Pro</title>
+  <meta name="description" content="Tous les articles ACCESSIA Pro sur l'IA pour PME : guides, comparatifs, RGPD, ROI, sécurité, secteurs et cas d'usage par métier.">
   <meta name="author" content="Quentin DEVESA — ACCESSIA Pro">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#0A1530">
@@ -103,6 +102,12 @@
       </picture>
       <span class="navbar-name">ACCESSIA <span class="navbar-pro">Pro</span></span>
     </a>
+    <nav class="navbar-mini" aria-label="Navigation principale">
+      <a href="/tarifs-ia-pme.html">Tarifs</a>
+      <a href="/conseil-ia-toulouse.html">Toulouse</a>
+      <a href="/ressources.html">Ressources</a>
+      <a href="/articles/" aria-current="page">Articles</a>
+    </nav>
     <a href="/#contact" class="btn btn-primary btn-sm">Prendre contact</a>
   </div>
 </header>
@@ -118,8 +123,24 @@
 
       <p>Cette page regroupe tous les articles publiés par ACCESSIA Pro à destination des dirigeants et responsables de PME françaises qui veulent intégrer l'intelligence artificielle dans leur activité. Chaque article est rédigé sur la base de cas réels rencontrés en mission, avec un parti pris constant : <strong>l'IA utile, sécurisée et mesurable</strong>, jamais l'IA pour l'IA.</p>
 
-      <div style="margin: 1.5rem 0 2rem; padding: 1.25rem 1.5rem; border: 2px solid var(--brand-primary, #17306f); border-radius: 12px; background: var(--gray-50);">
-        <p style="margin:0 0 .5rem; font-weight:700; font-size:1.05rem;">💡 Pas le temps de tout lire ?</p>
+      <form class="resource-search" role="search" action="/articles/" method="get" data-resource-filter>
+        <label for="article-search-input">Rechercher un article</label>
+        <div class="resource-search-row">
+          <input id="article-search-input" type="search" name="q" autocomplete="off" placeholder="Ex. facture, Copilot, sécurité, aéronautique">
+          <button type="submit" class="btn btn-navy btn-sm">Rechercher</button>
+        </div>
+        <div class="resource-filter-tabs" aria-label="Filtres rapides">
+          <button type="button" data-filter="all" aria-pressed="true">Tout</button>
+          <button type="button" data-filter="guide">Guides</button>
+          <button type="button" data-filter="comparatif">Comparatifs</button>
+          <button type="button" data-filter="cas">Cas d'usage</button>
+          <button type="button" data-filter="sectoriel">Sectoriel</button>
+        </div>
+        <p class="resource-search-count" aria-live="polite"></p>
+      </form>
+
+      <div class="article-note">
+        <p class="article-note-title">À lire d'abord</p>
         <p style="margin:0;">Le <a href="/guides/ia-pme/"><strong>Guide IA pour PME</strong></a> regroupe tout l'essentiel en 15 minutes de lecture : par où commencer, choix d'outils, cas d'usage par métier, RGPD, ROI et formation.</p>
       </div>
 
@@ -301,5 +322,6 @@
 <footer class="article-footer" role="contentinfo">
   <p>© 2026 <strong>ACCESSIA Pro</strong> — <a href="/">Accueil</a> · <a href="/tarifs-ia-pme.html">Tarifs</a> · <a href="/conseil-ia-toulouse.html">Toulouse</a> · <a href="/ressources.html">Ressources</a> · <a href="/a-propos-quentin-devesa.html">À propos</a> · <a href="/llms.txt">llms.txt</a> · <a href="/#mentions">Mentions légales</a></p>
 </footer>
+<script src="../assets/js/resource-filter.js" defer></script>
 </body>
 </html>

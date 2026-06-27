@@ -1,6 +1,8 @@
 /* ACCESSIA Pro — main.js v3 (CSP-clean, no inline styles) */
 'use strict';
 
+document.documentElement.classList.add('js');
+
 // ── Navbar scroll effect ───────────────────────
 const navbar     = document.querySelector('.navbar');
 const scrollTopBtn = document.querySelector('.scroll-top');
@@ -100,6 +102,29 @@ if (form) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
   }
 
+  function setFieldError(field, message) {
+    if (!field) return;
+    field.setAttribute('aria-invalid', 'true');
+    const id = `${field.id || field.name}-error`;
+    field.setAttribute('aria-describedby', id);
+    let error = document.getElementById(id);
+    if (!error) {
+      error = document.createElement('span');
+      error.id = id;
+      error.className = 'form-error';
+      field.insertAdjacentElement('afterend', error);
+    }
+    error.textContent = message;
+  }
+
+  function clearFieldError(field) {
+    if (!field) return;
+    field.removeAttribute('aria-invalid');
+    const errorId = field.getAttribute('aria-describedby');
+    if (errorId) document.getElementById(errorId)?.remove();
+    field.removeAttribute('aria-describedby');
+  }
+
   function buildMailtoUrl(formData) {
     const need = formData.get('need') || 'Non précise';
     const body = [
@@ -128,17 +153,37 @@ if (form) {
     const email   = form.querySelector('#femail')?.value.trim();
     const company = form.querySelector('#fcompany')?.value.trim() || '';
     const message = form.querySelector('#fmessage')?.value.trim();
+    const nameField = form.querySelector('#fname');
+    const emailField = form.querySelector('#femail');
+    const messageField = form.querySelector('#fmessage');
+
+    [nameField, emailField, messageField].forEach(clearFieldError);
 
     // Client-side validation
-    if (!name || !email || !message) {
-      showNotif('Veuillez remplir tous les champs obligatoires.', 'error');
-      return;
+    let hasError = false;
+    if (!name) {
+      setFieldError(nameField, 'Votre nom est requis.');
+      hasError = true;
     }
-    if (!isValidEmail(email)) {
-      showNotif('Veuillez entrer une adresse email valide.', 'error');
+    if (!email) {
+      setFieldError(emailField, 'Votre email est requis.');
+      hasError = true;
+    } else if (!isValidEmail(email)) {
+      setFieldError(emailField, 'Veuillez entrer une adresse email valide.');
+      hasError = true;
+    }
+    if (!message) {
+      setFieldError(messageField, 'Décrivez brièvement votre besoin.');
+      hasError = true;
+    }
+    if (hasError) {
+      showNotif('Veuillez corriger les champs signalés.', 'error');
       return;
     }
     if (name.length > 120 || email.length > 160 || company.length > 160 || message.length > 2000) {
+      if (name.length > 120) setFieldError(nameField, 'Votre nom dépasse la longueur autorisée.');
+      if (email.length > 160) setFieldError(emailField, 'Votre email dépasse la longueur autorisée.');
+      if (message.length > 2000) setFieldError(messageField, 'Votre message dépasse la longueur autorisée.');
       showNotif('Votre message dépasse la longueur autorisée.', 'error');
       return;
     }
