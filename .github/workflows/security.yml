@@ -76,8 +76,9 @@ jobs:
 
       - name: HTML validation (basic)
         run: |
-          curl --fail --silent --show-error --max-time 30 https://access-ia.pro \
-            | grep -q "ACCESSIA Pro" \
+          curl --fail --silent --show-error --max-time 30 \
+            --output /tmp/accessia-homepage.html https://access-ia.pro
+          grep -q "ACCESSIA Pro" /tmp/accessia-homepage.html \
             && echo "OK: Page content valid" \
             || (echo "ERROR: Page content missing" && exit 1)
 

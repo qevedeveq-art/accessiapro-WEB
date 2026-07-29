@@ -4,6 +4,12 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      deploy:
+        description: Deploy the validated build to the public GCS/CDN target
+        required: true
+        type: boolean
+        default: false
 
 concurrency:
   group: production-deploy
@@ -109,6 +115,7 @@ jobs:
 
   deploy-gcs:
     needs: build
+    if: github.event_name == 'push' || inputs.deploy
     runs-on: ubuntu-latest
     name: Deploy to Google Cloud Storage + CDN
 
