@@ -1,1531 +1,198 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conseil IA pour PME — ACCESSIA Pro, consultant IA Toulouse</title>
-  <meta name="description" content="Consultant IA pour PME : diagnostic, automatisation, formation des équipes et conformité RGPD. ACCESSIA Pro accompagne les dirigeants avec des gains mesurables.">
-  <meta name="author" content="Quentin DEVESA — ACCESSIA Pro">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ACCESSIA Pro — Ressources IA pour PME | Projet en préparation</title>
+  <meta name="description" content="Projet de cabinet IA en préparation à Toulouse. Guides pour décider, protéger les données, mesurer et faire adopter l’IA. Ouverture prévue en janvier 2027.">
+  <meta name="author" content="Quentin DEVESA">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#0A1530">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="color-scheme" content="light">
-
-  <!-- =========================================================================
-       Vérification de la propriété des moteurs de recherche (Search Console / Bing).
-       La propriété Google Search Console d'ACCESSIA Pro est validée par défaut via DNS
-       (sc-domain:access-ia.pro) avec le compte qevedeveq@gmail.com.
-       Si vous devez valider par préfixe d'URL (https://access-ia.pro/), décommentez
-       la ligne ci-dessous et insérez le code fourni par Google Search Console.
-       ========================================================================= -->
-  <!-- <meta name="google-site-verification" content="CODE_DE_VALIDATION_GOOGLE" /> -->
-  <!-- <meta name="msvalidate.01" content="CODE_DE_VALIDATION_BING" /> -->
-
-  <!-- IndexNow key declaration (Bing/Yandex/Naver/Seznam) -->
-  <link rel="indexnow-key" href="/89c0ec51c78fbd47f1dcc08b1443d075.txt">
-
-  <!-- Open Graph -->
-  <meta property="og:type"        content="website">
-  <meta property="og:url"         content="https://access-ia.pro/">
-  <meta property="og:title"       content="Conseil IA pour PME en France — ACCESSIA Pro · Consultant Access IA Toulouse">
-  <meta property="og:description" content="Consultant IA pour PME françaises : diagnostic, intégration, automatisation utile, formation des équipes et déploiement RGPD. Access IA Pro, basé à Toulouse.">
-  <meta property="og:image"       content="https://access-ia.pro/assets/images/og-image.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt"   content="ACCESSIA Pro — Conseil IA pour PME en France">
-  <meta property="og:locale"      content="fr_FR">
-  <meta property="og:site_name"   content="ACCESSIA Pro">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:title"       content="Conseil IA pour PME — ACCESSIA Pro · Consultant Access IA Toulouse">
-  <meta name="twitter:description" content="Consultant IA pour PME : diagnostic, intégration, automatisation et formation. Gagnez du temps avec l'IA, sans exposer vos données. Access IA Pro · Toulouse.">
-  <meta name="twitter:image"       content="https://access-ia.pro/assets/images/og-image.jpg">
-  <meta name="twitter:image:alt"  content="ACCESSIA Pro — Conseil IA pour PME en France">
-
-  <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico?v=2" sizes="any">
-  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg?v=2">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://access-ia.pro/">
+  <link rel="alternate" type="text/plain" href="https://access-ia.pro/llms.txt" title="Contexte factuel ACCESSIA Pro">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.webmanifest">
-  <!-- Canonical -->
-  <link rel="canonical" href="https://access-ia.pro/">
-  <link rel="alternate" type="text/plain" href="https://access-ia.pro/llms.txt" title="ACCESSIA Pro — contexte pour assistants IA">
-  <link rel="preload" as="image" href="assets/images/og-image.webp" type="image/webp" fetchpriority="high">
-  <link rel="preload" as="font" href="assets/fonts/ibm-plex-sans-latin.woff2" type="font/woff2" crossorigin>
-  <link rel="preload" as="font" href="assets/fonts/space-grotesk-latin.woff2" type="font/woff2" crossorigin>
-
-  <!-- Styles (self-hosted — aucune requête Google) -->
-  <link rel="stylesheet" href="assets/css/style.css">
-
-  <!-- Security meta -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; form-action 'self' mailto:; connect-src 'self'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta name="referrer"                     content="strict-origin-when-cross-origin">
-
-  <!-- Structured Data JSON-LD -->
-  <script type="application/ld+json">
-  [
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "@id": "https://access-ia.pro/#organization",
-      "name": "ACCESSIA Pro",
-      "alternateName": "AccessIA Pro",
-      "description": "Conseil et accompagnement IA pour PME françaises: automatisation utile, données protégées, formation des équipes et gains mesurables.",
-      "url": "https://access-ia.pro",
-      "email": "contact@access-ia.pro",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://access-ia.pro/assets/images/logo-icon.webp?v=2",
-        "width": 72,
-        "height": 72
-      },
-      "image": "https://access-ia.pro/assets/images/og-image.jpg",
-      "serviceType": ["Conseil IA", "Automatisation IA", "Formation IA", "Diagnostic IA", "Accompagnement IA"],
-      "telephone": "+33651893981",
-      "openingHours": "Mo-Fr 09:00-18:00",
-      "areaServed": [
-        { "@type": "City", "name": "Toulouse" },
-        { "@type": "AdministrativeArea", "name": "Haute-Garonne" },
-        { "@type": "AdministrativeArea", "name": "Occitanie" },
-        { "@type": "Country", "name": "France" }
-      ],
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 43.6047,
-        "longitude": 1.4442
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Toulouse",
-        "addressRegion": "Occitanie",
-        "addressCountry": "FR"
-      },
-      "knowsAbout": [
-        "Intelligence Artificielle",
-        "IA générative",
-        "Grands modèles de langage",
-        "ChatGPT",
-        "Claude",
-        "Mistral AI",
-        "Llama",
-        "Microsoft 365 Copilot",
-        "Retrieval Augmented Generation",
-        "RAG",
-        "Automatisation des processus",
-        "RGPD",
-        "Règlement UE 2016/679",
-        "AI Act",
-        "Règlement UE 2024/1689",
-        "Cybersécurité",
-        "Souveraineté numérique",
-        "Transformation Numérique",
-        "Conseil aux PME",
-        "Conseil aux ETI",
-        "Formation IA",
-        "Facture électronique",
-        "Factur-X",
-        "UBL 2.1",
-        "EN 16931",
-        "Dolibarr",
-        "Odoo",
-        "ERPNext",
-        "Ollama",
-        "Open source"
-      ],
-      "priceRange": "€€",
-      "slogan": "L'IA utile et sécurisée pour les PME",
-      "knowsLanguage": ["fr", "en"],
-      "foundingDate": "2025",
-      "foundingLocation": {
-        "@type": "Place",
-        "name": "Toulouse, France"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/quentin-devesa-cyber04a069"
-      ],
-      "mainEntityOfPage": "https://access-ia.pro/",
-      "subjectOf": [
-        { "@type": "WebPage", "url": "https://access-ia.pro/guides/ia-pme/" },
-        { "@type": "WebPage", "url": "https://access-ia.pro/methodologie.html" },
-        { "@type": "WebPage", "url": "https://access-ia.pro/llms.txt" },
-        { "@type": "WebPage", "url": "https://access-ia.pro/llms-full.txt" }
-      ],
-      "founder": {
-        "@type": "Person",
-        "@id": "https://access-ia.pro/#founder",
-        "name": "Quentin DEVESA",
-        "givenName": "Quentin",
-        "familyName": "DEVESA",
-        "jobTitle": "Consultant IA et Cybersécurité, Fondateur",
-        "description": "Consultant IA pour PME françaises. Profil cybersécurité et IA appliquée. Fondateur d'ACCESSIA Pro, basé à Toulouse.",
-        "image": "https://access-ia.pro/assets/images/quentin-devesa.webp",
-        "url": "https://access-ia.pro/a-propos-quentin-devesa.html",
-        "worksFor": { "@id": "https://access-ia.pro/#organization" },
-        "nationality": { "@type": "Country", "name": "France" },
-        "workLocation": {
-          "@type": "Place",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Toulouse",
-            "addressRegion": "Occitanie",
-            "addressCountry": "FR"
-          }
-        },
-        "knowsLanguage": ["fr", "en"],
-        "knowsAbout": [
-          "Intelligence Artificielle",
-          "Cybersécurité",
-          "RGPD",
-          "AI Act",
-          "Conseil PME",
-          "Mistral AI",
-          "Claude",
-          "ChatGPT",
-          "RAG",
-          "IA open source",
-          "Facture électronique",
-          "Souveraineté numérique"
-        ],
-        "sameAs": ["https://www.linkedin.com/in/quentin-devesa-cyber04a069"]
-      },
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Services ACCESSIA Pro",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Diagnostic dirigeant",
-              "description": "Identifier les usages IA vraiment utiles, les risques données et les premières actions raisonnables pour une PME."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Automatisation utile",
-              "description": "Mettre en place des outils IA pour réduire les tâches répétitives, exploiter les documents internes et aider les équipes."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Formation des équipes",
-              "description": "Former dirigeants et collaborateurs aux usages pratiques, aux limites et aux règles de sécurité de l'IA."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Suivi et amélioration",
-              "description": "Mesurer les gains, maintenir les outils et ajuster les usages dans le temps."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Démarrage rapide PME",
-              "description": "Lancer un premier projet IA court, cadré et mesurable avant d'investir davantage."
-            }
-          }
-        ]
-      }
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "@id": "https://access-ia.pro/#website",
-      "name": "ACCESSIA Pro",
-      "alternateName": "AccessIA Pro",
-      "url": "https://access-ia.pro/",
-      "inLanguage": "fr-FR",
-      "publisher": { "@id": "https://access-ia.pro/#organization" },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://access-ia.pro/ressources.html?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      }
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Conseil IA pour PME: automatisation, RGPD et formation",
-      "description": "Consultant IA pour PME en France: diagnostic, automatisation utile, données protégées, formation des équipes et gains mesurables.",
-      "url": "https://access-ia.pro/",
-      "isPartOf": { "@type": "WebSite", "url": "https://access-ia.pro" },
-      "about": { "@id": "https://access-ia.pro/#organization" },
-      "author": { "@id": "https://access-ia.pro/#founder" },
-      "primaryImageOfPage": { "@type": "ImageObject", "url": "https://access-ia.pro/assets/images/og-image.jpg" },
-      "inLanguage": "fr-FR"
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Par quoi commencer si je ne connais pas bien l'IA ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Le plus simple est de partir d'un problème concret: temps perdu, documents difficiles à retrouver, réponses clients trop lentes ou saisies manuelles. Le diagnostic sert à choisir une première action utile et à éviter les projets trop larges."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Combien de temps faut-il pour voir un premier résultat ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Un premier périmètre peut souvent être cadré puis testé en quelques semaines. L'objectif est de prouver rapidement qu'un usage précis apporte de la valeur avant de généraliser."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Mes données sont-elles en sécurité avec ACCESSIA Pro ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "La sécurité est traitée dès le départ: données nécessaires, lieu de stockage, accès autorisés et informations à ne jamais envoyer dans un outil IA. L'objectif est de réduire les risques avant tout déploiement."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Est-ce adapté à une PME de moins de 50 collaborateurs ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Oui, à condition de rester pragmatique. Un cas d'usage bien choisi, un budget maîtrisé et une équipe formée suffisent souvent pour obtenir un premier gain."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Comment savoir si le projet est rentable ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "On mesure des éléments simples: heures économisées, erreurs réduites, délais raccourcis, qualité des réponses ou satisfaction des équipes. Si le gain attendu n'est pas clair, le projet doit être revu."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Est-ce que mes équipes vont vraiment l'utiliser ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "L'adoption se prépare. Les utilisateurs sont impliqués tôt, les règles sont simples, la formation est pratique et l'outil doit répondre à un besoin réel."
-          }
-        }
-      ]
-    }
-  ]
-  </script>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/seo-2026.css">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://access-ia.pro/">
+  <meta property="og:title" content="ACCESSIA Pro — Ressources IA pour PME | Projet en préparation">
+  <meta property="og:description" content="Projet de cabinet IA en préparation à Toulouse. Guides pour décider, protéger les données, mesurer et faire adopter l’IA. Ouverture prévue en janvier 2027.">
+  <meta property="og:image" content="https://access-ia.pro/assets/images/og-image.jpg">
+  <meta property="og:image:alt" content="ACCESSIA Pro — ressources IA pour PME">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="ACCESSIA Pro">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ACCESSIA Pro — Ressources IA pour PME | Projet en préparation">
+  <meta name="twitter:description" content="Projet de cabinet IA en préparation à Toulouse. Guides pour décider, protéger les données, mesurer et faire adopter l’IA. Ouverture prévue en janvier 2027.">
+  <meta name="twitter:image" content="https://access-ia.pro/assets/images/og-image.jpg">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; form-action 'self' mailto:; connect-src 'self'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa","name":"Quentin DEVESA","url":"https://access-ia.pro/a-propos-quentin-devesa.html","description":"Porteur du projet ACCESSIA Pro et responsable des ressources éditoriales publiées sur access-ia.pro."},{"@type":"WebSite","@id":"https://access-ia.pro/#website","name":"ACCESSIA Pro","url":"https://access-ia.pro/","inLanguage":"fr-FR","publisher":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"}},{"@type":"WebPage","@id":"https://access-ia.pro/#page","url":"https://access-ia.pro/","name":"ACCESSIA Pro — Ressources IA pour PME | Projet en préparation","description":"Projet de cabinet IA en préparation à Toulouse. Guides pour décider, protéger les données, mesurer et faire adopter l’IA. Ouverture prévue en janvier 2027.","inLanguage":"fr-FR","dateModified":"2026-07-29","isPartOf":{"@id":"https://access-ia.pro/#website"},"author":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"}}]}</script>
 </head>
 <body>
-
-<a href="#contenu-principal" class="skip-link">Aller au contenu principal</a>
-
-<!-- ════════════════════════════════════════════
-     NAVIGATION
-════════════════════════════════════════════ -->
-<nav class="navbar" role="navigation" aria-label="Navigation principale">
-  <div class="container">
-    <div class="navbar-inner">
-      <a class="navbar-logo" href="#accueil" aria-label="ACCESSIA Pro — Accueil">
-        <picture>
-          <source srcset="assets/images/logo-icon.webp?v=2" type="image/webp">
-          <img src="assets/images/favicon-32.png?v=2" alt="ACCESSIA Pro logo" width="36" height="36" decoding="async" fetchpriority="high">
-        </picture>
-        <span class="navbar-logo-text">ACCESSIA <span>Pro</span></span>
-      </a>
-
-      <ul class="navbar-links" id="nav-links" role="menubar">
-        <li role="none"><a href="#solutions"  role="menuitem">Offres</a></li>
-        <li role="none"><a href="/tarifs-ia-pme.html" role="menuitem">Tarifs</a></li>
-        <li role="none"><a href="#cas-usages" role="menuitem">Cas d'usage</a></li>
-        <li role="none"><a href="#faq"        role="menuitem">FAQ</a></li>
-        <li role="none"><a href="/ressources.html" role="menuitem">Ressources</a></li>
-        <li role="none"><a href="/conseil-ia-toulouse.html" role="menuitem">Toulouse</a></li>
-        <li role="none"><a href="#about"      role="menuitem">À propos</a></li>
-        <li role="none"><a href="#contact"    role="menuitem">Contact</a></li>
-      </ul>
-
-      <div class="navbar-cta">
-        <a href="#contact" class="btn btn-primary">Planifier un échange</a>
-      </div>
-
-      <button class="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+  <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
+  <div class="seo-prelaunch" role="status">
+    <div class="seo-container"><strong>Pré-lancement :</strong> projet en préparation, ouverture commerciale prévue en janvier 2027.</div>
   </div>
-</nav>
 
-<main id="contenu-principal" tabindex="-1">
+    <header class="seo-header">
+      <div class="seo-container seo-header-inner">
+        <a class="seo-brand" href="/" aria-label="ACCESSIA Pro — Accueil">
+          <img src="/assets/images/logo-icon.webp" alt="" width="36" height="36">
+          <span>ACCESSIA <strong>Pro</strong></span>
+        </a>
+        <nav aria-label="Navigation principale">
+          <ul class="seo-nav">
+            <li><a href="/guides/ia-pme/">Décider</a></li>
+            <li><a href="/articles/rgpd-ia-entreprise.html">Protéger</a></li>
+            <li><a href="/articles/calculateur-roi-ia-pme.html">Mesurer</a></li>
+            <li><a href="/methodologie.html">Déployer</a></li>
+            <li><a href="/ressources/">Ressources</a></li>
+          </ul>
+        </nav>
+        <a class="seo-button seo-button-small" href="mailto:contact@access-ia.pro?subject=Échange%20exploratoire%20ACCESSIA%20Pro">Échange exploratoire</a>
+      </div>
+    </header>
+  <main id="contenu-principal" class="seo-main">
+    <section class="seo-hero">
+      <div class="seo-container seo-reading">
 
-<!-- ════════════════════════════════════════════
-     HERO
-════════════════════════════════════════════ -->
-<section class="hero" id="accueil" aria-labelledby="hero-title">
-  <div class="hero-grid" aria-hidden="true"></div>
-  <div class="container">
-    <div class="hero-content">
-      <!-- Left -->
-      <div>
-        <div class="hero-badge">Consultant IA pour PME · Toulouse &amp; France</div>
-        <h1 id="hero-title">
-          Intégrer l'IA dans votre PME avec ACCESSIA Pro<br>
-          <span class="accent">Gains mesurables. Données protégées.</span>
-        </h1>
-        <p class="hero-desc">
-          <strong>ACCESSIA Pro</strong> (Access IA) accompagne les dirigeants de PME françaises pour cadrer les bons usages de l'intelligence artificielle : diagnostic, intégration, automatisation des tâches répétitives, formation des équipes et conformité RGPD.
-        </p>
-        <div class="hero-actions">
-          <a href="#contact"   class="btn btn-primary">Demander un diagnostic IA</a>
-          <a href="#solutions" class="btn btn-outline">Voir les accompagnements</a>
+        <p class="seo-kicker">Projet éditorial en pré-lancement</p>
+        <h1>Préparer l’adoption de l’IA dans votre PME</h1>
+        <p class="seo-lede">ACCESSIA Pro est un projet de cabinet en préparation, porté par Quentin DEVESA. Jusqu’à l’ouverture prévue en janvier 2027, ce site publie des méthodes, checklists et outils transparents pour aider les PME à décider avec recul.</p>
+
+      <div class="seo-actions">
+        <a class="seo-button" href="/guides/ia-pme/">Commencer par le guide</a>
+        <a class="seo-button seo-button-secondary" href="mailto:contact@access-ia.pro?subject=Question%20à%20documenter">Proposer une question</a>
+      </div>
+      </div>
+    </section>
+
+      <section class="seo-section">
+        <div class="seo-container">
+          <div class="seo-status-card">
+            <p class="seo-eyebrow">Ce qui existe aujourd’hui</p>
+            <h2>Un socle de ressources, pas une offre commerciale active</h2>
+            <p>Les pages présentent des méthodes de décision, des scénarios pédagogiques et des simulations. Elles ne décrivent aucune intervention commerciale passée et ne garantissent aucun résultat. Les modalités commerciales seront publiées seulement lorsque l’activité sera effectivement ouverte.</p>
+          </div>
         </div>
-        <ul class="hero-trust-list" aria-label="Points forts ACCESSIA Pro">
-          <li>Premier échange gratuit</li>
-          <li>Basé à Toulouse, France entière</li>
-          <li>Site sans cookie de tracking</li>
-        </ul>
-        <div class="hero-stats" aria-label="Indicateurs clés">
+      </section>
+      <section class="seo-section seo-section-alt" aria-labelledby="piliers-title">
+        <div class="seo-container">
+          <p class="seo-eyebrow">Architecture éditoriale</p>
+          <h2 id="piliers-title">Quatre questions avant d’investir</h2>
+          <div class="seo-card-grid">
+            <article class="seo-card">
+              <span class="seo-card-number">01</span>
+              <h3>Décider</h3>
+              <p>Partir d’un problème métier, vérifier les données disponibles et choisir un premier test réversible.</p>
+              <a href="/guides/ia-pme/">Guide de décision et autodiagnostic</a>
+            </article>
+            <article class="seo-card">
+              <span class="seo-card-number">02</span>
+              <h3>Protéger</h3>
+              <p>Classifier les données, documenter les rôles et vérifier les conditions de traitement avant tout essai.</p>
+              <a href="/articles/rgpd-ia-entreprise.html">Checklist RGPD et IA</a>
+            </article>
+            <article class="seo-card">
+              <span class="seo-card-number">03</span>
+              <h3>Mesurer</h3>
+              <p>Rendre visibles les hypothèses de coût, de temps économisé et d’incertitude.</p>
+              <a href="/articles/calculateur-roi-ia-pme.html">Calculateur ROI transparent</a>
+            </article>
+            <article class="seo-card">
+              <span class="seo-card-number">04</span>
+              <h3>Déployer et adopter</h3>
+              <p>Tester sur un périmètre limité, définir les contrôles humains et préparer les utilisateurs.</p>
+              <a href="/methodologie.html">Méthode en cinq étapes</a>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="seo-section" aria-labelledby="ressources-recentes-title">
+        <div class="seo-container">
+          <p class="seo-eyebrow">Dossiers vérifiés le 29 juillet 2026</p>
+          <h2 id="ressources-recentes-title">Ressources récentes pour choisir et tester</h2>
+          <p class="seo-reading">Ces dossiers s’appuient sur les documentations officielles des éditeurs et sur les référentiels CNIL, ANSSI, Commission européenne, NIST et OWASP. Chaque page affiche sa date de vérification et sa prochaine revue.</p>
+          <div class="seo-card-grid">
+            <article class="seo-card">
+              <h3>IA cloud, locale ou hybride</h3>
+              <p>Comparer ChatGPT, Claude, Gemini, Microsoft 365 Copilot et Mistral avec Ollama, LM Studio, llama.cpp et Open WebUI.</p>
+              <a href="/articles/comparatif-ia-cloud-locale-pme.html">Lire le comparatif détaillé</a>
+            </article>
+            <article class="seo-card">
+              <h3>Déployer une IA locale</h3>
+              <p>Comprendre les couches techniques, dimensionner un pilote et éviter les fausses promesses de confidentialité.</p>
+              <a href="/articles/deployer-ia-locale-pme.html">Préparer l’architecture locale</a>
+            </article>
+            <article class="seo-card">
+              <h3>AI Act : calendrier PME</h3>
+              <p>Identifier son rôle, classer ses usages et organiser les actions à mener entre 2026 et 2028.</p>
+              <a href="/articles/ai-act-pme-obligations.html">Consulter le calendrier à jour</a>
+            </article>
+            <article class="seo-card">
+              <h3>Évaluer un assistant IA</h3>
+              <p>Construire trente cas métier, comparer les résultats et définir des seuils de décision avant déploiement.</p>
+              <a href="/articles/evaluer-assistant-ia-pme.html">Utiliser le protocole d’évaluation</a>
+            </article>
+          </div>
+          <p class="seo-link-row"><a href="/ressources/">Voir toutes les ressources ACCESSIA Pro</a></p>
+        </div>
+      </section>
+      <section class="seo-section">
+        <div class="seo-container seo-two-columns">
           <div>
-            <div class="hero-stat-value">30 min</div>
-            <div class="hero-stat-label">Échange initial gratuit</div>
+            <p class="seo-eyebrow">Outils originaux</p>
+            <h2>Deux outils, avec leurs formules et leurs limites</h2>
+            <ul class="seo-check-list">
+              <li><strong>Autodiagnostic de maturité :</strong> dix questions, un score de 0 à 20, calculé localement sans stockage ni transmission.</li>
+              <li><strong>Calculateur ROI :</strong> cinq entrées modifiables, formule publique et résultat présenté comme une simulation.</li>
+            </ul>
           </div>
-          <div>
-            <div class="hero-stat-value">RGPD</div>
-            <div class="hero-stat-label">Données protégées</div>
-          </div>
-          <div>
-            <div class="hero-stat-value">PME</div>
-            <div class="hero-stat-label">Approche terrain</div>
-          </div>
+          <aside class="seo-note">
+            <h3>Règle de publication</h3>
+            <p>Chaque page distingue les faits, les hypothèses, les projections et les scénarios pédagogiques. Une ressource réglementaire indique sa date de révision et renvoie vers les sources primaires.</p>
+          </aside>
+        </div>
+      </section>
+      <section class="seo-section seo-cta">
+        <div class="seo-container seo-reading">
+          <h2>Une question métier mérite d’être documentée ?</h2>
+          <p>Vous pouvez proposer un sujet ou demander un échange exploratoire. Cette prise de contact ne constitue ni une commande, ni une promesse de prestation avant l’ouverture.</p>
+          <a class="seo-button" href="mailto:contact@access-ia.pro?subject=Échange%20exploratoire%20ACCESSIA%20Pro">Écrire à Quentin DEVESA</a>
+        </div>
+      </section>
+  </main>
+
+    <footer class="seo-footer">
+      <div class="seo-container seo-footer-grid">
+        <div>
+          <p class="seo-footer-title">ACCESSIA Pro</p>
+          <p>Projet de cabinet en préparation à Toulouse. Ouverture commerciale prévue en janvier 2027.</p>
+        </div>
+        <div>
+          <p class="seo-footer-title">Repères</p>
+          <ul>
+            <li><a href="/tarifs-ia-pme.html">Construire un budget</a></li>
+            <li><a href="/ressources/">Toutes les ressources</a></li>
+            <li><a href="/conseil-ia-toulouse.html">Le projet à Toulouse</a></li>
+            <li><a href="/a-propos-quentin-devesa.html">À propos de l’auteur</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="seo-footer-title">Contact éditorial</p>
+          <p><a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a></p>
+          <p><a href="/llms.txt">Contexte pour assistants IA</a></p>
         </div>
       </div>
-
-      <!-- Right visual -->
-      <div class="hero-visual" aria-hidden="true">
-        <div class="hero-panel">
-          <div class="hero-panel-header">
-            <span>Diagnostic IA PME</span>
-            <strong>Plan clair</strong>
-          </div>
-          <div class="hero-panel-main">
-            <div class="hero-panel-score">
-              <span>Priorité</span>
-              <strong>01</strong>
-              <small>Cas d'usage utile</small>
-            </div>
-            <div class="hero-panel-steps">
-              <div><span></span> Cartographier les tâches répétitives</div>
-              <div><span></span> Protéger les données sensibles</div>
-              <div><span></span> Former les utilisateurs métier</div>
-              <div><span></span> Mesurer les gains réels</div>
-            </div>
-          </div>
-          <div class="hero-panel-footer">
-            <div>
-              <span>Livrable</span>
-              <strong>Roadmap IA</strong>
-            </div>
-            <div>
-              <span>Décision</span>
-              <strong>Budget cadré</strong>
-            </div>
-            <div>
-              <span>Risque</span>
-              <strong>Réduit</strong>
-            </div>
-          </div>
-        </div>
+      <div class="seo-container seo-footer-bottom">
+        <span>Dernière révision substantielle : 29 juillet 2026</span>
+        <span>Contenus informatifs — aucune prestation commerciale ouverte à ce jour</span>
       </div>
-    </div>
-  </div>
-</section>
+    </footer>
 
-
-<!-- ════════════════════════════════════════════
-     LOGOS / TECH BAR
-════════════════════════════════════════════ -->
-<div class="logos-bar" aria-label="Technologies et standards">
-  <div class="container">
-    <div class="logos-bar-inner">
-      <span class="logos-bar-label">Engagements</span>
-      <span class="tech-badge">Données protégées</span>
-      <span class="tech-badge">Langage simple</span>
-      <span class="tech-badge">Gains mesurables</span>
-      <span class="tech-badge">Équipes formées</span>
-      <span class="tech-badge">Solutions durables</span>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════
-     GUIDES STRATÉGIQUES
-════════════════════════════════════════════ -->
-<section class="seo-entry section-sm" aria-labelledby="seo-entry-title">
-  <div class="container">
-    <div class="seo-entry-grid fade-in">
-      <div>
-        <div class="tag">Guides pratiques</div>
-        <h2 id="seo-entry-title">Les repères utiles avant de lancer un projet IA</h2>
-        <p>Avant d'investir, un dirigeant doit clarifier quatre points: par où commencer, quel gain attendre, quelles données protéger et quel accompagnement choisir.</p>
-      </div>
-      <div class="seo-link-grid" aria-label="Pages clés ACCESSIA Pro">
-        <a href="/guides/ia-pme/" class="seo-link-card">
-          <span>Guide pilier · 15 min</span>
-          <strong>Guide complet : intégrer l'IA dans une PME</strong>
-        </a>
-        <a href="/guides/ia-pme/#integrer-ia-pme" class="seo-link-card">
-          <span>Guide stratégique</span>
-          <strong>Comment intégrer l'IA dans une PME</strong>
-        </a>
-        <a href="/articles/roi-ia-pme-france.html" class="seo-link-card">
-          <span>Rentabilité</span>
-          <strong>Mesurer le ROI d'un projet IA</strong>
-        </a>
-        <a href="/articles/securite-ia-pme-fuites-donnees.html" class="seo-link-card">
-          <span>Sécurité</span>
-          <strong>Éviter les fuites de données IA</strong>
-        </a>
-        <a href="/conseil-ia-toulouse.html" class="seo-link-card">
-          <span>Local</span>
-          <strong>Consultant IA à Toulouse</strong>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════
-     ARTICLES POPULAIRES (boost maillage interne)
-════════════════════════════════════════════ -->
-<section class="seo-entry section-sm" aria-labelledby="articles-pop-title">
-  <div class="container">
-    <div class="seo-entry-grid fade-in">
-      <div>
-        <div class="tag">Articles et cas d'usage</div>
-        <h2 id="articles-pop-title">Découvrir nos articles et cas d'usage IA pour PME</h2>
-        <p>Tous nos retours d'expérience, cas concrets et guides pour intégrer l'IA dans votre PME sans risque : RH, finance, marketing, juridique, support client.</p>
-        <p style="margin-top:.75rem;"><a href="/articles/" class="link-arrow"><strong>Voir tous les articles →</strong></a></p>
-      </div>
-      <div class="seo-link-grid" aria-label="Articles populaires ACCESSIA Pro">
-        <a href="/articles/premier-projet-ia-pme-exemple.html" class="seo-link-card">
-          <span>Démarrer</span>
-          <strong>Premier projet IA en PME : exemple concret</strong>
-        </a>
-        <a href="/articles/chatgpt-claude-mistral-pme.html" class="seo-link-card">
-          <span>Comparatif</span>
-          <strong>ChatGPT, Claude, Mistral : lequel pour ma PME ?</strong>
-        </a>
-        <a href="/articles/rgpd-ia-entreprise.html" class="seo-link-card">
-          <span>Conformité</span>
-          <strong>RGPD et IA en entreprise : ce qu'il faut savoir</strong>
-        </a>
-        <a href="/articles/formation-equipe-ia.html" class="seo-link-card">
-          <span>Formation</span>
-          <strong>Formation IA pour équipes : la méthode PME</strong>
-        </a>
-        <a href="/articles/cas-usage-emails-devis.html" class="seo-link-card">
-          <span>Cas d'usage</span>
-          <strong>Automatiser emails et devis avec l'IA</strong>
-        </a>
-        <a href="/articles/cas-usage-rh-recrutement-onboarding.html" class="seo-link-card">
-          <span>Cas d'usage</span>
-          <strong>IA en RH : recrutement et onboarding</strong>
-        </a>
-        <a href="/articles/cas-usage-factures-comptabilite.html" class="seo-link-card">
-          <span>Cas d'usage</span>
-          <strong>Saisie factures IA : détecter doublons et erreurs</strong>
-        </a>
-        <a href="/articles/cas-usage-achats-fournisseurs.html" class="seo-link-card">
-          <span>Cas d'usage</span>
-          <strong>Négociation et relation fournisseurs avec l'IA</strong>
-        </a>
-        <a href="/articles/facture-electronique-2026-pme-open-source.html" class="seo-link-card">
-          <span>Conformité</span>
-          <strong>Facture électronique 2026-2027 : obligations PME et open source</strong>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════
-     RESSOURCES SECTORIELLES + OUTILS (maillage)
-════════════════════════════════════════════ -->
-<section class="seo-entry section-sm" aria-labelledby="sectoriel-title">
-  <div class="container">
-    <div class="seo-entry-grid fade-in">
-      <div>
-        <div class="tag">Sectoriel et outils</div>
-        <h2 id="sectoriel-title">L'IA selon votre filière et vos contraintes</h2>
-        <p>Quatre filières où ACCESSIA Pro a documenté des retours terrain mesurés, plus deux outils pratiques pour structurer votre démarche : simulation ROI et glossaire dirigeants.</p>
-        <p style="margin-top:.75rem;"><a href="/articles/" class="link-arrow"><strong>Voir toutes les ressources →</strong></a></p>
-      </div>
-      <div class="seo-link-grid" aria-label="Ressources sectorielles et outils ACCESSIA Pro">
-        <a href="/articles/ia-pme-aeronautique.html" class="seo-link-card">
-          <span>Sectoriel</span>
-          <strong>IA pour PME aéronautique (Tier 1/2 Airbus)</strong>
-        </a>
-        <a href="/articles/ia-pme-sante-medtech.html" class="seo-link-card">
-          <span>Sectoriel</span>
-          <strong>IA pour PME santé et medtech</strong>
-        </a>
-        <a href="/articles/ia-pme-agroalimentaire.html" class="seo-link-card">
-          <span>Sectoriel</span>
-          <strong>IA pour PME agroalimentaire (IFS, FSSC)</strong>
-        </a>
-        <a href="/articles/ia-cabinets-conseil-expertise.html" class="seo-link-card">
-          <span>Sectoriel</span>
-          <strong>IA pour cabinets de conseil et expertise</strong>
-        </a>
-        <a href="/articles/calculateur-roi-ia-pme.html" class="seo-link-card">
-          <span>Outil</span>
-          <strong>Calculateur ROI IA : simulez votre gain</strong>
-        </a>
-        <a href="/articles/glossaire-ia-dirigeants.html" class="seo-link-card">
-          <span>Ressource</span>
-          <strong>Glossaire IA pour dirigeants : 30 termes clés</strong>
-        </a>
-        <a href="/articles/copilot-vs-chatgpt-team-pme.html" class="seo-link-card">
-          <span>Comparatif</span>
-          <strong>Microsoft 365 Copilot vs ChatGPT Team</strong>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════
-     SOLUTIONS
-════════════════════════════════════════════ -->
-<section class="solutions section" id="solutions" aria-labelledby="solutions-title">
-  <div class="container">
-    <div class="section-header fade-in">
-      <div class="tag">Ce que l'on fait</div>
-      <h2 id="solutions-title">Des accompagnements concrets pour avancer sans complexité</h2>
-      <p>On part de vos problèmes réels: temps perdu, documents difficiles à exploiter, réponses clients trop lentes, tâches répétitives ou équipes à former.</p>
-    </div>
-
-    <div class="grid-3">
-      <!-- Diagnostic -->
-      <article class="solution-card fade-in" aria-labelledby="sol1-title">
-        <div class="solution-icon sol-icon-navy">DIAG</div>
-        <h3 id="sol1-title">Diagnostic dirigeant</h3>
-        <p>Un état des lieux simple pour savoir où l'IA peut aider, où elle ne sert à rien, et par quoi commencer sans prendre de risque.</p>
-        <ul class="solution-features" aria-label="Inclus dans le diagnostic">
-          <li class="solution-feature">Vos tâches répétitives identifiées</li>
-          <li class="solution-feature">3 priorités classées par impact</li>
-          <li class="solution-feature">Risques données et RGPD vérifiés</li>
-          <li class="solution-feature">Budget, délais et gains estimés</li>
-          <li class="solution-feature">Plan d'action lisible par la direction</li>
-        </ul>
-      </article>
-
-      <!-- Intégration -->
-      <article class="solution-card fade-in" aria-labelledby="sol2-title">
-        <div class="solution-icon sol-icon-teal">AUTO</div>
-        <h3 id="sol2-title">Automatisation utile</h3>
-        <p>Mise en place d'outils qui réduisent le travail manuel: tri d'emails, synthèses, recherche dans vos documents, préparation de réponses ou tableaux de suivi.</p>
-        <ul class="solution-features" aria-label="Ce que comprend l'intégration">
-          <li class="solution-feature">Connecté à vos outils existants</li>
-          <li class="solution-feature">Données limitées au strict nécessaire</li>
-          <li class="solution-feature">Tests avant mise en service</li>
-          <li class="solution-feature">Mode d'emploi pour vos équipes</li>
-          <li class="solution-feature">Suivi après lancement</li>
-        </ul>
-      </article>
-
-      <!-- Formation -->
-      <article class="solution-card fade-in" aria-labelledby="sol3-title">
-        <div class="solution-icon sol-icon-blue">FORM</div>
-        <h3 id="sol3-title">Formation des équipes</h3>
-        <p>Des ateliers pratiques pour utiliser l'IA au quotidien avec les bons réflexes: confidentialité, qualité des réponses et limites à connaître.</p>
-        <ul class="solution-features" aria-label="Formations disponibles">
-          <li class="solution-feature">Session spéciale dirigeants</li>
-          <li class="solution-feature">Exemples adaptés à vos métiers</li>
-          <li class="solution-feature">Règles simples de sécurité</li>
-          <li class="solution-feature">Supports remis après l'atelier</li>
-          <li class="solution-feature">Autonomie progressive</li>
-        </ul>
-      </article>
-
-      <!-- MCO -->
-      <article class="solution-card fade-in" aria-labelledby="sol4-title">
-        <div class="solution-icon sol-icon-navyx">SEC</div>
-        <h3 id="sol4-title">Suivi et amélioration</h3>
-        <p>Une fois l'outil lancé, on vérifie qu'il reste utile, sûr et bien utilisé. Les améliorations se font par petites étapes mesurables.</p>
-        <ul class="solution-features" aria-label="Services MCO">
-          <li class="solution-feature">Points réguliers avec vos équipes</li>
-          <li class="solution-feature">Mises à jour de sécurité</li>
-          <li class="solution-feature">Mesure des gains réels</li>
-          <li class="solution-feature">Corrections et ajustements</li>
-          <li class="solution-feature">Documentation tenue à jour</li>
-        </ul>
-      </article>
-
-      <!-- Pack PME -->
-      <article class="solution-card fade-in" aria-labelledby="sol5-title">
-        <div class="solution-icon sol-icon-teal">GO</div>
-        <h3 id="sol5-title">Démarrage rapide PME</h3>
-        <p>Un premier projet cadré, court et utile pour prouver la valeur de l'IA avant d'investir davantage.</p>
-        <ul class="solution-features" aria-label="Packs disponibles">
-          <li class="solution-feature">Assistant sur vos documents internes</li>
-          <li class="solution-feature">Aide au traitement des emails</li>
-          <li class="solution-feature">Atelier de lancement en une journée</li>
-          <li class="solution-feature">Première version en quelques semaines</li>
-          <li class="solution-feature">Périmètre volontairement maîtrisé</li>
-        </ul>
-      </article>
-
-      <!-- CTA card -->
-      <article class="solution-card solution-card-cta fade-in" aria-label="Commencer votre projet">
-        <div class="solution-icon sol-icon-white">?</div>
-        <h3>Par où commencer ?</h3>
-        <p>Un échange de 30 minutes suffit pour vérifier si l'IA peut vraiment aider votre entreprise et quelle première étape est raisonnable.</p>
-        <br>
-        <a href="#contact" class="btn btn-primary">
-          Planifier un échange
-        </a>
-      </article>
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════
-     VALEUR
-════════════════════════════════════════════ -->
-<section class="valeur section" id="valeur" aria-labelledby="valeur-title">
-  <div class="container">
-    <div class="section-header fade-in">
-      <div class="tag tag-valeur">Sécurité avant tout</div>
-      <h2 id="valeur-title">L'IA ne doit jamais fragiliser votre entreprise</h2>
-      <p>Chaque recommandation tient compte de vos données, de vos équipes, de vos clients et de vos obligations.</p>
-    </div>
-
-    <div class="value-grid">
-      <article class="value-card fade-in">
-        <div class="value-icon">RGPD</div>
-        <h3>Données protégées</h3>
-        <p>On limite les données utilisées, on évite les partages inutiles et on privilégie les solutions que vous maîtrisez.</p>
-      </article>
-
-      <article class="value-card fade-in">
-        <div class="value-icon">EU</div>
-        <h3>Conformité expliquée</h3>
-        <p>Le RGPD et les règles européennes sont traduits en actions concrètes: quoi collecter, quoi éviter, quoi documenter.</p>
-      </article>
-
-      <article class="value-card fade-in">
-        <div class="value-icon">LIBRE</div>
-        <h3>Indépendance</h3>
-        <p>Vous gardez la main sur vos outils, vos accès et vos données. Pas de dépendance obscure ni de solution impossible à reprendre.</p>
-      </article>
-
-      <article class="value-card fade-in">
-        <div class="value-icon">ROI</div>
-        <h3>Gains mesurés</h3>
-        <p>Avant de lancer, on définit le résultat attendu. Après le lancement, on vérifie le temps gagné et les points à corriger.</p>
-      </article>
-
-      <article class="value-card fade-in">
-        <div class="value-icon">TEAM</div>
-        <h3>Équipes autonomes</h3>
-        <p>Vos collaborateurs comprennent l'outil, ses limites et les bons usages. L'objectif est de rendre l'entreprise plus autonome.</p>
-      </article>
-
-      <article class="value-card fade-in">
-        <div class="value-icon">1:1</div>
-        <h3>Interlocuteur unique</h3>
-        <p>Vous échangez avec une personne qui comprend votre métier, vos contraintes et vos priorités de dirigeant.</p>
-      </article>
-    </div>
-
-    <div class="value-cta-box fade-in">
-      <h3>Vous voulez avancer sans exposer votre entreprise ?</h3>
-      <p>Commençons par un échange simple: vos enjeux, vos données, vos priorités et les premières actions possibles.</p>
-      <a href="#contact" class="btn btn-primary">Prendre contact</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════
-     AVANTAGES
-════════════════════════════════════════════ -->
-<section class="avantages section" id="avantages" aria-labelledby="avantages-title">
-  <div class="container">
-    <div class="section-header fade-in">
-      <div class="tag">Résultats attendus</div>
-      <h2 id="avantages-title">Ce que l'IA peut changer dans votre quotidien</h2>
-      <p>Pas de promesse magique: des gains ciblés, visibles et suivis dans le temps.</p>
-    </div>
-
-    <!-- Avantage 1 -->
-    <div class="avantage-row fade-in">
-      <div class="avantage-visual">
-        <span class="avantage-icon-big">⚡</span>
-        <div class="avantage-visual-title">Temps gagné</div>
-        <div class="avantage-visual-sub">Moins de tâches répétitives</div>
-      </div>
-      <div>
-        <div class="tag">Efficacité</div>
-        <h3 class="avantage-h3">Libérer du temps sur les tâches à faible valeur</h3>
-        <p>L'IA est utile quand elle soulage vos équipes: recherche d'information, rédaction de synthèses, tri, extraction ou préparation de réponses.</p>
-        <ul class="avantage-list">
-          <li><span class="avantage-check">✓</span>Cas d'usage choisis avec vos équipes</li>
-          <li><span class="avantage-check">✓</span>Première version sur un périmètre court</li>
-          <li><span class="avantage-check">✓</span>Résultat visible avant généralisation</li>
-          <li><span class="avantage-check">✓</span>Déploiement progressif pour limiter les risques</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Avantage 2 -->
-    <div class="avantage-row reverse fade-in">
-      <div class="avantage-visual avantage-visual-teal">
-        <span class="avantage-icon-big">FOCUS</span>
-        <div class="avantage-visual-title">Décisions plus claires</div>
-        <div class="avantage-visual-sub">Les bonnes informations au bon moment</div>
-      </div>
-      <div>
-        <div class="tag">Pilotage</div>
-        <h3 class="avantage-h3">Mieux exploiter vos documents et votre savoir interne</h3>
-        <p>Beaucoup d'informations utiles dorment dans des dossiers, emails ou procédures. L'IA peut aider à les retrouver et les résumer plus vite.</p>
-        <ul class="avantage-list">
-          <li><span class="avantage-check">✓</span>Recherche rapide dans vos contenus internes</li>
-          <li><span class="avantage-check">✓</span>Synthèses compréhensibles par tous</li>
-          <li><span class="avantage-check">✓</span>Traçabilité des sources importantes</li>
-          <li><span class="avantage-check">✓</span>Connexion possible à vos outils existants</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Avantage 3 -->
-    <div class="avantage-row fade-in">
-      <div class="avantage-visual avantage-visual-blue">
-        <span class="avantage-icon-big">SAFE</span>
-        <div class="avantage-visual-title">Confiance</div>
-        <div class="avantage-visual-sub">Données, usages et accès maîtrisés</div>
-      </div>
-      <div>
-        <div class="tag">Sécurité</div>
-        <h3 class="avantage-h3">Utiliser l'IA sans perdre le contrôle</h3>
-        <p>Avant tout déploiement, on clarifie les données utilisées, les accès, les limites de l'outil et les règles d'usage pour vos équipes.</p>
-        <ul class="avantage-list">
-          <li><span class="avantage-check">✓</span>Données sensibles identifiées avant usage</li>
-          <li><span class="avantage-check">✓</span>Accès limités aux personnes concernées</li>
-          <li><span class="avantage-check">✓</span>Règles internes simples pour les utilisateurs</li>
-          <li><span class="avantage-check">✓</span>Documentation claire pour la direction</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════
-     APPROCHE / MÉTHODE
-════════════════════════════════════════════ -->
-<section class="approche section" id="approche" aria-labelledby="approche-title">
-  <div class="container">
-    <div class="section-header fade-in">
-      <div class="tag">Méthode</div>
-      <h2 id="approche-title">Une démarche simple, cadrée et progressive</h2>
-      <p>Vous savez toujours ce qui est fait, pourquoi c'est fait, quelles données sont utilisées et quel résultat est attendu.</p>
-    </div>
-
-    <div class="steps-grid">
-      <article class="step-card fade-in">
-        <div class="step-number" aria-label="Étape 1">1</div>
-        <h3>Échange initial</h3>
-        <p>On comprend votre activité, vos priorités et les irritants qui prennent du temps à vos équipes.</p>
-      </article>
-      <article class="step-card fade-in">
-        <div class="step-number" aria-label="Étape 2">2</div>
-        <h3>Cadrage</h3>
-        <p>On choisit un premier cas d'usage utile, mesurable et raisonnable pour votre organisation.</p>
-      </article>
-      <article class="step-card fade-in">
-        <div class="step-number" aria-label="Étape 3">3</div>
-        <h3>Proposition claire</h3>
-        <p>Vous recevez un périmètre, un budget, des délais et des livrables compréhensibles.</p>
-      </article>
-      <article class="step-card fade-in">
-        <div class="step-number" aria-label="Étape 4">4</div>
-        <h3>Construction progressive</h3>
-        <p>On avance par étapes courtes avec démonstrations régulières et décisions partagées.</p>
-      </article>
-      <article class="step-card fade-in">
-        <div class="step-number" aria-label="Étape 5">5</div>
-        <h3>Validation</h3>
-        <p>On teste l'outil avec vos utilisateurs, vos données autorisées et vos règles internes.</p>
-      </article>
-      <article class="step-card fade-in">
-        <div class="step-number" aria-label="Étape 6">6</div>
-        <h3>Lancement</h3>
-        <p>L'outil est mis en service avec une formation courte et une documentation simple.</p>
-      </article>
-      <article class="step-card fade-in">
-        <div class="step-number" aria-label="Étape 7">7</div>
-        <h3>Suivi</h3>
-        <p>On mesure les gains, corrige les irritants et ajuste l'outil si les besoins évoluent.</p>
-      </article>
-      <article class="step-card step-card-dashed fade-in">
-        <div class="step-number step-number-infinity">∞</div>
-        <h3>Autonomie</h3>
-        <p>Votre entreprise garde la main: usages, accès, bonnes pratiques et prochaines étapes.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════
-     FAQ
-════════════════════════════════════════════ -->
-<section class="faq section" id="faq" aria-labelledby="faq-title">
-  <div class="container">
-    <div class="section-header fade-in">
-      <div class="tag">Questions fréquentes</div>
-      <h2 id="faq-title">Les questions fréquentes des dirigeants</h2>
-      <p>Des réponses directes, sans vocabulaire inutile.</p>
-    </div>
-
-    <div class="faq-list fade-in" role="list">
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
-          Par quoi commencer si je ne connais pas bien l'IA ?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-1">
-          <p>Le plus simple est de partir d'un problème concret: temps perdu, documents difficiles à retrouver, réponses clients trop lentes, saisies manuelles. Le diagnostic sert à choisir une première action utile et à éviter les projets trop larges.</p>
-        </div>
-      </div>
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
-          Combien de temps faut-il pour voir un premier résultat ?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-2">
-          <p>Un premier périmètre peut souvent être cadré puis testé en quelques semaines. L'objectif n'est pas de tout transformer d'un coup, mais de prouver rapidement qu'un usage précis apporte de la valeur.</p>
-        </div>
-      </div>
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
-          Mes données sont-elles en sécurité avec ACCESSIA Pro ?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-3">
-          <p>La sécurité est traitée dès le départ: quelles données sont nécessaires, où elles sont stockées, qui y accède et ce qui ne doit jamais être envoyé dans un outil IA. L'objectif est de réduire les risques avant de déployer.</p>
-        </div>
-      </div>
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
-          Est-ce adapté à une PME de moins de 50 collaborateurs ?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-4">
-          <p>Oui, à condition de rester pragmatique. Une PME n'a pas besoin d'un grand programme complexe pour commencer: un cas d'usage bien choisi, un budget maîtrisé et une équipe formée suffisent souvent pour obtenir un premier gain.</p>
-        </div>
-      </div>
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
-          Comment savoir si le projet est rentable ?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-5">
-          <p>On mesure des éléments simples: heures économisées, erreurs réduites, délais raccourcis, qualité des réponses ou satisfaction des équipes. Si le gain attendu n'est pas clair, le projet doit être revu ou abandonné.</p>
-        </div>
-      </div>
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6">
-          Est-ce que mes équipes vont vraiment l'utiliser ?
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-6">
-          <p>L'adoption se prépare. Les utilisateurs sont impliqués tôt, les règles sont simples, la formation est pratique et l'outil doit répondre à un besoin réel. Une IA imposée sans accompagnement échoue souvent.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════
-     QUI SOMMES-NOUS
-════════════════════════════════════════════ -->
-<section class="about section" id="about" aria-labelledby="about-title">
-  <div class="container">
-    <div class="section-header fade-in">
-      <div class="tag">Qui sommes-nous</div>
-      <h2 id="about-title">Un accompagnement humain, exigeant et orienté terrain</h2>
-    </div>
-    <div class="about-card fade-in">
-      <div class="about-photo-wrap">
-        <picture>
-          <source srcset="assets/images/quentin-devesa.webp" type="image/webp">
-          <img src="assets/images/quentin-devesa.webp"
-               alt="Quentin DEVESA, fondateur d'ACCESSIA Pro"
-               class="about-photo"
-               width="220" height="220"
-               loading="lazy"
-               decoding="async">
-        </picture>
-      </div>
-      <div class="about-content">
-        <h3 class="about-name">Quentin DEVESA</h3>
-        <p class="about-role">Fondateur &amp; Dirigeant — ACCESSIA Pro</p>
-        <p>J'ai passé plus de 13 ans dans des environnements où la sécurité, la fiabilité et la clarté des décisions comptent vraiment, notamment chez Airbus et Capgemini.</p>
-        <p>Avec ACCESSIA Pro, j'aide les dirigeants de PME à utiliser l'IA de façon utile et maîtrisée: comprendre les opportunités, éviter les effets de mode, protéger les données et embarquer les équipes.</p>
-        <a href="https://www.linkedin.com/in/quentin-devesa-cyber04a069"
-           class="about-linkedin"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="Voir le profil LinkedIn de Quentin DEVESA">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-          </svg>
-          Voir le profil LinkedIn
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════
-     CONTACT
-════════════════════════════════════════════ -->
-<section class="contact section" id="contact" aria-labelledby="contact-title">
-  <div class="container">
-    <div class="contact-grid">
-      <div>
-        <div class="tag">Parlons de votre projet</div>
-        <h2 id="contact-title">Parlons de ce que l'IA peut vraiment apporter à votre entreprise</h2>
-        <p>Vous avez un besoin précis ou simplement des questions ? Le premier échange sert à clarifier les priorités, les risques et les prochaines étapes possibles.</p>
-        <div class="contact-items">
-          <div class="contact-item">
-            <div class="contact-item-icon contact-icon-mail" aria-hidden="true"></div>
-            <div class="contact-item-text">
-              <h3>Email</h3>
-              <a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon contact-icon-location" aria-hidden="true"></div>
-            <div class="contact-item-text">
-              <h3>Zone d'intervention</h3>
-              <p>France entière · Télétravail &amp; Présentiel</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon contact-icon-time" aria-hidden="true"></div>
-            <div class="contact-item-text">
-              <h3>Délai de réponse</h3>
-              <p>Réponse sous 24–48h ouvrées</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon contact-icon-handshake" aria-hidden="true"></div>
-            <div class="contact-item-text">
-              <h3>Premier échange</h3>
-              <p>Gratuit &amp; sans engagement · 30 minutes</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="contact-form-box">
-        <h3 class="contact-form-title">Demande de contact</h3>
-        <p class="contact-form-desc">Décrivez votre besoin et nous vous répondrons rapidement.</p>
-        <form id="contact-form" method="post" action="/contact.php" novalidate>
-          <!-- Honeypot anti-spam -->
-          <input type="text" name="website" class="form-honeypot" tabindex="-1" autocomplete="off">
-          <input type="hidden" name="_subject" value="[ACCESSIA Pro] Demande de contact">
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="fname">Nom *</label>
-              <input class="form-input" type="text" id="fname" name="name" required aria-required="true" maxlength="120" autocomplete="name" placeholder="Votre nom">
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="femail">Email *</label>
-              <input class="form-input" type="email" id="femail" name="email" required aria-required="true" maxlength="160" autocomplete="email" placeholder="votre@email.com">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="fcompany">Société</label>
-            <input class="form-input" type="text" id="fcompany" name="company" maxlength="160" autocomplete="organization" placeholder="Nom de votre entreprise">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="fneed">Votre besoin</label>
-            <select class="form-select" id="fneed" name="need">
-              <option value="">Sélectionnez un sujet…</option>
-              <option value="Diagnostic IA">Savoir par où commencer</option>
-              <option value="Intégration IA">Automatiser une tâche</option>
-              <option value="Formation">Former les équipes</option>
-              <option value="MCO">Améliorer un outil existant</option>
-              <option value="Pack PME">Lancer un premier projet court</option>
-              <option value="Autre">Autre question</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="fmessage">Message *</label>
-            <textarea class="form-textarea" id="fmessage" name="message" required aria-required="true" maxlength="2000" placeholder="Décrivez votre besoin, vos enjeux ou vos questions…"></textarea>
-          </div>
-          <button type="submit" class="btn btn-navy btn-full">
-            Envoyer ma demande
-          </button>
-          <p class="form-rgpd">
-            Vos données servent uniquement à répondre à votre demande. Le formulaire envoie votre message directement via le serveur ACCESSIA Pro.
-          </p>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════
-     CAS D'USAGE
-════════════════════════════════════════════ -->
-<section class="use-cases section" id="cas-usages" aria-labelledby="use-cases-title">
-  <div class="container">
-    <div class="section-header fade-in">
-      <div class="tag">Cas d'usage</div>
-      <h2 id="use-cases-title">Des exemples concrets pour votre entreprise</h2>
-      <p>Chaque cas d'usage est choisi pour résoudre un problème visible, avec un périmètre maîtrisé et des règles claires sur les données.</p>
-    </div>
-
-    <div class="use-case-grid fade-in">
-      <article class="use-case-card">
-        <span class="use-case-kicker">Documents internes</span>
-        <h3>Retrouver une information en quelques secondes</h3>
-        <p>Un assistant interroge vos procédures, contrats, catalogues ou notes internes et cite les documents utilisés.</p>
-        <a href="articles/cas-usage-assistant-documentaire.html">Voir le cas d'usage</a>
-      </article>
-
-      <article class="use-case-card">
-        <span class="use-case-kicker">Administration</span>
-        <h3>Réduire le temps passé sur les emails et devis</h3>
-        <p>L'IA prépare des réponses, extrait les informations importantes et aide vos équipes à traiter les demandes plus vite.</p>
-        <a href="articles/cas-usage-emails-devis.html">Voir le cas d'usage</a>
-      </article>
-
-      <article class="use-case-card">
-        <span class="use-case-kicker">Relation client</span>
-        <h3>Améliorer le support sans perdre le contact humain</h3>
-        <p>Les questions simples sont préparées automatiquement, les cas sensibles restent transmis à la bonne personne.</p>
-        <a href="articles/cas-usage-support-client.html">Voir le cas d'usage</a>
-      </article>
-
-      <article class="use-case-card">
-        <span class="use-case-kicker">Pilotage</span>
-        <h3>Comprendre vos chiffres sans attendre un reporting lourd</h3>
-        <p>Vos données de ventes, coûts ou production sont résumées en indicateurs simples pour décider plus vite.</p>
-        <a href="articles/cas-usage-controle-gestion.html">Voir le cas d'usage</a>
-      </article>
-
-      <article class="use-case-card">
-        <span class="use-case-kicker">RH</span>
-        <h3>Préparer recrutements et arrivées sans automatiser les décisions</h3>
-        <p>L'IA aide à structurer les entretiens, l'onboarding et les questions internes avec prudence.</p>
-        <a href="articles/cas-usage-rh-recrutement-onboarding.html">Voir le cas d'usage</a>
-      </article>
-
-      <article class="use-case-card">
-        <span class="use-case-kicker">Achats</span>
-        <h3>Comparer les offres fournisseurs plus rapidement</h3>
-        <p>Les devis, délais, garanties et clauses sont résumés pour préparer une décision plus claire.</p>
-        <a href="articles/cas-usage-achats-fournisseurs.html">Voir le cas d'usage</a>
-      </article>
-
-      <article class="use-case-card">
-        <span class="use-case-kicker">Finance</span>
-        <h3>Contrôler les factures et repérer les anomalies</h3>
-        <p>L'IA extrait les informations utiles, signale les doublons et prépare la validation comptable.</p>
-        <a href="articles/cas-usage-factures-comptabilite.html">Voir le cas d'usage</a>
-      </article>
-
-      <article class="use-case-card">
-        <span class="use-case-kicker">Commercial</span>
-        <h3>Préparer les relances et mieux exploiter le CRM</h3>
-        <p>Les historiques clients sont résumés pour aider les commerciaux à prioriser leurs actions.</p>
-        <a href="articles/cas-usage-crm-prospection.html">Voir le cas d'usage</a>
-      </article>
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════
-     RESSOURCES
-════════════════════════════════════════════ -->
-<section class="ressources section" id="ressources" aria-labelledby="ressources-title">
-  <div class="container">
-    <div class="section-header fade-in">
-      <span class="section-tag">Blog et Guides</span>
-      <h2 id="ressources-title">Ressources pour décider avec recul</h2>
-      <p class="section-desc">Guides pratiques et cas d'usage pour évaluer l'IA sans jargon, avec une priorité claire: protéger vos données.</p>
-    </div>
-    <div class="ressources-grid fade-in">
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Cas d'usage</div>
-        <h3 class="ressource-title"><a href="articles/cas-usage-assistant-documentaire.html">Assistant documentaire interne : le premier cas d'usage IA le plus simple à tester</a></h3>
-        <p class="ressource-excerpt">Comment aider vos équipes à retrouver une information fiable dans vos procédures, contrats ou catalogues.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">5 min de lecture</span>
-          <a href="articles/cas-usage-assistant-documentaire.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Cas d'usage</div>
-        <h3 class="ressource-title"><a href="articles/cas-usage-emails-devis.html">Emails, demandes entrantes et devis : où l'IA fait gagner du temps</a></h3>
-        <p class="ressource-excerpt">Un cas concret pour réduire les tâches administratives sans automatiser les décisions sensibles.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">6 min de lecture</span>
-          <a href="articles/cas-usage-emails-devis.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Cas d'usage</div>
-        <h3 class="ressource-title"><a href="articles/cas-usage-support-client.html">Support client augmenté : répondre plus vite sans déshumaniser</a></h3>
-        <p class="ressource-excerpt">Comment préparer les réponses simples, prioriser les urgences et garder l'humain sur les sujets sensibles.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">5 min de lecture</span>
-          <a href="articles/cas-usage-support-client.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Cas d'usage</div>
-        <h3 class="ressource-title"><a href="articles/cas-usage-controle-gestion.html">Pilotage et contrôle de gestion : transformer vos chiffres en décisions</a></h3>
-        <p class="ressource-excerpt">Des tableaux plus utiles, des anomalies repérées plus tôt et des synthèses compréhensibles par la direction.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">6 min de lecture</span>
-          <a href="articles/cas-usage-controle-gestion.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Cas d'usage RH</div>
-        <h3 class="ressource-title"><a href="articles/cas-usage-rh-recrutement-onboarding.html">IA RH pour PME : recrutement, onboarding et tri CV sans déshumaniser</a></h3>
-        <p class="ressource-excerpt">Trier les CV, structurer l'onboarding et répondre aux questions internes — sans automatiser les décisions sensibles.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">5 min de lecture</span>
-          <a href="articles/cas-usage-rh-recrutement-onboarding.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Cas d'usage</div>
-        <h3 class="ressource-title"><a href="articles/cas-usage-achats-fournisseurs.html">Achats et fournisseurs : mieux comparer les offres avec l'IA</a></h3>
-        <p class="ressource-excerpt">Analyser les devis, repérer les écarts et préparer les négociations sans perdre le contrôle.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">5 min de lecture</span>
-          <a href="articles/cas-usage-achats-fournisseurs.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Cas d'usage</div>
-        <h3 class="ressource-title"><a href="articles/cas-usage-factures-comptabilite.html">Factures et comptabilité : automatiser sans perdre le contrôle</a></h3>
-        <p class="ressource-excerpt">Extraire les informations, repérer les anomalies et préparer la validation comptable.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">5 min de lecture</span>
-          <a href="articles/cas-usage-factures-comptabilite.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Cas d'usage</div>
-        <h3 class="ressource-title"><a href="articles/cas-usage-crm-prospection.html">CRM et prospection : mieux préparer les relances commerciales</a></h3>
-        <p class="ressource-excerpt">Résumer les échanges clients, prioriser les opportunités et améliorer la qualité du suivi.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">5 min de lecture</span>
-          <a href="articles/cas-usage-crm-prospection.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Cas d'usage</div>
-        <h3 class="ressource-title"><a href="articles/cas-usage-marketing-contenu.html">Marketing et contenu : produire plus régulièrement sans perdre sa voix</a></h3>
-        <p class="ressource-excerpt">Transformer l'expertise interne en contenus utiles, sans publier des textes génériques.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">5 min de lecture</span>
-          <a href="articles/cas-usage-marketing-contenu.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Cas d'usage</div>
-        <h3 class="ressource-title"><a href="articles/cas-usage-qualite-conformite.html">Qualité et conformité : mieux exploiter procédures, audits et écarts</a></h3>
-        <p class="ressource-excerpt">Retrouver les règles internes, préparer les audits et suivre les actions correctives.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">5 min de lecture</span>
-          <a href="articles/cas-usage-qualite-conformite.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Cas d'usage</div>
-        <h3 class="ressource-title"><a href="articles/cas-usage-maintenance-production.html">Maintenance et production : anticiper les incidents avec l'IA</a></h3>
-        <p class="ressource-excerpt">Exploiter les historiques d'incidents et mieux préparer les interventions terrain.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">5 min de lecture</span>
-          <a href="articles/cas-usage-maintenance-production.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Cas d'usage</div>
-        <h3 class="ressource-title"><a href="articles/cas-usage-planning-ressources.html">Planning et ressources : mieux organiser les équipes avec l'IA</a></h3>
-        <p class="ressource-excerpt">Préparer les plannings, repérer les conflits de charge et anticiper les besoins.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">5 min de lecture</span>
-          <a href="articles/cas-usage-planning-ressources.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Cas d'usage</div>
-        <h3 class="ressource-title"><a href="articles/cas-usage-appels-offres.html">Appels d'offres : analyser plus vite les dossiers avec l'IA</a></h3>
-        <p class="ressource-excerpt">Repérer les exigences, préparer la réponse et réduire les oublis dans les dossiers.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">5 min de lecture</span>
-          <a href="articles/cas-usage-appels-offres.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Cas d'usage</div>
-        <h3 class="ressource-title"><a href="articles/cas-usage-contrats-juridique.html">Contrats et juridique : lire plus vite sans remplacer le conseil</a></h3>
-        <p class="ressource-excerpt">Résumer les clauses importantes et préparer les questions pour un conseil juridique.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">5 min de lecture</span>
-          <a href="articles/cas-usage-contrats-juridique.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Guide pratique</div>
-        <h3 class="ressource-title"><a href="/guides/ia-pme/">Guide IA PME 2026 : intégrer l'IA en entreprise (méthode + 14 cas d'usage)</a></h3>
-        <p class="ressource-excerpt">De l'audit initial au déploiement, toutes les étapes pour réussir votre transformation IA sans risque ni budget excessif.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">15 min de lecture</span>
-          <a href="/guides/ia-pme/" class="ressource-lire">Lire le guide →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Conformité</div>
-        <h3 class="ressource-title"><a href="articles/rgpd-ia-entreprise.html">RGPD et IA : ce que chaque PME française doit savoir</a></h3>
-        <p class="ressource-excerpt">Obligations légales, risques concrets et bonnes pratiques pour utiliser l'IA en conformité avec le RGPD et l'EU AI Act.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">6 min de lecture</span>
-          <a href="articles/rgpd-ia-entreprise.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Conformité</div>
-        <h3 class="ressource-title"><a href="articles/facture-electronique-2026-pme-open-source.html">Facture électronique 2026-2027 : obligations PME et solutions open source</a></h3>
-        <p class="ressource-excerpt">Calendrier officiel (PPF, PDP), formats Factur-X / UBL / CII, sanctions CGI 1737 et solutions open source (Dolibarr, Odoo, ERPNext, mustangproject) pour rester conforme sans payer 5 000 €/an.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">12 min de lecture</span>
-          <a href="articles/facture-electronique-2026-pme-open-source.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">ROI et Stratégie</div>
-        <h3 class="ressource-title"><a href="articles/roi-ia-pme-france.html">ROI de l'IA pour les PME françaises : chiffres et méthode</a></h3>
-        <p class="ressource-excerpt">Comment mesurer le retour sur investissement d'un projet IA ? Indicateurs clés, délais de retour et exemples sectoriels.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">7 min de lecture</span>
-          <a href="articles/roi-ia-pme-france.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Open Source</div>
-        <h3 class="ressource-title"><a href="articles/ia-open-source-entreprise.html">IA open source en entreprise 2026 : Mistral, Llama, Ollama (guide PME)</a></h3>
-        <p class="ressource-excerpt">Souveraineté des données, coûts divisés par 3 : pourquoi les PME ont intérêt à regarder Mistral, Llama et Ollama hébergés en France.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">6 min de lecture</span>
-          <a href="articles/ia-open-source-entreprise.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Formation</div>
-        <h3 class="ressource-title"><a href="articles/formation-equipe-ia.html">Former son équipe à l'IA : méthodes et erreurs à éviter</a></h3>
-        <p class="ressource-excerpt">Upskilling, ateliers pratiques, changement de culture… comment embarquer vos collaborateurs dans la transformation IA sans résistance.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">5 min de lecture</span>
-          <a href="articles/formation-equipe-ia.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Comparatif outils</div>
-        <h3 class="ressource-title"><a href="articles/chatgpt-claude-mistral-pme.html">ChatGPT, Claude, Mistral, Copilot : comparatif IA PME 2026 (tarifs + RGPD)</a></h3>
-        <p class="ressource-excerpt">Tarifs réels, conformité RGPD, données en Europe, recommandation par taille d'entreprise — la comparaison sans bullshit.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">8 min de lecture</span>
-          <a href="articles/chatgpt-claude-mistral-pme.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Cas concret</div>
-        <h3 class="ressource-title"><a href="articles/premier-projet-ia-pme-exemple.html">Premier projet IA PME : exemple concret en 6 semaines (PME 18 personnes)</a></h3>
-        <p class="ressource-excerpt">Diagnostic, choix d'outil, déploiement, ROI mesuré. Budget réel et erreurs à éviter pour un premier projet IA documenté de A à Z.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">9 min de lecture</span>
-          <a href="articles/premier-projet-ia-pme-exemple.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-      <article class="ressource-card">
-        <div class="ressource-tag">Sécurité et Données</div>
-        <h3 class="ressource-title"><a href="articles/securite-ia-pme-fuites-donnees.html">IA et sécurité des données : éviter les fuites et erreurs fréquentes</a></h3>
-        <p class="ressource-excerpt">Les 6 erreurs les plus fréquentes dans les PME, les règles d'or pour une IA sécurisée et la hiérarchie des outils selon la sensibilité des données.</p>
-        <div class="ressource-meta">
-          <span class="ressource-read">8 min de lecture</span>
-          <a href="articles/securite-ia-pme-fuites-donnees.html" class="ressource-lire">Lire l'article →</a>
-        </div>
-      </article>
-
-    </div>
-    <div style="text-align:center; margin-top:2rem;">
-      <a href="/ressources.html" class="btn btn-outline">Voir toutes les ressources →</a>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- ════════════════════════════════════════════
-     MENTIONS LÉGALES
-════════════════════════════════════════════ -->
-<section class="mentions section-sm" id="mentions" aria-labelledby="mentions-title">
-  <div class="container">
-    <div class="section-header fade-in">
-      <div class="tag">Mentions légales &amp; Confidentialité</div>
-      <h2 id="mentions-title">Transparence et conformité</h2>
-    </div>
-    <div class="mentions-grid fade-in">
-      <div class="mentions-card">
-        <h3>Éditeur du site</h3>
-        <p>
-          <strong>ACCESSIA Pro</strong><br>
-          Fondateur : Quentin DEVESA<br>
-          Toulouse, France<br>
-          Tél. : <a href="tel:+33651893981">06 51 89 39 81</a><br>
-          Email : <a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a>
-        </p>
-      </div>
-      <div class="mentions-card">
-        <h3>Hébergement</h3>
-        <p>
-          Ce site est hébergé chez <strong>OVHcloud</strong>, hébergeur français et européen.<br>
-          Les données transmises via le formulaire de contact sont envoyées directement par le serveur ACCESSIA Pro afin de répondre à votre demande.
-        </p>
-      </div>
-      <div class="mentions-card">
-        <h3>Données personnelles &amp; RGPD</h3>
-        <p>
-          Ce site ne dépose aucun cookie et n'utilise aucun outil de tracking. Les données collectées via le formulaire (nom, email, société, sujet, message) sont utilisées uniquement pour répondre à votre demande et sont envoyées directement au contact ACCESSIA Pro. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression. Contactez-nous à <a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a>.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════════ -->
-<footer role="contentinfo">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <picture>
-          <source srcset="assets/images/logo-icon.webp?v=2" type="image/webp">
-          <img src="assets/images/favicon-32.png?v=2" alt="ACCESSIA Pro" width="36" height="36" loading="lazy" decoding="async">
-        </picture>
-        <p>Conseil et accompagnement IA pour PME: cas d'usage utiles, données protégées, équipes formées et gains mesurables.</p>
-        <p class="footer-email">
-          <a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a>
-        </p>
-      </div>
-      <nav class="footer-col" aria-label="Solutions">
-        <h3>Solutions</h3>
-        <ul class="footer-links">
-          <li><a href="#solutions">Diagnostic dirigeant</a></li>
-          <li><a href="#solutions">Automatisation utile</a></li>
-          <li><a href="#solutions">Formation des équipes</a></li>
-          <li><a href="#solutions">Suivi et amélioration</a></li>
-          <li><a href="#cas-usages">Cas d'usage PME</a></li>
-          <li><a href="/ressources.html">Toutes les ressources</a></li>
-        </ul>
-      </nav>
-      <nav class="footer-col" aria-label="À propos">
-        <h3>À propos</h3>
-        <ul class="footer-links">
-          <li><a href="#valeur">Notre valeur</a></li>
-          <li><a href="#avantages">Nos avantages</a></li>
-          <li><a href="#approche">Notre méthode</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#about">Qui sommes-nous</a></li>
-          <li><a href="/a-propos-quentin-devesa.html">Quentin DEVESA</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-      <nav class="footer-col" aria-label="Conformité et légal">
-        <h3>Conformité</h3>
-        <ul class="footer-links">
-          <li><a href="#valeur">RGPD natif</a></li>
-          <li><a href="#valeur">EU AI Act</a></li>
-          <li><a href="#valeur">Cybersécurité</a></li>
-          <li><a href="#valeur">Open Source</a></li>
-          <li><a href="/plan-du-site.html">Plan du site</a></li>
-          <li><a href="/llms.txt">llms.txt</a></li>
-          <li><a href="#mentions">Mentions légales</a></li>
-        </ul>
-      </nav>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 <span class="footer-teal">ACCESSIA Pro</span> — Tous droits réservés</p>
-      <p>Site statique · Zéro cookie · Données maîtrisées</p>
-    </div>
-  </div>
-</footer>
-
-<!-- Scroll to top -->
-<button class="scroll-top" aria-label="Retour en haut de page" title="Retour en haut">↑</button>
-
-<script src="assets/js/main.v2.js" defer></script>
 </body>
 </html>

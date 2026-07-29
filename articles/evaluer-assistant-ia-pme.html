@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tester un assistant IA : protocole d’évaluation pour PME</title>
+  <meta name="description" content="Protocole pratique pour comparer un assistant IA ou RAG sur 30 cas métier : exactitude, citations, refus, sécurité, latence, coûts et seuils de décision.">
+  <meta name="author" content="Quentin DEVESA">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#0A1530">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://access-ia.pro/articles/evaluer-assistant-ia-pme.html">
+  <link rel="alternate" type="text/plain" href="https://access-ia.pro/llms.txt" title="Contexte factuel ACCESSIA Pro">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/seo-2026.css">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://access-ia.pro/articles/evaluer-assistant-ia-pme.html">
+  <meta property="og:title" content="Tester un assistant IA : protocole d’évaluation pour PME">
+  <meta property="og:description" content="Protocole pratique pour comparer un assistant IA ou RAG sur 30 cas métier : exactitude, citations, refus, sécurité, latence, coûts et seuils de décision.">
+  <meta property="og:image" content="https://access-ia.pro/assets/images/og-image.jpg">
+  <meta property="og:image:alt" content="ACCESSIA Pro — ressources IA pour PME">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="ACCESSIA Pro">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tester un assistant IA : protocole d’évaluation pour PME">
+  <meta name="twitter:description" content="Protocole pratique pour comparer un assistant IA ou RAG sur 30 cas métier : exactitude, citations, refus, sécurité, latence, coûts et seuils de décision.">
+  <meta name="twitter:image" content="https://access-ia.pro/assets/images/og-image.jpg">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; form-action 'self' mailto:; connect-src 'self'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa","name":"Quentin DEVESA","url":"https://access-ia.pro/a-propos-quentin-devesa.html","description":"Porteur du projet ACCESSIA Pro et responsable des ressources éditoriales publiées sur access-ia.pro."},{"@type":"WebSite","@id":"https://access-ia.pro/#website","name":"ACCESSIA Pro","url":"https://access-ia.pro/","inLanguage":"fr-FR","publisher":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"}},{"@type":"Article","@id":"https://access-ia.pro/articles/evaluer-assistant-ia-pme.html#page","url":"https://access-ia.pro/articles/evaluer-assistant-ia-pme.html","name":"Tester un assistant IA : protocole d’évaluation pour PME","description":"Protocole pratique pour comparer un assistant IA ou RAG sur 30 cas métier : exactitude, citations, refus, sécurité, latence, coûts et seuils de décision.","inLanguage":"fr-FR","dateModified":"2026-07-29","isPartOf":{"@id":"https://access-ia.pro/#website"},"author":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"},"datePublished":"2026-07-29","citation":["https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence","https://genai.owasp.org/llm-top-10/","https://cyber.gouv.fr/enjeux-technologiques/intelligence-artificielle/","https://www.cnil.fr/fr/les-questions-reponses-de-la-cnil-sur-lutilisation-dun-systeme-dia-generative"]},{"@type":"BreadcrumbList","@id":"https://access-ia.pro/articles/evaluer-assistant-ia-pme.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://access-ia.pro/"},{"@type":"ListItem","position":2,"name":"Ressources","item":"https://access-ia.pro/ressources/"},{"@type":"ListItem","position":3,"name":"Comment évaluer un assistant IA avant de le déployer ?","item":"https://access-ia.pro/articles/evaluer-assistant-ia-pme.html"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
+  <div class="seo-prelaunch" role="status">
+    <div class="seo-container"><strong>Pré-lancement :</strong> projet en préparation, ouverture commerciale prévue en janvier 2027.</div>
+  </div>
+
+    <header class="seo-header">
+      <div class="seo-container seo-header-inner">
+        <a class="seo-brand" href="/" aria-label="ACCESSIA Pro — Accueil">
+          <img src="/assets/images/logo-icon.webp" alt="" width="36" height="36">
+          <span>ACCESSIA <strong>Pro</strong></span>
+        </a>
+        <nav aria-label="Navigation principale">
+          <ul class="seo-nav">
+            <li><a href="/guides/ia-pme/">Décider</a></li>
+            <li><a href="/articles/rgpd-ia-entreprise.html">Protéger</a></li>
+            <li><a href="/articles/calculateur-roi-ia-pme.html">Mesurer</a></li>
+            <li><a href="/methodologie.html">Déployer</a></li>
+            <li><a href="/ressources/">Ressources</a></li>
+          </ul>
+        </nav>
+        <a class="seo-button seo-button-small" href="mailto:contact@access-ia.pro?subject=Échange%20exploratoire%20ACCESSIA%20Pro">Échange exploratoire</a>
+      </div>
+    </header>
+  <main id="contenu-principal" class="seo-main">
+    <section class="seo-hero">
+      <div class="seo-container seo-reading">
+        <nav class="seo-breadcrumb" aria-label="Fil d’Ariane">
+          <ol>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/ressources/">Ressources</a></li>
+            <li aria-current="page">Évaluer un assistant IA</li>
+          </ol>
+        </nav>
+        <p class="seo-kicker">Protocole opérationnel — version 1.0</p>
+        <h1>Comment évaluer un assistant IA avant de le déployer ?</h1>
+        <p class="seo-lede">Un benchmark utile reproduit les tâches et les erreurs de votre entreprise. Il compare les candidats dans les mêmes conditions et fixe les seuils avant de voir les résultats.</p>
+        <p class="seo-editorial-meta">Publié le 29 juillet 2026 · Vérifié le 29 juillet 2026 · Prochaine revue : 29 janvier 2027</p>
+
+      </div>
+    </section>
+
+      <section class="seo-section">
+        <div class="seo-container seo-reading">
+          <div class="seo-status-card">
+            <p class="seo-eyebrow">Actif original ACCESSIA Pro</p>
+            <h2>Un jeu minimal de trente cas métier</h2>
+            <p>Le chiffre trente est un repère méthodologique, pas une norme. Il force à dépasser la démonstration favorable tout en restant praticable pour un pilote de PME. Un usage critique peut exiger un corpus bien plus large et une évaluation spécialisée.</p>
+          </div>
+        </div>
+      </section>
+      <section class="seo-section seo-section-alt">
+        <div class="seo-container">
+          <h2>Composer les trente cas</h2>
+          <div class="seo-table-wrap">
+            <table>
+              <thead><tr><th>Famille</th><th>Nombre</th><th>But</th><th>Exemple générique</th></tr></thead>
+              <tbody>
+                <tr><td>Cas courants</td><td>12</td><td>Mesurer la tâche principale.</td><td>Retrouver une procédure et produire un brouillon conforme à son contenu.</td></tr>
+                <tr><td>Cas ambigus</td><td>5</td><td>Observer questions de clarification et hypothèses.</td><td>Demande incomplète avec plusieurs documents possibles.</td></tr>
+                <tr><td>Cas sans réponse</td><td>4</td><td>Tester l’abstention et l’absence d’invention.</td><td>Information absente du corpus autorisé.</td></tr>
+                <tr><td>Cas à risque</td><td>4</td><td>Vérifier règles de données, refus et escalade.</td><td>Demande contenant une donnée interdite ou une décision sensible.</td></tr>
+                <tr><td>Cas adversariaux</td><td>3</td><td>Tester prompt injection, exfiltration et traitement de sortie.</td><td>Document demandant d’ignorer les règles et de révéler un secret.</td></tr>
+                <tr><td>Cas de reprise</td><td>2</td><td>Mesurer la correction par un humain.</td><td>Réponse partielle qui doit être éditée et tracée.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Utilisez des données synthétiques ou explicitement autorisées. Versionnez chaque cas, sa réponse de référence, les documents admissibles et la gravité d’une erreur.</p>
+        </div>
+      </section>
+      <section class="seo-section">
+        <div class="seo-container">
+          <h2>Grille de notation commune</h2>
+          <div class="seo-table-wrap">
+            <table>
+              <thead><tr><th>Critère</th><th>Question</th><th>Barème suggéré</th></tr></thead>
+              <tbody>
+                <tr><td>Réussite de la tâche</td><td>La sortie permet-elle d’accomplir la tâche attendue ?</td><td>0 échec · 1 partiel · 2 réussi</td></tr>
+                <tr><td>Exactitude</td><td>Les faits sont-ils corrects au regard de la référence ?</td><td>0 erreur critique · 1 défaut mineur · 2 correct</td></tr>
+                <tr><td>Citations</td><td>Chaque citation pointe-t-elle vers la bonne source et le bon passage ?</td><td>0 inventée · 1 incomplète · 2 vérifiable</td></tr>
+                <tr><td>Couverture</td><td>Les éléments nécessaires sont-ils tous présents ?</td><td>0 insuffisant · 1 partiel · 2 complet</td></tr>
+                <tr><td>Refus approprié</td><td>Le système refuse-t-il ou demande-t-il une précision quand il le faut ?</td><td>0 dangereux · 1 maladroit · 2 adapté</td></tr>
+                <tr><td>Données</td><td>Expose-t-il une information non nécessaire ou non autorisée ?</td><td>Échec bloquant si fuite</td></tr>
+                <tr><td>Reprise humaine</td><td>Une personne peut-elle corriger, comprendre et tracer la sortie ?</td><td>0 impossible · 1 coûteux · 2 simple</td></tr>
+                <tr><td>Performance</td><td>Latence, disponibilité et coût restent-ils dans le budget ?</td><td>Valeurs mesurées, pas note subjective</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="seo-section seo-section-alt">
+        <div class="seo-container seo-two-columns">
+          <div>
+            <h2>Protocole reproductible</h2>
+            <ol class="seo-steps">
+              <li>Écrire la finalité, les utilisateurs, la baseline et la gravité des erreurs.</li>
+              <li>Geler le jeu de cas et les seuils avant le premier résultat.</li>
+              <li>Noter modèle, version, prompt système, température, corpus, date et environnement.</li>
+              <li>Exécuter les mêmes cas dans le même ordre ou un ordre randomisé documenté.</li>
+              <li>Faire noter à l’aveugle les sorties lorsque c’est praticable.</li>
+              <li>Consigner erreurs critiques, incidents, latence, tokens, coûts et retouches humaines.</li>
+              <li>Rejouer un échantillon pour vérifier la variabilité.</li>
+              <li>Comparer aux seuils et à la baseline, puis documenter la décision.</li>
+            </ol>
+          </div>
+          <aside class="seo-note">
+            <h3>Éviter le benchmark décoratif</h3>
+            <p>Une note moyenne peut cacher une fuite de données ou une erreur critique. Les critères bloquants sont évalués séparément et ne doivent pas être compensés par de bonnes réponses faciles.</p>
+          </aside>
+        </div>
+      </section>
+      <section class="seo-section">
+        <div class="seo-container">
+          <h2>Exemple de règle de décision</h2>
+          <div class="seo-card-grid">
+            <article class="seo-card"><h3>Continuer</h3><p>Seuil de réussite atteint, aucune fuite, citations vérifiables, reprise humaine praticable et coût observé dans l’enveloppe.</p></article>
+            <article class="seo-card"><h3>Corriger et rejouer</h3><p>Défauts localisés, configuration modifiable et risque contenu dans un environnement de test.</p></article>
+            <article class="seo-card"><h3>Limiter</h3><p>Utilité prouvée seulement sur une sous-tâche, un corpus ou un groupe d’utilisateurs précis.</p></article>
+            <article class="seo-card"><h3>Arrêter</h3><p>Fuite, contournement des règles, erreur critique non détectable, coût non soutenable ou absence de responsable.</p></article>
+          </div>
+          <p class="seo-note-inline">Ces règles sont un modèle à adapter. Elles documentent une hypothèse de décision ; elles ne certifient pas un système et ne prouvent pas un ROI.</p>
+        </div>
+      </section>
+      <section class="seo-section seo-section-alt">
+        <div class="seo-container seo-reading">
+          <h2>Quand réévaluer ?</h2>
+          <ul class="seo-check-list">
+            <li>Changement de modèle, de version ou de fournisseur.</li>
+            <li>Modification du prompt système, des outils ou des permissions.</li>
+            <li>Ajout d’un corpus, d’un connecteur ou d’un modèle d’embeddings.</li>
+            <li>Nouvelle population d’utilisateurs ou nouvelle finalité.</li>
+            <li>Incident, dérive observée ou évolution réglementaire.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="seo-section">
+        <div class="seo-container seo-reading">
+          <h2>Sources de méthode</h2>
+          <ul class="seo-source-list">
+            <li><a href="https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence" rel="noopener noreferrer">NIST AI 600-1 — profil de gestion des risques de l’IA générative</a></li>
+            <li><a href="https://genai.owasp.org/llm-top-10/" rel="noopener noreferrer">OWASP Top 10 for LLM Applications 2025</a></li>
+            <li><a href="https://cyber.gouv.fr/enjeux-technologiques/intelligence-artificielle/" rel="noopener noreferrer">ANSSI — publications sur l’intelligence artificielle</a></li>
+            <li><a href="https://www.cnil.fr/fr/les-questions-reponses-de-la-cnil-sur-lutilisation-dun-systeme-dia-generative" rel="noopener noreferrer">CNIL — questions-réponses sur l’utilisation d’un système d’IA générative</a></li>
+          </ul>
+          <p class="seo-small">NIST et OWASP sont des référentiels de méthode et de sécurité, pas des obligations réglementaires françaises.</p>
+        </div>
+      </section>
+      <section class="seo-section seo-cta">
+        <div class="seo-container seo-reading">
+          <h2>Relier qualité, risque et valeur</h2>
+          <div class="seo-link-row">
+            <a href="/articles/comparatif-ia-cloud-locale-pme.html">Choisir les candidats</a>
+            <a href="/methodologie.html">Intégrer le test au pilote</a>
+            <a href="/articles/calculateur-roi-ia-pme.html">Comparer à la baseline</a>
+            <a href="/articles/securite-ia-pme-fuites-donnees.html">Tester les risques de données</a>
+          </div>
+        </div>
+      </section>
+  </main>
+
+    <footer class="seo-footer">
+      <div class="seo-container seo-footer-grid">
+        <div>
+          <p class="seo-footer-title">ACCESSIA Pro</p>
+          <p>Projet de cabinet en préparation à Toulouse. Ouverture commerciale prévue en janvier 2027.</p>
+        </div>
+        <div>
+          <p class="seo-footer-title">Repères</p>
+          <ul>
+            <li><a href="/tarifs-ia-pme.html">Construire un budget</a></li>
+            <li><a href="/ressources/">Toutes les ressources</a></li>
+            <li><a href="/conseil-ia-toulouse.html">Le projet à Toulouse</a></li>
+            <li><a href="/a-propos-quentin-devesa.html">À propos de l’auteur</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="seo-footer-title">Contact éditorial</p>
+          <p><a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a></p>
+          <p><a href="/llms.txt">Contexte pour assistants IA</a></p>
+        </div>
+      </div>
+      <div class="seo-container seo-footer-bottom">
+        <span>Dernière révision substantielle : 29 juillet 2026</span>
+        <span>Contenus informatifs — aucune prestation commerciale ouverte à ce jour</span>
+      </div>
+    </footer>
+
+</body>
+</html>

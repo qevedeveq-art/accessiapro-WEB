@@ -76,6 +76,7 @@
     }
 
     out.panel.removeAttribute('hidden');
+    return { payback: payback };
   }
 
   form.addEventListener('input', computeAndRender);
