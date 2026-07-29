@@ -39,12 +39,16 @@ jobs:
           rm -rf "$SITE_DIR"
           mkdir -p "$SITE_DIR"
           rsync -az \
-            --exclude='.git/' \
-            --exclude='.github/' \
-            --exclude='.DS_Store' \
-            --exclude='graphify-out/' \
-            --exclude='node_modules/' \
-            ./ "$SITE_DIR/"
+            ./*.html \
+            ./*.txt \
+            ./*.xml \
+            ./*.ico \
+            ./*.webmanifest \
+            "$SITE_DIR/"
+          for directory in .well-known assets articles guides ressources; do
+            mkdir -p "$SITE_DIR/$directory"
+            rsync -az "$directory/" "$SITE_DIR/$directory/"
+          done
 
       - name: Minify CSS and JS
         run: |
@@ -97,7 +101,6 @@ jobs:
       - name: Verify deploy directory
         run: |
           test -f "$SITE_DIR/index.html" || (echo "ERROR: index.html missing" && exit 1)
-          test -f "$SITE_DIR/contact.php" || (echo "ERROR: contact.php missing" && exit 1)
           test -f "$SITE_DIR/sitemap.xml" || (echo "ERROR: sitemap.xml missing" && exit 1)
           test -f "$SITE_DIR/robots.txt" || (echo "ERROR: robots.txt missing" && exit 1)
           test -f "$SITE_DIR/favicon.ico" || (echo "ERROR: favicon.ico missing" && exit 1)
@@ -166,8 +169,7 @@ jobs:
             "$GCS_BUCKET/index.html" \
             "$GCS_BUCKET/404.html" \
             "$GCS_BUCKET/ressources.html" \
-            "$GCS_BUCKET/conseil-ia-toulouse.html" \
-            "$GCS_BUCKET/contact.php"
+            "$GCS_BUCKET/conseil-ia-toulouse.html"
           gsutil -m setmeta \
             -h "Cache-Control:public, max-age=300, must-revalidate" \
             -h "Content-Type:text/plain; charset=utf-8" \
