@@ -1,0 +1,118 @@
+<?php
+/**
+ * Exemple inactif d'agrégation first-party.
+ *
+ * Activation volontaire requise :
+ * 1. copier hors de ce nom `.example` vers un endpoint PHP ;
+ * 2. définir ACCESSIA_ANALYTICS_DIR vers un dossier hors webroot ;
+ * 3. désactiver ou minimiser les logs d'accès pour ce seul endpoint ;
+ * 4. publier l'information RGPD correspondante ;
+ * 5. activer explicitement data-measurement="enabled" côté HTML.
+ *
+ * Ce fichier n'est pas destiné à être exécuté tel quel.
+ */
+
+declare(strict_types=1);
+
+header('Content-Type: application/json; charset=utf-8');
+header('Cache-Control: no-store');
+
+if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+    http_response_code(405);
+    header('Allow: POST');
+    exit;
+}
+
+$contentLength = (int) ($_SERVER['CONTENT_LENGTH'] ?? 0);
+if ($contentLength < 1 || $contentLength > 2048) {
+    http_response_code(413);
+    exit;
+}
+
+$raw = file_get_contents('php://input');
+$event = json_decode($raw ?: '', true, 16, JSON_THROW_ON_ERROR);
+
+$allowedEvents = [
+    'contact_form_submit_valid',
+    'mailto_fallback_opened',
+    'cta_contact_click',
+    'roi_calculator_submit',
+    'resource_search_submit',
+    'resource_filter_click',
+    'llms_link_click',
+    'external_author_link_click',
+    'maturity_assessment_submit',
+];
+$allowedOptional = ['page_type', 'cta_slot', 'result', 'bucketed_value'];
+
+if (
+    !is_array($event)
+    || !in_array($event['event_name'] ?? '', $allowedEvents, true)
+    || ($event['event_version'] ?? null) !== 1
+    || ($event['consent_mode'] ?? '') !== 'cookieless_essential_measurement'
+    || !preg_match('#^/[a-z0-9/_-]*(?:\.html)?$#', $event['page_path'] ?? '')
+) {
+    http_response_code(400);
+    exit;
+}
+
+$dimensions = [];
+foreach ($allowedOptional as $field) {
+    if (!isset($event[$field])) {
+        continue;
+    }
+
+    if (
+        !is_string($event[$field])
+        || strlen($event[$field]) > 40
+        || !preg_match('/^[a-z0-9_-]+$/i', $event[$field])
+    ) {
+        http_response_code(400);
+        exit;
+    }
+
+    $dimensions[$field] = $event[$field];
+}
+
+$analyticsDirectory = getenv('ACCESSIA_ANALYTICS_DIR');
+if (!$analyticsDirectory || !is_dir($analyticsDirectory) || is_link($analyticsDirectory)) {
+    http_response_code(503);
+    exit;
+}
+
+$day = gmdate('Y-m-d');
+$aggregateFile = rtrim($analyticsDirectory, DIRECTORY_SEPARATOR)
+    . DIRECTORY_SEPARATOR
+    . gmdate('Y-m')
+    . '.json';
+$key = implode('|', [
+    $day,
+    $event['event_name'],
+    $event['page_path'],
+    json_encode($dimensions, JSON_UNESCAPED_SLASHES),
+]);
+
+$handle = fopen($aggregateFile, 'c+');
+if ($handle === false || !flock($handle, LOCK_EX)) {
+    http_response_code(503);
+    exit;
+}
+
+$existing = stream_get_contents($handle);
+$aggregates = $existing ? json_decode($existing, true) : [];
+if (!is_array($aggregates)) {
+    $aggregates = [];
+}
+
+$aggregates[$key] = ($aggregates[$key] ?? 0) + 1;
+rewind($handle);
+ftruncate($handle, 0);
+fwrite(
+    $handle,
+    json_encode($aggregates, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL
+);
+fflush($handle);
+flock($handle, LOCK_UN);
+fclose($handle);
+
+http_response_code(204);

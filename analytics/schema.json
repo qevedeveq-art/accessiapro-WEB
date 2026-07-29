@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://access-ia.pro/analytics/schema.json",
+  "title": "Événement agrégé ACCESSIA Pro",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_name",
+    "event_version",
+    "timestamp_day",
+    "page_path",
+    "consent_mode"
+  ],
+  "properties": {
+    "event_name": {
+      "enum": [
+        "contact_form_submit_valid",
+        "mailto_fallback_opened",
+        "cta_contact_click",
+        "roi_calculator_submit",
+        "resource_search_submit",
+        "resource_filter_click",
+        "llms_link_click",
+        "external_author_link_click",
+        "maturity_assessment_submit"
+      ]
+    },
+    "event_version": {
+      "const": 1
+    },
+    "timestamp_day": {
+      "type": "string",
+      "pattern": "^20[0-9]{2}-[0-9]{2}-[0-9]{2}$"
+    },
+    "page_path": {
+      "type": "string",
+      "pattern": "^/[a-z0-9/_-]*(?:\\.html)?$",
+      "maxLength": 160
+    },
+    "page_type": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$",
+      "maxLength": 40
+    },
+    "cta_slot": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$",
+      "maxLength": 40
+    },
+    "result": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$",
+      "maxLength": 40
+    },
+    "bucketed_value": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$",
+      "maxLength": 40
+    },
+    "consent_mode": {
+      "const": "cookieless_essential_measurement"
+    }
+  }
+}

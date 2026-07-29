@@ -76,13 +76,30 @@
     }
 
     out.panel.removeAttribute('hidden');
+    return { payback: payback };
   }
 
   form.addEventListener('input', computeAndRender);
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    computeAndRender();
+    const metrics = computeAndRender();
     out.panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    if (window.ACCESSIAMeasurement) {
+      let bucket = 'not-reached';
+      if (metrics.payback !== null) {
+        bucket = metrics.payback < 6
+          ? 'under-6m'
+          : metrics.payback <= 12
+            ? '6-12m'
+            : metrics.payback <= 24
+              ? '13-24m'
+              : 'over-24m';
+      }
+      window.ACCESSIAMeasurement.track('roi_calculator_submit', {
+        bucketed_value: bucket
+      });
+    }
   });
 
   computeAndRender();

@@ -1,0 +1,35 @@
+Politique de divulgation responsable — access-ia.pro
+====================================================
+
+Périmètre unique
+----------------
+
+Seul le site vitrine public https://access-ia.pro/ entre dans cette politique.
+Tout autre hôte, outil d'administration, application hébergée, service tiers,
+compte utilisateur ou composant d'infrastructure est strictement hors périmètre.
+
+Signalement autorisé
+--------------------
+
+- décrire une vulnérabilité observée sans accéder à des données non publiques ;
+- fournir l'URL de l'apex concernée, les étapes minimales et l'impact estimé ;
+- utiliser des données synthétiques dans toute preuve de concept ;
+- laisser un délai raisonnable de qualification avant communication publique.
+
+Actions interdites
+------------------
+
+- déni de service, fuzzing intensif ou scan automatisé à grande échelle ;
+- contournement d'authentification sur une surface hors périmètre ;
+- accès, copie, modification ou diffusion de données personnelles ;
+- hameçonnage, ingénierie sociale, bruteforce ou usage d'identifiants ;
+- pivot vers l'hébergement, le réseau ou un service tiers ;
+- publication d'informations permettant une exploitation avant correction.
+
+Contact
+-------
+
+Adresse de signalement : security@access-ia.pro
+Adresse de repli : contact@access-ia.pro
+
+Aucun programme de récompense financière n'est annoncé à ce jour.
