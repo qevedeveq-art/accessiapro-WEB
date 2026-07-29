@@ -18,6 +18,9 @@ const expectedIndexable = new Set([
   "/conseil-ia-toulouse.html",
   "/a-propos-quentin-devesa.html",
 ]);
+const archivedAllowed = new Set([
+  "/articles/facture-electronique-2026-pme-open-source.html",
+]);
 const errors = [];
 
 async function walk(directory) {
@@ -63,6 +66,10 @@ const htmlByRoute = new Map(
   htmlFiles.map((file) => [routeForFile(file), file]),
 );
 const internalReferences = [];
+const incomingFromIndexable = new Map(
+  [...expectedIndexable].map((route) => [route, new Set()]),
+);
+const indexableMetadata = [];
 
 if (htmlFiles.length !== 39) {
   errors.push(`39 pages HTML attendues, ${htmlFiles.length} trouvées`);
@@ -100,6 +107,14 @@ for (const file of htmlFiles) {
   const isNoIndex = /<meta name="robots" content="noindex, follow">/.test(
     contents,
   );
+  const canonicalMatch = contents.match(
+    /<link rel="canonical" href="https:\/\/access-ia\.pro([^"]*)">/,
+  );
+  const titleMatch = contents.match(/<title>([^<]+)<\/title>/);
+  const descriptionMatch = contents.match(
+    /<meta name="description" content="([^"]+)">/,
+  );
+  const h1Match = contents.match(/<h1>([\s\S]+?)<\/h1>/);
 
   matchOne(contents, /<!doctype html>/i, "doctype absent", file);
   matchOne(contents, /<html lang="fr">/, "langue HTML absente", file);
@@ -118,6 +133,23 @@ for (const file of htmlFiles) {
   }
   if (!expectedIndexable.has(route) && !isNoIndex) {
     errors.push(`${route}: page hors cible encore indexable`);
+  }
+  if (
+    isNoIndex &&
+    canonicalMatch?.[1] === route &&
+    !archivedAllowed.has(route)
+  ) {
+    errors.push(
+      `${route}: page noindex auto-canonique non déclarée comme archive`,
+    );
+  }
+  if (expectedIndexable.has(route)) {
+    indexableMetadata.push({
+      route,
+      title: titleMatch?.[1],
+      description: descriptionMatch?.[1],
+      h1: h1Match?.[1].replace(/<[^>]+>/g, "").trim(),
+    });
   }
 
   for (const pattern of [...forbiddenClaims, ...forbiddenSchema]) {
@@ -189,6 +221,41 @@ for (const reference of internalReferences) {
     errors.push(
       `${reference.sourceRoute}: lien vers une page noindex ${targetRoute}`,
     );
+  }
+  if (
+    expectedIndexable.has(reference.sourceRoute) &&
+    expectedIndexable.has(targetRoute) &&
+    targetRoute !== reference.sourceRoute
+  ) {
+    incomingFromIndexable.get(targetRoute).add(reference.sourceRoute);
+  }
+}
+
+for (const route of expectedIndexable) {
+  if (route === "/") {
+    continue;
+  }
+  const incoming = incomingFromIndexable.get(route).size;
+  if (incoming < 2) {
+    errors.push(
+      `${route}: ${incoming} lien(s) entrant(s) depuis les pages indexables, minimum 2`,
+    );
+  }
+}
+
+for (const field of ["title", "description", "h1"]) {
+  const values = new Map();
+  for (const metadata of indexableMetadata) {
+    const routes = values.get(metadata[field]) ?? [];
+    routes.push(metadata.route);
+    values.set(metadata[field], routes);
+  }
+  for (const [value, routes] of values) {
+    if (value && routes.length > 1) {
+      errors.push(
+        `métadonnée ${field} dupliquée sur pages indexables: ${routes.join(", ")}`,
+      );
+    }
   }
 }
 

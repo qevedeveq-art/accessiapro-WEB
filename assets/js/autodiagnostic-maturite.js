@@ -53,11 +53,5 @@
     result.hidden = false;
     result.focus();
 
-    if (window.ACCESSIAMeasurement) {
-      const bucket = score <= 6 ? "0-6" : score <= 13 ? "7-13" : "14-20";
-      window.ACCESSIAMeasurement.track("maturity_assessment_submit", {
-        bucketed_value: bucket,
-      });
-    }
   });
 })();
