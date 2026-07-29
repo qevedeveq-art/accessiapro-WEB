@@ -127,6 +127,31 @@ select:focus-visible {
     linear-gradient(145deg, #f8fafc, var(--seo-paper));
 }
 
+.seo-breadcrumb {
+  margin-bottom: 1.5rem;
+}
+
+.seo-breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  gap: 0.45rem;
+  color: var(--seo-muted);
+  font-size: 0.9rem;
+  list-style: none;
+}
+
+.seo-breadcrumb li:not(:last-child)::after {
+  margin-left: 0.45rem;
+  content: "/";
+}
+
+.seo-breadcrumb a {
+  color: var(--seo-blue-dark);
+  text-underline-offset: 0.18em;
+}
+
 .seo-kicker,
 .seo-eyebrow {
   margin-bottom: 0.8rem;
@@ -142,6 +167,21 @@ select:focus-visible {
   color: #33405a;
   font-size: clamp(1.1rem, 2vw, 1.35rem);
   line-height: 1.65;
+}
+
+.seo-editorial-meta,
+.seo-card-meta {
+  color: var(--seo-muted);
+  font-size: 0.9rem;
+}
+
+.seo-editorial-meta {
+  margin-top: 1.2rem;
+}
+
+.seo-card-meta {
+  margin: 0 0 0.65rem;
+  font-weight: 700;
 }
 
 .seo-actions,
@@ -291,6 +331,13 @@ select:focus-visible {
 .seo-steps,
 .seo-source-list {
   padding-left: 1.3rem;
+}
+
+.seo-steps-panel {
+  padding: clamp(1.25rem, 4vw, 2rem) clamp(1.25rem, 4vw, 3rem);
+  border: 1px solid var(--seo-line);
+  border-radius: 1rem;
+  background: var(--seo-white);
 }
 
 .seo-check-list li,

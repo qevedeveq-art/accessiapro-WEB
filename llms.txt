@@ -14,7 +14,12 @@ pédagogiques ; leurs hypothèses et limites sont indiquées sur les pages conce
 ## Pages de référence
 
 - [Accueil et statut du projet](https://access-ia.pro/)
+- [Centre de ressources IA pour PME](https://access-ia.pro/ressources/)
 - [Guide de décision et autodiagnostic](https://access-ia.pro/guides/ia-pme/)
+- [Comparatif des principales IA cloud et locales](https://access-ia.pro/articles/comparatif-ia-cloud-locale-pme.html)
+- [Guide de déploiement d'une IA locale](https://access-ia.pro/articles/deployer-ia-locale-pme.html)
+- [AI Act en PME : calendrier 2026-2028](https://access-ia.pro/articles/ai-act-pme-obligations.html)
+- [Protocole d'évaluation d'un assistant IA](https://access-ia.pro/articles/evaluer-assistant-ia-pme.html)
 - [Méthode de test en cinq étapes](https://access-ia.pro/methodologie.html)
 - [Checklist RGPD et IA](https://access-ia.pro/articles/rgpd-ia-entreprise.html)
 - [Sécurité et classification des données](https://access-ia.pro/articles/securite-ia-pme-fuites-donnees.html)

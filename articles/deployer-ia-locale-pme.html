@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Déployer une IA locale en PME : architecture et sécurité</title>
+  <meta name="description" content="Guide 2026 pour préparer une IA locale en PME : modèles, moteurs, interface, matériel, RAG, sécurité, licences, coûts cachés et protocole pilote.">
+  <meta name="author" content="Quentin DEVESA">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#0A1530">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://access-ia.pro/articles/deployer-ia-locale-pme.html">
+  <link rel="alternate" type="text/plain" href="https://access-ia.pro/llms.txt" title="Contexte factuel ACCESSIA Pro">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/seo-2026.css">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://access-ia.pro/articles/deployer-ia-locale-pme.html">
+  <meta property="og:title" content="Déployer une IA locale en PME : architecture et sécurité">
+  <meta property="og:description" content="Guide 2026 pour préparer une IA locale en PME : modèles, moteurs, interface, matériel, RAG, sécurité, licences, coûts cachés et protocole pilote.">
+  <meta property="og:image" content="https://access-ia.pro/assets/images/og-image.jpg">
+  <meta property="og:image:alt" content="ACCESSIA Pro — ressources IA pour PME">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="ACCESSIA Pro">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Déployer une IA locale en PME : architecture et sécurité">
+  <meta name="twitter:description" content="Guide 2026 pour préparer une IA locale en PME : modèles, moteurs, interface, matériel, RAG, sécurité, licences, coûts cachés et protocole pilote.">
+  <meta name="twitter:image" content="https://access-ia.pro/assets/images/og-image.jpg">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; form-action 'self' mailto:; connect-src 'self'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa","name":"Quentin DEVESA","url":"https://access-ia.pro/a-propos-quentin-devesa.html","description":"Porteur du projet ACCESSIA Pro et responsable des ressources éditoriales publiées sur access-ia.pro."},{"@type":"WebSite","@id":"https://access-ia.pro/#website","name":"ACCESSIA Pro","url":"https://access-ia.pro/","inLanguage":"fr-FR","publisher":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"}},{"@type":"Article","@id":"https://access-ia.pro/articles/deployer-ia-locale-pme.html#page","url":"https://access-ia.pro/articles/deployer-ia-locale-pme.html","name":"Déployer une IA locale en PME : architecture et sécurité","description":"Guide 2026 pour préparer une IA locale en PME : modèles, moteurs, interface, matériel, RAG, sécurité, licences, coûts cachés et protocole pilote.","inLanguage":"fr-FR","dateModified":"2026-07-29","isPartOf":{"@id":"https://access-ia.pro/#website"},"author":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"},"datePublished":"2026-07-29","citation":["https://docs.ollama.com/faq","https://lmstudio.ai/docs/app/system-requirements","https://github.com/ggml-org/llama.cpp","https://docs.openwebui.com/getting-started/","https://cyber.gouv.fr/sites/default/files/document/Recommandations_de_s%C3%A9curit%C3%A9_pour_un_syst%C3%A8me_d_IA_g%C3%A9n%C3%A9rative.pdf"]},{"@type":"BreadcrumbList","@id":"https://access-ia.pro/articles/deployer-ia-locale-pme.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://access-ia.pro/"},{"@type":"ListItem","position":2,"name":"Ressources","item":"https://access-ia.pro/ressources/"},{"@type":"ListItem","position":3,"name":"Déployer une IA locale dans une PME","item":"https://access-ia.pro/articles/deployer-ia-locale-pme.html"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
+  <div class="seo-prelaunch" role="status">
+    <div class="seo-container"><strong>Pré-lancement :</strong> projet en préparation, ouverture commerciale prévue en janvier 2027.</div>
+  </div>
+
+    <header class="seo-header">
+      <div class="seo-container seo-header-inner">
+        <a class="seo-brand" href="/" aria-label="ACCESSIA Pro — Accueil">
+          <img src="/assets/images/logo-icon.webp" alt="" width="36" height="36">
+          <span>ACCESSIA <strong>Pro</strong></span>
+        </a>
+        <nav aria-label="Navigation principale">
+          <ul class="seo-nav">
+            <li><a href="/guides/ia-pme/">Décider</a></li>
+            <li><a href="/articles/rgpd-ia-entreprise.html">Protéger</a></li>
+            <li><a href="/articles/calculateur-roi-ia-pme.html">Mesurer</a></li>
+            <li><a href="/methodologie.html">Déployer</a></li>
+            <li><a href="/ressources/">Ressources</a></li>
+          </ul>
+        </nav>
+        <a class="seo-button seo-button-small" href="mailto:contact@access-ia.pro?subject=Échange%20exploratoire%20ACCESSIA%20Pro">Échange exploratoire</a>
+      </div>
+    </header>
+  <main id="contenu-principal" class="seo-main">
+    <section class="seo-hero">
+      <div class="seo-container seo-reading">
+        <nav class="seo-breadcrumb" aria-label="Fil d’Ariane">
+          <ol>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/ressources/">Ressources</a></li>
+            <li aria-current="page">Déployer une IA locale</li>
+          </ol>
+        </nav>
+        <p class="seo-kicker">Guide technique 2026 — architecture locale</p>
+        <h1>Déployer une IA locale dans une PME</h1>
+        <p class="seo-lede">Exécuter un modèle dans vos locaux peut réduire certains flux externes. Cela crée aussi une infrastructure à sécuriser, mettre à jour, superviser et évaluer.</p>
+        <p class="seo-editorial-meta">Publié le 29 juillet 2026 · Vérifié le 29 juillet 2026 · Prochaine revue : 29 octobre 2026</p>
+
+      </div>
+    </section>
+
+      <section class="seo-section">
+        <div class="seo-container seo-reading">
+          <div class="seo-status-card">
+            <p class="seo-eyebrow">Principe essentiel</p>
+            <h2>« Local » décrit un emplacement, pas un niveau de sécurité</h2>
+            <p>La confidentialité dépend du réseau, des comptes, des journaux, des sauvegardes, des extensions, des téléchargements, des outils connectés et des droits sur les documents. Un service local mal exposé peut être moins maîtrisé qu’un cloud professionnel correctement configuré.</p>
+          </div>
+        </div>
+      </section>
+      <section class="seo-section seo-section-alt">
+        <div class="seo-container">
+          <h2>Les cinq couches d’une architecture locale</h2>
+          <ol class="seo-steps seo-steps-panel">
+            <li><strong>Modèle :</strong> choisir des poids adaptés à la tâche, à la langue, à la licence et au matériel.</li>
+            <li><strong>Moteur :</strong> servir le modèle avec Ollama, llama.cpp, vLLM ou un moteur équivalent.</li>
+            <li><strong>Interface :</strong> poste individuel avec LM Studio ou service d’équipe avec une interface comme Open WebUI.</li>
+            <li><strong>Données :</strong> documents, embeddings, index, droits de collection, purge et sauvegardes.</li>
+            <li><strong>Exploitation :</strong> identité, réseau, TLS, mises à jour, logs, supervision, incidents et capacité de retour arrière.</li>
+          </ol>
+        </div>
+      </section>
+      <section class="seo-section">
+        <div class="seo-container">
+          <h2>Choisir le moteur et l’interface</h2>
+          <div class="seo-table-wrap">
+            <table>
+              <thead><tr><th>Option</th><th>Usage cohérent</th><th>Compétence requise</th><th>Risque principal</th></tr></thead>
+              <tbody>
+                <tr><td>LM Studio</td><td>Exploration individuelle sur poste compatible.</td><td>Faible à intermédiaire.</td><td>Confondre prototype personnel et service administré d’équipe.</td></tr>
+                <tr><td>Ollama</td><td>API locale simple, développement et petit service interne.</td><td>Intermédiaire.</td><td>Exposer l’API ou activer des fonctions cloud sans règle explicite.</td></tr>
+                <tr><td>llama.cpp</td><td>Contrôle fin, portabilité CPU/GPU, embarqué ou socle sur mesure.</td><td>Intermédiaire à forte.</td><td>Sous-estimer tout ce que le moteur ne gère pas : comptes, audit, sauvegardes.</td></tr>
+                <tr><td>vLLM</td><td>Service GPU avec concurrence et débit plus élevés.</td><td>Forte.</td><td>Dimensionnement, compatibilité et exploitation d’un service critique.</td></tr>
+                <tr><td>Open WebUI</td><td>Interface commune pour équipe, modèles locaux et API autorisées.</td><td>Intermédiaire à forte.</td><td>Extensions, permissions, base de données et surface web insuffisamment durcies.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="seo-section seo-section-alt">
+        <div class="seo-container seo-two-columns">
+          <div>
+            <h2>Repères matériels, pas devis</h2>
+            <p>LM Studio recommande 16&nbsp;Go de RAM et 4&nbsp;Go de VRAM dédiée comme repères de poste. Ce seuil ne garantit ni la qualité, ni la vitesse, ni le nombre d’utilisateurs.</p>
+            <p>La mémoire requise dépend surtout de la taille du modèle, de sa quantification, de la longueur de contexte, des modèles chargés simultanément et du nombre de requêtes parallèles. Les contextes longs et la concurrence augmentent fortement RAM, VRAM et latence.</p>
+          </div>
+          <aside class="seo-note">
+            <h3>Hypothèse à valider</h3>
+            <p>Pour un poste pilote, commencez avec un petit modèle quantifié. Pour une équipe, mesurez le débit réel sur le matériel cible avant tout achat. Les chiffres constructeur ne remplacent pas votre jeu de tâches.</p>
+          </aside>
+        </div>
+      </section>
+      <section class="seo-section">
+        <div class="seo-container">
+          <h2>RAG local : les contrôles à ne pas oublier</h2>
+          <div class="seo-card-grid">
+            <article class="seo-card"><h3>Corpus</h3><p>Propriétaire nommé, documents autorisés, versions, droits et fréquence de mise à jour.</p></article>
+            <article class="seo-card"><h3>Index</h3><p>Modèle d’embeddings, emplacement, chiffrement, sauvegarde, purge et séparation des collections.</p></article>
+            <article class="seo-card"><h3>Réponse</h3><p>Citations vérifiables, abstention lorsque la source manque et règle de validation humaine.</p></article>
+            <article class="seo-card"><h3>Attaques</h3><p>Documents malveillants, prompt injection, exfiltration par un outil et traitement non sûr de la sortie.</p></article>
+          </div>
+          <p class="seo-note-inline">Le RAG fournit du contexte au modèle ; il ne garantit pas la vérité. Il ajoute aussi un moteur de recherche, un index, des permissions et un nouveau cycle de vie des données.</p>
+        </div>
+      </section>
+      <section class="seo-section seo-section-alt">
+        <div class="seo-container seo-two-columns">
+          <div>
+            <h2>Checklist de durcissement</h2>
+            <ul class="seo-check-list">
+              <li>Conserver les API sur une interface locale ou un réseau explicitement filtré.</li>
+              <li>Placer authentification, rôles, TLS et limitation de débit devant tout service partagé.</li>
+              <li>Désactiver les fonctions cloud, web, plugins et outils non nécessaires.</li>
+              <li>Vérifier la provenance et la licence des modèles, images et dépendances.</li>
+              <li>Minimiser les logs ; protéger et purger ceux qui contiennent des requêtes.</li>
+              <li>Séparer les collections documentaires selon les droits métier.</li>
+              <li>Tester restauration, mise à jour, retour arrière et procédure d’incident.</li>
+              <li>Réévaluer après tout changement de modèle, corpus, prompt système ou plugin.</li>
+            </ul>
+          </div>
+          <div>
+            <h2>Coûts cachés</h2>
+            <ul class="seo-check-list">
+              <li>GPU, RAM, stockage des poids, énergie et refroidissement.</li>
+              <li>Temps d’installation, patching, supervision et support utilisateurs.</li>
+              <li>Tests de qualité à chaque version ou quantification.</li>
+              <li>Sauvegarde de la base, des configurations et des index.</li>
+              <li>Gestion des identités, reverse proxy, certificats et audit.</li>
+              <li>Licences de modèles et composants selon l’usage commercial.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="seo-section">
+        <div class="seo-container seo-reading">
+          <h2>Un pilote en quatre semaines</h2>
+          <ol class="seo-steps">
+            <li><strong>Semaine 1 :</strong> une tâche, un corpus synthétique ou autorisé, une classification des données et trente cas de test.</li>
+            <li><strong>Semaine 2 :</strong> deux modèles maximum, une configuration fixe et une baseline métier.</li>
+            <li><strong>Semaine 3 :</strong> tests de qualité, sécurité, latence, charge, refus et reprise humaine.</li>
+            <li><strong>Semaine 4 :</strong> décision documentée : arrêter, corriger, prolonger ou déployer sur un périmètre limité.</li>
+          </ol>
+          <p>Ce calendrier est un scénario pédagogique à ajuster ; il ne promet ni résultat ni délai de production.</p>
+        </div>
+      </section>
+      <section class="seo-section seo-section-alt">
+        <div class="seo-container seo-reading">
+          <h2>Sources officielles</h2>
+          <ul class="seo-source-list">
+            <li><a href="https://docs.ollama.com/faq" rel="noopener noreferrer">Ollama — FAQ, réseau et mode cloud</a></li>
+            <li><a href="https://lmstudio.ai/docs/app/system-requirements" rel="noopener noreferrer">LM Studio — prérequis système</a> et <a href="https://lmstudio.ai/docs/app/offline" rel="noopener noreferrer">fonctionnement hors ligne</a></li>
+            <li><a href="https://github.com/ggml-org/llama.cpp" rel="noopener noreferrer">llama.cpp — dépôt officiel</a></li>
+            <li><a href="https://docs.openwebui.com/getting-started/" rel="noopener noreferrer">Open WebUI — démarrage</a> et <a href="https://docs.openwebui.com/getting-started/advanced-topics/hardening/" rel="noopener noreferrer">durcissement</a></li>
+            <li><a href="https://cyber.gouv.fr/sites/default/files/document/Recommandations_de_s%C3%A9curit%C3%A9_pour_un_syst%C3%A8me_d_IA_g%C3%A9n%C3%A9rative.pdf" rel="noopener noreferrer">ANSSI — recommandations de sécurité pour un système d’IA générative</a></li>
+          </ul>
+        </div>
+      </section>
+      <section class="seo-section seo-cta">
+        <div class="seo-container seo-reading">
+          <h2>Comparer l’architecture au besoin réel</h2>
+          <div class="seo-link-row">
+            <a href="/articles/comparatif-ia-cloud-locale-pme.html">Revenir au comparatif</a>
+            <a href="/articles/evaluer-assistant-ia-pme.html">Construire les tests</a>
+            <a href="/articles/securite-ia-pme-fuites-donnees.html">Classer les données</a>
+          </div>
+        </div>
+      </section>
+  </main>
+
+    <footer class="seo-footer">
+      <div class="seo-container seo-footer-grid">
+        <div>
+          <p class="seo-footer-title">ACCESSIA Pro</p>
+          <p>Projet de cabinet en préparation à Toulouse. Ouverture commerciale prévue en janvier 2027.</p>
+        </div>
+        <div>
+          <p class="seo-footer-title">Repères</p>
+          <ul>
+            <li><a href="/tarifs-ia-pme.html">Construire un budget</a></li>
+            <li><a href="/ressources/">Toutes les ressources</a></li>
+            <li><a href="/conseil-ia-toulouse.html">Le projet à Toulouse</a></li>
+            <li><a href="/a-propos-quentin-devesa.html">À propos de l’auteur</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="seo-footer-title">Contact éditorial</p>
+          <p><a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a></p>
+          <p><a href="/llms.txt">Contexte pour assistants IA</a></p>
+        </div>
+      </div>
+      <div class="seo-container seo-footer-bottom">
+        <span>Dernière révision substantielle : 29 juillet 2026</span>
+        <span>Contenus informatifs — aucune prestation commerciale ouverte à ce jour</span>
+      </div>
+    </footer>
+
+</body>
+</html>

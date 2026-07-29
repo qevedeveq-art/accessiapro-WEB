@@ -8,11 +8,16 @@ const ROOT = path.resolve(process.argv[2] ?? ".");
 const ORIGIN = "https://access-ia.pro";
 const expectedIndexable = new Set([
   "/",
+  "/ressources/",
   "/guides/ia-pme/",
   "/tarifs-ia-pme.html",
   "/articles/rgpd-ia-entreprise.html",
   "/articles/securite-ia-pme-fuites-donnees.html",
   "/articles/calculateur-roi-ia-pme.html",
+  "/articles/comparatif-ia-cloud-locale-pme.html",
+  "/articles/deployer-ia-locale-pme.html",
+  "/articles/ai-act-pme-obligations.html",
+  "/articles/evaluer-assistant-ia-pme.html",
   "/methodologie.html",
   "/articles/formation-equipe-ia.html",
   "/conseil-ia-toulouse.html",
@@ -20,6 +25,12 @@ const expectedIndexable = new Set([
 ]);
 const archivedAllowed = new Set([
   "/articles/facture-electronique-2026-pme-open-source.html",
+]);
+const datedResourceArticles = new Set([
+  "/articles/comparatif-ia-cloud-locale-pme.html",
+  "/articles/deployer-ia-locale-pme.html",
+  "/articles/ai-act-pme-obligations.html",
+  "/articles/evaluer-assistant-ia-pme.html",
 ]);
 const errors = [];
 
@@ -71,8 +82,8 @@ const incomingFromIndexable = new Map(
 );
 const indexableMetadata = [];
 
-if (htmlFiles.length !== 39) {
-  errors.push(`39 pages HTML attendues, ${htmlFiles.length} trouvées`);
+if (htmlFiles.length !== 44) {
+  errors.push(`44 pages HTML attendues, ${htmlFiles.length} trouvées`);
 }
 
 const publicTextFiles = allFiles.filter((file) =>
@@ -150,6 +161,23 @@ for (const file of htmlFiles) {
       description: descriptionMatch?.[1],
       h1: h1Match?.[1].replace(/<[^>]+>/g, "").trim(),
     });
+    if (route !== "/" && !/"@type":"BreadcrumbList"/.test(contents)) {
+      errors.push(`${route}: BreadcrumbList absent`);
+    }
+    if (datedResourceArticles.has(route)) {
+      if (!/"datePublished":"2026-07-29"/.test(contents)) {
+        errors.push(`${route}: datePublished absente ou incorrecte`);
+      }
+      if (!/Prochaine revue :/.test(contents)) {
+        errors.push(`${route}: prochaine date de revue absente`);
+      }
+      const sourceLinks = contents.match(
+        /href="https:\/\/(?!access-ia\.pro)[^"]+"/g,
+      ) ?? [];
+      if (sourceLinks.length < 4) {
+        errors.push(`${route}: moins de quatre liens vers des sources primaires`);
+      }
+    }
   }
 
   for (const pattern of [...forbiddenClaims, ...forbiddenSchema]) {
