@@ -87,3 +87,51 @@ jobs:
         run: |
           echo "Security check failed — check GitHub Actions logs"
           echo "Contact: qevedeveq@gmail.com"
+
+  routing-check:
+    runs-on: ubuntu-latest
+    name: Compare public DNS with GCP CDN
+
+    steps:
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v3
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v3
+
+      - name: Compare apex DNS with the CDN frontend
+        env:
+          GCP_URL_MAP: accessia-pro-lb
+        run: |
+          set -euo pipefail
+
+          PROXY=$(gcloud compute target-https-proxies list \
+            --filter="urlMap~${GCP_URL_MAP}" \
+            --limit=1 \
+            --format="value(name)")
+          if [ -z "$PROXY" ]; then
+            echo "::warning::No HTTPS proxy found for URL map ${GCP_URL_MAP}"
+            exit 0
+          fi
+
+          CDN_IP=$(gcloud compute forwarding-rules list \
+            --global \
+            --filter="target~${PROXY}" \
+            --limit=1 \
+            --format="value(IPAddress)")
+          if [ -z "$CDN_IP" ]; then
+            echo "::warning::No global forwarding IP found for proxy ${PROXY}"
+            exit 0
+          fi
+
+          DNS_IP=$(getent ahostsv4 access-ia.pro | awk 'NR == 1 { print $1 }')
+          echo "GCP CDN frontend IP: $CDN_IP"
+          echo "Public DNS A record: $DNS_IP"
+
+          if [ "$DNS_IP" != "$CDN_IP" ]; then
+            echo "::warning::The apex domain does not currently route to the GCP CDN frontend"
+          else
+            echo "OK: apex DNS routes to the GCP CDN frontend"
+          fi
