@@ -1,4 +1,4 @@
-name: Deploy — OVHcloud + GCS
+name: Deploy — GCS + CDN
 
 on:
   push:
@@ -17,10 +17,6 @@ env:
   SITE_DIR: /tmp/accessia-site
   GCS_BUCKET: gs://accessia-pro-web
   GCP_URL_MAP: accessia-pro-lb
-  YNH_HOST: srv.access-ia.pro
-  YNH_USER: qevedeveq
-  YNH_STAGE_PATH: /home/qevedeveq/accessiapro-WEB-deploy/
-  YNH_PATH: /var/www/my_webapp/www/
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
@@ -198,68 +194,9 @@ jobs:
             --global \
             --async || echo "CDN invalidation skipped (LB may not be configured yet)"
 
-  deploy-yunohost:
-    needs: build
-    runs-on: ubuntu-latest
-    name: Deploy to YunoHost (OVHcloud)
-
-    steps:
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: site-build
-          path: ${{ env.SITE_DIR }}
-
-      - name: Setup SSH with hardened security
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.OVH_SSH_KEY }}
-          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
-        run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-
-          # Write private key
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-
-          # Write pre-verified known_hosts (prevents MITM)
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
-
-          # Verify known_hosts is not empty
-          if [ ! -s ~/.ssh/known_hosts ]; then
-            echo "::error::SSH_KNOWN_HOSTS secret is empty. See DEPLOY_SETUP.md for setup instructions."
-            exit 1
-          fi
-
-          echo "SSH security setup complete"
-
-      - name: Deploy directly to production
-        env:
-          DEPLOY_KEY_PATH: ~/.ssh/deploy_key
-        run: |
-          rsync -az --checksum --delete \
-            -e "ssh -4 -i $DEPLOY_KEY_PATH -o StrictHostKeyChecking=yes -o ConnectTimeout=10 -p 22" \
-            "$SITE_DIR/" "$YNH_USER@$YNH_HOST:$YNH_PATH" \
-            || {
-              echo "::error::Deploy failed. Ensure qevedeveq owns $YNH_PATH on the server."
-              echo "Run once on server: sudo chown -R qevedeveq:www-data $YNH_PATH && sudo chmod -R u=rwX,g=rX,o=rX $YNH_PATH"
-              exit 1
-            }
-          echo "Production deploy completed successfully"
-
-      - name: Verify production homepage
-        run: |
-          curl -fsSL https://access-ia.pro \
-            | grep -F "Conseil IA pour PME" \
-            && echo "Production verification PASSED" \
-            || {
-              echo "::error::Production verification FAILED"
-              exit 1
-            }
 
   notify-indexnow:
-    needs: [deploy-gcs, deploy-yunohost]
+    needs: deploy-gcs
     runs-on: ubuntu-latest
     name: Notify search engines (IndexNow — Bing, Yandex, Naver, Seznam)
     steps:
