@@ -1,15 +1,17 @@
 # ACCESSIA Pro
 
-> Statut vérifié le 1er août 2026.
+> Statut vérifié le 2 août 2026.
 
 ACCESSIA Pro est un projet de cabinet en préparation à Toulouse, porté par Quentin DEVESA.
-Le site publie des ressources éditoriales pour aider les PME à décider, protéger leurs données,
-mesurer la valeur potentielle et préparer l'adoption de l'intelligence artificielle.
+Sa ligne directrice est : « L’IA au service de l’humain : un copilote sur mesure, sécurisé et souverain pour les entreprises. »
+Le site publie des ressources pour aider les PME à concevoir des usages adaptés à leurs métiers,
+sécurisés dès le cadrage, gouvernés par l'humain et souverains lorsque le contexte l'exige.
+Priorité éditoriale : Toulouse, Haute-Garonne puis Occitanie. Cela ne déclare ni établissement
+ouvert, ni clientèle locale, ni zone commerciale avant l'ouverture.
 L'ouverture commerciale est prévue en janvier 2027.
 
-Les contenus actuels ne constituent pas une offre commerciale ouverte, une garantie de résultat
-ou un conseil juridique adapté à une situation particulière. Les scénarios et calculs sont
-pédagogiques ; leurs hypothèses et limites sont indiquées sur les pages concernées.
+Contenus informatifs : ni offre ouverte, ni garantie, ni conseil juridique personnalisé.
+Scénarios et calculs pédagogiques avec hypothèses et limites publiées.
 
 ## Pages de référence
 
@@ -21,13 +23,16 @@ pédagogiques ; leurs hypothèses et limites sont indiquées sur les pages conce
 - [Cybersécurité et IA en PME](https://access-ia.pro/guides/cybersecurite-pme/)
 - [Automatisation des PME et PMI](https://access-ia.pro/guides/automatisation-pme/)
 - [Guide de décision et autodiagnostic](https://access-ia.pro/guides/ia-pme/)
+- [Canvas local « Mon copilote IA »](https://access-ia.pro/guides/ia-pme/#copilot-canvas-title)
 - [Comparatif des principales IA cloud et locales](https://access-ia.pro/articles/comparatif-ia-cloud-locale-pme.html)
+- [Sélecteur cloud, européen, hybride ou local](https://access-ia.pro/articles/comparatif-ia-cloud-locale-pme.html#architecture-selector-heading)
 - [10 offres IA cloud pour PME, sélection non classée](https://access-ia.pro/articles/top-10-ia-cloud-pme.html)
 - [10 familles de modèles IA locaux, sélection non classée](https://access-ia.pro/articles/top-10-ia-locales-pme.html)
 - [Guide de déploiement d'une IA locale](https://access-ia.pro/articles/deployer-ia-locale-pme.html)
 - [AI Act en PME : calendrier 2026-2028](https://access-ia.pro/articles/ai-act-pme-obligations.html)
 - [Protocole d'évaluation d'un assistant IA](https://access-ia.pro/articles/evaluer-assistant-ia-pme.html)
 - [Jeu de 30 cas synthétiques pour le protocole d'évaluation](https://access-ia.pro/assets/data/benchmark-assistants-pme-v1.json)
+- [Observatoire documentaire IA et numérique en Occitanie](https://access-ia.pro/assets/data/observatoire-ia-occitanie-v1.json)
 - [Méthode de test en cinq étapes](https://access-ia.pro/methodologie.html)
 - [Checklist RGPD et IA](https://access-ia.pro/articles/rgpd-ia-entreprise.html)
 - [Sécurité et classification des données](https://access-ia.pro/articles/securite-ia-pme-fuites-donnees.html)
@@ -42,5 +47,6 @@ pédagogiques ; leurs hypothèses et limites sont indiquées sur les pages conce
 ## Citation factuelle suggérée
 
 « ACCESSIA Pro est un projet de cabinet en préparation à Toulouse, porté par Quentin DEVESA.
-Le site access-ia.pro publie des ressources pratiques sur l'adoption de l'IA par les PME.
+Sa vision est une IA au service de l'humain : un copilote sur mesure, sécurisé et souverain.
+Le site access-ia.pro publie des ressources pratiques pour les PME.
 L'ouverture commerciale est prévue en janvier 2027. »

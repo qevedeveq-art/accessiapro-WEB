@@ -23,20 +23,35 @@ test("interactive tools keep labelled bounded controls and announced results", a
     path.join(ROOT, "articles", "calculateur-roi-ia-pme.html"),
     "utf8",
   );
+  const maturityForm = maturity.match(
+    /<form id="maturity-form"[\s\S]*?<\/form>/,
+  )?.[0] ?? "";
+  const canvasForm = maturity.match(
+    /<form id="copilot-canvas-form"[\s\S]*?<\/form>/,
+  )?.[0] ?? "";
+  const roiForm = roi.match(/<form id="roi-form"[\s\S]*?<\/form>/)?.[0] ?? "";
 
-  assert.equal((maturity.match(/<label>[\s\S]*?<select /g) ?? []).length, 10);
-  assert.equal((maturity.match(/<select [^>]*required/g) ?? []).length, 10);
+  assert.equal((maturityForm.match(/<label>[\s\S]*?<select /g) ?? []).length, 10);
+  assert.equal((maturityForm.match(/<select [^>]*required/g) ?? []).length, 10);
   assert.match(
     maturity,
     /id="maturity-result"[^>]*hidden[^>]*tabindex="-1"[^>]*aria-live="polite"/,
   );
 
-  assert.equal((roi.match(/<label>[\s\S]*?<input /g) ?? []).length, 5);
+  assert.equal((canvasForm.match(/<textarea [^>]*required/g) ?? []).length, 6);
+  assert.equal((canvasForm.match(/<select [^>]*required/g) ?? []).length, 1);
+  assert.match(
+    maturity,
+    /id="copilot-canvas-result"[^>]*hidden[^>]*tabindex="-1"[^>]*aria-live="polite"/,
+  );
+
+  assert.equal((roiForm.match(/<label>[\s\S]*?<input /g) ?? []).length, 5);
   assert.equal(
-    (roi.match(/<input [^>]*type="number"[^>]*min="[^" ]+"[^>]*max="[^" ]+"[^>]*required/g) ?? [])
+    (roiForm.match(/<input [^>]*type="number"[^>]*min="[^" ]+"[^>]*max="[^" ]+"[^>]*required/g) ?? [])
       .length,
     5,
   );
+  assert.equal((roiForm.match(/<select [^>]*required/g) ?? []).length, 4);
   assert.match(
     roi,
     /id="roi-result"[^>]*hidden[^>]*tabindex="-1"[^>]*aria-live="polite"/,
@@ -48,6 +63,14 @@ test("interactive scripts use their content hash and reduced motion is honoured"
     [
       "guides/ia-pme/index.html",
       "assets/js/autodiagnostic-maturite.js",
+    ],
+    [
+      "guides/ia-pme/index.html",
+      "assets/js/copilote-canvas.js",
+    ],
+    [
+      "articles/comparatif-ia-cloud-locale-pme.html",
+      "assets/js/architecture-selector.js",
     ],
     [
       "articles/calculateur-roi-ia-pme.html",
@@ -100,6 +123,7 @@ test("GitHub Actions validates only and cannot deploy", async () => {
   assert.match(workflow, /permissions:\s*\n\s*contents:\s*read/);
   assert.match(workflow, /node tests\/audit-site\.mjs/);
   assert.match(workflow, /node --test tests\/\*\.test\.mjs/);
-  assert.match(workflow, /node --check assets\/js\/[^\s]+/);
+  assert.match(workflow, /npm run check:js/);
+  assert.match(workflow, /npm run test:e2e/);
   assert.doesNotMatch(workflow, /secrets\.|ssh|scp|rsync|deploy|workflow_dispatch/i);
 });

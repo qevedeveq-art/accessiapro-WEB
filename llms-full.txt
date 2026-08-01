@@ -12,4 +12,4 @@ https://access-ia.pro/llms.txt
 - Automatisation des PME et PMI : https://access-ia.pro/guides/automatisation-pme/
 
 Le HTML canonique de chaque page reste la source prioritaire.
-Dernière révision : 1er août 2026.
+Dernière révision : 2 août 2026.

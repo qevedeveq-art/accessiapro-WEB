@@ -823,7 +823,8 @@ select:focus-visible {
 }
 
 .seo-tool select,
-.seo-tool input {
+.seo-tool input,
+.seo-tool textarea {
   width: 100%;
   min-height: 44px;
   padding: 0.55rem 0.65rem;
@@ -832,6 +833,31 @@ select:focus-visible {
   color: var(--seo-ink);
   background: var(--seo-white);
   font: inherit;
+}
+
+.seo-tool textarea {
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.seo-tool-group {
+  margin: 0 0 1.5rem;
+  padding: 1.25rem;
+  border: 1px solid var(--seo-line);
+  border-radius: 0.75rem;
+}
+
+.seo-tool-group legend {
+  padding: 0 0.4rem;
+  color: var(--seo-blue-dark);
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 800;
+}
+
+.seo-button:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.65);
+  opacity: 0.55;
 }
 
 .seo-result {
@@ -845,6 +871,64 @@ select:focus-visible {
   font-family: "Space Grotesk", sans-serif;
   font-size: 2.25rem;
   font-weight: 800;
+}
+
+.seo-canvas-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 1rem 0 0;
+  border-top: 1px solid var(--seo-line);
+}
+
+.seo-canvas-summary > div {
+  padding: 1rem;
+  border-right: 1px solid var(--seo-line);
+  border-bottom: 1px solid var(--seo-line);
+}
+
+.seo-canvas-summary dt {
+  color: var(--seo-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.seo-canvas-summary dd {
+  margin: 0.35rem 0 0;
+  white-space: pre-wrap;
+}
+
+.seo-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 2rem 0;
+}
+
+.seo-flow > div {
+  position: relative;
+  display: grid;
+  align-content: start;
+  min-height: 9rem;
+  padding: 1rem;
+  border: 1px solid var(--seo-line);
+  border-top: 4px solid var(--seo-mint);
+  border-radius: 0.75rem;
+  background: var(--seo-white);
+}
+
+.seo-flow strong,
+.seo-flow span {
+  display: block;
+}
+
+.seo-flow span {
+  margin-top: 0.55rem;
+  color: var(--seo-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 .seo-small {
@@ -1085,8 +1169,17 @@ select:focus-visible {
     grid-template-columns: 1fr;
   }
 
+  .seo-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .seo-metric-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .seo-canvas-summary,
+  .seo-flow {
+    grid-template-columns: 1fr;
   }
 
   .seo-editorial-item {

@@ -1,7 +1,7 @@
 {
-  "name": "ACCESSIA Pro — ressources IA pour PME",
+  "name": "ACCESSIA Pro — l’IA au service de l’humain",
   "short_name": "ACCESSIA Pro",
-  "description": "Ressources pratiques sur l'adoption responsable de l'intelligence artificielle en PME.",
+  "description": "Ressources pour concevoir des copilotes IA sur mesure, sécurisés et souverains pour les PME.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F4F1EA",

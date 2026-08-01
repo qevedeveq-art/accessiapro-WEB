@@ -39,7 +39,7 @@ async function walk(directory) {
   const files = [];
 
   for (const entry of entries) {
-    if (entry.name === ".git") {
+    if ([".git", "node_modules", "output"].includes(entry.name)) {
       continue;
     }
 

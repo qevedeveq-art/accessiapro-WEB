@@ -16,6 +16,8 @@
     netGain: document.getElementById('out-net-gain'),
     roiMonths: document.getElementById('out-roi-months'),
     payback: document.getElementById('out-payback'),
+    utilityScore: document.getElementById('out-utility-score'),
+    utilityLevel: document.getElementById('out-utility-level'),
     panel: document.getElementById('roi-result')
   };
 
@@ -30,6 +32,13 @@
     const tauxHoraire = clamp(parseFloat(form.tauxHoraire.value), 5, 500);
     const coutOutil = clamp(parseFloat(form.coutOutil.value), 0, 500);
     const setup = clamp(parseFloat(form.setup.value), 0, 100000);
+    const utilityInputs = [
+      clamp(parseFloat(form.utiliteIrritant.value), 0, 5),
+      clamp(parseFloat(form.utiliteQualite.value), 0, 5),
+      clamp(parseFloat(form.utiliteAutonomie.value), 0, 5),
+      clamp(parseFloat(form.utiliteAcceptabilite.value), 0, 5)
+    ];
+    const utilityScore = utilityInputs.reduce((sum, value) => sum + value, 0);
 
     const semaines = 46;
     const weeklyHours = collaborateurs * heuresGagnees;
@@ -75,8 +84,17 @@
       out.payback.textContent = (Math.round(payback * 10) / 10).toString().replace('.', ',') + ' mois';
     }
 
+    out.utilityScore.textContent = `${fmt.format(utilityScore)}/20`;
+    if (utilityScore <= 7) {
+      out.utilityLevel.textContent = 'utilité humaine insuffisamment étayée : reformuler le besoin avant d’investir';
+    } else if (utilityScore <= 14) {
+      out.utilityLevel.textContent = 'utilité plausible : vérifier par un pilote avec les utilisateurs';
+    } else {
+      out.utilityLevel.textContent = 'utilité déclarée forte : confirmer l’autonomie, la qualité et l’acceptabilité sur le terrain';
+    }
+
     out.panel.removeAttribute('hidden');
-    return { payback: payback };
+    return { payback: payback, utilityScore: utilityScore };
   }
 
   form.addEventListener('input', computeAndRender);

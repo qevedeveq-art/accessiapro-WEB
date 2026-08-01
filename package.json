@@ -1,0 +1,17 @@
+{
+  "name": "accessia-pro-public-site",
+  "private": true,
+  "version": "9.0.0",
+  "description": "Validation du site public statique access-ia.pro",
+  "scripts": {
+    "test": "node tests/audit-site.mjs && node --test tests/*.test.mjs",
+    "test:e2e": "playwright test",
+    "check:js": "node --check assets/js/autodiagnostic-maturite.js && node --check assets/js/architecture-selector.js && node --check assets/js/calculateur-roi.js && node --check assets/js/copilote-canvas.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.59.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

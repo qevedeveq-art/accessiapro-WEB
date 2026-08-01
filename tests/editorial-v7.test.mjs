@@ -104,6 +104,7 @@ test("the build produces the expected public HTML surface", async () => {
     const entries = await readdir(directory, { withFileTypes: true });
     const files = [];
     for (const entry of entries) {
+      if ([".git", "node_modules", "output"].includes(entry.name)) continue;
       const full = path.join(directory, entry.name);
       if (entry.isDirectory()) files.push(...(await walk(full)));
       else files.push(full);

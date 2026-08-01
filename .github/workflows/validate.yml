@@ -23,6 +23,10 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: "22"
+          cache: npm
+
+      - name: Install validation dependencies
+        run: npm ci
 
       - name: Audit public files and SEO invariants
         run: node tests/audit-site.mjs
@@ -31,6 +35,19 @@ jobs:
         run: node --test tests/*.test.mjs
 
       - name: Check browser JavaScript syntax
-        run: |
-          node --check assets/js/autodiagnostic-maturite.js
-          node --check assets/js/calculateur-roi.js
+        run: npm run check:js
+
+      - name: Install Chromium for browser smoke tests
+        run: npx playwright install --with-deps chromium
+
+      - name: Run browser smoke tests
+        run: npm run test:e2e
+
+      - name: Upload browser evidence on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-evidence
+          path: output/playwright
+          if-no-files-found: ignore
+          retention-days: 7
