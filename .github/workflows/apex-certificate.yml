@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "prepare: create/describe DNS authorization and certificate; attach: attach active certificate map to HTTPS proxy"
+        description: "inspect: read-only audit; prepare: create and validate the apex-only DNS authorization and certificate"
         required: true
         type: choice
         options:
+          - inspect
           - prepare
-          - attach
-        default: prepare
+        default: inspect
 
 concurrency:
   group: apex-certificate
@@ -24,9 +24,10 @@ env:
   DOMAIN: access-ia.pro
   DNS_AUTHORIZATION: accessia-pro-apex-dns-auth
   CERTIFICATE: accessia-pro-apex-cert
-  CERTIFICATE_MAP: accessia-pro-apex-cert-map
-  CERTIFICATE_MAP_ENTRY: accessia-pro-apex-entry
+  GCP_PROJECT: accessia-pro-web
   GCP_URL_MAP: accessia-pro-lb
+  GCP_HTTPS_PROXY: accessia-pro-https-proxy
+  GCP_HTTPS_IP: 34.95.112.139
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
@@ -46,16 +47,47 @@ jobs:
       - name: Confirm project and current load balancer path
         run: |
           set -euo pipefail
-          echo "Project: $(gcloud config get-value project)"
-          gcloud services enable certificatemanager.googleapis.com
-          echo "URL map:"
+          PROJECT_ID="$(gcloud config get-value project)"
+          if [ "$PROJECT_ID" != "$GCP_PROJECT" ]; then
+            echo "ERROR: authenticated project is $PROJECT_ID, expected $GCP_PROJECT"
+            exit 1
+          fi
+
           gcloud compute url-maps describe "$GCP_URL_MAP" \
             --global \
             --format="value(name)" >/dev/null
-          gcloud compute target-https-proxies list \
+
+          PROXY_URL_MAP="$(gcloud compute target-https-proxies describe "$GCP_HTTPS_PROXY" \
             --global \
-            --filter="urlMap~'/global/urlMaps/${GCP_URL_MAP}$'" \
-            --format="table(name,certificateMap,sslCertificates.list():label=sslCertificates)"
+            --format='value(urlMap)')"
+          if [ "${PROXY_URL_MAP##*/}" != "$GCP_URL_MAP" ]; then
+            echo "ERROR: HTTPS proxy $GCP_HTTPS_PROXY uses ${PROXY_URL_MAP##*/}, expected $GCP_URL_MAP"
+            exit 1
+          fi
+
+          echo "Project: $PROJECT_ID"
+          echo "HTTPS proxy (read-only audit):"
+          gcloud compute target-https-proxies describe "$GCP_HTTPS_PROXY" \
+            --global \
+            --format="yaml(name,urlMap,certificateMap,sslCertificates)"
+          echo "URL map host rules (read-only audit):"
+          gcloud compute url-maps describe "$GCP_URL_MAP" \
+            --global \
+            --format="yaml(name,defaultService,hostRules,pathMatchers.name)"
+          echo "Forwarding rules (read-only audit):"
+          gcloud compute forwarding-rules list \
+            --global \
+            --filter="target~'/global/targetHttpsProxies/${GCP_HTTPS_PROXY}$'" \
+            --format="table(name,IPAddress,IPProtocol,portRange,target)"
+
+          FORWARDING_IPS="$(gcloud compute forwarding-rules list \
+            --global \
+            --filter="target~'/global/targetHttpsProxies/${GCP_HTTPS_PROXY}$' AND IPProtocol=TCP AND portRange=443-443" \
+            --format='value(IPAddress)')"
+          if [ "$FORWARDING_IPS" != "$GCP_HTTPS_IP" ]; then
+            echo "ERROR: HTTPS proxy does not resolve uniquely to $GCP_HTTPS_IP:443"
+            exit 1
+          fi
 
       - name: Prepare DNS authorization and certificate
         if: inputs.mode == 'prepare'
@@ -68,6 +100,16 @@ jobs:
               --type=FIXED_RECORD \
               --location=global
           fi
+
+          gcloud certificate-manager dns-authorizations describe "$DNS_AUTHORIZATION" \
+            --location=global \
+            --format=json \
+            | jq -e --arg domain "$DOMAIN" '
+                .domain == $domain and .type == "FIXED_RECORD"
+              ' >/dev/null || {
+                echo "ERROR: DNS authorization is not FIXED_RECORD for the exact apex"
+                exit 1
+              }
 
           echo "DNS authorization record to create at the authoritative DNS provider:"
           gcloud certificate-manager dns-authorizations describe "$DNS_AUTHORIZATION" \
@@ -82,67 +124,19 @@ jobs:
               --location=global
           fi
 
+          gcloud certificate-manager certificates describe "$CERTIFICATE" \
+            --location=global \
+            --format=json \
+            | jq -e --arg domain "$DOMAIN" --arg authorization "$DNS_AUTHORIZATION" '
+                (.managed.domains == [$domain]) and
+                ((.managed.dnsAuthorizations | length) == 1) and
+                (.managed.dnsAuthorizations[0] | endswith("/dnsAuthorizations/" + $authorization))
+              ' >/dev/null || {
+                echo "ERROR: certificate is not restricted to the exact apex and expected DNS authorization"
+                exit 1
+              }
+
           echo "Certificate status:"
           gcloud certificate-manager certificates describe "$CERTIFICATE" \
             --location=global \
             --format="yaml(name,managed.state,managed.authorizationAttemptInfo,expireTime)"
-
-      - name: Attach active certificate map to the existing HTTPS proxy
-        if: inputs.mode == 'attach'
-        run: |
-          set -euo pipefail
-          CERT_STATE="$(gcloud certificate-manager certificates describe "$CERTIFICATE" \
-            --location=global \
-            --format='value(managed.state)')"
-          if [ "$CERT_STATE" != "ACTIVE" ]; then
-            echo "ERROR: certificate $CERTIFICATE is $CERT_STATE, expected ACTIVE"
-            gcloud certificate-manager certificates describe "$CERTIFICATE" \
-              --location=global \
-              --format="yaml(name,managed.state,managed.authorizationAttemptInfo)"
-            exit 1
-          fi
-
-          if ! gcloud certificate-manager maps describe "$CERTIFICATE_MAP" \
-            --location=global >/dev/null 2>&1; then
-            gcloud certificate-manager maps create "$CERTIFICATE_MAP" \
-              --location=global
-          fi
-
-          if ! gcloud certificate-manager maps entries describe "$CERTIFICATE_MAP_ENTRY" \
-            --map="$CERTIFICATE_MAP" \
-            --location=global >/dev/null 2>&1; then
-            gcloud certificate-manager maps entries create "$CERTIFICATE_MAP_ENTRY" \
-              --map="$CERTIFICATE_MAP" \
-              --certificates="$CERTIFICATE" \
-              --hostname="$DOMAIN" \
-              --location=global
-          fi
-
-          ENTRY_STATE="$(gcloud certificate-manager maps entries describe "$CERTIFICATE_MAP_ENTRY" \
-            --map="$CERTIFICATE_MAP" \
-            --location=global \
-            --format='value(state)')"
-          if [ "$ENTRY_STATE" != "ACTIVE" ]; then
-            echo "ERROR: certificate map entry is $ENTRY_STATE, expected ACTIVE"
-            gcloud certificate-manager maps entries describe "$CERTIFICATE_MAP_ENTRY" \
-              --map="$CERTIFICATE_MAP" \
-              --location=global \
-              --format="yaml(name,state,hostname,certificates)"
-            exit 1
-          fi
-
-          PROXY_NAME="$(gcloud compute target-https-proxies list \
-            --global \
-            --filter="urlMap~'/global/urlMaps/${GCP_URL_MAP}$'" \
-            --format='value(name)' \
-            | head -n 1)"
-          if [ -z "$PROXY_NAME" ]; then
-            echo "ERROR: no global target HTTPS proxy found for URL map $GCP_URL_MAP"
-            exit 1
-          fi
-
-          gcloud compute target-https-proxies update "$PROXY_NAME" \
-            --certificate-map="$CERTIFICATE_MAP" \
-            --global
-
-          echo "Attached certificate map $CERTIFICATE_MAP to HTTPS proxy $PROXY_NAME"
