@@ -73,6 +73,24 @@ test("interactive scripts use their content hash and reduced motion is honoured"
   );
 });
 
+test("the narrow mobile header exposes every navigation item without clipping", async () => {
+  const css = await readFile(path.join(ROOT, "assets/css/seo-2026.css"), "utf8");
+  const narrowMobile = css.match(
+    /@media \(max-width: 520px\)\s*{([\s\S]*?)(?=\n@media \(prefers-reduced-motion)/,
+  );
+
+  assert.ok(narrowMobile, "the 520px mobile breakpoint must exist");
+  assert.match(
+    narrowMobile[1],
+    /\.seo-header\s*{[\s\S]*?position:\s*static/,
+  );
+  assert.match(
+    narrowMobile[1],
+    /\.seo-nav\s*{[\s\S]*?display:\s*grid[\s\S]*?grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/,
+  );
+  assert.match(narrowMobile[1], /overflow-x:\s*visible/);
+});
+
 test("GitHub Actions validates only and cannot deploy", async () => {
   const workflow = await readFile(
     path.join(ROOT, ".github", "workflows", "validate.yml"),
