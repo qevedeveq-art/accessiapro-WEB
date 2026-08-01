@@ -34,27 +34,43 @@ function shortHash(contents) {
   return createHash("sha256").update(contents).digest("hex").slice(0, 12);
 }
 
-test("every HTML page versions long-lived stylesheets with their content hash", async () => {
+test("every HTML page versions long-lived public assets with their content hash", async () => {
   const htmlFiles = (await walk(ROOT)).filter((file) => file.endsWith(".html"));
-  const stylesheets = ["style.css", "seo-2026.css"];
+  const commonAssets = [
+    "favicon.ico",
+    "assets/css/style.css",
+    "assets/css/seo-2026.css",
+    "assets/images/apple-touch-icon.png",
+    "assets/images/favicon.svg",
+    "assets/images/logo-icon.webp",
+    "assets/images/og-image.jpg",
+  ];
 
-  for (const stylesheet of stylesheets) {
-    const contents = await readFile(
-      path.join(ROOT, "assets", "css", stylesheet),
-    );
-    const expectedHref = `/assets/css/${stylesheet}?v=${shortHash(contents)}`;
+  for (const asset of commonAssets) {
+    const contents = await readFile(path.join(ROOT, asset));
+    const expectedUrl = `/${asset}?v=${shortHash(contents)}`;
 
     for (const htmlFile of htmlFiles) {
       const html = await readFile(htmlFile, "utf8");
-      assert.match(
-        html,
-        new RegExp(
-          `<link rel="stylesheet" href="${expectedHref.replaceAll("?", "\\?")}">`,
-        ),
-        `${path.relative(ROOT, htmlFile)} must reference ${expectedHref}`,
+      assert.ok(
+        html.includes(expectedUrl),
+        `${path.relative(ROOT, htmlFile)} must reference ${expectedUrl}`,
       );
     }
   }
+
+  const profile = await readFile(
+    path.join(ROOT, "a-propos-quentin-devesa.html"),
+    "utf8",
+  );
+  const portrait = await readFile(
+    path.join(ROOT, "assets", "images", "quentin-devesa.webp"),
+  );
+  assert.ok(
+    profile.includes(
+      `/assets/images/quentin-devesa.webp?v=${shortHash(portrait)}`,
+    ),
+  );
 });
 
 test("the downloadable benchmark contains 30 synthetic and weighted cases", async () => {
