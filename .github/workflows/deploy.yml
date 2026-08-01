@@ -24,6 +24,7 @@ env:
   GCS_BUCKET: gs://accessia-pro-web
   GCP_BACKEND_BUCKET: accessia-pro-backend
   GCP_URL_MAP: accessia-pro-lb
+  GCP_HTTPS_IP: 34.95.112.139
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
@@ -204,13 +205,42 @@ jobs:
             --global \
             --async
 
+      - name: Verify the deployed GCS release
+        run: |
+          set -euo pipefail
+          gsutil cat "$GCS_BUCKET/index.html" \
+            | grep -qi "projet en préparation"
+          gsutil stat "$GCS_BUCKET/articles/comparatif-ia-cloud-locale-pme.html" >/dev/null
+          SITEMAP_COUNT="$(gsutil cat "$GCS_BUCKET/sitemap.xml" \
+            | grep -o '<loc>' | wc -l | tr -d ' ')"
+          if [ "$SITEMAP_COUNT" != "15" ]; then
+            echo "ERROR: deployed sitemap contains $SITEMAP_COUNT URLs, expected 15"
+            exit 1
+          fi
+          echo "Deployed GCS release verified"
+
   verify-public:
     needs: deploy-gcs
     runs-on: ubuntu-latest
     name: Verify the public apex
+    outputs:
+      apex_ready: ${{ steps.apex-dns.outputs.ready }}
 
     steps:
+      - name: Check whether the apex points to the validated GCP frontend
+        id: apex-dns
+        run: |
+          set -euo pipefail
+          APEX_IP="$(getent ahostsv4 access-ia.pro | awk 'NR == 1 { print $1 }' || true)"
+          if [ "$APEX_IP" = "$GCP_HTTPS_IP" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Public apex remains on $APEX_IP; GCS deployment succeeded and public verification is deferred."
+          fi
+
       - name: Wait for the validated release to become public
+        if: steps.apex-dns.outputs.ready == 'true'
         run: |
           for attempt in $(seq 1 12); do
             HOME_STATUS=$(curl --silent --show-error --max-time 30 \
@@ -237,6 +267,7 @@ jobs:
           exit 1
 
       - name: Verify public security headers
+        if: steps.apex-dns.outputs.ready == 'true'
         run: |
           HEADERS=$(curl --silent --show-error --max-time 30 --head https://access-ia.pro/)
           for HEADER in strict-transport-security content-security-policy x-content-type-options x-frame-options referrer-policy; do
@@ -247,6 +278,7 @@ jobs:
 
   notify-indexnow:
     needs: verify-public
+    if: needs.verify-public.outputs.apex_ready == 'true'
     runs-on: ubuntu-latest
     name: Notify search engines (IndexNow — Bing, Yandex, Naver, Seznam)
     steps:

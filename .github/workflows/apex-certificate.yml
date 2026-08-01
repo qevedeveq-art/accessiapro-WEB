@@ -1,16 +1,6 @@
-name: Apex certificate — GCP DNS authorization
+name: Apex migration — GCP read-only audit
 
-on:
-  workflow_dispatch:
-    inputs:
-      mode:
-        description: "inspect: read-only audit; prepare: create and validate the apex-only DNS authorization and certificate"
-        required: true
-        type: choice
-        options:
-          - inspect
-          - prepare
-        default: inspect
+on: workflow_dispatch
 
 concurrency:
   group: apex-certificate
@@ -21,9 +11,6 @@ permissions:
   id-token: write
 
 env:
-  DOMAIN: access-ia.pro
-  DNS_AUTHORIZATION: accessia-pro-apex-dns-auth
-  CERTIFICATE: accessia-pro-apex-cert
   GCP_PROJECT: accessia-pro-web
   GCP_URL_MAP: accessia-pro-lb
   GCP_HTTPS_PROXY: accessia-pro-https-proxy
@@ -33,7 +20,7 @@ env:
 jobs:
   manage-apex-certificate:
     runs-on: ubuntu-latest
-    name: Manage apex-only Certificate Manager resources
+    name: Audit the current apex load balancer path
 
     steps:
       - name: Authenticate to Google Cloud
@@ -93,55 +80,3 @@ jobs:
                 echo "ERROR: HTTPS proxy does not resolve uniquely to $GCP_HTTPS_IP:443"
                 exit 1
               }
-
-      - name: Prepare DNS authorization and certificate
-        if: inputs.mode == 'prepare'
-        run: |
-          set -euo pipefail
-          if ! gcloud certificate-manager dns-authorizations describe "$DNS_AUTHORIZATION" \
-            --location=global >/dev/null 2>&1; then
-            gcloud certificate-manager dns-authorizations create "$DNS_AUTHORIZATION" \
-              --domain="$DOMAIN" \
-              --type=FIXED_RECORD \
-              --location=global
-          fi
-
-          gcloud certificate-manager dns-authorizations describe "$DNS_AUTHORIZATION" \
-            --location=global \
-            --format=json \
-            | jq -e --arg domain "$DOMAIN" '
-                .domain == $domain and .type == "FIXED_RECORD"
-              ' >/dev/null || {
-                echo "ERROR: DNS authorization is not FIXED_RECORD for the exact apex"
-                exit 1
-              }
-
-          echo "DNS authorization record to create at the authoritative DNS provider:"
-          gcloud certificate-manager dns-authorizations describe "$DNS_AUTHORIZATION" \
-            --location=global \
-            --format="table(dnsResourceRecord.name,dnsResourceRecord.type,dnsResourceRecord.data)"
-
-          if ! gcloud certificate-manager certificates describe "$CERTIFICATE" \
-            --location=global >/dev/null 2>&1; then
-            gcloud certificate-manager certificates create "$CERTIFICATE" \
-              --domains="$DOMAIN" \
-              --dns-authorizations="$DNS_AUTHORIZATION" \
-              --location=global
-          fi
-
-          gcloud certificate-manager certificates describe "$CERTIFICATE" \
-            --location=global \
-            --format=json \
-            | jq -e --arg domain "$DOMAIN" --arg authorization "$DNS_AUTHORIZATION" '
-                (.managed.domains == [$domain]) and
-                ((.managed.dnsAuthorizations | length) == 1) and
-                (.managed.dnsAuthorizations[0] | endswith("/dnsAuthorizations/" + $authorization))
-              ' >/dev/null || {
-                echo "ERROR: certificate is not restricted to the exact apex and expected DNS authorization"
-                exit 1
-              }
-
-          echo "Certificate status:"
-          gcloud certificate-manager certificates describe "$CERTIFICATE" \
-            --location=global \
-            --format="yaml(name,managed.state,managed.authorizationAttemptInfo,expireTime)"
