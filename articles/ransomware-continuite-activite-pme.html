@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rançongiciel en PME : continuité et reprise d’activité</title>
+  <meta name="description" content="Préparer une PME au rançongiciel : processus critiques, mode dégradé, sauvegardes isolées, ordre de restauration, exercice et premiers réflexes.">
+  <meta name="author" content="Quentin DEVESA">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#0A1530">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://access-ia.pro/articles/ransomware-continuite-activite-pme.html">
+  <link rel="alternate" type="text/plain" href="https://access-ia.pro/llms.txt" title="Contexte factuel ACCESSIA Pro">
+  <link rel="icon" href="/favicon.ico?v=8517fd92e6f8" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg?v=d23cee3a84e1">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png?v=c4efc14d8375">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/assets/css/style.css?v=058ef9e59bfe">
+  <link rel="stylesheet" href="/assets/css/seo-2026.css?v=6723b29faf5a">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://access-ia.pro/articles/ransomware-continuite-activite-pme.html">
+  <meta property="og:title" content="Rançongiciel en PME : continuité et reprise d’activité">
+  <meta property="og:description" content="Préparer une PME au rançongiciel : processus critiques, mode dégradé, sauvegardes isolées, ordre de restauration, exercice et premiers réflexes.">
+  <meta property="og:image" content="https://access-ia.pro/assets/images/og-image.jpg?v=b4a00d642d43">
+  <meta property="og:image:alt" content="ACCESSIA Pro — ressources IA pour PME">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="ACCESSIA Pro">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rançongiciel en PME : continuité et reprise d’activité">
+  <meta name="twitter:description" content="Préparer une PME au rançongiciel : processus critiques, mode dégradé, sauvegardes isolées, ordre de restauration, exercice et premiers réflexes.">
+  <meta name="twitter:image" content="https://access-ia.pro/assets/images/og-image.jpg?v=b4a00d642d43">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; form-action 'self' mailto:; connect-src 'self'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa","name":"Quentin DEVESA","url":"https://access-ia.pro/a-propos-quentin-devesa.html","description":"Porteur du projet ACCESSIA Pro et responsable des ressources éditoriales publiées sur access-ia.pro.","sameAs":["https://www.linkedin.com/in/quentin-devesa-cyber04a069"]},{"@type":"WebSite","@id":"https://access-ia.pro/#website","name":"ACCESSIA Pro","url":"https://access-ia.pro/","inLanguage":"fr-FR","publisher":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"}},{"@type":"Article","@id":"https://access-ia.pro/articles/ransomware-continuite-activite-pme.html#page","url":"https://access-ia.pro/articles/ransomware-continuite-activite-pme.html","name":"Rançongiciel en PME : continuité et reprise d’activité","description":"Préparer une PME au rançongiciel : processus critiques, mode dégradé, sauvegardes isolées, ordre de restauration, exercice et premiers réflexes.","inLanguage":"fr-FR","dateModified":"2026-08-01","isPartOf":{"@id":"https://access-ia.pro/#website"},"author":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"},"datePublished":"2026-08-01"},{"@type":"BreadcrumbList","@id":"https://access-ia.pro/articles/ransomware-continuite-activite-pme.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://access-ia.pro/"},{"@type":"ListItem","position":2,"name":"Ressources","item":"https://access-ia.pro/ressources/"},{"@type":"ListItem","position":3,"name":"Rançongiciel : préparer la continuité avant le jour de l’attaque","item":"https://access-ia.pro/articles/ransomware-continuite-activite-pme.html"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
+  <div class="seo-prelaunch" role="status">
+    <div class="seo-container"><strong>Pré-lancement :</strong> projet en préparation, ouverture commerciale prévue en janvier 2027.</div>
+  </div>
+
+    <header class="seo-header">
+      <div class="seo-container seo-header-inner">
+        <a class="seo-brand" href="/" aria-label="ACCESSIA Pro — Accueil">
+          <img src="/assets/images/logo-icon.webp?v=d60b5faca07c" alt="" width="36" height="36">
+          <span>ACCESSIA <strong>Pro</strong></span>
+        </a>
+        <nav aria-label="Navigation principale">
+          <ul class="seo-nav">
+            <li><a href="/guides/ia-pme/">Décider</a></li>
+            <li><a href="/articles/rgpd-ia-entreprise.html">Protéger</a></li>
+            <li><a href="/articles/calculateur-roi-ia-pme.html">Mesurer</a></li>
+            <li><a href="/methodologie.html">Déployer</a></li>
+            <li><a href="/ressources/">Ressources</a></li>
+          </ul>
+        </nav>
+        <a class="seo-button seo-button-small" href="mailto:contact@access-ia.pro?subject=Échange%20exploratoire%20ACCESSIA%20Pro">Échange exploratoire</a>
+      </div>
+    </header>
+  <main id="contenu-principal" class="seo-main">
+    <section class="seo-hero">
+      <div class="seo-container seo-reading">
+        <nav class="seo-breadcrumb" aria-label="Fil d’Ariane">
+          <ol>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/ressources/">Ressources</a></li>
+            <li aria-current="page">Rançongiciel : préparer la continuité avant le jour de l’attaque</li>
+          </ol>
+        </nav>
+        <p class="seo-kicker">Résilience — sauvegarde, PCA et PRA</p>
+        <h1>Rançongiciel : préparer la continuité avant le jour de l’attaque</h1>
+        <p class="seo-lede">Une sauvegarde n’est utile que si elle est saine, accessible à l’équipe autorisée et restaurable dans un délai compatible avec l’activité. Le plan doit aussi expliquer comment travailler pendant l’indisponibilité.</p>
+        <p class="seo-editorial-meta">Publié le 1er août 2026 · Vérifié le 1er août 2026 · Prochaine revue : 1er novembre 2026</p>
+
+      </div>
+    </section>
+
+      <section class="seo-section">
+        <div class="seo-container seo-reading">
+          <div class="seo-status-card">
+            <p class="seo-eyebrow">Le test décisif</p>
+            <h2>Que peut encore faire l’entreprise sans informatique pendant 24 heures ?</h2>
+            <p>Le plan de continuité d’activité décrit le fonctionnement dégradé ; le plan de reprise décrit le retour des systèmes. Même sommaires, ils doivent associer les métiers, l’informatique, les prestataires et la direction. La CNIL recommande de tester régulièrement la restauration et l’application des plans.</p>
+            <p class="seo-note-inline">Incident en cours : isolez les machines touchées du réseau sans les éteindre, préservez les traces et utilisez la <a href="/articles/cyberattaque-pme-occitanie-premiers-reflexes.html">fiche de premiers réflexes et les contacts officiels</a>. Ne connectez pas une sauvegarde saine à un environnement encore compromis.</p>
+          </div>
+        </div>
+      </section>
+      <section class="seo-section seo-section-alt">
+        <div class="seo-container">
+          <h2>Construire le plan à partir des processus métier</h2>
+          <div class="seo-table-wrap">
+            <table>
+              <thead><tr><th>Processus</th><th>Mode dégradé à documenter</th><th>Dépendances à restaurer</th></tr></thead>
+              <tbody>
+                <tr><td>Prise de commandes</td><td>Canal alternatif, formulaire papier ou fichier isolé, règles de ressaisie et de contrôle.</td><td>Messagerie, CRM, catalogue, stocks et identité des clients.</td></tr>
+                <tr><td>Production ou intervention</td><td>Ordres prioritaires, consignes sûres accessibles hors ligne, responsables de validation.</td><td>Planning, dossiers techniques, machines, accès fournisseur et réseau industriel.</td></tr>
+                <tr><td>Facturation et paiements</td><td>Liste des échéances, contrôle renforcé des IBAN et interdiction de contourner la séparation des tâches.</td><td>Logiciel comptable, référentiel fournisseur, banque, plateforme de facturation.</td></tr>
+                <tr><td>Paie et RH</td><td>Contacts, échéances, données minimales, validation et protection renforcée des informations personnelles.</td><td>Prestataire, coffre documentaire, identité et moyens de paiement.</td></tr>
+                <tr><td>Communication</td><td>Porte-parole, canal alternatif, messages factuels et validation avant diffusion.</td><td>Site, téléphone, contacts clients, autorités et partenaires.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="seo-section">
+        <div class="seo-container">
+          <h2>Sauvegarder contre la disparition et contre la compromission</h2>
+          <div class="seo-card-grid">
+            <article class="seo-card"><h3>Plusieurs copies</h3><p>La CNIL cite la règle 3–2–1 : trois copies, deux supports différents, dont une hors ligne. Adaptez la fréquence à la quantité de travail que l’entreprise peut perdre.</p></article>
+            <article class="seo-card"><h3>Isolation réelle</h3><p>Vérifier qu’un compte administrateur compromis ne peut pas supprimer ou chiffrer simultanément production et sauvegardes. Documenter les droits et mécanismes d’immutabilité éventuels.</p></article>
+            <article class="seo-card"><h3>Protection équivalente</h3><p>Chiffrement, contrôle d’accès, lieu distinct et contrat du prestataire doivent protéger les copies au même niveau que les données d’origine.</p></article>
+            <article class="seo-card"><h3>Restauration éprouvée</h3><p>Tester fichier, application et environnement complet. Conserver la durée, les dépendances manquantes, la version restaurée et les corrections décidées.</p></article>
+          </div>
+        </div>
+      </section>
+      <section class="seo-section seo-section-alt">
+        <div class="seo-container seo-reading">
+          <h2>Définir un ordre de reprise qui évite une seconde crise</h2>
+          <ol>
+            <li><strong>Qualifier et contenir :</strong> comprendre le périmètre, préserver les preuves et fermer le chemin d’accès connu avec l’appui de personnes compétentes.</li>
+            <li><strong>Choisir un point sain :</strong> dater la compromission probable et sélectionner les sauvegardes après investigation. La copie la plus récente n’est pas automatiquement la plus sûre.</li>
+            <li><strong>Reconstruire les fondations :</strong> identité, administration, réseau, journaux et postes de gestion avant de reconnecter les applications métier.</li>
+            <li><strong>Restaurer par priorité métier :</strong> suivre l’ordre validé, contrôler les données puis ouvrir progressivement les accès.</li>
+            <li><strong>Surveiller :</strong> renforcer temporairement les journaux et alertes, rechercher les signes de persistance et documenter chaque décision.</li>
+            <li><strong>Retour à la normale :</strong> réconcilier les opérations réalisées en mode dégradé, informer les acteurs concernés et traiter les causes racines.</li>
+          </ol>
+          <p>L’ANSSI décrit la remédiation comme une dimension majeure de la réponse à incident avec l’investigation et la gestion de crise. Une PME ne devrait pas improviser seule cette phase lorsqu’une compromission sérieuse est suspectée.</p>
+        </div>
+      </section>
+      <section class="seo-section">
+        <div class="seo-container seo-reading">
+          <h2>Exercice trimestriel : « lundi, 8 h 15 »</h2>
+          <p>La messagerie, les fichiers partagés et le logiciel de gestion sont indisponibles. Un poste affiche une demande de rançon. Pendant 60 minutes, l’équipe doit :</p>
+          <ul>
+            <li>retrouver les contacts et la fiche d’incident sans utiliser le réseau de l’entreprise ;</li>
+            <li>isoler un poste témoin sans l’éteindre et établir une chronologie ;</li>
+            <li>choisir les trois activités à maintenir et leurs contrôles de sécurité ;</li>
+            <li>identifier la dernière sauvegarde testée sans la connecter ;</li>
+            <li>préparer un message interne factuel et désigner le seul porte-parole externe ;</li>
+            <li>noter les informations nécessaires pour qualifier une éventuelle violation de données personnelles.</li>
+          </ul>
+          <p>Le compte rendu liste les décisions impossibles, les coordonnées périmées et les ressources manquantes. Il n’est pas utilisé pour attribuer des fautes individuelles.</p>
+        </div>
+      </section>
+      <section class="seo-section seo-section-alt">
+        <div class="seo-container seo-reading">
+          <h2>Liens avec les autres chantiers de la PME</h2>
+          <ul>
+            <li><a href="/guides/facturation-electronique-pme/">Facture électronique :</a> prévoir comment recevoir, contrôler et émettre lorsque la plateforme ou le SI interne est indisponible, sans affaiblir les contrôles anti-fraude.</li>
+            <li><a href="/guides/automatisation-pme/">Automatisation :</a> inventorier les comptes techniques, clés, files d’attente et mécanismes de reprise ; pouvoir suspendre un flux sans perdre la traçabilité.</li>
+            <li><a href="/articles/shadow-ai-charte-pme.html">IA générative :</a> documenter les données et connecteurs, interdire les secrets dans les services non autorisés et révoquer les sessions compromises.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="seo-section">
+        <div class="seo-container seo-reading">
+          <h2>Sources officielles</h2>
+          <p>Vérifiées le 1er août 2026 : <a href="https://cyber.gouv.fr/securisation/gestion-de-crise/piloter-la-remediation-dun-incident-cyber/" rel="noopener noreferrer">ANSSI — piloter la remédiation d’un incident cyber</a>, <a href="https://messervices.cyber.gouv.fr/guides/attaques-par-rancongiciels-tous-concernes" rel="noopener noreferrer">ANSSI et ministère de la Justice — attaques par rançongiciels</a>, <a href="https://www.cnil.fr/fr/securite-sauvegarder" rel="noopener noreferrer">CNIL — sauvegarder</a>, <a href="https://www.cnil.fr/fr/securite-prevoir-la-continuite-et-la-reprise-dactivite" rel="noopener noreferrer">CNIL — continuité et reprise</a> et <a href="https://www.cybermalveillance.gouv.fr/tous-nos-contenus/fiches-reflexes/rancongiciels-ransomwares/1acb3ecb-8259-4224-b22f-a8509db84ee1" rel="noopener noreferrer">Cybermalveillance.gouv.fr — rançongiciel pour les organisations</a>.</p>
+        </div>
+      </section>
+  </main>
+
+    <footer class="seo-footer">
+      <div class="seo-container seo-footer-grid">
+        <div>
+          <p class="seo-footer-title">ACCESSIA Pro</p>
+          <p>Projet de cabinet en préparation à Toulouse. Ouverture commerciale prévue en janvier 2027.</p>
+        </div>
+        <div>
+          <p class="seo-footer-title">Repères</p>
+          <ul>
+            <li><a href="/tarifs-ia-pme.html">Construire un budget</a></li>
+            <li><a href="/articles/">Tous les articles</a></li>
+            <li><a href="/ressources/">Toutes les ressources</a></li>
+            <li><a href="/conseil-ia-toulouse.html">Le projet à Toulouse</a></li>
+            <li><a href="/a-propos-quentin-devesa.html">À propos de l’auteur</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="seo-footer-title">Contact éditorial</p>
+          <p><a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a></p>
+          <p><a href="/llms.txt">Contexte pour assistants IA</a></p>
+        </div>
+      </div>
+      <div class="seo-container seo-footer-bottom">
+        <span>Dernière révision substantielle : 1er août 2026</span>
+        <span>Contenus informatifs — aucune prestation commerciale ouverte à ce jour</span>
+      </div>
+    </footer>
+
+</body>
+</html>

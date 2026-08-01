@@ -4,5 +4,12 @@ Ce fichier ne duplique pas le contenu du site afin d'éviter les divergences.
 Le contexte factuel et la liste des pages de référence sont maintenus dans :
 https://access-ia.pro/llms.txt
 
+## Dossiers piliers
+
+- Entreprendre avec l’IA en Occitanie : https://access-ia.pro/guides/ia-entreprise-occitanie/
+- Facturation électronique pour PME : https://access-ia.pro/guides/facturation-electronique-pme/
+- Cybersécurité et IA en PME : https://access-ia.pro/guides/cybersecurite-pme/
+- Automatisation des PME et PMI : https://access-ia.pro/guides/automatisation-pme/
+
 Le HTML canonique de chaque page reste la source prioritaire.
 Dernière révision : 1er août 2026.

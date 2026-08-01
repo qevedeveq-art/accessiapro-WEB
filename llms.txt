@@ -15,6 +15,11 @@ pédagogiques ; leurs hypothèses et limites sont indiquées sur les pages conce
 
 - [Accueil et statut du projet](https://access-ia.pro/)
 - [Centre de ressources IA pour PME](https://access-ia.pro/ressources/)
+- [Index thématique de tous les articles](https://access-ia.pro/articles/)
+- [Entreprendre avec l’IA en Occitanie](https://access-ia.pro/guides/ia-entreprise-occitanie/)
+- [Facturation électronique pour PME](https://access-ia.pro/guides/facturation-electronique-pme/)
+- [Cybersécurité et IA en PME](https://access-ia.pro/guides/cybersecurite-pme/)
+- [Automatisation des PME et PMI](https://access-ia.pro/guides/automatisation-pme/)
 - [Guide de décision et autodiagnostic](https://access-ia.pro/guides/ia-pme/)
 - [Comparatif des principales IA cloud et locales](https://access-ia.pro/articles/comparatif-ia-cloud-locale-pme.html)
 - [10 offres IA cloud pour PME, sélection non classée](https://access-ia.pro/articles/top-10-ia-cloud-pme.html)

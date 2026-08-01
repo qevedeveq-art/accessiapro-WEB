@@ -4,38 +4,20 @@ import { readFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 
+import {
+  ARCHIVED_ROUTES,
+  CONTENT_PILLARS,
+  DATED_RESOURCE_ARTICLES,
+  EXPECTED_GENERATED_ROUTES,
+  INDEXABLE_ROUTES,
+} from "../../SEO access-ia/content/catalogue.mjs";
+
 const ROOT = path.resolve(process.argv[2] ?? ".");
 const ORIGIN = "https://access-ia.pro";
-const expectedIndexable = new Set([
-  "/",
-  "/ressources/",
-  "/guides/ia-pme/",
-  "/tarifs-ia-pme.html",
-  "/articles/rgpd-ia-entreprise.html",
-  "/articles/securite-ia-pme-fuites-donnees.html",
-  "/articles/calculateur-roi-ia-pme.html",
-  "/articles/comparatif-ia-cloud-locale-pme.html",
-  "/articles/top-10-ia-cloud-pme.html",
-  "/articles/top-10-ia-locales-pme.html",
-  "/articles/deployer-ia-locale-pme.html",
-  "/articles/ai-act-pme-obligations.html",
-  "/articles/evaluer-assistant-ia-pme.html",
-  "/methodologie.html",
-  "/articles/formation-equipe-ia.html",
-  "/conseil-ia-toulouse.html",
-  "/a-propos-quentin-devesa.html",
-]);
-const archivedAllowed = new Set([
-  "/articles/facture-electronique-2026-pme-open-source.html",
-]);
-const datedResourceArticles = new Map([
-  ["/articles/comparatif-ia-cloud-locale-pme.html", "2026-07-29"],
-  ["/articles/top-10-ia-cloud-pme.html", "2026-08-01"],
-  ["/articles/top-10-ia-locales-pme.html", "2026-08-01"],
-  ["/articles/deployer-ia-locale-pme.html", "2026-07-29"],
-  ["/articles/ai-act-pme-obligations.html", "2026-07-29"],
-  ["/articles/evaluer-assistant-ia-pme.html", "2026-07-29"],
-]);
+const expectedIndexable = new Set(INDEXABLE_ROUTES);
+const expectedGenerated = new Set(EXPECTED_GENERATED_ROUTES);
+const archivedAllowed = new Set(ARCHIVED_ROUTES);
+const datedResourceArticles = DATED_RESOURCE_ARTICLES;
 const errors = [];
 const selectionPages = new Map([
   [
@@ -102,8 +84,20 @@ const incomingFromIndexable = new Map(
 );
 const indexableMetadata = [];
 
-if (htmlFiles.length !== 46) {
-  errors.push(`46 pages HTML attendues, ${htmlFiles.length} trouvées`);
+if (htmlFiles.length !== expectedGenerated.size) {
+  errors.push(
+    `${expectedGenerated.size} pages HTML attendues, ${htmlFiles.length} trouvées`,
+  );
+}
+for (const route of expectedGenerated) {
+  if (!htmlByRoute.has(route)) {
+    errors.push(`page attendue absente : ${route}`);
+  }
+}
+for (const route of htmlByRoute.keys()) {
+  if (!expectedGenerated.has(route)) {
+    errors.push(`page HTML hors catalogue : ${route}`);
+  }
 }
 
 const publicTextFiles = allFiles.filter((file) =>
@@ -158,6 +152,13 @@ for (const file of htmlFiles) {
   );
   matchOne(contents, /<link rel="canonical" href="https:\/\/access-ia\.pro\//, "canonique absent", file);
   matchOne(contents, /<h1>[\s\S]+?<\/h1>/, "H1 absent", file);
+  matchOne(contents, /<meta name="author" content="Quentin DEVESA">/, "auteur éditorial absent", file);
+  matchOne(
+    contents,
+    /<meta http-equiv="Content-Security-Policy" content="[^"]*object-src 'none'; base-uri 'self';[^"]*">/,
+    "politique CSP attendue absente",
+    file,
+  );
 
   const forbiddenFrontendPatterns = [
     [/<script[^>]+src="https?:\/\//i, "script tiers interdit"],
@@ -217,12 +218,24 @@ for (const file of htmlFiles) {
       errors.push(`${route}: BreadcrumbList absent`);
     }
     if (datedResourceArticles.has(route)) {
-      const expectedPublished = datedResourceArticles.get(route);
-      if (!contents.includes(`"datePublished":"${expectedPublished}"`)) {
+      const expectedDates = datedResourceArticles.get(route);
+      if (!contents.includes(`"datePublished":"${expectedDates.datePublished}"`)) {
         errors.push(`${route}: datePublished absente ou incorrecte`);
+      }
+      if (!contents.includes(`"dateModified":"${expectedDates.dateModified}"`)) {
+        errors.push(`${route}: dateModified absente ou incorrecte`);
       }
       if (!/Prochaine revue :/.test(contents)) {
         errors.push(`${route}: prochaine date de revue absente`);
+      }
+      if (!/"@type":"Article"/.test(contents)) {
+        errors.push(`${route}: schéma Article absent`);
+      }
+      if (!/"author":\{"@id":"https:\/\/access-ia\.pro\/a-propos-quentin-devesa\.html#quentin-devesa"\}/.test(contents)) {
+        errors.push(`${route}: auteur absent du schéma éditorial`);
+      }
+      if (!/Contact éditorial/.test(contents)) {
+        errors.push(`${route}: canal de correction éditoriale absent`);
       }
       const sourceLinks = contents.match(
         /href="https:\/\/(?!access-ia\.pro)[^"]+"/g,
@@ -413,9 +426,29 @@ const llms = await readFile(path.join(ROOT, "llms.txt"), "utf8");
 if (llms.length > 4000) {
   errors.push(`llms.txt trop long (${llms.length} caractères)`);
 }
+for (const route of ["/articles/", ...CONTENT_PILLARS.map(({ route }) => route)]) {
+  if (!llms.includes(`${ORIGIN}${route}`)) {
+    errors.push(`llms.txt: page éditoriale prioritaire absente ${route}`);
+  }
+}
 for (const pattern of forbiddenClaims) {
   if (pattern.test(llms)) {
     errors.push(`llms.txt: motif interdit ${pattern}`);
+  }
+}
+
+const llmsFull = await readFile(path.join(ROOT, "llms-full.txt"), "utf8");
+if (llmsFull.length > 2500) {
+  errors.push(`llms-full.txt trop long (${llmsFull.length} caractères)`);
+}
+for (const { route } of CONTENT_PILLARS) {
+  if (!llmsFull.includes(`${ORIGIN}${route}`)) {
+    errors.push(`llms-full.txt: dossier pilier absent ${route}`);
+  }
+}
+for (const pattern of forbiddenClaims) {
+  if (pattern.test(llmsFull)) {
+    errors.push(`llms-full.txt: motif interdit ${pattern}`);
   }
 }
 

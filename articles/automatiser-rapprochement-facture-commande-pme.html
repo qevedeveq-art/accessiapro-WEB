@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Automatiser le rapprochement facture-commande en PME</title>
+  <meta name="description" content="Méthode pour automatiser le rapprochement commande, réception et facture : données, tolérances, exceptions, contrôle humain, sécurité et indicateurs.">
+  <meta name="author" content="Quentin DEVESA">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#0A1530">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://access-ia.pro/articles/automatiser-rapprochement-facture-commande-pme.html">
+  <link rel="alternate" type="text/plain" href="https://access-ia.pro/llms.txt" title="Contexte factuel ACCESSIA Pro">
+  <link rel="icon" href="/favicon.ico?v=8517fd92e6f8" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg?v=d23cee3a84e1">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png?v=c4efc14d8375">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/assets/css/style.css?v=058ef9e59bfe">
+  <link rel="stylesheet" href="/assets/css/seo-2026.css?v=6723b29faf5a">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://access-ia.pro/articles/automatiser-rapprochement-facture-commande-pme.html">
+  <meta property="og:title" content="Automatiser le rapprochement facture-commande en PME">
+  <meta property="og:description" content="Méthode pour automatiser le rapprochement commande, réception et facture : données, tolérances, exceptions, contrôle humain, sécurité et indicateurs.">
+  <meta property="og:image" content="https://access-ia.pro/assets/images/og-image.jpg?v=b4a00d642d43">
+  <meta property="og:image:alt" content="ACCESSIA Pro — ressources IA pour PME">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="ACCESSIA Pro">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Automatiser le rapprochement facture-commande en PME">
+  <meta name="twitter:description" content="Méthode pour automatiser le rapprochement commande, réception et facture : données, tolérances, exceptions, contrôle humain, sécurité et indicateurs.">
+  <meta name="twitter:image" content="https://access-ia.pro/assets/images/og-image.jpg?v=b4a00d642d43">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; form-action 'self' mailto:; connect-src 'self'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa","name":"Quentin DEVESA","url":"https://access-ia.pro/a-propos-quentin-devesa.html","description":"Porteur du projet ACCESSIA Pro et responsable des ressources éditoriales publiées sur access-ia.pro.","sameAs":["https://www.linkedin.com/in/quentin-devesa-cyber04a069"]},{"@type":"WebSite","@id":"https://access-ia.pro/#website","name":"ACCESSIA Pro","url":"https://access-ia.pro/","inLanguage":"fr-FR","publisher":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"}},{"@type":"Article","@id":"https://access-ia.pro/articles/automatiser-rapprochement-facture-commande-pme.html#page","url":"https://access-ia.pro/articles/automatiser-rapprochement-facture-commande-pme.html","name":"Automatiser le rapprochement facture-commande en PME","description":"Méthode pour automatiser le rapprochement commande, réception et facture : données, tolérances, exceptions, contrôle humain, sécurité et indicateurs.","inLanguage":"fr-FR","dateModified":"2026-08-01","isPartOf":{"@id":"https://access-ia.pro/#website"},"author":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"},"datePublished":"2026-08-01","citation":["https://www.impots.gouv.fr/professionnel/je-decouvre-la-facturation-electronique","https://www.impots.gouv.fr/facturation-electronique-et-plateformes-agreees","https://www.cybermalveillance.gouv.fr/tous-nos-contenus/fiches-reflexes/que-faire-en-cas-de-fraude-au-virement-ou-au-faux-rib/ee028135-3a8b-46d6-87b8-2d79d4edd72a","https://www.cnil.fr/fr/securite-gerer-la-sous-traitance","https://www.economie.gouv.fr/entreprises/gerer-son-entreprise-au-quotidien/gerer-sa-comptabilite-et-ses-demarches/mentions-obligatoires-dune-facture-tout-savoir"]},{"@type":"BreadcrumbList","@id":"https://access-ia.pro/articles/automatiser-rapprochement-facture-commande-pme.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://access-ia.pro/"},{"@type":"ListItem","position":2,"name":"Ressources","item":"https://access-ia.pro/ressources/"},{"@type":"ListItem","position":3,"name":"Automatiser le rapprochement facture-commande sans perdre le contrôle","item":"https://access-ia.pro/articles/automatiser-rapprochement-facture-commande-pme.html"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
+  <div class="seo-prelaunch" role="status">
+    <div class="seo-container"><strong>Pré-lancement :</strong> projet en préparation, ouverture commerciale prévue en janvier 2027.</div>
+  </div>
+
+    <header class="seo-header">
+      <div class="seo-container seo-header-inner">
+        <a class="seo-brand" href="/" aria-label="ACCESSIA Pro — Accueil">
+          <img src="/assets/images/logo-icon.webp?v=d60b5faca07c" alt="" width="36" height="36">
+          <span>ACCESSIA <strong>Pro</strong></span>
+        </a>
+        <nav aria-label="Navigation principale">
+          <ul class="seo-nav">
+            <li><a href="/guides/ia-pme/">Décider</a></li>
+            <li><a href="/articles/rgpd-ia-entreprise.html">Protéger</a></li>
+            <li><a href="/articles/calculateur-roi-ia-pme.html">Mesurer</a></li>
+            <li><a href="/methodologie.html">Déployer</a></li>
+            <li><a href="/ressources/">Ressources</a></li>
+          </ul>
+        </nav>
+        <a class="seo-button seo-button-small" href="mailto:contact@access-ia.pro?subject=Échange%20exploratoire%20ACCESSIA%20Pro">Échange exploratoire</a>
+      </div>
+    </header>
+  <main id="contenu-principal" class="seo-main">
+    <section class="seo-hero">
+      <div class="seo-container seo-reading">
+        <nav class="seo-breadcrumb" aria-label="Fil d’Ariane">
+          <ol>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/ressources/">Ressources</a></li>
+            <li aria-current="page">Automatiser le rapprochement facture-commande sans perdre le contrôle</li>
+          </ol>
+        </nav>
+        <p class="seo-kicker">Automatisation comptable — contrôle avant vitesse</p>
+        <h1>Automatiser le rapprochement facture-commande sans perdre le contrôle</h1>
+        <p class="seo-lede">Les données structurées rendent le rapprochement plus fiable, mais ne transforment pas une facture en ordre de paiement. Une PME peut automatiser les contrôles déterministes et la préparation comptable, puis réserver aux personnes les exceptions, changements sensibles et validations engageantes.</p>
+        <p class="seo-editorial-meta">Publié le 1er août 2026 · Vérifié le 1er août 2026 · Prochaine revue : 1er septembre 2026</p>
+
+      </div>
+    </section>
+
+      <section class="seo-section">
+        <div class="seo-container seo-reading">
+          <div class="seo-status-card">
+            <p class="seo-eyebrow">Objectif du processus</p>
+            <h2>Automatiser la preuve, pas l’exception</h2>
+            <p>Le rapprochement à trois voies compare <strong>la commande</strong>, <strong>la réception du bien ou du service</strong> et <strong>la facture</strong>. Une correspondance dans les tolérances autorisées peut préparer l’enregistrement ou l’approbation. Une différence doit être expliquée, assignée et résolue.</p>
+            <p>La réforme apporte des données structurées et des statuts d’échange. Elle ne prouve pas qu’une livraison a eu lieu, qu’un prix négocié est correct, qu’un nouveau RIB est légitime ou qu’un paiement doit être exécuté. Ces contrôles restent dans le processus de l’entreprise.</p>
+          </div>
+        </div>
+      </section>
+      <section class="seo-section seo-section-alt">
+        <div class="seo-container">
+          <h2>Le flux cible en dix étapes</h2>
+          <ol class="seo-steps">
+            <li><strong>Recevoir par le canal autorisé :</strong> récupérer facture, données structurées, identifiants et statuts depuis la plateforme agréée.</li>
+            <li><strong>Contrôler le fichier :</strong> format, schéma, calculs, intégrité et présence des données nécessaires.</li>
+            <li><strong>Identifier le fournisseur :</strong> rapprocher les identifiants officiels et le référentiel sans créer automatiquement un tiers sur un nom ressemblant.</li>
+            <li><strong>Détecter les doublons :</strong> combiner identifiant d’échange, numéro, fournisseur, date et montants ; conserver les alertes.</li>
+            <li><strong>Retrouver la commande :</strong> utiliser une référence structurée, puis une recherche assistée seulement si elle manque.</li>
+            <li><strong>Rapprocher la réception :</strong> quantités, unités, dates, qualité et validation du demandeur.</li>
+            <li><strong>Appliquer les tolérances :</strong> règles approuvées par catégorie, montant et risque, jamais une tolérance globale implicite.</li>
+            <li><strong>Router les exceptions :</strong> prix, quantité, TVA, réception, référence ou fournisseur vers le bon responsable.</li>
+            <li><strong>Valider et comptabiliser :</strong> séparation des tâches, piste d’audit et décision humaine selon les seuils.</li>
+            <li><strong>Préparer le paiement :</strong> contrôle indépendant du bénéficiaire et validation bancaire ; la facture n’autorise pas seule le virement.</li>
+          </ol>
+        </div>
+      </section>
+      <section class="seo-section">
+        <div class="seo-container">
+          <h2>Données minimales par objet</h2>
+          <div class="seo-table-wrap">
+            <table>
+              <caption>Données à relier sans écraser les sources</caption>
+              <thead><tr><th scope="col">Objet</th><th scope="col">Données clés</th><th scope="col">Responsable de qualité</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Fournisseur</th><td>SIREN, TVA, établissement, contrat, coordonnées et statut du compte.</td><td>Achats ou comptabilité fournisseurs selon l’organisation.</td></tr>
+                <tr><th scope="row">Commande</th><td>Numéro, lignes, article/service, quantité, unité, prix, taxe, centre de coût, demandeur et approbation.</td><td>Acheteur et demandeur.</td></tr>
+                <tr><th scope="row">Réception</th><td>Date, quantité, réserves, service fait, bon ou preuve associée.</td><td>Réceptionnaire ou responsable du service fait.</td></tr>
+                <tr><th scope="row">Facture</th><td>Identifiants, lignes, montants, taxes, échéance, références, données structurées et statuts.</td><td>Fournisseur pour l’émission ; comptabilité pour le traitement reçu.</td></tr>
+                <tr><th scope="row">Paiement</th><td>Bénéficiaire validé, compte bancaire, échéance, approbations, lot et retour bancaire.</td><td>Trésorerie avec séparation des fonctions.</td></tr>
+                <tr><th scope="row">Journal</th><td>Événement, horodatage, acteur, source, valeur avant/après, motif et décision.</td><td>Propriétaire du système et contrôle interne.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="seo-section seo-section-alt">
+        <div class="seo-container seo-two-columns">
+          <div>
+            <h2>Règles déterministes à automatiser d’abord</h2>
+            <ul>
+              <li>Calcul des totaux, taxes et arrondis.</li>
+              <li>Présence et validité de forme des identifiants.</li>
+              <li>Unicité de la facture et de l’identifiant d’échange.</li>
+              <li>Correspondance exacte des références de commande.</li>
+              <li>Quantité facturée inférieure ou égale à la quantité reçue restante.</li>
+              <li>Prix dans la tolérance approuvée pour le contrat.</li>
+              <li>Échéance conforme aux conditions enregistrées.</li>
+              <li>Statut du fournisseur et présence des approbations.</li>
+            </ul>
+          </div>
+          <aside class="seo-note">
+            <h3>Ce qui doit rester bloquant</h3>
+            <ul>
+              <li>Nouveau fournisseur non vérifié.</li>
+              <li>Changement de RIB.</li>
+              <li>Absence de commande lorsqu’elle est obligatoire.</li>
+              <li>Service non confirmé.</li>
+              <li>Dépassement de tolérance.</li>
+              <li>Doublon probable.</li>
+              <li>Conflit de rôles ou approbation manquante.</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+      <section class="seo-section">
+        <div class="seo-container">
+          <h2>Définir des tolérances explicables</h2>
+          <div class="seo-table-wrap">
+            <table>
+              <caption>Exemples de règles à adapter et approuver, non recommandations chiffrées</caption>
+              <thead><tr><th scope="col">Écart</th><th scope="col">Paramètre</th><th scope="col">Décision possible</th><th scope="col">Trace</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Prix</th><td>Montant absolu et pourcentage par catégorie ou contrat.</td><td>Acceptation dans la tolérance ou revue achats.</td><td>Valeur commande, valeur facture, seuil et règle.</td></tr>
+                <tr><th scope="row">Quantité</th><td>Surfacturation interdite ou écart admis pour certaines unités.</td><td>Blocage, réception complémentaire ou litige.</td><td>Commandé, déjà reçu, déjà facturé et solde.</td></tr>
+                <tr><th scope="row">Frais</th><td>Type de frais prévu au contrat et plafond.</td><td>Rapprochement ou approbation dédiée.</td><td>Clause ou règle source.</td></tr>
+                <tr><th scope="row">Date</th><td>Période de service ou fenêtre de livraison.</td><td>Acceptation, report ou demande de justification.</td><td>Date prévue, date constatée et motif.</td></tr>
+                <tr><th scope="row">Arrondi</th><td>Écart technique maximal lié au calcul.</td><td>Acceptation automatique si la règle est vérifiée.</td><td>Mode de calcul et différence.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="seo-small">Les seuils doivent être définis par l’entreprise à partir de ses contrats, risques et contrôles. Ce tableau ne fournit volontairement aucun seuil universel.</p>
+        </div>
+      </section>
+      <section class="seo-section seo-section-alt">
+        <div class="seo-container">
+          <h2>Prévenir la fraude au faux RIB</h2>
+          <div class="seo-card-grid seo-card-grid-three">
+            <article class="seo-card"><h3>Canal séparé</h3><p>Confirmer toute création ou modification de coordonnées bancaires via un contact déjà connu, avec un canal distinct du message reçu.</p></article>
+            <article class="seo-card"><h3>Double validation</h3><p>Séparer la personne qui modifie le référentiel de celle qui valide le paiement, selon des seuils et rôles documentés.</p></article>
+            <article class="seo-card"><h3>Alerte non contournable</h3><p>Bloquer un paiement suivant un changement de RIB tant que la vérification n’est pas enregistrée.</p></article>
+            <article class="seo-card"><h3>Comptes nominatifs</h3><p>Éviter les comptes partagés, activer l’authentification forte et revoir les habilitations après chaque mouvement.</p></article>
+            <article class="seo-card"><h3>Journal protégé</h3><p>Tracer auteur, date, ancienne valeur, nouvelle valeur, preuve de contrôle et approbateur.</p></article>
+            <article class="seo-card"><h3>Réaction préparée</h3><p>En cas de fraude, alerter immédiatement la banque, préserver les preuves, sécuriser les comptes et suivre les démarches officielles.</p></article>
+          </div>
+          <p><a href="https://www.cybermalveillance.gouv.fr/tous-nos-contenus/fiches-reflexes/que-faire-en-cas-de-fraude-au-virement-ou-au-faux-rib/ee028135-3a8b-46d6-87b8-2d79d4edd72a" rel="noopener noreferrer">Consulter la fiche réflexe officielle sur la fraude au virement et au faux RIB</a>.</p>
+          <div class="seo-link-row">
+            <a href="/guides/cybersecurite-pme/">Plan cybersécurité PME</a>
+            <a href="/guides/automatisation-pme/">Méthode d’automatisation PME</a>
+          </div>
+        </div>
+      </section>
+      <section class="seo-section">
+        <div class="seo-container seo-two-columns">
+          <div>
+            <h2>Place possible de l’IA</h2>
+            <p>L’IA peut proposer une correspondance lorsque la référence est absente, normaliser un libellé, classer une exception ou suggérer un compte. Elle intervient après les contrôles structurés, avec des données autorisées et sans modifier la pièce originale.</p>
+            <h3>Exigences minimales</h3>
+            <ul>
+              <li>Cas d’usage et données autorisées documentés.</li>
+              <li>Jeu de test synthétique avec erreurs et faux positifs.</li>
+              <li>Suggestion séparée de la donnée source.</li>
+              <li>Motif ou éléments de rapprochement visibles.</li>
+              <li>Seuil de confiance utilisé pour router, pas pour masquer.</li>
+              <li>Validation humaine des décisions engageantes.</li>
+              <li>Mesure continue des erreurs et possibilité de désactivation.</li>
+            </ul>
+          </div>
+          <aside class="seo-note">
+            <h3>Interdits de conception</h3>
+            <p>Ne jamais laisser un modèle génératif inventer un taux de TVA, une référence, une réception, un RIB ou une approbation. Ne jamais utiliser sa seule réponse pour libérer un paiement.</p>
+            <a href="/articles/evaluer-assistant-ia-pme.html">Évaluer un assistant sur des cas contrôlés</a>
+          </aside>
+        </div>
+      </section>
+      <section class="seo-section seo-section-alt">
+        <div class="seo-container">
+          <h2>Indicateurs de pilotage</h2>
+          <div class="seo-table-wrap">
+            <table>
+              <caption>Mesures à comparer à une période de référence</caption>
+              <thead><tr><th scope="col">Indicateur</th><th scope="col">Définition</th><th scope="col">Limite d’interprétation</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Taux de rapprochement direct</th><td>Factures rapprochées sans exception sur factures éligibles.</td><td>Un taux élevé peut masquer des tolérances trop larges.</td></tr>
+                <tr><th scope="row">Délai de traitement</th><td>Temps entre réception et décision, par type de facture.</td><td>Séparer temps d’attente et temps de travail.</td></tr>
+                <tr><th scope="row">Exceptions</th><td>Nombre et nature des écarts, par fournisseur et cause.</td><td>La baisse peut venir d’un reclassement ou d’une perte de détection.</td></tr>
+                <tr><th scope="row">Doublons bloqués</th><td>Doublons confirmés parmi les alertes.</td><td>Mesurer aussi les faux positifs.</td></tr>
+                <tr><th scope="row">Corrections après comptabilisation</th><td>Écritures ou paiements repris après validation.</td><td>Indicateur tardif à analyser par gravité.</td></tr>
+                <tr><th scope="row">Reprises humaines</th><td>Décisions automatiques annulées ou corrigées.</td><td>Exige un échantillonnage des cas acceptés.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="seo-note-inline"><strong>Pas de promesse de gain :</strong> mesurer d’abord la situation actuelle sur un échantillon, puis comparer à périmètre et qualité constants. L’automatisation peut déplacer du temps vers le traitement des exceptions sans réduire immédiatement la charge totale.</p>
+        </div>
+      </section>
+      <section class="seo-section">
+        <div class="seo-container seo-reading">
+          <h2>Pilote de quatre semaines</h2>
+          <ol class="seo-steps">
+            <li><strong>Semaine 1 :</strong> choisir un périmètre réversible, mesurer la référence et anonymiser trente à cinquante cas représentatifs.</li>
+            <li><strong>Semaine 2 :</strong> configurer contrôles déterministes, rôles, journaux et file d’exceptions dans un environnement de test.</li>
+            <li><strong>Semaine 3 :</strong> exécuter cas normaux, erreurs, doublons, changements de RIB, indisponibilité et restauration.</li>
+            <li><strong>Semaine 4 :</strong> comparer qualité, délai, faux positifs, reprises et risques ; décider de corriger, étendre ou arrêter.</li>
+          </ol>
+          <p>Le pilote utilise des données synthétiques ou correctement anonymisées et n’exécute aucun paiement réel. La mise en production exige ensuite validation comptable, sécurité, droits, sauvegarde et procédure d’incident.</p>
+        </div>
+      </section>
+      <section class="seo-section seo-section-alt">
+        <div class="seo-container seo-reading">
+          <h2>Sources officielles</h2>
+          <ul class="seo-source-list">
+            <li><a href="https://www.impots.gouv.fr/professionnel/je-decouvre-la-facturation-electronique" rel="noopener noreferrer">DGFiP — facture électronique, e-reporting et données de paiement</a>, modifiée le 26 mai 2026.</li>
+            <li><a href="https://www.impots.gouv.fr/facturation-electronique-et-plateformes-agreees" rel="noopener noreferrer">DGFiP — fonctions et garanties des plateformes agréées</a>.</li>
+            <li><a href="https://www.cybermalveillance.gouv.fr/tous-nos-contenus/fiches-reflexes/que-faire-en-cas-de-fraude-au-virement-ou-au-faux-rib/ee028135-3a8b-46d6-87b8-2d79d4edd72a" rel="noopener noreferrer">Cybermalveillance.gouv.fr — fraude au virement ou faux RIB</a>, mise à jour le 7 mai 2026.</li>
+            <li><a href="https://www.cnil.fr/fr/securite-gerer-la-sous-traitance" rel="noopener noreferrer">CNIL — sécurité et sous-traitance</a>, 14 mars 2024.</li>
+            <li><a href="https://www.economie.gouv.fr/entreprises/gerer-son-entreprise-au-quotidien/gerer-sa-comptabilite-et-ses-demarches/mentions-obligatoires-dune-facture-tout-savoir" rel="noopener noreferrer">Ministère de l’Économie — mentions et conservation des factures</a>.</li>
+          </ul>
+          <p class="seo-small">Sources contrôlées le 1er août 2026. Cette méthode doit être adaptée avec les responsables comptables, fiscaux, achats, sécurité et protection des données de l’entreprise.</p>
+          <a class="seo-button" href="/guides/facturation-electronique-pme/">Revenir au guide facturation électronique</a>
+        </div>
+      </section>
+  </main>
+
+    <footer class="seo-footer">
+      <div class="seo-container seo-footer-grid">
+        <div>
+          <p class="seo-footer-title">ACCESSIA Pro</p>
+          <p>Projet de cabinet en préparation à Toulouse. Ouverture commerciale prévue en janvier 2027.</p>
+        </div>
+        <div>
+          <p class="seo-footer-title">Repères</p>
+          <ul>
+            <li><a href="/tarifs-ia-pme.html">Construire un budget</a></li>
+            <li><a href="/articles/">Tous les articles</a></li>
+            <li><a href="/ressources/">Toutes les ressources</a></li>
+            <li><a href="/conseil-ia-toulouse.html">Le projet à Toulouse</a></li>
+            <li><a href="/a-propos-quentin-devesa.html">À propos de l’auteur</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="seo-footer-title">Contact éditorial</p>
+          <p><a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a></p>
+          <p><a href="/llms.txt">Contexte pour assistants IA</a></p>
+        </div>
+      </div>
+      <div class="seo-container seo-footer-bottom">
+        <span>Dernière révision substantielle : 1er août 2026</span>
+        <span>Contenus informatifs — aucune prestation commerciale ouverte à ce jour</span>
+      </div>
+    </footer>
+
+</body>
+</html>
