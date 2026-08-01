@@ -15,6 +15,8 @@ const expectedIndexable = new Set([
   "/articles/securite-ia-pme-fuites-donnees.html",
   "/articles/calculateur-roi-ia-pme.html",
   "/articles/comparatif-ia-cloud-locale-pme.html",
+  "/articles/top-10-ia-cloud-pme.html",
+  "/articles/top-10-ia-locales-pme.html",
   "/articles/deployer-ia-locale-pme.html",
   "/articles/ai-act-pme-obligations.html",
   "/articles/evaluer-assistant-ia-pme.html",
@@ -28,11 +30,29 @@ const archivedAllowed = new Set([
 ]);
 const datedResourceArticles = new Set([
   "/articles/comparatif-ia-cloud-locale-pme.html",
+  "/articles/top-10-ia-cloud-pme.html",
+  "/articles/top-10-ia-locales-pme.html",
   "/articles/deployer-ia-locale-pme.html",
   "/articles/ai-act-pme-obligations.html",
   "/articles/evaluer-assistant-ia-pme.html",
 ]);
 const errors = [];
+const selectionPages = new Map([
+  [
+    "/articles/top-10-ia-cloud-pme.html",
+    {
+      label: "sélection cloud",
+      minimumSourceLinks: 20,
+    },
+  ],
+  [
+    "/articles/top-10-ia-locales-pme.html",
+    {
+      label: "sélection locale",
+      minimumSourceLinks: 20,
+    },
+  ],
+]);
 
 async function walk(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -82,8 +102,8 @@ const incomingFromIndexable = new Map(
 );
 const indexableMetadata = [];
 
-if (htmlFiles.length !== 44) {
-  errors.push(`44 pages HTML attendues, ${htmlFiles.length} trouvées`);
+if (htmlFiles.length !== 46) {
+  errors.push(`46 pages HTML attendues, ${htmlFiles.length} trouvées`);
 }
 
 const publicTextFiles = allFiles.filter((file) =>
@@ -176,6 +196,29 @@ for (const file of htmlFiles) {
       ) ?? [];
       if (sourceLinks.length < 4) {
         errors.push(`${route}: moins de quatre liens vers des sources primaires`);
+      }
+    }
+    if (selectionPages.has(route)) {
+      const requirements = selectionPages.get(route);
+      const entries = contents.match(/data-selection-entry/g) ?? [];
+      const sourceLinks = contents.match(
+        /href="https:\/\/(?!access-ia\.pro)[^"]+"/g,
+      ) ?? [];
+      if (entries.length !== 10) {
+        errors.push(
+          `${route}: ${requirements.label} attendue avec 10 entrées, ${entries.length} trouvées`,
+        );
+      }
+      if (!/Sélection non classée/i.test(contents)) {
+        errors.push(`${route}: transparence sur la sélection non classée absente`);
+      }
+      if (!/sans partenariat commercial/i.test(contents)) {
+        errors.push(`${route}: déclaration d'indépendance éditoriale absente`);
+      }
+      if (sourceLinks.length < requirements.minimumSourceLinks) {
+        errors.push(
+          `${route}: ${sourceLinks.length} liens de source, minimum ${requirements.minimumSourceLinks}`,
+        );
       }
     }
   }
