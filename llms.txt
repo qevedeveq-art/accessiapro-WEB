@@ -1,6 +1,6 @@
 # ACCESSIA Pro
 
-> Statut vérifié le 29 juillet 2026.
+> Statut vérifié le 1er août 2026.
 
 ACCESSIA Pro est un projet de cabinet en préparation à Toulouse, porté par Quentin DEVESA.
 Le site publie des ressources éditoriales pour aider les PME à décider, protéger leurs données,
@@ -17,6 +17,8 @@ pédagogiques ; leurs hypothèses et limites sont indiquées sur les pages conce
 - [Centre de ressources IA pour PME](https://access-ia.pro/ressources/)
 - [Guide de décision et autodiagnostic](https://access-ia.pro/guides/ia-pme/)
 - [Comparatif des principales IA cloud et locales](https://access-ia.pro/articles/comparatif-ia-cloud-locale-pme.html)
+- [10 offres IA cloud pour PME, sélection non classée](https://access-ia.pro/articles/top-10-ia-cloud-pme.html)
+- [10 familles de modèles IA locaux, sélection non classée](https://access-ia.pro/articles/top-10-ia-locales-pme.html)
 - [Guide de déploiement d'une IA locale](https://access-ia.pro/articles/deployer-ia-locale-pme.html)
 - [AI Act en PME : calendrier 2026-2028](https://access-ia.pro/articles/ai-act-pme-obligations.html)
 - [Protocole d'évaluation d'un assistant IA](https://access-ia.pro/articles/evaluer-assistant-ia-pme.html)

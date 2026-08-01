@@ -5,4 +5,4 @@ Le contexte factuel et la liste des pages de référence sont maintenus dans :
 https://access-ia.pro/llms.txt
 
 Le HTML canonique de chaque page reste la source prioritaire.
-Dernière révision : 29 juillet 2026.
+Dernière révision : 1er août 2026.

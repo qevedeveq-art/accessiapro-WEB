@@ -307,6 +307,18 @@ select:focus-visible {
   border-radius: 0.85rem;
 }
 
+.seo-table-wrap:focus-visible {
+  outline: 3px solid var(--seo-blue);
+  outline-offset: 3px;
+}
+
+.seo-table-hint {
+  display: none;
+  margin: 0.75rem 0 -0.75rem;
+  color: var(--seo-muted);
+  font-size: 0.9rem;
+}
+
 .seo-table-wrap table {
   width: 100%;
   min-width: 680px;
@@ -536,6 +548,10 @@ select:focus-visible {
 }
 
 @media (max-width: 850px) {
+  .seo-table-hint {
+    display: block;
+  }
+
   .seo-header .seo-button-small {
     display: none;
   }
