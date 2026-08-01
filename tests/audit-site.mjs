@@ -159,6 +159,38 @@ for (const file of htmlFiles) {
   matchOne(contents, /<link rel="canonical" href="https:\/\/access-ia\.pro\//, "canonique absent", file);
   matchOne(contents, /<h1>[\s\S]+?<\/h1>/, "H1 absent", file);
 
+  const forbiddenFrontendPatterns = [
+    [/<script[^>]+src="https?:\/\//i, "script tiers interdit"],
+    [/<link[^>]+href="https?:\/\/[^"]+"[^>]+rel="stylesheet"/i, "style tiers interdit"],
+    [/\son[a-z]+\s*=/i, "gestionnaire d'événement HTML inline interdit"],
+    [/(?:href|src)="(?:javascript:|data:text\/html)/i, "URL active interdite"],
+  ];
+  for (const [pattern, label] of forbiddenFrontendPatterns) {
+    if (pattern.test(contents)) {
+      errors.push(`${route}: ${label}`);
+    }
+  }
+
+  for (const script of contents.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)) {
+    const attributes = script[1];
+    const body = script[2].trim();
+    const isJsonLd = /type="application\/ld\+json"/.test(attributes);
+    const isLocalExternal = /src="\/(?!\/)[^"]+"/.test(attributes) && !body;
+    if (!isJsonLd && !isLocalExternal) {
+      errors.push(`${route}: script inline exécutable interdit`);
+    }
+  }
+
+  for (const anchor of contents.matchAll(/<a\b([^>]*)>/g)) {
+    const attributes = anchor[1];
+    if (
+      /target="_blank"/.test(attributes) &&
+      !/rel="[^"]*noopener[^"]*"/.test(attributes)
+    ) {
+      errors.push(`${route}: lien target=_blank sans noopener`);
+    }
+  }
+
   if (expectedIndexable.has(route) && isNoIndex) {
     errors.push(`${route}: page cible marquée noindex`);
   }
