@@ -80,14 +80,19 @@ jobs:
             --filter="target~'/global/targetHttpsProxies/${GCP_HTTPS_PROXY}$'" \
             --format="table(name,IPAddress,IPProtocol,portRange,target)"
 
-          FORWARDING_IPS="$(gcloud compute forwarding-rules list \
+          gcloud compute forwarding-rules list \
             --global \
-            --filter="target~'/global/targetHttpsProxies/${GCP_HTTPS_PROXY}$' AND IPProtocol=TCP AND portRange=443-443" \
-            --format='value(IPAddress)')"
-          if [ "$FORWARDING_IPS" != "$GCP_HTTPS_IP" ]; then
-            echo "ERROR: HTTPS proxy does not resolve uniquely to $GCP_HTTPS_IP:443"
-            exit 1
-          fi
+            --filter="target~'/global/targetHttpsProxies/${GCP_HTTPS_PROXY}$'" \
+            --format=json \
+            | jq -e --arg ip "$GCP_HTTPS_IP" '
+                (length == 1) and
+                (.[0].IPAddress == $ip) and
+                (.[0].IPProtocol == "TCP") and
+                (.[0].portRange == "443-443")
+              ' >/dev/null || {
+                echo "ERROR: HTTPS proxy does not resolve uniquely to $GCP_HTTPS_IP:443"
+                exit 1
+              }
 
       - name: Prepare DNS authorization and certificate
         if: inputs.mode == 'prepare'
