@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://access-ia.pro/</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-08-01</lastmod>
   </url>
   <url>
     <loc>https://access-ia.pro/articles/</loc>
@@ -18,19 +18,19 @@
   </url>
   <url>
     <loc>https://access-ia.pro/tarifs-ia-pme.html</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-08-01</lastmod>
   </url>
   <url>
     <loc>https://access-ia.pro/articles/rgpd-ia-entreprise.html</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-08-01</lastmod>
   </url>
   <url>
     <loc>https://access-ia.pro/articles/securite-ia-pme-fuites-donnees.html</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-08-01</lastmod>
   </url>
   <url>
     <loc>https://access-ia.pro/articles/calculateur-roi-ia-pme.html</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-08-01</lastmod>
   </url>
   <url>
     <loc>https://access-ia.pro/articles/comparatif-ia-cloud-locale-pme.html</loc>
@@ -58,11 +58,11 @@
   </url>
   <url>
     <loc>https://access-ia.pro/methodologie.html</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-08-01</lastmod>
   </url>
   <url>
     <loc>https://access-ia.pro/articles/formation-equipe-ia.html</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-08-01</lastmod>
   </url>
   <url>
     <loc>https://access-ia.pro/conseil-ia-toulouse.html</loc>
@@ -226,6 +226,22 @@
   </url>
   <url>
     <loc>https://access-ia.pro/articles/ia-tourisme-occitanie.html</loc>
+    <lastmod>2026-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://access-ia.pro/articles/diag-data-ia-pme-occitanie.html</loc>
+    <lastmod>2026-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://access-ia.pro/articles/facturation-electronique-cybersecurite-pme.html</loc>
+    <lastmod>2026-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://access-ia.pro/articles/gouvernance-acces-ia-pme.html</loc>
+    <lastmod>2026-08-01</lastmod>
+  </url>
+  <url>
+    <loc>https://access-ia.pro/articles/automatisation-no-code-rpa-api-agent-ia-pme.html</loc>
     <lastmod>2026-08-01</lastmod>
   </url>
 </urlset>

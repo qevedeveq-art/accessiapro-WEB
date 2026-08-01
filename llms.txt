@@ -33,6 +33,10 @@ pédagogiques ; leurs hypothèses et limites sont indiquées sur les pages conce
 - [Sécurité et classification des données](https://access-ia.pro/articles/securite-ia-pme-fuites-donnees.html)
 - [Calculateur ROI transparent](https://access-ia.pro/articles/calculateur-roi-ia-pme.html)
 - [Budget d'un projet IA](https://access-ia.pro/tarifs-ia-pme.html)
+- [Diag Data IA pour une PME d'Occitanie](https://access-ia.pro/articles/diag-data-ia-pme-occitanie.html)
+- [Facturation électronique et cybersécurité](https://access-ia.pro/articles/facturation-electronique-cybersecurite-pme.html)
+- [Gouvernance des accès aux outils IA](https://access-ia.pro/articles/gouvernance-acces-ia-pme.html)
+- [Choisir entre no-code, RPA, API et agent IA](https://access-ia.pro/articles/automatisation-no-code-rpa-api-agent-ia-pme.html)
 - [Quentin DEVESA et politique éditoriale](https://access-ia.pro/a-propos-quentin-devesa.html)
 
 ## Citation factuelle suggérée

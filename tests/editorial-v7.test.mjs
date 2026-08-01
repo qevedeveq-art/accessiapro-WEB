@@ -102,7 +102,7 @@ test("the generated site indexes every v7 page and restores the article catalogu
 test("sitemap and LLM discovery surfaces expose the expanded catalogue", async () => {
   const sitemap = await readFile(path.join(ROOT, "sitemap.xml"), "utf8");
   const locations = sitemap.match(/<loc>/g) ?? [];
-  assert.equal(locations.length, 57);
+  assert.equal(locations.length, 61);
 
   const llms = await readFile(path.join(ROOT, "llms.txt"), "utf8");
   const full = await readFile(path.join(ROOT, "llms-full.txt"), "utf8");
@@ -130,5 +130,5 @@ test("the build produces the expected public HTML surface", async () => {
   }
 
   const htmlFiles = (await walk(ROOT)).filter((file) => file.endsWith(".html"));
-  assert.equal(htmlFiles.length, 66);
+  assert.equal(htmlFiles.length, 70);
 });

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gouvernance des accès IA en PME : rôles et contrôles</title>
+  <meta name="description" content="Organiser les accès aux outils IA d’une PME : comptes, rôles, données, connecteurs, journaux, revues, départs et procédure d’exception.">
+  <meta name="author" content="Quentin DEVESA">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#0A1530">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://access-ia.pro/articles/gouvernance-acces-ia-pme.html">
+  <link rel="alternate" type="text/plain" href="https://access-ia.pro/llms.txt" title="Contexte factuel ACCESSIA Pro">
+  <link rel="icon" href="/favicon.ico?v=8517fd92e6f8" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg?v=d23cee3a84e1">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png?v=c4efc14d8375">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/assets/css/style.css?v=058ef9e59bfe">
+  <link rel="stylesheet" href="/assets/css/seo-2026.css?v=2e06a915d3f6">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://access-ia.pro/articles/gouvernance-acces-ia-pme.html">
+  <meta property="og:title" content="Gouvernance des accès IA en PME : rôles et contrôles">
+  <meta property="og:description" content="Organiser les accès aux outils IA d’une PME : comptes, rôles, données, connecteurs, journaux, revues, départs et procédure d’exception.">
+  <meta property="og:image" content="https://access-ia.pro/assets/images/og-image.jpg?v=b4a00d642d43">
+  <meta property="og:image:alt" content="ACCESSIA Pro — ressources IA pour PME">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="ACCESSIA Pro">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gouvernance des accès IA en PME : rôles et contrôles">
+  <meta name="twitter:description" content="Organiser les accès aux outils IA d’une PME : comptes, rôles, données, connecteurs, journaux, revues, départs et procédure d’exception.">
+  <meta name="twitter:image" content="https://access-ia.pro/assets/images/og-image.jpg?v=b4a00d642d43">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; form-action 'self' mailto:; connect-src 'self'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa","name":"Quentin DEVESA","url":"https://access-ia.pro/a-propos-quentin-devesa.html","description":"Porteur du projet ACCESSIA Pro et responsable des ressources éditoriales publiées sur access-ia.pro.","sameAs":["https://www.linkedin.com/in/quentin-devesa-cyber04a069"]},{"@type":"WebSite","@id":"https://access-ia.pro/#website","name":"ACCESSIA Pro","url":"https://access-ia.pro/","inLanguage":"fr-FR","publisher":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"}},{"@type":"Article","@id":"https://access-ia.pro/articles/gouvernance-acces-ia-pme.html#page","url":"https://access-ia.pro/articles/gouvernance-acces-ia-pme.html","name":"Gouvernance des accès IA en PME : rôles et contrôles","description":"Organiser les accès aux outils IA d’une PME : comptes, rôles, données, connecteurs, journaux, revues, départs et procédure d’exception.","inLanguage":"fr-FR","dateModified":"2026-08-01","isPartOf":{"@id":"https://access-ia.pro/#website"},"author":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"},"datePublished":"2026-08-01","citation":["https://www.cnil.fr/fr/securite-gerer-les-habilitations","https://www.cnil.fr/fr/recommandation-mfa","https://www.cnil.fr/fr/guide-de-la-securite-des-donnees-personnelles","https://www.cnil.fr/fr/ia-comment-etre-en-conformite-avec-le-rgpd","https://cyber.gouv.fr/guide/guide-dhygiene-informatique"]},{"@type":"BreadcrumbList","@id":"https://access-ia.pro/articles/gouvernance-acces-ia-pme.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://access-ia.pro/"},{"@type":"ListItem","position":2,"name":"Ressources","item":"https://access-ia.pro/ressources/"},{"@type":"ListItem","position":3,"name":"Comment gouverner les accès aux outils IA dans une PME ?","item":"https://access-ia.pro/articles/gouvernance-acces-ia-pme.html"}]}]}</script>
+</head>
+<body data-pillar="cyber" data-content-type="article">
+  <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
+  <div class="seo-scroll-progress" aria-hidden="true"></div>
+  <div class="seo-prelaunch" role="status">
+    <div class="seo-container"><strong>Pré-lancement :</strong> projet en préparation, ouverture commerciale prévue en janvier 2027.</div>
+  </div>
+
+    <header class="seo-header">
+      <div class="seo-container seo-header-inner">
+        <a class="seo-brand" href="/" aria-label="ACCESSIA Pro — Accueil">
+          <img src="/assets/images/logo-icon.webp?v=d60b5faca07c" alt="" width="36" height="36">
+          <span>ACCESSIA <strong>Pro</strong></span>
+        </a>
+        <nav aria-label="Navigation principale">
+          <ul class="seo-nav">
+            <li><a href="/guides/ia-entreprise-occitanie/">Occitanie</a></li>
+            <li><a href="/guides/facturation-electronique-pme/">Facturation</a></li>
+            <li><a href="/guides/cybersecurite-pme/" aria-current="page">Cyber</a></li>
+            <li><a href="/guides/automatisation-pme/">Automatisation</a></li>
+            <li><a href="/articles/">Articles</a></li>
+          </ul>
+        </nav>
+        <a class="seo-button seo-button-small" href="mailto:contact@access-ia.pro?subject=Échange%20exploratoire%20ACCESSIA%20Pro">Échange exploratoire</a>
+      </div>
+    </header>
+  <main id="contenu-principal" class="seo-main">
+    <section class="seo-hero">
+      <div class="seo-container seo-hero-grid">
+        <div class="seo-hero-copy">
+          <nav class="seo-breadcrumb" aria-label="Fil d’Ariane">
+          <ol>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/ressources/">Ressources</a></li>
+            <li aria-current="page">Comment gouverner les accès aux outils IA dans une PME ?</li>
+          </ol>
+        </nav>
+          <p class="seo-pillar-badge" data-pillar="cyber">Cybersécurité</p>
+          <p class="seo-kicker">Gouvernance IA — identités, données et preuves</p>
+          <h1>Comment gouverner les accès aux outils IA dans une PME ?</h1>
+          <p class="seo-lede">La gouvernance ne consiste pas à interdire ou autoriser un outil une fois pour toutes. Elle relie une personne, un rôle, un besoin, des données autorisées, une durée, des contrôles et une procédure de retrait.</p>
+          <p class="seo-editorial-meta">Publié le 1er août 2026 · Vérifié le 1er août 2026 · Prochaine revue : 1er novembre 2026</p>
+
+        </div>
+        <aside class="seo-signal-panel" aria-label="Repères de lecture">
+          <div class="seo-signal-head"><span>Signal éditorial</span><span aria-hidden="true">ACCESS.IA</span></div>
+          <dl class="seo-signal-grid">
+            <div class="seo-signal-item"><dt>Format</dt><dd>Dossier documenté</dd></div>
+            <div class="seo-signal-item"><dt>Lecture</dt><dd>5 min</dd></div>
+            <div class="seo-signal-item"><dt>Sources</dt><dd>5</dd></div>
+            <div class="seo-signal-item"><dt>Vérifié</dt><dd>1er août 2026</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+    <nav class="seo-toc" aria-label="Sommaire de l’article">
+        <div class="seo-container seo-toc-inner">
+          <p class="seo-eyebrow">Dans ce dossier</p>
+          <ol class="seo-toc-list">
+            <li><a href="#autoriser-un-usage-pas-seulement-un-produit">Autoriser un usage, pas seulement un produit</a></li><li><a href="#statut-editorial-et-limites">Statut éditorial et limites</a></li><li><a href="#le-modele-d-autorisation-en-sept-dimensions">Le modèle d’autorisation en sept dimensions</a></li><li><a href="#de-la-demande-au-retrait">De la demande au retrait</a></li><li><a href="#definir-trois-niveaux-d-usage">Définir trois niveaux d’usage</a></li><li><a href="#controler-les-connecteurs-et-les-agents">Contrôler les connecteurs et les agents</a></li><li><a href="#preparer-une-procedure-d-exception">Préparer une procédure d’exception</a></li><li><a href="#construire-une-gouvernance-coherente">Construire une gouvernance cohérente</a></li><li><a href="#sources-primaires-et-date-de-controle">Sources primaires et date de contrôle</a></li>
+          </ol>
+        </div>
+      </nav>
+
+      <section class="seo-section"><div class="seo-container seo-reading">
+        <div class="seo-status-card">
+          <p class="seo-eyebrow">Réponse directe</p>
+          <h2 id="autoriser-un-usage-pas-seulement-un-produit">Autoriser un usage, pas seulement un produit</h2>
+          <p>Deux salariés utilisant le même assistant peuvent exposer des risques très différents : l’un reformule un texte public, l’autre connecte une boîte de messagerie ou téléverse des contrats clients. La décision d’accès doit donc préciser le rôle, les fonctions, les données, les connecteurs, la durée et la validation humaine attendue.</p>
+          <p>Le principe de moindre privilège recommandé par la CNIL fournit une base concrète : limiter chacun aux ressources nécessaires, faire valider les droits et les supprimer dès que la mission change. L’authentification multifacteur, les comptes nominatifs et les journaux complètent ce dispositif sans remplacer la revue métier.</p>
+        </div>
+
+  <aside class="seo-note">
+    <h2 id="statut-editorial-et-limites">Statut éditorial et limites</h2>
+    <p>Cette ressource indépendante prépare le projet ACCESSIA Pro, dont l’ouverture commerciale est prévue en janvier 2027. Elle ne décrit ni une mission client réalisée, ni un partenariat avec les organismes ou fournisseurs cités, ni une offre actuellement disponible. Les critères d’aide, fonctionnalités logicielles et textes applicables peuvent évoluer : vérifier les pages officielles et faire valider les décisions engageantes par les conseils habituels de l’entreprise.</p>
+  </aside>
+      </div></section>
+      <section class="seo-section seo-section-alt"><div class="seo-container">
+        <h2 id="le-modele-d-autorisation-en-sept-dimensions">Le modèle d’autorisation en sept dimensions</h2>
+        <div class="seo-table-wrap" role="region" aria-label="Tableau de synthèse" tabindex="0"><table>
+          <thead><tr><th>Dimension</th><th>Décision à consigner</th><th>Exemple de preuve</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Personne</th><td>Compte nominatif, identité vérifiée et responsable hiérarchique.</td><td>Demande d’accès approuvée.</td></tr>
+            <tr><th scope="row">Rôle</th><td>Utilisateur, référent, administrateur, développeur de connecteur ou auditeur.</td><td>Matrice des rôles à jour.</td></tr>
+            <tr><th scope="row">Finalité</th><td>Tâche précise et résultat attendu, pas « utiliser l’IA » en général.</td><td>Fiche de cas d’usage.</td></tr>
+            <tr><th scope="row">Données</th><td>Catégories autorisées, interdites ou soumises à validation.</td><td>Classification et exemples.</td></tr>
+            <tr><th scope="row">Capacités</th><td>Téléversement, recherche web, mémoire, API, agent, action dans un autre outil.</td><td>Configuration capturée et testée.</td></tr>
+            <tr><th scope="row">Temps</th><td>Date de début, revue, expiration et événement de retrait.</td><td>Journal de revue périodique.</td></tr>
+            <tr><th scope="row">Contrôle</th><td>Validation humaine, journal, seuil, échantillonnage et procédure d’incident.</td><td>Rapport de contrôle et actions.</td></tr>
+          </tbody>
+        </table></div>
+      </div></section>
+      <section class="seo-section"><div class="seo-container seo-two-columns">
+        <div>
+          <p class="seo-eyebrow">Cycle de vie</p>
+          <h2 id="de-la-demande-au-retrait">De la demande au retrait</h2>
+          <ol class="seo-steps">
+            <li><strong>Demander :</strong> le manager décrit la finalité, les données et les fonctions nécessaires.</li>
+            <li><strong>Qualifier :</strong> métier, RGPD, sécurité et informatique classent le risque selon le contexte.</li>
+            <li><strong>Configurer :</strong> compte nominatif, MFA, rôle minimal, partage désactivé par défaut et connecteurs limités.</li>
+            <li><strong>Tester :</strong> scénario normal, donnée interdite, instruction malveillante, erreur de modèle et perte d’accès.</li>
+            <li><strong>Former :</strong> règles concrètes, exemples, canal de question et obligation de signalement.</li>
+            <li><strong>Revoir :</strong> droits, usages, journaux, incidents, fonctions ajoutées et besoin toujours réel.</li>
+            <li><strong>Retirer :</strong> départ, changement de poste, fin du pilote, incident ou absence prolongée ; révoquer aussi clés et sessions.</li>
+          </ol>
+        </div>
+        <aside class="seo-note"><h3>Comptes partagés</h3><p>Un compte commun empêche d’attribuer une action, complique le retrait d’un salarié et encourage le partage de secrets. Si une identité technique est indispensable à une intégration, elle doit être distincte des comptes humains, limitée, supervisée et avoir un propriétaire.</p></aside>
+      </div></section>
+      <section class="seo-section seo-section-alt"><div class="seo-container">
+        <h2 id="definir-trois-niveaux-d-usage">Définir trois niveaux d’usage</h2>
+        <div class="seo-card-grid seo-card-grid-three">
+          <article class="seo-card"><h3>Niveau 1 — public et réversible</h3><p>Idéation ou reformulation à partir d’informations publiables. Pas de connexion au SI, résultat relu avant usage. Accès standard et sensibilisation courte.</p></article>
+          <article class="seo-card"><h3>Niveau 2 — interne maîtrisé</h3><p>Documents internes non sensibles dans un environnement évalué, avec contrat, configuration, journal et contrôle métier. Revue périodique des accès.</p></article>
+          <article class="seo-card"><h3>Niveau 3 — sensible ou connecté</h3><p>Données personnelles, secret d’affaires, base documentaire, messagerie, CRM ou action automatisée. Validation formelle, test de sécurité et surveillance renforcée.</p></article>
+        </div>
+        <p class="seo-note-inline"><strong>Limite :</strong> cette classification interne ne remplace pas une analyse juridique, une analyse d’impact lorsqu’elle est requise, ni les obligations sectorielles. Une donnée « interne » peut rester très sensible.</p>
+      </div></section>
+      <section class="seo-section"><div class="seo-container seo-reading">
+        <h2 id="controler-les-connecteurs-et-les-agents">Contrôler les connecteurs et les agents</h2>
+        <p>Une interface de conversation peut sembler limitée alors qu’un connecteur lui donne accès à des milliers de fichiers, à des courriels ou à un CRM. Documenter chaque source, opération autorisée, identité utilisée et étendue des droits. Privilégier la lecture seule pour le pilote ; séparer la préparation d’une action de son exécution.</p>
+        <p>Pour un agent capable d’envoyer, modifier ou supprimer, ajouter une confirmation explicite sur les opérations engageantes, des limites de volume, une liste de destinations autorisées et un arrêt d’urgence. Tester les instructions contenues dans les documents : un texte externe ne doit pas pouvoir élargir les droits de l’agent ou lui faire divulguer un secret.</p>
+        <h3>Revue mensuelle de 30 minutes</h3>
+        <ul>
+          <li>Comparer les utilisateurs actifs avec les équipes et missions réelles.</li>
+          <li>Rechercher administrateurs, clés anciennes, invitations externes et espaces publics.</li>
+          <li>Vérifier les nouveaux connecteurs et changements de conditions ou de fonctionnalités.</li>
+          <li>Échantillonner les opérations sensibles et traiter les anomalies jusqu’à clôture.</li>
+          <li>Supprimer les accès inutiles et dater la prochaine revue.</li>
+        </ul>
+      </div></section>
+      <section class="seo-section seo-section-alt"><div class="seo-container seo-reading">
+        <h2 id="preparer-une-procedure-d-exception">Préparer une procédure d’exception</h2>
+        <p>Une interdiction sans canal d’exception pousse vers le shadow AI. Prévoir une demande courte : besoin, durée, données, outil, destinataire, mesure compensatoire et personne qui accepte le risque. L’exception expire automatiquement et ne devient pas une règle implicite.</p>
+        <p>En cas d’usage non autorisé, ne pas commencer par effacer les traces. Suspendre l’accès si nécessaire, conserver les éléments utiles, qualifier les données concernées, révoquer les secrets, alerter les responsables et appliquer la procédure de violation de données lorsqu’elle est pertinente. La réponse doit corriger le processus autant que le comportement individuel.</p>
+      </div></section>
+      <section class="seo-section seo-cta"><div class="seo-container seo-reading">
+        <h2 id="construire-une-gouvernance-coherente">Construire une gouvernance cohérente</h2>
+        <div class="seo-link-row">
+          <a href="/articles/shadow-ai-charte-pme.html">Créer une charte shadow AI</a>
+          <a href="/articles/rgpd-ia-entreprise.html">Appliquer le RGPD à l’IA</a>
+          <a href="/guides/cybersecurite-pme/">Structurer la cybersécurité</a>
+          <a href="/articles/plan-cybersecurite-pme-30-jours.html">Déployer le socle en 30 jours</a>
+          <a href="/guides/automatisation-pme/">Cadrer une automatisation</a>
+          <a href="/guides/ia-pme/">Choisir une solution IA</a>
+        </div>
+      </div></section>
+
+    <section class="seo-section seo-section-alt">
+      <div class="seo-container seo-reading">
+        <h2 id="sources-primaires-et-date-de-controle">Sources primaires et date de contrôle</h2>
+        <p>Sources contrôlées le 1er août 2026. Les liens ci-dessous servent à vérifier les règles, critères et capacités mentionnés ; leur présence ne vaut ni recommandation commerciale, ni garantie d’éligibilité.</p>
+        <ul class="seo-source-list">
+          <li><a href="https://www.cnil.fr/fr/securite-gerer-les-habilitations" rel="noopener noreferrer">CNIL — gérer les habilitations</a></li>
+          <li><a href="https://www.cnil.fr/fr/recommandation-mfa" rel="noopener noreferrer">CNIL — recommandation relative à l’authentification multifacteur</a></li>
+          <li><a href="https://www.cnil.fr/fr/guide-de-la-securite-des-donnees-personnelles" rel="noopener noreferrer">CNIL — guide de la sécurité des données personnelles</a></li>
+          <li><a href="https://www.cnil.fr/fr/ia-comment-etre-en-conformite-avec-le-rgpd" rel="noopener noreferrer">CNIL — développer des systèmes d’IA en conformité avec le RGPD</a></li>
+          <li><a href="https://cyber.gouv.fr/guide/guide-dhygiene-informatique" rel="noopener noreferrer">ANSSI — guide d’hygiène informatique</a></li>
+        </ul>
+      </div>
+    </section>
+    <section class="seo-section seo-evidence" aria-labelledby="preuves-articles-gouvernance-acces-ia-pme-html">
+        <div class="seo-container seo-reading">
+          <p class="seo-eyebrow">Traçabilité éditoriale</p>
+          <h2 id="preuves-articles-gouvernance-acces-ia-pme-html">Sources, vérification et correction</h2>
+          <p>Ce dossier s’appuie sur 5 sources institutionnelles ou documentations officielles. Vérification : 1er août 2026. Prochaine revue : 1er novembre 2026.</p>
+          <p><a href="mailto:contact@access-ia.pro?subject=Correction%20éditoriale%20%2Farticles%2Fgouvernance-acces-ia-pme.html">Signaler une évolution ou une correction factuelle</a>.</p>
+        </div>
+      </section>
+  </main>
+
+    <footer class="seo-footer">
+      <div class="seo-container seo-footer-grid">
+        <div>
+          <p class="seo-footer-title">ACCESSIA Pro</p>
+          <p>Projet de cabinet en préparation à Toulouse. Ouverture commerciale prévue en janvier 2027.</p>
+        </div>
+        <div>
+          <p class="seo-footer-title">Dossiers piliers</p>
+          <ul>
+            <li><a href="/guides/ia-entreprise-occitanie/">IA en Occitanie</a></li>
+            <li><a href="/guides/facturation-electronique-pme/">Facturation électronique</a></li>
+            <li><a href="/guides/cybersecurite-pme/">Cybersécurité</a></li>
+            <li><a href="/guides/automatisation-pme/">Automatisation</a></li>
+            <li><a href="/articles/">Tous les articles</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="seo-footer-title">Contact éditorial</p>
+          <p><a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a></p>
+          <p><a href="/conseil-ia-toulouse.html">Le projet à Toulouse</a></p>
+          <p><a href="/a-propos-quentin-devesa.html">À propos de l’auteur</a></p>
+          <p><a href="/ressources/">Outils et ressources</a></p>
+          <p><a href="/llms.txt">Contexte pour assistants IA</a></p>
+        </div>
+      </div>
+      <div class="seo-container seo-footer-bottom">
+        <span>Dernière révision substantielle : 1er août 2026</span>
+        <span>Contenus informatifs — aucune prestation commerciale ouverte à ce jour</span>
+      </div>
+    </footer>
+
+</body>
+</html>

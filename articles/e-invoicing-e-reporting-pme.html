@@ -16,7 +16,7 @@
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png?v=c4efc14d8375">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="stylesheet" href="/assets/css/style.css?v=058ef9e59bfe">
-  <link rel="stylesheet" href="/assets/css/seo-2026.css?v=6723b29faf5a">
+  <link rel="stylesheet" href="/assets/css/seo-2026.css?v=2e06a915d3f6">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://access-ia.pro/articles/e-invoicing-e-reporting-pme.html">
   <meta property="og:title" content="E-invoicing et e-reporting : guide PME 2026–2027">
@@ -32,8 +32,9 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; form-action 'self' mailto:; connect-src 'self'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa","name":"Quentin DEVESA","url":"https://access-ia.pro/a-propos-quentin-devesa.html","description":"Porteur du projet ACCESSIA Pro et responsable des ressources éditoriales publiées sur access-ia.pro.","sameAs":["https://www.linkedin.com/in/quentin-devesa-cyber04a069"]},{"@type":"WebSite","@id":"https://access-ia.pro/#website","name":"ACCESSIA Pro","url":"https://access-ia.pro/","inLanguage":"fr-FR","publisher":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"}},{"@type":"Article","@id":"https://access-ia.pro/articles/e-invoicing-e-reporting-pme.html#page","url":"https://access-ia.pro/articles/e-invoicing-e-reporting-pme.html","name":"E-invoicing et e-reporting : guide PME 2026–2027","description":"Distinguer e-invoicing, e-reporting de transaction et de paiement selon le client, le pays, la TVA et le calendrier applicable aux PME.","inLanguage":"fr-FR","dateModified":"2026-08-01","isPartOf":{"@id":"https://access-ia.pro/#website"},"author":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"},"datePublished":"2026-08-01","citation":["https://www.impots.gouv.fr/professionnel/je-decouvre-la-facturation-electronique","https://www.impots.gouv.fr/professionnel/questions/franchise-en-base-micro-entrepreneur-ou-auto-entrepreneur-suis-je-concerne","https://www.impots.gouv.fr/professionnel/questions/partir-de-quand-suis-je-concerne-par-la-reforme-de-la-facturation","https://www.impots.gouv.fr/actualite/chorus-pro-restera-la-plateforme-de-reference-pour-la-facturation-electronique-du-secteur"]},{"@type":"BreadcrumbList","@id":"https://access-ia.pro/articles/e-invoicing-e-reporting-pme.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://access-ia.pro/"},{"@type":"ListItem","position":2,"name":"Ressources","item":"https://access-ia.pro/ressources/"},{"@type":"ListItem","position":3,"name":"E-invoicing ou e-reporting : quel flux pour quelle opération ?","item":"https://access-ia.pro/articles/e-invoicing-e-reporting-pme.html"}]}]}</script>
 </head>
-<body>
+<body data-pillar="facturation" data-content-type="article">
   <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
+  <div class="seo-scroll-progress" aria-hidden="true"></div>
   <div class="seo-prelaunch" role="status">
     <div class="seo-container"><strong>Pré-lancement :</strong> projet en préparation, ouverture commerciale prévue en janvier 2027.</div>
   </div>
@@ -46,11 +47,11 @@
         </a>
         <nav aria-label="Navigation principale">
           <ul class="seo-nav">
-            <li><a href="/guides/ia-pme/">Décider</a></li>
-            <li><a href="/articles/rgpd-ia-entreprise.html">Protéger</a></li>
-            <li><a href="/articles/calculateur-roi-ia-pme.html">Mesurer</a></li>
-            <li><a href="/methodologie.html">Déployer</a></li>
-            <li><a href="/ressources/">Ressources</a></li>
+            <li><a href="/guides/ia-entreprise-occitanie/">Occitanie</a></li>
+            <li><a href="/guides/facturation-electronique-pme/" aria-current="page">Facturation</a></li>
+            <li><a href="/guides/cybersecurite-pme/">Cyber</a></li>
+            <li><a href="/guides/automatisation-pme/">Automatisation</a></li>
+            <li><a href="/articles/">Articles</a></li>
           </ul>
         </nav>
         <a class="seo-button seo-button-small" href="mailto:contact@access-ia.pro?subject=Échange%20exploratoire%20ACCESSIA%20Pro">Échange exploratoire</a>
@@ -58,27 +59,47 @@
     </header>
   <main id="contenu-principal" class="seo-main">
     <section class="seo-hero">
-      <div class="seo-container seo-reading">
-        <nav class="seo-breadcrumb" aria-label="Fil d’Ariane">
+      <div class="seo-container seo-hero-grid">
+        <div class="seo-hero-copy">
+          <nav class="seo-breadcrumb" aria-label="Fil d’Ariane">
           <ol>
             <li><a href="/">Accueil</a></li>
             <li><a href="/ressources/">Ressources</a></li>
             <li aria-current="page">E-invoicing ou e-reporting : quel flux pour quelle opération ?</li>
           </ol>
         </nav>
-        <p class="seo-kicker">Cartographie fiscale — opérations et flux de données</p>
-        <h1>E-invoicing ou e-reporting : quel flux pour quelle opération ?</h1>
-        <p class="seo-lede">Le canal dépend de la transaction, pas du format historique de la facture. Le B2B domestique dans le champ relève de la facture électronique ; les ventes à des particuliers ou avec des opérateurs étrangers relèvent généralement du e-reporting de transaction ; certaines opérations exigibles à l’encaissement ajoutent des données de paiement.</p>
-        <p class="seo-editorial-meta">Publié le 1er août 2026 · Vérifié le 1er août 2026 · Prochaine revue : 1er septembre 2026</p>
+          <p class="seo-pillar-badge" data-pillar="facturation">Facturation électronique</p>
+          <p class="seo-kicker">Cartographie fiscale — opérations et flux de données</p>
+          <h1>E-invoicing ou e-reporting : quel flux pour quelle opération ?</h1>
+          <p class="seo-lede">Le canal dépend de la transaction, pas du format historique de la facture. Le B2B domestique dans le champ relève de la facture électronique ; les ventes à des particuliers ou avec des opérateurs étrangers relèvent généralement du e-reporting de transaction ; certaines opérations exigibles à l’encaissement ajoutent des données de paiement.</p>
+          <p class="seo-editorial-meta">Publié le 1er août 2026 · Vérifié le 1er août 2026 · Prochaine revue : 1er septembre 2026</p>
 
+        </div>
+        <aside class="seo-signal-panel" aria-label="Repères de lecture">
+          <div class="seo-signal-head"><span>Signal éditorial</span><span aria-hidden="true">ACCESS.IA</span></div>
+          <dl class="seo-signal-grid">
+            <div class="seo-signal-item"><dt>Format</dt><dd>Dossier documenté</dd></div>
+            <div class="seo-signal-item"><dt>Lecture</dt><dd>6 min</dd></div>
+            <div class="seo-signal-item"><dt>Sources</dt><dd>4</dd></div>
+            <div class="seo-signal-item"><dt>Vérifié</dt><dd>1er août 2026</dd></div>
+          </dl>
+        </aside>
       </div>
     </section>
+    <nav class="seo-toc" aria-label="Sommaire de l’article">
+        <div class="seo-container seo-toc-inner">
+          <p class="seo-eyebrow">Dans ce dossier</p>
+          <ol class="seo-toc-list">
+            <li><a href="#une-facture-peut-declencher-un-deux-ou-aucun-de-ces-flux">Une facture peut déclencher un, deux ou aucun de ces flux</a></li><li><a href="#matrice-d-orientation-pour-une-pme-francaise">Matrice d’orientation pour une PME française</a></li><li><a href="#les-donnees-minimales-a-cartographier">Les données minimales à cartographier</a></li><li><a href="#arbre-de-decision-a-documenter-dans-le-logiciel">Arbre de décision à documenter dans le logiciel</a></li><li><a href="#exemples-pedagogiques-a-tester">Exemples pédagogiques à tester</a></li><li><a href="#checklist-avant-mise-en-production">Checklist avant mise en production</a></li><li><a href="#sources-officielles">Sources officielles</a></li>
+          </ol>
+        </div>
+      </nav>
 
       <section class="seo-section">
         <div class="seo-container seo-reading">
           <div class="seo-status-card">
             <p class="seo-eyebrow">Les trois volets</p>
-            <h2>Une facture peut déclencher un, deux ou aucun de ces flux</h2>
+            <h2 id="une-facture-peut-declencher-un-deux-ou-aucun-de-ces-flux">Une facture peut déclencher un, deux ou aucun de ces flux</h2>
             <ul>
               <li><strong>E-invoicing :</strong> échange d’une facture électronique structurée pour les opérations B2B réalisées en France entre assujettis établis en France et dans le champ de la réforme. La plateforme transmet aussi les données de facture attendues à l’administration.</li>
               <li><strong>E-reporting de transaction :</strong> transmission de données lorsque l’opération n’entre pas dans le circuit de facture électronique, notamment des ventes à des non-assujettis ou certaines transactions avec l’étranger.</li>
@@ -90,8 +111,8 @@
       </section>
       <section class="seo-section seo-section-alt">
         <div class="seo-container">
-          <h2>Matrice d’orientation pour une PME française</h2>
-          <div class="seo-table-wrap">
+          <h2 id="matrice-d-orientation-pour-une-pme-francaise">Matrice d’orientation pour une PME française</h2>
+          <div class="seo-table-wrap" role="region" aria-label="Tableau de synthèse" tabindex="0">
             <table>
               <caption>Orientation générale à confirmer pour les situations particulières</caption>
               <thead><tr><th scope="col">Opération</th><th scope="col">Flux principal</th><th scope="col">Question de contrôle</th><th scope="col">Canal</th></tr></thead>
@@ -111,7 +132,7 @@
       <section class="seo-section">
         <div class="seo-container seo-two-columns">
           <div>
-            <h2>Les données minimales à cartographier</h2>
+            <h2 id="les-donnees-minimales-a-cartographier">Les données minimales à cartographier</h2>
             <ul>
               <li>Identité et établissement du vendeur et de l’acheteur.</li>
               <li>Numéros SIREN et de TVA lorsqu’ils sont applicables.</li>
@@ -134,7 +155,7 @@
       </section>
       <section class="seo-section seo-section-alt">
         <div class="seo-container">
-          <h2>Arbre de décision à documenter dans le logiciel</h2>
+          <h2 id="arbre-de-decision-a-documenter-dans-le-logiciel">Arbre de décision à documenter dans le logiciel</h2>
           <ol class="seo-steps">
             <li><strong>Identifier l’opération :</strong> vente, achat, acompte, avoir, encaissement ou remboursement.</li>
             <li><strong>Qualifier les parties :</strong> professionnel ou particulier, assujetti ou non, établi en France ou à l’étranger, secteur public le cas échéant.</li>
@@ -148,8 +169,8 @@
       </section>
       <section class="seo-section">
         <div class="seo-container">
-          <h2>Exemples pédagogiques à tester</h2>
-          <div class="seo-table-wrap">
+          <h2 id="exemples-pedagogiques-a-tester">Exemples pédagogiques à tester</h2>
+          <div class="seo-table-wrap" role="region" aria-label="Tableau de synthèse" tabindex="0">
             <table>
               <caption>Scénarios fictifs pour valider le paramétrage, à confirmer avant usage réel</caption>
               <thead><tr><th scope="col">Scénario synthétique</th><th scope="col">Orientation attendue</th><th scope="col">Donnée qui fait basculer</th></tr></thead>
@@ -168,7 +189,7 @@
       <section class="seo-section seo-section-alt">
         <div class="seo-container seo-two-columns">
           <div>
-            <h2>Checklist avant mise en production</h2>
+            <h2 id="checklist-avant-mise-en-production">Checklist avant mise en production</h2>
             <ul>
               <li>Les catégories de clients sont définies et sourcées.</li>
               <li>Les numéros et adresses sont contrôlés sans correction silencieuse.</li>
@@ -189,7 +210,7 @@
       </section>
       <section class="seo-section">
         <div class="seo-container seo-reading">
-          <h2>Sources officielles</h2>
+          <h2 id="sources-officielles">Sources officielles</h2>
           <ul class="seo-source-list">
             <li><a href="https://www.impots.gouv.fr/professionnel/je-decouvre-la-facturation-electronique" rel="noopener noreferrer">DGFiP — définition des trois volets de la réforme</a>, modifiée le 26 mai 2026.</li>
             <li><a href="https://www.impots.gouv.fr/professionnel/questions/franchise-en-base-micro-entrepreneur-ou-auto-entrepreneur-suis-je-concerne" rel="noopener noreferrer">DGFiP — franchise en base et microentrepreneurs</a>, modifiée le 16 janvier 2026.</li>
@@ -203,6 +224,14 @@
           </div>
         </div>
       </section>
+    <section class="seo-section seo-evidence" aria-labelledby="preuves-articles-e-invoicing-e-reporting-pme-html">
+        <div class="seo-container seo-reading">
+          <p class="seo-eyebrow">Traçabilité éditoriale</p>
+          <h2 id="preuves-articles-e-invoicing-e-reporting-pme-html">Sources, vérification et correction</h2>
+          <p>Ce dossier s’appuie sur 4 sources institutionnelles ou documentations officielles. Vérification : 1er août 2026. Prochaine revue : 1er septembre 2026.</p>
+          <p><a href="mailto:contact@access-ia.pro?subject=Correction%20éditoriale%20%2Farticles%2Fe-invoicing-e-reporting-pme.html">Signaler une évolution ou une correction factuelle</a>.</p>
+        </div>
+      </section>
   </main>
 
     <footer class="seo-footer">
@@ -212,18 +241,21 @@
           <p>Projet de cabinet en préparation à Toulouse. Ouverture commerciale prévue en janvier 2027.</p>
         </div>
         <div>
-          <p class="seo-footer-title">Repères</p>
+          <p class="seo-footer-title">Dossiers piliers</p>
           <ul>
-            <li><a href="/tarifs-ia-pme.html">Construire un budget</a></li>
+            <li><a href="/guides/ia-entreprise-occitanie/">IA en Occitanie</a></li>
+            <li><a href="/guides/facturation-electronique-pme/">Facturation électronique</a></li>
+            <li><a href="/guides/cybersecurite-pme/">Cybersécurité</a></li>
+            <li><a href="/guides/automatisation-pme/">Automatisation</a></li>
             <li><a href="/articles/">Tous les articles</a></li>
-            <li><a href="/ressources/">Toutes les ressources</a></li>
-            <li><a href="/conseil-ia-toulouse.html">Le projet à Toulouse</a></li>
-            <li><a href="/a-propos-quentin-devesa.html">À propos de l’auteur</a></li>
           </ul>
         </div>
         <div>
           <p class="seo-footer-title">Contact éditorial</p>
           <p><a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a></p>
+          <p><a href="/conseil-ia-toulouse.html">Le projet à Toulouse</a></p>
+          <p><a href="/a-propos-quentin-devesa.html">À propos de l’auteur</a></p>
+          <p><a href="/ressources/">Outils et ressources</a></p>
           <p><a href="/llms.txt">Contexte pour assistants IA</a></p>
         </div>
       </div>

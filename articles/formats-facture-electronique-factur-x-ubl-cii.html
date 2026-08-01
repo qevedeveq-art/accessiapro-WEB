@@ -16,7 +16,7 @@
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png?v=c4efc14d8375">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="stylesheet" href="/assets/css/style.css?v=058ef9e59bfe">
-  <link rel="stylesheet" href="/assets/css/seo-2026.css?v=6723b29faf5a">
+  <link rel="stylesheet" href="/assets/css/seo-2026.css?v=2e06a915d3f6">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://access-ia.pro/articles/formats-facture-electronique-factur-x-ubl-cii.html">
   <meta property="og:title" content="Factur-X, UBL ou CII : formats de facture électronique">
@@ -32,8 +32,9 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; form-action 'self' mailto:; connect-src 'self'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa","name":"Quentin DEVESA","url":"https://access-ia.pro/a-propos-quentin-devesa.html","description":"Porteur du projet ACCESSIA Pro et responsable des ressources éditoriales publiées sur access-ia.pro.","sameAs":["https://www.linkedin.com/in/quentin-devesa-cyber04a069"]},{"@type":"WebSite","@id":"https://access-ia.pro/#website","name":"ACCESSIA Pro","url":"https://access-ia.pro/","inLanguage":"fr-FR","publisher":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"}},{"@type":"Article","@id":"https://access-ia.pro/articles/formats-facture-electronique-factur-x-ubl-cii.html#page","url":"https://access-ia.pro/articles/formats-facture-electronique-factur-x-ubl-cii.html","name":"Factur-X, UBL ou CII : formats de facture électronique","description":"Comparatif Factur-X, UBL et CII pour une PME : structure, lisibilité, intégration, validation, conversion et méthode de choix 2026.","inLanguage":"fr-FR","dateModified":"2026-08-01","isPartOf":{"@id":"https://access-ia.pro/#website"},"author":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"},"datePublished":"2026-08-01","citation":["https://www.impots.gouv.fr/professionnel/je-decouvre-la-facturation-electronique","https://www.impots.gouv.fr/specifications-externes-b2b","https://www.impots.gouv.fr/actualite/facturation-electronique-publication-des-nouvelles-versions-des-specifications-externes","https://www.impots.gouv.fr/facturation-electronique-et-plateformes-agreees"]},{"@type":"BreadcrumbList","@id":"https://access-ia.pro/articles/formats-facture-electronique-factur-x-ubl-cii.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://access-ia.pro/"},{"@type":"ListItem","position":2,"name":"Ressources","item":"https://access-ia.pro/ressources/"},{"@type":"ListItem","position":3,"name":"Factur-X, UBL ou CII : quel format de facture électronique choisir ?","item":"https://access-ia.pro/articles/formats-facture-electronique-factur-x-ubl-cii.html"}]}]}</script>
 </head>
-<body>
+<body data-pillar="facturation" data-content-type="article">
   <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
+  <div class="seo-scroll-progress" aria-hidden="true"></div>
   <div class="seo-prelaunch" role="status">
     <div class="seo-container"><strong>Pré-lancement :</strong> projet en préparation, ouverture commerciale prévue en janvier 2027.</div>
   </div>
@@ -46,11 +47,11 @@
         </a>
         <nav aria-label="Navigation principale">
           <ul class="seo-nav">
-            <li><a href="/guides/ia-pme/">Décider</a></li>
-            <li><a href="/articles/rgpd-ia-entreprise.html">Protéger</a></li>
-            <li><a href="/articles/calculateur-roi-ia-pme.html">Mesurer</a></li>
-            <li><a href="/methodologie.html">Déployer</a></li>
-            <li><a href="/ressources/">Ressources</a></li>
+            <li><a href="/guides/ia-entreprise-occitanie/">Occitanie</a></li>
+            <li><a href="/guides/facturation-electronique-pme/" aria-current="page">Facturation</a></li>
+            <li><a href="/guides/cybersecurite-pme/">Cyber</a></li>
+            <li><a href="/guides/automatisation-pme/">Automatisation</a></li>
+            <li><a href="/articles/">Articles</a></li>
           </ul>
         </nav>
         <a class="seo-button seo-button-small" href="mailto:contact@access-ia.pro?subject=Échange%20exploratoire%20ACCESSIA%20Pro">Échange exploratoire</a>
@@ -58,27 +59,47 @@
     </header>
   <main id="contenu-principal" class="seo-main">
     <section class="seo-hero">
-      <div class="seo-container seo-reading">
-        <nav class="seo-breadcrumb" aria-label="Fil d’Ariane">
+      <div class="seo-container seo-hero-grid">
+        <div class="seo-hero-copy">
+          <nav class="seo-breadcrumb" aria-label="Fil d’Ariane">
           <ol>
             <li><a href="/">Accueil</a></li>
             <li><a href="/ressources/">Ressources</a></li>
             <li aria-current="page">Factur-X, UBL ou CII : quel format de facture électronique choisir ?</li>
           </ol>
         </nav>
-        <p class="seo-kicker">Formats structurés — choix et interopérabilité</p>
-        <h1>Factur-X, UBL ou CII : quel format de facture électronique choisir ?</h1>
-        <p class="seo-lede">Les trois formats servent le même objectif : transporter des données de facture exploitables automatiquement. Factur-X associe une représentation PDF à des données structurées ; UBL et CII sont des syntaxes XML structurées. Le bon choix dépend des systèmes et des partenaires, pas d’une hiérarchie universelle.</p>
-        <p class="seo-editorial-meta">Publié le 1er août 2026 · Vérifié le 1er août 2026 · Prochaine revue : 1er septembre 2026</p>
+          <p class="seo-pillar-badge" data-pillar="facturation">Facturation électronique</p>
+          <p class="seo-kicker">Formats structurés — choix et interopérabilité</p>
+          <h1>Factur-X, UBL ou CII : quel format de facture électronique choisir ?</h1>
+          <p class="seo-lede">Les trois formats servent le même objectif : transporter des données de facture exploitables automatiquement. Factur-X associe une représentation PDF à des données structurées ; UBL et CII sont des syntaxes XML structurées. Le bon choix dépend des systèmes et des partenaires, pas d’une hiérarchie universelle.</p>
+          <p class="seo-editorial-meta">Publié le 1er août 2026 · Vérifié le 1er août 2026 · Prochaine revue : 1er septembre 2026</p>
 
+        </div>
+        <aside class="seo-signal-panel" aria-label="Repères de lecture">
+          <div class="seo-signal-head"><span>Signal éditorial</span><span aria-hidden="true">ACCESS.IA</span></div>
+          <dl class="seo-signal-grid">
+            <div class="seo-signal-item"><dt>Format</dt><dd>Dossier documenté</dd></div>
+            <div class="seo-signal-item"><dt>Lecture</dt><dd>5 min</dd></div>
+            <div class="seo-signal-item"><dt>Sources</dt><dd>4</dd></div>
+            <div class="seo-signal-item"><dt>Vérifié</dt><dd>1er août 2026</dd></div>
+          </dl>
+        </aside>
       </div>
     </section>
+    <nav class="seo-toc" aria-label="Sommaire de l’article">
+        <div class="seo-container seo-toc-inner">
+          <p class="seo-eyebrow">Dans ce dossier</p>
+          <ol class="seo-toc-list">
+            <li><a href="#choisir-un-profil-d-echange-pas-seulement-une-extension">Choisir un profil d’échange, pas seulement une extension</a></li><li><a href="#comparatif-fonctionnel">Comparatif fonctionnel</a></li><li><a href="#six-questions-pour-choisir">Six questions pour choisir</a></li><li><a href="#le-pipeline-de-validation-a-mettre-en-place">Le pipeline de validation à mettre en place</a></li><li><a href="#jeu-de-tests-commun-aux-trois-formats">Jeu de tests commun aux trois formats</a></li><li><a href="#checklist-de-contrat-d-interface">Checklist de contrat d’interface</a></li><li><a href="#limites">Limites</a></li><li><a href="#sources-officielles-et-normatives">Sources officielles et normatives</a></li>
+          </ol>
+        </div>
+      </nav>
 
       <section class="seo-section">
         <div class="seo-container seo-reading">
           <div class="seo-status-card">
             <p class="seo-eyebrow">Réponse courte</p>
-            <h2>Choisir un profil d’échange, pas seulement une extension</h2>
+            <h2 id="choisir-un-profil-d-echange-pas-seulement-une-extension">Choisir un profil d’échange, pas seulement une extension</h2>
             <p>La DGFiP cite UBL, CII et les formats mixtes composés d’un fichier structuré et d’une représentation lisible. Dans la pratique française, Factur-X est le format hybride le plus connu de ce socle. Un PDF ordinaire, même généré par un logiciel et envoyé par courriel, n’est pas une facture électronique conforme au nouveau circuit.</p>
             <p>Une plateforme agréée peut convertir une facture vers un format adapté au destinataire tout en maintenant intégrité, authenticité, lisibilité et exhaustivité. Cette capacité ne dispense pas l’émetteur de fournir des données exactes ni le destinataire de vérifier que son système sait les exploiter.</p>
           </div>
@@ -86,8 +107,8 @@
       </section>
       <section class="seo-section seo-section-alt">
         <div class="seo-container">
-          <h2>Comparatif fonctionnel</h2>
-          <div class="seo-table-wrap">
+          <h2 id="comparatif-fonctionnel">Comparatif fonctionnel</h2>
+          <div class="seo-table-wrap" role="region" aria-label="Tableau de synthèse" tabindex="0">
             <table>
               <caption>Différences pratiques entre Factur-X, UBL et CII</caption>
               <thead><tr><th scope="col">Format</th><th scope="col">Composition</th><th scope="col">Atout fréquent</th><th scope="col">Point de vigilance</th></tr></thead>
@@ -104,7 +125,7 @@
       <section class="seo-section">
         <div class="seo-container seo-two-columns">
           <div>
-            <h2>Six questions pour choisir</h2>
+            <h2 id="six-questions-pour-choisir">Six questions pour choisir</h2>
             <ol class="seo-steps">
               <li><strong>Que sait produire le logiciel source</strong> sans ressaisie ou conversion manuelle ?</li>
               <li><strong>Que sait recevoir le logiciel comptable</strong> en conservant lignes, taxes, références et pièces ?</li>
@@ -122,8 +143,8 @@
       </section>
       <section class="seo-section seo-section-alt">
         <div class="seo-container">
-          <h2>Le pipeline de validation à mettre en place</h2>
-          <div class="seo-table-wrap">
+          <h2 id="le-pipeline-de-validation-a-mettre-en-place">Le pipeline de validation à mettre en place</h2>
+          <div class="seo-table-wrap" role="region" aria-label="Tableau de synthèse" tabindex="0">
             <table>
               <caption>Contrôles successifs d’une facture structurée</caption>
               <thead><tr><th scope="col">Niveau</th><th scope="col">Contrôle</th><th scope="col">Exemple d’erreur</th><th scope="col">Traitement</th></tr></thead>
@@ -140,7 +161,7 @@
       </section>
       <section class="seo-section">
         <div class="seo-container">
-          <h2>Jeu de tests commun aux trois formats</h2>
+          <h2 id="jeu-de-tests-commun-aux-trois-formats">Jeu de tests commun aux trois formats</h2>
           <div class="seo-card-grid seo-card-grid-three">
             <article class="seo-card"><h3>Calculs</h3><p>Une ligne, plusieurs lignes, remises, frais, arrondis, plusieurs taux et exonération correctement justifiée.</p></article>
             <article class="seo-card"><h3>Cycle</h3><p>Facture, acompte, solde, avoir partiel, avoir total et lien vers la pièce d’origine.</p></article>
@@ -154,7 +175,7 @@
       <section class="seo-section seo-section-alt">
         <div class="seo-container seo-two-columns">
           <div>
-            <h2>Checklist de contrat d’interface</h2>
+            <h2 id="checklist-de-contrat-d-interface">Checklist de contrat d’interface</h2>
             <ul>
               <li>Format, version et profil nommés explicitement.</li>
               <li>Canal, authentification, chiffrement et limites de taille.</li>
@@ -176,7 +197,7 @@
       </section>
       <section class="seo-section">
         <div class="seo-container seo-reading">
-          <h2>Limites</h2>
+          <h2 id="limites">Limites</h2>
           <p>Le format ne garantit ni la conformité de fond, ni l’identité de l’émetteur, ni la bonne imputation comptable, ni l’absence de fraude. Il facilite des contrôles automatisés à condition que la donnée source soit maîtrisée et que les erreurs bloquantes soient traitées.</p>
           <p>Les spécifications évoluent : la page officielle publiait au 1er août 2026 une version 3.2 datée du 30 avril 2026. Les équipes doivent suivre la version réellement acceptée par leur plateforme et leurs systèmes, puis tester chaque évolution avant production.</p>
           <div class="seo-link-row">
@@ -187,7 +208,7 @@
       </section>
       <section class="seo-section seo-section-alt">
         <div class="seo-container seo-reading">
-          <h2>Sources officielles et normatives</h2>
+          <h2 id="sources-officielles-et-normatives">Sources officielles et normatives</h2>
           <ul class="seo-source-list">
             <li><a href="https://www.impots.gouv.fr/professionnel/je-decouvre-la-facturation-electronique" rel="noopener noreferrer">DGFiP — formats admis et définition de la facture électronique</a>, modifiée le 26 mai 2026.</li>
             <li><a href="https://www.impots.gouv.fr/specifications-externes-b2b" rel="noopener noreferrer">DGFiP — spécifications externes version 3.2 et normes AFNOR associées</a>, modifiées le 2 juillet 2026.</li>
@@ -195,6 +216,14 @@
             <li><a href="https://www.impots.gouv.fr/facturation-electronique-et-plateformes-agreees" rel="noopener noreferrer">DGFiP — conversion et garanties attendues des plateformes agréées</a>.</li>
           </ul>
           <p class="seo-small">Sources contrôlées le 1er août 2026. La documentation de version et le contrat d’interface de la plateforme retenue priment pour l’implémentation.</p>
+        </div>
+      </section>
+    <section class="seo-section seo-evidence" aria-labelledby="preuves-articles-formats-facture-electronique-factur-x-ubl-cii-html">
+        <div class="seo-container seo-reading">
+          <p class="seo-eyebrow">Traçabilité éditoriale</p>
+          <h2 id="preuves-articles-formats-facture-electronique-factur-x-ubl-cii-html">Sources, vérification et correction</h2>
+          <p>Ce dossier s’appuie sur 4 sources institutionnelles ou documentations officielles. Vérification : 1er août 2026. Prochaine revue : 1er septembre 2026.</p>
+          <p><a href="mailto:contact@access-ia.pro?subject=Correction%20éditoriale%20%2Farticles%2Fformats-facture-electronique-factur-x-ubl-cii.html">Signaler une évolution ou une correction factuelle</a>.</p>
         </div>
       </section>
   </main>
@@ -206,18 +235,21 @@
           <p>Projet de cabinet en préparation à Toulouse. Ouverture commerciale prévue en janvier 2027.</p>
         </div>
         <div>
-          <p class="seo-footer-title">Repères</p>
+          <p class="seo-footer-title">Dossiers piliers</p>
           <ul>
-            <li><a href="/tarifs-ia-pme.html">Construire un budget</a></li>
+            <li><a href="/guides/ia-entreprise-occitanie/">IA en Occitanie</a></li>
+            <li><a href="/guides/facturation-electronique-pme/">Facturation électronique</a></li>
+            <li><a href="/guides/cybersecurite-pme/">Cybersécurité</a></li>
+            <li><a href="/guides/automatisation-pme/">Automatisation</a></li>
             <li><a href="/articles/">Tous les articles</a></li>
-            <li><a href="/ressources/">Toutes les ressources</a></li>
-            <li><a href="/conseil-ia-toulouse.html">Le projet à Toulouse</a></li>
-            <li><a href="/a-propos-quentin-devesa.html">À propos de l’auteur</a></li>
           </ul>
         </div>
         <div>
           <p class="seo-footer-title">Contact éditorial</p>
           <p><a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a></p>
+          <p><a href="/conseil-ia-toulouse.html">Le projet à Toulouse</a></p>
+          <p><a href="/a-propos-quentin-devesa.html">À propos de l’auteur</a></p>
+          <p><a href="/ressources/">Outils et ressources</a></p>
           <p><a href="/llms.txt">Contexte pour assistants IA</a></p>
         </div>
       </div>
