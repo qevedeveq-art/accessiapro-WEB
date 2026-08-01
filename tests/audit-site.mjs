@@ -253,6 +253,18 @@ for (const file of htmlFiles) {
           `${route}: ${sourceLinks.length} liens de source, minimum ${requirements.minimumSourceLinks}`,
         );
       }
+      if (!/"@type":"ItemList"/.test(contents)) {
+        errors.push(`${route}: ItemList absent`);
+      }
+      if (!/"itemListOrder":"https:\/\/schema\.org\/ItemListUnordered"/.test(contents)) {
+        errors.push(`${route}: ItemList doit rester non ordonné`);
+      }
+      if (!/"numberOfItems":10/.test(contents)) {
+        errors.push(`${route}: ItemList doit déclarer 10 entrées`);
+      }
+      if (/"@type":"(?:Product|Review|AggregateRating)"/.test(contents)) {
+        errors.push(`${route}: schéma de classement ou d'avis interdit`);
+      }
     }
   }
 
