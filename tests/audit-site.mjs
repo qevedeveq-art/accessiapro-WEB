@@ -28,13 +28,13 @@ const expectedIndexable = new Set([
 const archivedAllowed = new Set([
   "/articles/facture-electronique-2026-pme-open-source.html",
 ]);
-const datedResourceArticles = new Set([
-  "/articles/comparatif-ia-cloud-locale-pme.html",
-  "/articles/top-10-ia-cloud-pme.html",
-  "/articles/top-10-ia-locales-pme.html",
-  "/articles/deployer-ia-locale-pme.html",
-  "/articles/ai-act-pme-obligations.html",
-  "/articles/evaluer-assistant-ia-pme.html",
+const datedResourceArticles = new Map([
+  ["/articles/comparatif-ia-cloud-locale-pme.html", "2026-07-29"],
+  ["/articles/top-10-ia-cloud-pme.html", "2026-08-01"],
+  ["/articles/top-10-ia-locales-pme.html", "2026-08-01"],
+  ["/articles/deployer-ia-locale-pme.html", "2026-07-29"],
+  ["/articles/ai-act-pme-obligations.html", "2026-07-29"],
+  ["/articles/evaluer-assistant-ia-pme.html", "2026-07-29"],
 ]);
 const errors = [];
 const selectionPages = new Map([
@@ -185,7 +185,8 @@ for (const file of htmlFiles) {
       errors.push(`${route}: BreadcrumbList absent`);
     }
     if (datedResourceArticles.has(route)) {
-      if (!/"datePublished":"2026-07-29"/.test(contents)) {
+      const expectedPublished = datedResourceArticles.get(route);
+      if (!contents.includes(`"datePublished":"${expectedPublished}"`)) {
         errors.push(`${route}: datePublished absente ou incorrecte`);
       }
       if (!/Prochaine revue :/.test(contents)) {
