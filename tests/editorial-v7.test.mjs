@@ -5,31 +5,12 @@ import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
 
+import {
+  V7_EDITORIAL_GROUPS,
+  V7_EDITORIAL_ROUTES,
+} from "./site-contract.mjs";
+
 const ROOT = path.resolve(import.meta.dirname, "..");
-const CONTENT_ROOT = path.resolve(
-  ROOT,
-  "..",
-  "SEO access-ia",
-  "content",
-);
-
-const { facturationPages } = await import(
-  path.join(CONTENT_ROOT, "facturation-pages.mjs")
-);
-const { cyberPages } = await import(path.join(CONTENT_ROOT, "cyber-pages.mjs"));
-const { automationPages } = await import(
-  path.join(CONTENT_ROOT, "automation-pages.mjs")
-);
-const { occitaniePages } = await import(
-  path.join(CONTENT_ROOT, "occitanie-pages.mjs")
-);
-
-const editorialPages = [
-  ...facturationPages,
-  ...cyberPages,
-  ...automationPages,
-  ...occitaniePages,
-];
 
 function fileForRoute(route) {
   if (route.endsWith("/")) {
@@ -39,12 +20,12 @@ function fileForRoute(route) {
 }
 
 test("the v7 catalogue exposes the complete four-pillar editorial programme", () => {
-  assert.equal(facturationPages.length, 6);
-  assert.equal(cyberPages.length, 7);
-  assert.equal(automationPages.length, 15);
-  assert.equal(occitaniePages.length, 11);
-  assert.equal(editorialPages.length, 39);
-  assert.equal(new Set(editorialPages.map(({ route }) => route)).size, 39);
+  assert.equal(V7_EDITORIAL_GROUPS.facturation.length, 6);
+  assert.equal(V7_EDITORIAL_GROUPS.cyber.length, 7);
+  assert.equal(V7_EDITORIAL_GROUPS.automatisation.length, 15);
+  assert.equal(V7_EDITORIAL_GROUPS.occitanie.length, 11);
+  assert.equal(V7_EDITORIAL_ROUTES.length, 39);
+  assert.equal(new Set(V7_EDITORIAL_ROUTES).size, 39);
 
   const requiredHubs = [
     "/guides/facturation-electronique-pme/",
@@ -53,35 +34,36 @@ test("the v7 catalogue exposes the complete four-pillar editorial programme", ()
     "/guides/ia-entreprise-occitanie/",
   ];
   for (const route of requiredHubs) {
-    assert.ok(editorialPages.some((page) => page.route === route), route);
+    assert.ok(V7_EDITORIAL_ROUTES.includes(route), route);
   }
 });
 
-test("every v7 page carries review metadata, primary references and no forbidden host", () => {
-  for (const page of editorialPages) {
-    assert.match(page.route, /^\/(?:articles|guides)\//, page.route);
-    assert.equal(page.schemaType, "Article", page.route);
-    assert.match(page.datePublished, /^2026-\d{2}-\d{2}$/, page.route);
-    assert.match(page.dateModified, /^2026-\d{2}-\d{2}$/, page.route);
-    assert.ok(page.nextReview?.length >= 8, page.route);
-    assert.ok(page.content.length >= 1800, `${page.route}: contenu trop court`);
+test("every v7 page carries review metadata, primary references and no forbidden host", async () => {
+  for (const route of V7_EDITORIAL_ROUTES) {
+    const html = await readFile(fileForRoute(route), "utf8");
+    assert.match(route, /^\/(?:articles|guides)\//, route);
+    assert.match(html, /"@type":"Article"/, route);
+    assert.match(html, /"datePublished":"2026-\d{2}-\d{2}"/, route);
+    assert.match(html, /"dateModified":"2026-\d{2}-\d{2}"/, route);
+    assert.match(html, /Prochaine revue :/, route);
+    assert.ok(html.length >= 10_000, `${route}: contenu généré trop court`);
     assert.doesNotMatch(
-      page.content,
+      html,
       /(?:https?:\/\/)?[a-z0-9-]+\.access-ia\.pro/i,
-      page.route,
+      route,
     );
-    const sourceLinks = page.content.match(/href="https:\/\/(?!access-ia\.pro)[^"]+"/g) ?? [];
-    assert.ok(sourceLinks.length >= 2, `${page.route}: sources primaires insuffisantes`);
+    const sourceLinks = html.match(/href="https:\/\/(?!access-ia\.pro)[^"]+"/g) ?? [];
+    assert.ok(sourceLinks.length >= 2, `${route}: sources primaires insuffisantes`);
   }
 });
 
 test("the generated site indexes every v7 page and restores the article catalogue", async () => {
-  for (const page of editorialPages) {
-    const html = await readFile(fileForRoute(page.route), "utf8");
-    assert.doesNotMatch(html, /content="noindex, follow"/, page.route);
-    assert.doesNotMatch(html, /Contenu regroupé|Archive éditoriale/, page.route);
-    assert.match(html, /"@type":"Article"/, page.route);
-    assert.match(html, /Prochaine revue :/, page.route);
+  for (const route of V7_EDITORIAL_ROUTES) {
+    const html = await readFile(fileForRoute(route), "utf8");
+    assert.doesNotMatch(html, /content="noindex, follow"/, route);
+    assert.doesNotMatch(html, /Contenu regroupé|Archive éditoriale/, route);
+    assert.match(html, /"@type":"Article"/, route);
+    assert.match(html, /Prochaine revue :/, route);
   }
 
   const articleIndex = await readFile(

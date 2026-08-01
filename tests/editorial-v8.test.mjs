@@ -4,19 +4,14 @@ import path from "node:path";
 import test from "node:test";
 
 import {
+  AUTOMATION_CASE_ROUTES,
+  BRIDGE_ROUTES,
   EXPECTED_GENERATED_ROUTES,
   INDEXABLE_ROUTES,
-  externalEditorialPages,
-} from "../../SEO access-ia/content/catalogue.mjs";
-import { bridgePages } from "../../SEO access-ia/content/bridge-pages.mjs";
+  V8_EXTERNAL_ROUTES,
+} from "./site-contract.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
-const BRIDGE_ROUTES = [
-  "/articles/diag-data-ia-pme-occitanie.html",
-  "/articles/facturation-electronique-cybersecurite-pme.html",
-  "/articles/gouvernance-acces-ia-pme.html",
-  "/articles/automatisation-no-code-rpa-api-agent-ia-pme.html",
-];
 
 function fileForRoute(route) {
   if (route === "/") return path.join(ROOT, "index.html");
@@ -35,20 +30,26 @@ function visibleWords(html) {
     .filter(Boolean).length;
 }
 
-test("the v8 bridge cluster adds four distinct decision pages", () => {
-  assert.deepEqual(bridgePages.map(({ route }) => route), BRIDGE_ROUTES);
-  assert.equal(bridgePages.length, 4);
-  for (const page of bridgePages) {
-    assert.equal(page.schemaType, "Article", page.route);
-    assert.equal(page.section, "Ressources", page.route);
-    assert.ok(page.content.length >= 5_000, `${page.route}: contenu trop court`);
-    assert.ok(page.citations?.length >= 4, `${page.route}: citations insuffisantes`);
-    assert.ok(page.nextReview, `${page.route}: prochaine revue absente`);
+test("the v8 bridge cluster adds four distinct decision pages", async () => {
+  assert.equal(BRIDGE_ROUTES.length, 4);
+  assert.equal(new Set(BRIDGE_ROUTES).size, 4);
+  for (const route of BRIDGE_ROUTES) {
+    const html = await readFile(fileForRoute(route), "utf8");
+    assert.match(html, /"@type":"Article"/, route);
+    assert.match(html, /<li><a href="\/ressources\/">Ressources<\/a><\/li>/, route);
+    assert.ok(visibleWords(html) >= 900, `${route}: contenu trop court`);
+    const jsonLd = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+      .map(([, source]) => JSON.parse(source));
+    const nodes = jsonLd.flatMap((value) => value["@graph"] ?? [value]);
+    const article = nodes.find((value) => value["@type"] === "Article");
+    assert.ok(article, `${route}: Article JSON-LD absent`);
+    assert.ok(article.citation?.length >= 4, `${route}: citations insuffisantes`);
+    assert.match(html, /Prochaine revue :/, `${route}: prochaine revue absente`);
   }
 });
 
 test("the v8 catalogue keeps one explicit route contract", () => {
-  assert.equal(externalEditorialPages.length, 43);
+  assert.equal(V8_EXTERNAL_ROUTES.length, 43);
   assert.equal(INDEXABLE_ROUTES.length, 61);
   assert.equal(EXPECTED_GENERATED_ROUTES.length, 70);
   for (const route of BRIDGE_ROUTES) assert.ok(INDEXABLE_ROUTES.includes(route), route);
@@ -97,16 +98,17 @@ test("the short foundation articles now provide decision-grade depth", async () 
   }
 });
 
-test("automation cases no longer share one generic heading signature", () => {
-  const automation = externalEditorialPages.filter(({ route }) =>
-    route.includes("/cas-usage-"),
-  );
-  const signatures = automation.map(({ content }) =>
-    [...content.matchAll(/<h2[^>]*>(.*?)<\/h2>/g)]
+test("automation cases no longer share one generic heading signature", async () => {
+  const signatures = [];
+  for (const route of AUTOMATION_CASE_ROUTES) {
+    const html = await readFile(fileForRoute(route), "utf8");
+    signatures.push(
+      [...html.matchAll(/<h2[^>]*>(.*?)<\/h2>/g)]
       .map(([, heading]) => heading.replace(/<[^>]+>/g, "").trim())
       .join(" | "),
-  );
-  assert.equal(automation.length, 14);
+    );
+  }
+  assert.equal(AUTOMATION_CASE_ROUTES.length, 14);
   assert.equal(new Set(signatures).size, 14);
 });
 

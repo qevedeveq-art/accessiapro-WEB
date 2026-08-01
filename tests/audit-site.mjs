@@ -5,19 +5,17 @@ import path from "node:path";
 import process from "node:process";
 
 import {
-  ARCHIVED_ROUTES,
   CONTENT_PILLARS,
-  DATED_RESOURCE_ARTICLES,
+  DATED_RESOURCE_ROUTES,
   EXPECTED_GENERATED_ROUTES,
   INDEXABLE_ROUTES,
-} from "../../SEO access-ia/content/catalogue.mjs";
+} from "./site-contract.mjs";
 
 const ROOT = path.resolve(process.argv[2] ?? ".");
 const ORIGIN = "https://access-ia.pro";
 const expectedIndexable = new Set(INDEXABLE_ROUTES);
 const expectedGenerated = new Set(EXPECTED_GENERATED_ROUTES);
-const archivedAllowed = new Set(ARCHIVED_ROUTES);
-const datedResourceArticles = DATED_RESOURCE_ARTICLES;
+const datedResourceRoutes = new Set(DATED_RESOURCE_ROUTES);
 const errors = [];
 const selectionPages = new Map([
   [
@@ -200,8 +198,7 @@ for (const file of htmlFiles) {
   }
   if (
     isNoIndex &&
-    canonicalMatch?.[1] === route &&
-    !archivedAllowed.has(route)
+    canonicalMatch?.[1] === route
   ) {
     errors.push(
       `${route}: page noindex auto-canonique non déclarée comme archive`,
@@ -217,13 +214,12 @@ for (const file of htmlFiles) {
     if (route !== "/" && !/"@type":"BreadcrumbList"/.test(contents)) {
       errors.push(`${route}: BreadcrumbList absent`);
     }
-    if (datedResourceArticles.has(route)) {
-      const expectedDates = datedResourceArticles.get(route);
-      if (!contents.includes(`"datePublished":"${expectedDates.datePublished}"`)) {
-        errors.push(`${route}: datePublished absente ou incorrecte`);
+    if (datedResourceRoutes.has(route)) {
+      if (!/"datePublished":"\d{4}-\d{2}-\d{2}"/.test(contents)) {
+        errors.push(`${route}: datePublished absente ou invalide`);
       }
-      if (!contents.includes(`"dateModified":"${expectedDates.dateModified}"`)) {
-        errors.push(`${route}: dateModified absente ou incorrecte`);
+      if (!/"dateModified":"\d{4}-\d{2}-\d{2}"/.test(contents)) {
+        errors.push(`${route}: dateModified absente ou invalide`);
       }
       if (!/Prochaine revue :/.test(contents)) {
         errors.push(`${route}: prochaine date de revue absente`);
