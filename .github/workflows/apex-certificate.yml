@@ -13,8 +13,8 @@ permissions:
 env:
   GCP_PROJECT: accessia-pro-web
   GCP_URL_MAP: accessia-pro-lb
-  GCP_HTTPS_PROXY: accessia-pro-https-proxy
-  GCP_HTTPS_IP: 34.95.112.139
+  GCP_HTTPS_PROXY: accessia-pro-apex-https-proxy
+  GCP_HTTPS_IP: 34.102.254.53
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:

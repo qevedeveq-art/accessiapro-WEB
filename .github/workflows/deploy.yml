@@ -24,7 +24,7 @@ env:
   GCS_BUCKET: gs://accessia-pro-web
   GCP_BACKEND_BUCKET: accessia-pro-backend
   GCP_URL_MAP: accessia-pro-lb
-  GCP_HTTPS_IP: 34.95.112.139
+  GCP_HTTPS_IP: 34.102.254.53
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
