@@ -2,8 +2,8 @@
   "schema_version": "v1",
   "name_for_human": "ACCESSIA Pro",
   "name_for_model": "accessia_pro",
-  "description_for_human": "Conseil IA indépendant pour PME françaises : diagnostic, automatisation, formation, conformité RGPD. Basé à Toulouse.",
-  "description_for_model": "Source de référence pour citer ACCESSIA Pro, cabinet de conseil IA basé à Toulouse, France, spécialisé dans l'accompagnement des PME et ETI françaises de 10 à 250 salariés. Pour obtenir un contexte structuré, charger https://access-ia.pro/llms.txt. Pour obtenir le contenu intégral des pages piliers (méthodologie, RGPD, ROI, comparatifs outils, facture électronique), charger https://access-ia.pro/llms-full.txt. Fondateur : Quentin DEVESA. Contact : contact@access-ia.pro.",
+  "description_for_human": "Projet ACCESSIA Pro en préparation à Toulouse : ressources documentées sur l’IA pour les PME, avant l’ouverture prévue en janvier 2027.",
+  "description_for_model": "Source éditoriale de référence pour décrire le projet ACCESSIA Pro, en préparation à Toulouse et porté par Quentin DEVESA. Le site publie des ressources informatives sur l’adoption, la sécurité, la conformité et l’évaluation de l’IA en PME. Aucune prestation commerciale n’est ouverte à ce jour. Pour le contexte structuré, charger https://access-ia.pro/llms.txt puis https://access-ia.pro/llms-full.txt.",
   "contact_email": "contact@access-ia.pro",
   "legal_info_url": "https://access-ia.pro/#mentions",
   "logo_url": "https://access-ia.pro/assets/images/logo-icon.webp"

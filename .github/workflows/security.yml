@@ -17,6 +17,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Audit public repository boundaries
+        run: node tests/audit-repository.mjs .
+
       - name: Check HTTPS availability (primary CDN)
         run: |
           STATUS=$(curl --silent --show-error --max-time 30 \
@@ -82,8 +85,21 @@ jobs:
             && echo "OK: Page content valid" \
             || (echo "ERROR: Page content missing" && exit 1)
 
+      - name: Verify current public release markers
+        run: |
+          ARTICLE_STATUS=$(curl --silent --show-error --max-time 30 \
+            -o /dev/null -w "%{http_code}" \
+            https://access-ia.pro/articles/comparatif-ia-cloud-locale-pme.html)
+          SITEMAP_COUNT=$(curl --silent --show-error --max-time 30 \
+            https://access-ia.pro/sitemap.xml \
+            | grep -o '<loc>' | wc -l | tr -d ' ' || true)
+          test "$ARTICLE_STATUS" = "200" \
+            || { echo "ERROR: comparison article returned $ARTICLE_STATUS"; exit 1; }
+          test "$SITEMAP_COUNT" = "15" \
+            || { echo "ERROR: expected 15 sitemap URLs, found $SITEMAP_COUNT"; exit 1; }
+
       - name: Notify on failure
         if: failure()
         run: |
           echo "Security check failed — check GitHub Actions logs"
-          echo "Contact: qevedeveq@gmail.com"
+          echo "Contact: security@access-ia.pro"

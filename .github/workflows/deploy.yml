@@ -22,6 +22,7 @@ permissions:
 env:
   SITE_DIR: /tmp/accessia-site
   GCS_BUCKET: gs://accessia-pro-web
+  GCP_BACKEND_BUCKET: accessia-pro-backend
   GCP_URL_MAP: accessia-pro-lb
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -33,6 +34,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+
+      - name: Audit public repository boundaries
+        run: node tests/audit-repository.mjs .
 
       - name: Prepare deploy directory
         run: |
@@ -52,7 +56,7 @@ jobs:
 
       - name: Minify CSS and JS
         run: |
-          npm install -g clean-css-cli uglify-js --silent
+          npm install -g clean-css-cli@5.6.3 uglify-js@3.19.3 --silent
           cleancss "$SITE_DIR/assets/css/style.css" > /tmp/style.min.css
           mv /tmp/style.min.css "$SITE_DIR/assets/css/style.css"
           uglifyjs "$SITE_DIR/assets/js/main.v2.js" -c -m > /tmp/main.min.js
@@ -60,7 +64,7 @@ jobs:
 
       - name: Minify HTML
         run: |
-          npm install -g html-minifier-terser --silent
+          npm install -g html-minifier-terser@7.2.0 --silent
           find "$SITE_DIR" -name "*.html" | while read f; do
             html-minifier-terser \
               --collapse-whitespace \
@@ -75,7 +79,7 @@ jobs:
 
       - name: Subset fonts
         run: |
-          pip install fonttools brotli --quiet
+          pip install fonttools==4.62.1 brotli==1.2.0 --quiet
           python3 - <<'PYEOF'
           import os, re
           chars = set()
@@ -97,6 +101,9 @@ jobs:
               && mv "/tmp/inter-${weight}.woff2" "$SITE_DIR/assets/fonts/inter-${weight}.woff2" \
               || echo "Subset skipped for inter-${weight}.woff2"
           done
+
+      - name: Audit prepared public site
+        run: node tests/audit-site.mjs "$SITE_DIR"
 
       - name: Verify deploy directory
         run: |
@@ -151,8 +158,8 @@ jobs:
         run: |
           gsutil -m setmeta \
             -h "Cache-Control:public, max-age=31536000, immutable" \
-            "$GCS_BUCKET/assets/css/style.css" \
-            "$GCS_BUCKET/assets/js/main.v2.js" \
+            "$GCS_BUCKET/assets/css/*.css" \
+            "$GCS_BUCKET/assets/js/*.js" \
             "$GCS_BUCKET/assets/images/*.webp" \
             "$GCS_BUCKET/assets/images/*.png" \
             "$GCS_BUCKET/assets/images/*.jpg" \
@@ -166,46 +173,80 @@ jobs:
           gsutil -m setmeta \
             -h "Cache-Control:public, max-age=300, must-revalidate" \
             -h "Content-Type:text/html; charset=utf-8" \
-            "$GCS_BUCKET/index.html" \
-            "$GCS_BUCKET/404.html" \
-            "$GCS_BUCKET/ressources.html" \
-            "$GCS_BUCKET/conseil-ia-toulouse.html"
+            "$GCS_BUCKET/*.html" \
+            "$GCS_BUCKET/articles/*.html" \
+            "$GCS_BUCKET/guides/*/*.html" \
+            "$GCS_BUCKET/ressources/*.html"
           gsutil -m setmeta \
             -h "Cache-Control:public, max-age=300, must-revalidate" \
             -h "Content-Type:text/plain; charset=utf-8" \
             "$GCS_BUCKET/llms.txt"
-          gsutil -m setmeta \
-            -h "Cache-Control:public, max-age=86400, must-revalidate" \
-            -h "Content-Type:text/html; charset=utf-8" \
-            "$GCS_BUCKET/articles/*.html" || true
 
       - name: Set security response headers on backend bucket
         run: |
-          BACKEND=$(gcloud compute backend-buckets list \
-            --format="value(name)" 2>/dev/null | grep -i accessia | head -1)
-          if [ -n "$BACKEND" ]; then
-            gcloud compute backend-buckets update "$BACKEND" \
-              --custom-response-header='Strict-Transport-Security:max-age=63072000; includeSubDomains; preload' \
-              --custom-response-header='X-Frame-Options:DENY' \
-              --custom-response-header='X-Content-Type-Options:nosniff' \
-              --custom-response-header='Referrer-Policy:strict-origin-when-cross-origin' \
-              --custom-response-header='Permissions-Policy:camera=(), microphone=(), geolocation=(), payment=(), interest-cohort=()' \
-              2>/dev/null && echo "Security headers applied to $BACKEND" \
-              || echo "Could not update headers on $BACKEND — apply manually in GCP console"
-          else
-            echo "No backend bucket found — apply security headers manually in GCP console"
-          fi
+          gcloud compute backend-buckets describe "$GCP_BACKEND_BUCKET" \
+            --format="value(name)" >/dev/null
+          gcloud compute backend-buckets update "$GCP_BACKEND_BUCKET" \
+            --custom-response-header='Strict-Transport-Security:max-age=63072000' \
+            --custom-response-header="Content-Security-Policy:default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; form-action 'self' mailto:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests" \
+            --custom-response-header='X-Frame-Options:DENY' \
+            --custom-response-header='X-Content-Type-Options:nosniff' \
+            --custom-response-header='Referrer-Policy:strict-origin-when-cross-origin' \
+            --custom-response-header='Permissions-Policy:camera=(), microphone=(), geolocation=(), payment=(), interest-cohort=()' \
+            --custom-response-header='Cross-Origin-Opener-Policy:same-origin' \
+            --custom-response-header='Cross-Origin-Resource-Policy:same-origin'
+          echo "Security headers applied to $GCP_BACKEND_BUCKET"
 
       - name: Invalidate CDN cache
         run: |
           gcloud compute url-maps invalidate-cdn-cache "$GCP_URL_MAP" \
             --path "/*" \
             --global \
-            --async || echo "CDN invalidation skipped (LB may not be configured yet)"
+            --async
+
+  verify-public:
+    needs: deploy-gcs
+    runs-on: ubuntu-latest
+    name: Verify the public apex
+
+    steps:
+      - name: Wait for the validated release to become public
+        run: |
+          for attempt in $(seq 1 12); do
+            HOME_STATUS=$(curl --silent --show-error --max-time 30 \
+              -o /tmp/accessia-home.html -w "%{http_code}" https://access-ia.pro/ \
+              || true)
+            ARTICLE_STATUS=$(curl --silent --show-error --max-time 30 \
+              -o /tmp/accessia-comparison.html -w "%{http_code}" \
+              https://access-ia.pro/articles/comparatif-ia-cloud-locale-pme.html \
+              || true)
+            SITEMAP_COUNT=$(curl --silent --show-error --max-time 30 \
+              https://access-ia.pro/sitemap.xml \
+              | grep -o '<loc>' | wc -l | tr -d ' ' || true)
+            if [ "$HOME_STATUS" = "200" ] \
+              && [ "$ARTICLE_STATUS" = "200" ] \
+              && [ "$SITEMAP_COUNT" = "15" ] \
+              && grep -qi "projet en préparation" /tmp/accessia-home.html; then
+              echo "Public release verified on attempt $attempt"
+              exit 0
+            fi
+            echo "Attempt $attempt: home=$HOME_STATUS article=$ARTICLE_STATUS sitemap=$SITEMAP_COUNT"
+            sleep 10
+          done
+          echo "ERROR: the public apex does not serve the validated release"
+          exit 1
+
+      - name: Verify public security headers
+        run: |
+          HEADERS=$(curl --silent --show-error --max-time 30 --head https://access-ia.pro/)
+          for HEADER in strict-transport-security content-security-policy x-content-type-options x-frame-options referrer-policy; do
+            echo "$HEADERS" | grep -qi "$HEADER" \
+              || { echo "ERROR: missing $HEADER"; exit 1; }
+          done
 
 
   notify-indexnow:
-    needs: deploy-gcs
+    needs: verify-public
     runs-on: ubuntu-latest
     name: Notify search engines (IndexNow — Bing, Yandex, Naver, Seznam)
     steps:

@@ -1,6 +1,7 @@
 # Claude Code artifacts
 .claude/worktrees/
 graphify-out/
+.playwright-cli/
 
 # macOS
 .DS_Store
