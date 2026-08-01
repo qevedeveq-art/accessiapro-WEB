@@ -265,6 +265,12 @@ for (const file of htmlFiles) {
       if (/"@type":"(?:Product|Review|AggregateRating)"/.test(contents)) {
         errors.push(`${route}: schéma de classement ou d'avis interdit`);
       }
+      if (!/class="seo-table-wrap"[^>]*tabindex="0"/.test(contents)) {
+        errors.push(`${route}: tableau détaillé non accessible au clavier`);
+      }
+      if (!/class="seo-table-hint"/.test(contents)) {
+        errors.push(`${route}: aide au défilement du tableau absente`);
+      }
     }
   }
 
