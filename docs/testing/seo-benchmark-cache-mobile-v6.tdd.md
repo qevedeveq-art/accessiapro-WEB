@@ -50,4 +50,5 @@ Parcours dérivés du lot d'amélioration SEO et sécurité validé le 1er août
 - RED actifs/dataset : `aea8bcd`; GREEN : `e27521b`.
 - RED CI/accessibilité : `db190d6`; GREEN : `3aa48ea`.
 - RED navigation mobile : `ccb732d`; GREEN : `aa72aa9`.
+- Couverture des empreintes étendue à tous les actifs partagés : `ce38c41`.
 - RED allowlist du packageur (repo racine) : `b11b808`; GREEN : `4aa6897`.
