@@ -47,6 +47,7 @@ jobs:
         run: |
           set -euo pipefail
           echo "Project: $(gcloud config get-value project)"
+          gcloud services enable certificatemanager.googleapis.com
           echo "URL map:"
           gcloud compute url-maps describe "$GCP_URL_MAP" \
             --global \
