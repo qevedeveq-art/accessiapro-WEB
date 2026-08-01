@@ -22,6 +22,7 @@ pédagogiques ; leurs hypothèses et limites sont indiquées sur les pages conce
 - [Guide de déploiement d'une IA locale](https://access-ia.pro/articles/deployer-ia-locale-pme.html)
 - [AI Act en PME : calendrier 2026-2028](https://access-ia.pro/articles/ai-act-pme-obligations.html)
 - [Protocole d'évaluation d'un assistant IA](https://access-ia.pro/articles/evaluer-assistant-ia-pme.html)
+- [Jeu de 30 cas synthétiques pour le protocole d'évaluation](https://access-ia.pro/assets/data/benchmark-assistants-pme-v1.json)
 - [Méthode de test en cinq étapes](https://access-ia.pro/methodologie.html)
 - [Checklist RGPD et IA](https://access-ia.pro/articles/rgpd-ia-entreprise.html)
 - [Sécurité et classification des données](https://access-ia.pro/articles/securite-ia-pme-fuites-donnees.html)

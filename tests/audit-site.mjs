@@ -424,6 +424,7 @@ for (const asset of [
   "assets/images/og-image.jpg",
   "assets/css/style.css",
   "assets/css/seo-2026.css",
+  "assets/data/benchmark-assistants-pme-v1.json",
   "assets/js/calculateur-roi.js",
   "assets/js/autodiagnostic-maturite.js",
 ]) {
