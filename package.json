@@ -1,7 +1,7 @@
 {
   "name": "accessia-pro-public-site",
   "private": true,
-  "version": "9.0.0",
+  "version": "10.0.0",
   "description": "Validation du site public statique access-ia.pro",
   "scripts": {
     "test": "node tests/audit-site.mjs && node --test tests/*.test.mjs",

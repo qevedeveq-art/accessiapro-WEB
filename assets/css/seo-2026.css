@@ -854,6 +854,57 @@ select:focus-visible {
   font-weight: 800;
 }
 
+.seo-tool-group[data-maturity-axis] {
+  margin-bottom: 1.25rem;
+}
+
+.seo-maturity-axes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.seo-maturity-axes > section {
+  padding: 1rem;
+  border: 1px solid var(--seo-line);
+  border-radius: 0.75rem;
+  background: var(--seo-paper);
+}
+
+.seo-maturity-axes h3 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.seo-maturity-score {
+  margin: 0.5rem 0;
+  color: var(--seo-blue-dark);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.seo-result-score small {
+  color: var(--seo-muted);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.seo-maturity-blockers {
+  margin-top: 1.25rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid #b84d3a;
+  border-radius: 0.75rem;
+  background: #fff5f2;
+}
+
+.seo-maturity-blockers h4 {
+  margin-top: 0;
+  color: #7a2f22;
+}
+
 .seo-button:disabled {
   cursor: not-allowed;
   filter: grayscale(0.65);
@@ -1165,6 +1216,7 @@ select:focus-visible {
   .seo-card-grid-three,
   .seo-two-columns,
   .seo-question-grid,
+  .seo-maturity-axes,
   .seo-footer-grid {
     grid-template-columns: 1fr;
   }

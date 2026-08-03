@@ -31,8 +31,8 @@ test("interactive tools keep labelled bounded controls and announced results", a
   )?.[0] ?? "";
   const roiForm = roi.match(/<form id="roi-form"[\s\S]*?<\/form>/)?.[0] ?? "";
 
-  assert.equal((maturityForm.match(/<label>[\s\S]*?<select /g) ?? []).length, 10);
-  assert.equal((maturityForm.match(/<select [^>]*required/g) ?? []).length, 10);
+  assert.equal((maturityForm.match(/<label>[\s\S]*?<select /g) ?? []).length, 15);
+  assert.equal((maturityForm.match(/<select [^>]*required/g) ?? []).length, 15);
   assert.match(
     maturity,
     /id="maturity-result"[^>]*hidden[^>]*tabindex="-1"[^>]*aria-live="polite"/,

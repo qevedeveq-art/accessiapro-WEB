@@ -22,7 +22,7 @@ Scénarios et calculs pédagogiques avec hypothèses et limites publiées.
 - [Facturation électronique pour PME](https://access-ia.pro/guides/facturation-electronique-pme/)
 - [Cybersécurité et IA en PME](https://access-ia.pro/guides/cybersecurite-pme/)
 - [Automatisation des PME et PMI](https://access-ia.pro/guides/automatisation-pme/)
-- [Guide de décision et autodiagnostic](https://access-ia.pro/guides/ia-pme/)
+- [Guide de décision et matrice de maturité](https://access-ia.pro/guides/ia-pme/)
 - [Canvas local « Mon copilote IA »](https://access-ia.pro/guides/ia-pme/#copilot-canvas-title)
 - [Comparatif des principales IA cloud et locales](https://access-ia.pro/articles/comparatif-ia-cloud-locale-pme.html)
 - [Sélecteur cloud, européen, hybride ou local](https://access-ia.pro/articles/comparatif-ia-cloud-locale-pme.html#architecture-selector-heading)
