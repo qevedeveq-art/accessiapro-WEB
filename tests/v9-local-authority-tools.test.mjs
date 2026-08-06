@@ -109,6 +109,11 @@ test("the documentary demonstrator is explicitly synthetic and testable", async 
 });
 
 test("v9 strengthens existing URLs without index inflation", () => {
-  assert.equal(INDEXABLE_ROUTES.length, 61);
-  assert.equal(new Set(INDEXABLE_ROUTES).size, 61);
+  // Les seules URL ajoutees depuis v9 sont les deux pages legales imposees par
+  // la LCEN et le RGPD. Aucune inflation editoriale : le socle reste a 61.
+  assert.equal(INDEXABLE_ROUTES.length, 63);
+  assert.equal(new Set(INDEXABLE_ROUTES).size, 63);
+  for (const route of ["/mentions-legales.html", "/politique-de-confidentialite.html"]) {
+    assert.ok(INDEXABLE_ROUTES.includes(route), route);
+  }
 });

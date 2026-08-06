@@ -26,6 +26,10 @@ export const BASE_INDEXABLE_ROUTES = Object.freeze([
   "/articles/formation-equipe-ia.html",
   "/conseil-ia-toulouse.html",
   "/a-propos-quentin-devesa.html",
+  // Pages legales. Indexables volontairement : la LCEN impose leur
+  // accessibilite et leur presence est un signal de confiance verifiable.
+  "/mentions-legales.html",
+  "/politique-de-confidentialite.html",
 ]);
 
 export const V7_EDITORIAL_GROUPS = Object.freeze({
@@ -117,9 +121,38 @@ export const STUB_ROUTES = Object.freeze([
   "/articles/glossaire-ia-dirigeants.html",
 ]);
 
+// Pages generees mais volontairement hors sitemap. La page d'erreur doit
+// exister dans le paquet : sans elle, le serveur sert un vestige non maitrise.
+export const NON_INDEXED_GENERATED_ROUTES = Object.freeze([
+  "/404.html",
+  "/contact.html",
+  "/contact-envoye.html",
+]);
+
+// Sous-ensemble des pages non indexees vers lesquelles une page indexable a le
+// droit de pointer.
+//
+// La regle generale — une page indexable ne lie pas une page noindex — vise les
+// stubs de transition : y renvoyer serait un defaut de consolidation. Une page
+// de service n'entre pas dans cette categorie. Elle est une destination
+// legitime, marquee `noindex, follow` pour deux raisons cumulatives :
+//   - elle ne repond a aucune intention de recherche informationnelle et n'a
+//     donc pas a diluer la surface indexable ni la carte des intentions ;
+//   - tant qu'aucune entite n'est immatriculee, une page de contact ne porte
+//     aucune identite legale : l'indexer maintenant n'apporte aucun signal.
+// A l'immatriculation, `/contact.html` a vocation a redevenir indexable et a
+// porter l'identification legale — c'est un basculement d'un seul drapeau.
+//
+// `/404.html` reste volontairement hors de cette liste : rien ne doit y lier.
+export const LINKABLE_NON_INDEXED_ROUTES = Object.freeze([
+  "/contact.html",
+  "/contact-envoye.html",
+]);
+
 export const EXPECTED_GENERATED_ROUTES = Object.freeze([
   ...INDEXABLE_ROUTES,
   ...STUB_ROUTES,
+  ...NON_INDEXED_GENERATED_ROUTES,
 ]);
 
 export const DATED_RESOURCE_ROUTES = Object.freeze([

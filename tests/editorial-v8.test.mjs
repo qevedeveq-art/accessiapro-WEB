@@ -50,8 +50,10 @@ test("the v8 bridge cluster adds four distinct decision pages", async () => {
 
 test("the v8 catalogue keeps one explicit route contract", () => {
   assert.equal(V8_EXTERNAL_ROUTES.length, 43);
-  assert.equal(INDEXABLE_ROUTES.length, 61);
-  assert.equal(EXPECTED_GENERATED_ROUTES.length, 70);
+  // 61 URL editoriales + mentions legales + politique de confidentialite.
+  assert.equal(INDEXABLE_ROUTES.length, 63);
+  // 63 indexables + 9 transitions noindex + 404.html.
+  assert.equal(EXPECTED_GENERATED_ROUTES.length, 75);
   for (const route of BRIDGE_ROUTES) assert.ok(INDEXABLE_ROUTES.includes(route), route);
 });
 

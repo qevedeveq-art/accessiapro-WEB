@@ -9,12 +9,18 @@ import {
   DATED_RESOURCE_ROUTES,
   EXPECTED_GENERATED_ROUTES,
   INDEXABLE_ROUTES,
+  LINKABLE_NON_INDEXED_ROUTES,
+  NON_INDEXED_GENERATED_ROUTES,
 } from "./site-contract.mjs";
 
 const ROOT = path.resolve(process.argv[2] ?? ".");
 const ORIGIN = "https://access-ia.pro";
 const expectedIndexable = new Set(INDEXABLE_ROUTES);
 const expectedGenerated = new Set(EXPECTED_GENERATED_ROUTES);
+const nonIndexedGenerated = new Set(NON_INDEXED_GENERATED_ROUTES);
+// Destinations de service explicitement autorisees depuis une page indexable.
+// L'exception est nominative : elle ne s'ouvre pas a toute page noindex.
+const linkableNonIndexed = new Set(LINKABLE_NON_INDEXED_ROUTES);
 const datedResourceRoutes = new Set(DATED_RESOURCE_ROUTES);
 const errors = [];
 const selectionPages = new Map([
@@ -196,9 +202,13 @@ for (const file of htmlFiles) {
   if (!expectedIndexable.has(route) && !isNoIndex) {
     errors.push(`${route}: page hors cible encore indexable`);
   }
+  // Une page noindex auto-canonique est normalement une erreur : les pages de
+  // transition doivent pointer vers leur cible canonique. La page d'erreur est
+  // l'exception legitime — elle ne consolide rien et doit rester auto-canonique.
   if (
     isNoIndex &&
-    canonicalMatch?.[1] === route
+    canonicalMatch?.[1] === route &&
+    !nonIndexedGenerated.has(route)
   ) {
     errors.push(
       `${route}: page noindex auto-canonique non déclarée comme archive`,
@@ -347,7 +357,8 @@ for (const reference of internalReferences) {
     expectedIndexable.has(reference.sourceRoute) &&
     targetRoute &&
     htmlByRoute.has(targetRoute) &&
-    !expectedIndexable.has(targetRoute)
+    !expectedIndexable.has(targetRoute) &&
+    !linkableNonIndexed.has(targetRoute)
   ) {
     errors.push(
       `${reference.sourceRoute}: lien vers une page noindex ${targetRoute}`,
