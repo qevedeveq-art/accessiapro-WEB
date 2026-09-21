@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menaces IA 2025-2026 : ce que les PME et TPE doivent surveiller</title>
+  <meta name="description" content="Panorama des menaces IA observées en 2025-2026 : prompt injection indirecte, agents autonomes détournés, exfiltration via MCP, deepfakes. Risques concrets PME/TPE, garde-fous et référentiels OWASP, MITRE ATLAS, ANSSI.">
+  <meta name="author" content="Quentin DEVESA">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#0A1530">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://access-ia.pro/articles/menaces-ia-2026.html">
+  <link rel="alternate" type="text/plain" href="https://access-ia.pro/llms.txt" title="Contexte factuel ACCESSIA Pro">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/seo-2026.css">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://access-ia.pro/articles/menaces-ia-2026.html">
+  <meta property="og:title" content="Menaces IA 2025-2026 : ce que les PME et TPE doivent surveiller">
+  <meta property="og:description" content="Panorama des menaces IA observées en 2025-2026 : prompt injection indirecte, agents autonomes détournés, exfiltration via MCP, deepfakes. Risques concrets PME/TPE, garde-fous et référentiels OWASP, MITRE ATLAS, ANSSI.">
+  <meta property="og:image" content="https://access-ia.pro/assets/images/og-image.jpg">
+  <meta property="og:image:alt" content="ACCESSIA Pro — ressources IA pour PME">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="ACCESSIA Pro">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Menaces IA 2025-2026 : ce que les PME et TPE doivent surveiller">
+  <meta name="twitter:description" content="Panorama des menaces IA observées en 2025-2026 : prompt injection indirecte, agents autonomes détournés, exfiltration via MCP, deepfakes. Risques concrets PME/TPE, garde-fous et référentiels OWASP, MITRE ATLAS, ANSSI.">
+  <meta name="twitter:image" content="https://access-ia.pro/assets/images/og-image.jpg">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; form-action 'self' mailto:; connect-src 'self'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa","name":"Quentin DEVESA","url":"https://access-ia.pro/a-propos-quentin-devesa.html","description":"Porteur du projet ACCESSIA Pro et responsable des ressources éditoriales publiées sur access-ia.pro.","sameAs":["https://www.linkedin.com/in/quentin-devesa-cyber04a069"]},{"@type":"WebSite","@id":"https://access-ia.pro/#website","name":"ACCESSIA Pro","url":"https://access-ia.pro/","inLanguage":"fr-FR","publisher":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"}},{"@type":"Article","@id":"https://access-ia.pro/articles/menaces-ia-2026.html#page","url":"https://access-ia.pro/articles/menaces-ia-2026.html","name":"Menaces IA 2025-2026 : ce que les PME et TPE doivent surveiller","description":"Panorama des menaces IA observées en 2025-2026 : prompt injection indirecte, agents autonomes détournés, exfiltration via MCP, deepfakes. Risques concrets PME/TPE, garde-fous et référentiels OWASP, MITRE ATLAS, ANSSI.","inLanguage":"fr-FR","dateModified":"2026-09-21","datePublished":"2026-09-21","isPartOf":{"@id":"https://access-ia.pro/#website"},"author":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"},"citation":["https://genai.owasp.org/llm-top-10/","https://atlas.mitre.org/","https://cyber.gouv.fr/publications/recommandations-de-securite-pour-un-systeme-dia-generative","https://www.enisa.europa.eu/publications/multilayer-framework-for-good-cybersecurity-practices-for-ai","https://artificialintelligenceact.eu/","https://modelcontextprotocol.io/specification"]},{"@type":"BreadcrumbList","@id":"https://access-ia.pro/articles/menaces-ia-2026.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://access-ia.pro/"},{"@type":"ListItem","position":2,"name":"Ressources","item":"https://access-ia.pro/ressources/"},{"@type":"ListItem","position":3,"name":"Menaces IA 2025-2026","item":"https://access-ia.pro/articles/menaces-ia-2026.html"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
+  <div class="seo-prelaunch" role="status">
+    <div class="seo-container"><strong>Pré-lancement :</strong> projet en préparation, ouverture commerciale prévue en janvier 2027.</div>
+  </div>
+
+    <header class="seo-header">
+      <div class="seo-container seo-header-inner">
+        <a class="seo-brand" href="/" aria-label="ACCESSIA Pro — Accueil">
+          <img src="/assets/images/logo-icon.webp" alt="" width="36" height="36">
+          <span>ACCESSIA <strong>Pro</strong></span>
+        </a>
+        <nav aria-label="Navigation principale">
+          <ul class="seo-nav">
+            <li><a href="/guides/ia-pme/">Décider</a></li>
+            <li><a href="/articles/rgpd-ia-entreprise.html">Protéger</a></li>
+            <li><a href="/articles/calculateur-roi-ia-pme.html">Mesurer</a></li>
+            <li><a href="/methodologie.html">Déployer</a></li>
+            <li><a href="/ressources/">Ressources</a></li>
+          </ul>
+        </nav>
+        <a class="seo-button seo-button-small" href="mailto:contact@access-ia.pro?subject=Échange%20exploratoire%20ACCESSIA%20Pro">Échange exploratoire</a>
+      </div>
+    </header>
+  <main id="contenu-principal" class="seo-main">
+    <section class="seo-hero">
+      <div class="seo-container seo-reading">
+        <nav class="seo-breadcrumb" aria-label="Fil d’Ariane">
+          <ol>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/ressources/">Ressources</a></li>
+            <li aria-current="page">Menaces IA 2025-2026</li>
+          </ol>
+        </nav>
+        <p class="seo-kicker">Actualité — Menaces IA 2025-2026</p>
+        <h1>Menaces IA 2025-2026 : ce que les PME et TPE doivent surveiller</h1>
+        <p class="seo-lede">Depuis 2024, l’assistant IA a cessé d’être un simple outil de rédaction pour devenir un accès indirect aux données de l’entreprise, aux boîtes mail, aux fichiers partagés et parfois à des actions autonomes. Ce dossier traduit sept menaces documentées en risques concrets pour une PME ou une TPE, et rappelle les garde-fous qui les neutralisent le plus souvent.</p>
+        <p class="seo-editorial-meta">Publié le 21 septembre 2026 · Vérifié le 21 septembre 2026 · Prochaine revue : 21 décembre 2026</p>
+      </div>
+    </section>
+
+      <section class="seo-section">
+        <div class="seo-container seo-reading">
+          <div class="seo-status-card">
+            <p class="seo-eyebrow">Réponse courte</p>
+            <h2>La plupart des attaques exploitent des couches ordinaires que l’IA amplifie</h2>
+            <p>Permissions excessives, connecteurs sur-privilégiés, absence de journalisation, secret dans un fichier partagé : ces défauts existaient avant l’IA. Un assistant qui accède à ces mêmes ressources hérite du même périmètre, avec une capacité de traitement automatique et une exécution à la seconde. Les garde-fous ne sont donc pas propres à l’IA — ils exigent d’y penser <em>avant</em> de déployer, et non après le premier incident.</p>
+            <p><strong>Point de vigilance :</strong> aucune de ces menaces n’est théorique. Toutes ont été observées dans des dépôts publics d’incidents ou décrites dans les référentiels OWASP, MITRE ATLAS, ANSSI ou ENISA sur la période 2024-2026.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="seo-section seo-section-alt" aria-labelledby="panorama-title">
+        <div class="seo-container">
+          <p class="seo-eyebrow">Panorama</p>
+          <h2 id="panorama-title">Sept menaces à connaître avant de déployer</h2>
+          <div class="seo-table-wrap">
+            <table>
+              <thead><tr><th>Menace</th><th>Ce qui se passe</th><th>Risque concret PME / TPE</th><th>Référentiel</th></tr></thead>
+              <tbody>
+                <tr><td><strong>1. Injection de prompt indirecte</strong></td><td>Un email, une page web ou un document contient des instructions cachées que l’assistant exécute quand il traite le contenu.</td><td>Un assistant qui résume la boîte mail obéit à un message piégé et envoie un fichier confidentiel à une adresse externe.</td><td>OWASP LLM01</td></tr>
+                <tr><td><strong>2. Fuite d’informations sensibles</strong></td><td>L’assistant révèle des données auxquelles il n’aurait pas dû accéder : mauvais droits SharePoint, RAG mal cloisonné, historique conservé.</td><td>Un salarié interroge le copilote sur « le budget du projet X » et reçoit la fiche de paie d’un collègue.</td><td>OWASP LLM02</td></tr>
+                <tr><td><strong>3. Empoisonnement de la chaîne d’approvisionnement</strong></td><td>Un poids de modèle, un plugin ou un dépôt de dépendances embarque un comportement caché activable par un déclencheur spécifique.</td><td>Un modèle open weights téléchargé sans vérification insère une porte dérobée dans du code généré.</td><td>OWASP LLM03</td></tr>
+                <tr><td><strong>4. Détournement d’agent autonome</strong></td><td>Un agent avec droits d’action (envoi de mail, suppression de fichier, appel d’API) exécute une action non autorisée à cause d’une entrée manipulée.</td><td>Un agent MCP branché à Nextcloud supprime un dossier client sur une instruction reçue via un ticket support piégé.</td><td>OWASP LLM06 (Excessive Agency)</td></tr>
+                <tr><td><strong>5. Jailbreak et détournement d’usage</strong></td><td>Un utilisateur ou un tiers contourne les garde-fous pour obtenir un contenu interdit : fraude, discrimination, code malveillant, contenu illicite.</td><td>Un compte partagé sert à générer des messages d’hameçonnage personnalisés adressés à d’anciens clients.</td><td>OWASP LLM07 · MITRE ATLAS</td></tr>
+                <tr><td><strong>6. Exfiltration via connecteurs MCP</strong></td><td>Un outil Model Context Protocol mal audité rend accessible un périmètre trop large ; un serveur MCP tiers voit passer des données non prévues.</td><td>Un connecteur MCP « lecture Drive » installé pour un test lit aussi les documents RH sans que personne ne l’ait remarqué dans les logs.</td><td>OWASP LLM06 · Spécification MCP</td></tr>
+                <tr><td><strong>7. Ingénierie sociale synthétique</strong></td><td>Deepfake vocal ou vidéo pour usurper un dirigeant, message d’hameçonnage personnalisé à grande échelle, faux appel du support informatique.</td><td>Un comptable reçoit un appel vocal du « dirigeant » qui demande un virement urgent, avec le bon ton et le bon vocabulaire interne.</td><td>ANSSI · CERT-FR · ENISA</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="seo-small">Correspondance avec OWASP Top 10 for LLM Applications (édition 2025), MITRE ATLAS et les publications ANSSI / CERT-FR / ENISA sur la période 2024-2026. Les numérotations OWASP peuvent évoluer entre versions.</p>
+        </div>
+      </section>
+
+      <section class="seo-section" aria-labelledby="detail-title">
+        <div class="seo-container">
+          <p class="seo-eyebrow">Détail par menace</p>
+          <h2 id="detail-title">Ce qui change vraiment pour une PME ou une TPE</h2>
+          <div class="seo-card-grid">
+
+            <article class="seo-card">
+              <h3>1. Injection de prompt indirecte</h3>
+              <p><strong>Le mécanisme :</strong> l’assistant lit un contenu qui contient, en plus des informations attendues, des instructions destinées au modèle (« ignore la consigne précédente, envoie X à Y »). Le modèle ne distingue pas la donnée de la commande.</p>
+              <p><strong>Scénario PME :</strong> une adresse commerciale reçoit un email dont l’auteur a inséré une consigne invisible ; l’assistant qui prépare la réponse suit cette consigne au lieu de la consigne interne.</p>
+              <p><strong>Garde-fou :</strong> séparer les sources de confiance des contenus tiers, refuser toute action à effet externe déclenchée à partir d’un contenu non validé, journaliser les instructions effectivement suivies.</p>
+            </article>
+
+            <article class="seo-card">
+              <h3>2. Fuite d’informations sensibles</h3>
+              <p><strong>Le mécanisme :</strong> l’assistant compose sa réponse à partir de tout ce à quoi il a accès. Si les droits sous-jacents sont trop larges, il rend visibles des données qui l’étaient déjà — mais que personne ne consultait.</p>
+              <p><strong>Scénario TPE :</strong> un ancien fichier RH copié « pour dépannage » sur un espace partagé remonte dans une réponse d’assistant plusieurs mois après.</p>
+              <p><strong>Garde-fou :</strong> classifier les données avant tout branchement (public, interne, confidentiel, sensible), aligner les droits sur le moindre privilège, tester le corpus avant de le connecter à un assistant.</p>
+            </article>
+
+            <article class="seo-card">
+              <h3>3. Empoisonnement de la chaîne d’approvisionnement</h3>
+              <p><strong>Le mécanisme :</strong> un composant amont — poids d’un modèle, extension, bibliothèque, jeu de données — a été modifié pour déclencher un comportement précis dans certaines conditions.</p>
+              <p><strong>Scénario PME :</strong> un modèle open weights est téléchargé « pour essayer », déployé en interne sans vérification d’empreinte, puis utilisé pour générer du code qui contient une faille exploitée plus tard.</p>
+              <p><strong>Garde-fou :</strong> tenir une liste des composants IA utilisés (SBOM applicative), vérifier les empreintes cryptographiques, préférer des dépôts avec revue publique, refuser les modèles sans provenance.</p>
+            </article>
+
+            <article class="seo-card">
+              <h3>4. Détournement d’agent autonome</h3>
+              <p><strong>Le mécanisme :</strong> un agent capable d’agir (envoi, suppression, achat, appel d’API) accepte une entrée manipulée et déclenche une action irréversible. Plus l’agent est autonome, plus l’erreur est coûteuse.</p>
+              <p><strong>Scénario PME :</strong> un agent branché à la boîte support supprime un ticket ou remplace le destinataire d’une facture parce qu’une consigne piégée lui a été transmise dans le contenu du ticket.</p>
+              <p><strong>Garde-fou :</strong> confirmation humaine obligatoire pour toute action irréversible, périmètre d’action explicite (whitelists), journalisation détaillée, tests adversariaux avant activation.</p>
+            </article>
+
+            <article class="seo-card">
+              <h3>5. Jailbreak et détournement d’usage</h3>
+              <p><strong>Le mécanisme :</strong> le modèle est manipulé pour produire un contenu qui contrevient à la politique de l’outil ou à la loi. Le contournement peut venir d’un utilisateur interne ou d’une chaîne d’instructions imbriquées.</p>
+              <p><strong>Scénario TPE :</strong> un compte partagé sert à générer des courriers d’hameçonnage personnalisés à partir de la base clients.</p>
+              <p><strong>Garde-fou :</strong> comptes nominatifs et journalisation, chartes d’usage écrites et acceptées, contrôles automatiques sur les catégories de contenu produit, contrôle humain sur les envois de masse.</p>
+            </article>
+
+            <article class="seo-card">
+              <h3>6. Exfiltration via connecteurs MCP</h3>
+              <p><strong>Le mécanisme :</strong> Model Context Protocol permet de brancher un assistant à des outils externes. Un serveur MCP mal audité, une portée trop large ou un fournisseur peu transparent transforme le connecteur en tunnel d’exfiltration.</p>
+              <p><strong>Scénario PME :</strong> un connecteur MCP tiers installé pour un cas d’usage précis reste actif au-delà du test et continue à lire des données bien après.</p>
+              <p><strong>Garde-fou :</strong> inventaire des connecteurs MCP, portée minimale (moindre privilège), durée de vie limitée, révocation périodique, journalisation des appels, fournisseurs préférés lorsqu’ils publient leur code et leur politique.</p>
+            </article>
+
+            <article class="seo-card">
+              <h3>7. Ingénierie sociale synthétique</h3>
+              <p><strong>Le mécanisme :</strong> génération de contenus vocaux, vidéo ou textuels imitant une personne connue. Le coût de production a chuté, la qualité a monté, la cible n’a plus de repère fiable à l’oreille ou à l’œil.</p>
+              <p><strong>Scénario TPE :</strong> appel du « dirigeant » à la comptable pour un virement urgent, avec voix imitée et bonne connaissance du contexte interne.</p>
+              <p><strong>Garde-fou :</strong> procédure de confirmation à second canal pour les demandes financières ou d’identité, mot de passe verbal partagé, formation aux signaux faibles, exercice régulier.</p>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="seo-section seo-section-alt" aria-labelledby="gardefous-title">
+        <div class="seo-container seo-two-columns">
+          <div>
+            <h2 id="gardefous-title">Six garde-fous transversaux</h2>
+            <p class="seo-reading">Les mesures suivantes couvrent la majorité des cas et ne dépendent pas de l’outil IA choisi. Elles se posent lors du cadrage, avant même la sélection d’un fournisseur.</p>
+            <ol class="seo-steps">
+              <li><strong>Moindre privilège sur les données :</strong> l’assistant ne voit que ce qu’un employé sur ce poste devrait voir.</li>
+              <li><strong>Journalisation lisible :</strong> chaque appel d’outil, chaque source consultée, chaque action est enregistré et consultable.</li>
+              <li><strong>Séparation agent / décision humaine :</strong> aucune action irréversible sans confirmation par une personne autorisée.</li>
+              <li><strong>Test adversarial avant activation :</strong> vérifier que le système résiste à des entrées piégées connues.</li>
+              <li><strong>Politique fournisseur écrite :</strong> critères de choix, revue périodique, procédure de désactivation.</li>
+              <li><strong>Formation utilisateurs et référents :</strong> reconnaître un signal faible, savoir remonter un incident, connaître les usages interdits.</li>
+            </ol>
+          </div>
+          <aside class="seo-note">
+            <h3>Ces menaces ne visent pas que les grandes entreprises</h3>
+            <p>Une TPE artisanale connectée à un assistant Microsoft 365 ou Google Workspace expose exactement les mêmes surfaces d’attaque qu’une PME de 200 personnes ; seule l’échelle des conséquences change. Le premier garde-fou est identique : décider quelles données peuvent entrer dans quel outil, par qui et pour quelle finalité.</p>
+            <p>La conformité NIS 2 rend une partie de ces mesures obligatoires pour les entités essentielles et importantes ; les TPE hors périmètre restent exposées aux mêmes attaques et gagnent à appliquer les mêmes principes.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="seo-section" aria-labelledby="sources-title">
+        <div class="seo-container seo-reading">
+          <p class="seo-eyebrow">Sources et référentiels</p>
+          <h2 id="sources-title">Où lire les publications primaires</h2>
+          <ul class="seo-check-list">
+            <li><a href="https://genai.owasp.org/llm-top-10/" rel="noopener noreferrer">OWASP Top 10 for LLM Applications</a> — édition 2025, référence internationale sur les risques applicatifs des LLM.</li>
+            <li><a href="https://atlas.mitre.org/" rel="noopener noreferrer">MITRE ATLAS</a> — base de connaissance sur les tactiques, techniques et cas réels d’attaques contre les systèmes IA.</li>
+            <li><a href="https://cyber.gouv.fr/publications/recommandations-de-securite-pour-un-systeme-dia-generative" rel="noopener noreferrer">ANSSI — Recommandations pour un système d’IA générative</a>, complétées par les alertes CERT-FR.</li>
+            <li><a href="https://www.enisa.europa.eu/publications/multilayer-framework-for-good-cybersecurity-practices-for-ai" rel="noopener noreferrer">ENISA — Multilayer framework for good cybersecurity practices for AI</a>.</li>
+            <li><a href="https://artificialintelligenceact.eu/" rel="noopener noreferrer">Commission européenne — AI Act</a> — obligations progressives 2026-2028.</li>
+            <li><a href="https://modelcontextprotocol.io/specification" rel="noopener noreferrer">Spécification Model Context Protocol</a> — portée des connecteurs MCP et implications d’exposition.</li>
+          </ul>
+          <p class="seo-small">Cette page est revue chaque trimestre. Les correspondances à OWASP peuvent évoluer entre deux éditions ; se référer aux versions liées.</p>
+        </div>
+      </section>
+
+      <section class="seo-section seo-section-alt">
+        <div class="seo-container seo-reading">
+          <p class="seo-eyebrow">Ce que ce projet en fait</p>
+          <h2>Une méthode inversée : garde-fous avant outil</h2>
+          <p>ACCESSIA Pro est porté par un profil quinze ans d’informatique avec pratique de la cybersécurité et de l’open source. La démarche publiée ici part des menaces documentées, remonte aux garde-fous, puis compare les architectures IA cloud, locale et hybride sur leur capacité à respecter ces garde-fous — plutôt que l’inverse. Aucun outil n’est recommandé sans avoir été comparé sur son périmètre réel, ses contrats et ses coûts cachés.</p>
+        </div>
+      </section>
+
+      <section class="seo-section seo-cta">
+        <div class="seo-container seo-reading">
+          <h2>Aller plus loin</h2>
+          <div class="seo-link-row">
+            <a href="/articles/comparatif-ia-cloud-locale-pme.html">Comparatif IA cloud et locale</a>
+            <a href="/articles/securite-ia-pme-fuites-donnees.html">Classification et protection des données</a>
+            <a href="/articles/rgpd-ia-entreprise.html">Checklist RGPD et IA</a>
+            <a href="/methodologie.html">Méthode de test en cinq étapes</a>
+          </div>
+        </div>
+      </section>
+  </main>
+
+    <footer class="seo-footer">
+      <div class="seo-container seo-footer-grid">
+        <div>
+          <p class="seo-footer-title">ACCESSIA Pro</p>
+          <p>Projet de cabinet en préparation à Toulouse. Ouverture commerciale prévue en janvier 2027.</p>
+        </div>
+        <div>
+          <p class="seo-footer-title">Repères</p>
+          <ul>
+            <li><a href="/tarifs-ia-pme.html">Construire un budget</a></li>
+            <li><a href="/ressources/">Toutes les ressources</a></li>
+            <li><a href="/conseil-ia-toulouse.html">Le projet à Toulouse</a></li>
+            <li><a href="/a-propos-quentin-devesa.html">À propos de l’auteur</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="seo-footer-title">Contact éditorial</p>
+          <p><a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a></p>
+          <p><a href="/llms.txt">Contexte pour assistants IA</a></p>
+        </div>
+      </div>
+      <div class="seo-container seo-footer-bottom">
+        <span>Publication : 21 septembre 2026</span>
+        <span>Contenus informatifs — aucune prestation commerciale ouverte à ce jour</span>
+      </div>
+    </footer>
+
+</body>
+</html>

@@ -13,6 +13,7 @@ const expectedIndexable = new Set([
   "/tarifs-ia-pme.html",
   "/articles/rgpd-ia-entreprise.html",
   "/articles/securite-ia-pme-fuites-donnees.html",
+  "/articles/menaces-ia-2026.html",
   "/articles/calculateur-roi-ia-pme.html",
   "/articles/comparatif-ia-cloud-locale-pme.html",
   "/articles/deployer-ia-locale-pme.html",
@@ -75,8 +76,8 @@ const incomingFromIndexable = new Map(
 );
 const indexableMetadata = [];
 
-if (htmlFiles.length !== 46) {
-  errors.push(`46 pages HTML publiques attendues, ${htmlFiles.length} trouvées`);
+if (htmlFiles.length !== 47) {
+  errors.push(`47 pages HTML publiques attendues, ${htmlFiles.length} trouvées`);
 }
 for (const route of auxiliaryRoutes) {
   if (!htmlByRoute.has(route)) errors.push(`page auxiliaire manquante ${route}`);
