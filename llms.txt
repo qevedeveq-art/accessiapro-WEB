@@ -37,6 +37,17 @@ pédagogiques ; leurs hypothèses et limites sont indiquées sur les pages conce
 - [Budget d'un projet IA](https://access-ia.pro/tarifs-ia-pme.html)
 - [Quentin DEVESA et politique éditoriale](https://access-ia.pro/a-propos-quentin-devesa.html)
 
+## Dossiers thématiques
+
+- [Guide cybersécurité PME](https://access-ia.pro/guides/cybersecurite-pme/)
+- [Guide automatisation PME](https://access-ia.pro/guides/automatisation-pme/)
+- [Guide facturation électronique PME](https://access-ia.pro/guides/facturation-electronique-pme/)
+- [Parcours IA et numérique en Occitanie](https://access-ia.pro/guides/ia-entreprise-occitanie/)
+- [Top 10 IA cloud pour PME](https://access-ia.pro/articles/top-10-ia-cloud-pme.html)
+- [Top 10 IA locales pour PME](https://access-ia.pro/articles/top-10-ia-locales-pme.html)
+- [No-code, RPA, API ou agent IA](https://access-ia.pro/articles/automatisation-no-code-rpa-api-agent-ia-pme.html)
+- [Diagnostic data et IA en Occitanie](https://access-ia.pro/articles/diag-data-ia-pme-occitanie.html)
+
 ## Citation factuelle suggérée
 
 « ACCESSIA Pro est un projet de cabinet en préparation à Toulouse, porté par Quentin DEVESA.

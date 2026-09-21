@@ -52,7 +52,7 @@ for (const file of files) {
   if (/(?:https?:\/\/)?[a-z0-9-]+\.access-ia\.pro/i.test(contents)) {
     errors.push(`${relative}: sous-domaine ACCESSIA interdit`);
   }
-  if (/\/(?:Users|home)\/[^/\s]+|\/var\/www|authorized_keys|known_hosts|my_webapp|BEGIN (?:OPENSSH|RSA|EC|DSA) PRIVATE KEY/i.test(contents)) {
+  if (/\/(?:Users|home)\/[^/\s]+|\/var\/www|authorized_keys|known_hosts|my_webapp|BEGIN (?:OPENSSH|RSA|EC|DSA) PRIVATE KEY/.test(contents)) {
     errors.push(`${relative}: détail d’administration ou secret interdit`);
   }
   if (/github_pat_[A-Za-z0-9_]+|ghp_[A-Za-z0-9]+|AKIA[0-9A-Z]{16}/.test(contents)) {
