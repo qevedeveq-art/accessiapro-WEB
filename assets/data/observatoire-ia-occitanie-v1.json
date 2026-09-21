@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "1.0",
+  "title": "Observatoire documentaire IA et numérique en Occitanie",
+  "status": "methodology-and-official-baseline-only",
+  "publishedAt": "2026-08-02",
+  "lastVerifiedAt": "2026-08-02",
+  "geographicScope": ["Toulouse", "Haute-Garonne", "Occitanie"],
+  "limitations": [
+    "Ce fichier ne contient aucune enquête propriétaire ni aucun résultat client ACCESSIA Pro.",
+    "Les indicateurs nationaux ne doivent pas être présentés comme des mesures spécifiques à l’Occitanie.",
+    "Les indicateurs régionaux disponibles décrivent surtout l’économie numérique, pas l’adoption de l’IA par les seules PME d’Occitanie."
+  ],
+  "officialIndicators": [
+    {
+      "id": "fr-ai-use-2025",
+      "scope": "France",
+      "referenceYear": 2025,
+      "indicator": "Entreprises déclarant utiliser au moins une technologie d’intelligence artificielle",
+      "value": 18,
+      "unit": "percent",
+      "source": "https://www.insee.fr/fr/statistiques/9025878",
+      "sourcePublishedAt": "2026-07-21"
+    },
+    {
+      "id": "occ-digital-jobs-2022",
+      "scope": "Occitanie",
+      "referenceYear": 2022,
+      "indicator": "Part des emplois marchands relevant de l’économie numérique",
+      "value": 7.3,
+      "unit": "percent",
+      "source": "https://www.insee.fr/fr/statistiques/8582392",
+      "sourcePublishedAt": "2025-06-12"
+    },
+    {
+      "id": "occ-digital-job-growth-2018-2022",
+      "scope": "Occitanie",
+      "referencePeriod": "2018-2022",
+      "indicator": "Progression annuelle moyenne de l’emploi numérique",
+      "value": 5.4,
+      "unit": "percent-per-year",
+      "source": "https://www.insee.fr/fr/statistiques/8582392",
+      "sourcePublishedAt": "2025-06-12"
+    }
+  ],
+  "futureLocalSurvey": {
+    "status": "not-started",
+    "responses": 0,
+    "minimumPublicationThreshold": 30,
+    "targetPopulation": "TPE, PME et PMI disposant d’un établissement en Occitanie",
+    "plannedDimensions": [
+      "usages réellement déployés",
+      "tâches et métiers concernés",
+      "données et architecture",
+      "contrôle humain",
+      "freins, incidents et compétences",
+      "mesures avant et après test"
+    ],
+    "publicationRules": [
+      "Publier le questionnaire, la période et le canal de recrutement.",
+      "Séparer les résultats observés des commentaires qualitatifs.",
+      "Ne jamais revendiquer une représentativité régionale sans plan d’échantillonnage adapté.",
+      "Masquer ou regrouper toute cellule pouvant réidentifier une entreprise."
+    ]
+  }
+}

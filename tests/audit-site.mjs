@@ -10,7 +10,13 @@ const expectedIndexable = new Set([
   "/",
   "/ressources/",
   "/guides/ia-pme/",
+  "/guides/automatisation-pme/",
+  "/guides/cybersecurite-pme/",
+  "/guides/facturation-electronique-pme/",
+  "/guides/ia-entreprise-occitanie/",
   "/tarifs-ia-pme.html",
+  "/mentions-legales.html",
+  "/politique-de-confidentialite.html",
   "/articles/rgpd-ia-entreprise.html",
   "/articles/securite-ia-pme-fuites-donnees.html",
   "/articles/menaces-ia-2026.html",
@@ -29,14 +35,72 @@ const expectedIndexable = new Set([
   "/articles/journal-usage-ia-pme.html",
   "/articles/applications-metier-sur-mesure.html",
   "/articles/rag-interne-securise-pme.html",
+  "/articles/top-10-ia-cloud-pme.html",
+  "/articles/top-10-ia-locales-pme.html",
+  "/articles/aides-accompagnement-ia-entreprise-occitanie.html",
+  "/articles/automatisation-no-code-rpa-api-agent-ia-pme.html",
+  "/articles/automatiser-rapprochement-facture-commande-pme.html",
+  "/articles/choisir-plateforme-agreee-facturation-electronique-pme.html",
+  "/articles/cyberattaque-pme-occitanie-premiers-reflexes.html",
+  "/articles/diag-data-ia-pme-occitanie.html",
+  "/articles/e-invoicing-e-reporting-pme.html",
+  "/articles/entrepreneur-ia-occitanie-lancer-projet.html",
+  "/articles/facturation-electronique-cybersecurite-pme.html",
+  "/articles/financer-projet-ia-pme-occitanie.html",
+  "/articles/formats-facture-electronique-factur-x-ubl-cii.html",
+  "/articles/fraude-facture-iban-pme.html",
+  "/articles/gouvernance-acces-ia-pme.html",
+  "/articles/ia-batiment-artisanat-occitanie.html",
+  "/articles/ia-pmi-industrie-occitanie.html",
+  "/articles/ia-tourisme-occitanie.html",
+  "/articles/monaidecyber-diagnostic-pme.html",
+  "/articles/plan-cybersecurite-pme-30-jours.html",
+  "/articles/ransomware-continuite-activite-pme.html",
+  "/articles/shadow-ai-charte-pme.html",
 ]);
 const auxiliaryRoutes = new Set([
   "/404.html",
   "/articles/integrer-ia-pme.html",
+  "/contact.html",
+  "/contact-envoye.html",
 ]);
 const selfCanonicalNoindexAllowed = new Set([
   "/404.html",
   "/articles/facture-electronique-2026-pme-open-source.html",
+  "/contact.html",
+  "/contact-envoye.html",
+]);
+const linkableAuxiliary = new Set([
+  "/articles/",
+  "/contact.html",
+  "/contact-envoye.html",
+  "/articles/facture-electronique-2026-pme-open-source.html",
+  "/articles/integrer-ia-pme.html",
+  "/articles/cas-usage-achats-fournisseurs.html",
+  "/articles/cas-usage-appels-offres.html",
+  "/articles/cas-usage-assistant-documentaire.html",
+  "/articles/cas-usage-contrats-juridique.html",
+  "/articles/cas-usage-controle-gestion.html",
+  "/articles/cas-usage-crm-prospection.html",
+  "/articles/cas-usage-emails-devis.html",
+  "/articles/cas-usage-factures-comptabilite.html",
+  "/articles/cas-usage-maintenance-production.html",
+  "/articles/cas-usage-marketing-contenu.html",
+  "/articles/cas-usage-planning-ressources.html",
+  "/articles/cas-usage-qualite-conformite.html",
+  "/articles/cas-usage-rh-recrutement-onboarding.html",
+  "/articles/cas-usage-support-client.html",
+  "/articles/ia-pme-aeronautique.html",
+  "/articles/ia-pme-agroalimentaire.html",
+  "/articles/ia-pme-sante-medtech.html",
+  "/articles/ia-pme-toulouse.html",
+  "/articles/ia-cabinets-conseil-expertise.html",
+  "/articles/ia-open-source-entreprise.html",
+  "/articles/chatgpt-claude-mistral-pme.html",
+  "/articles/copilot-vs-chatgpt-team-pme.html",
+  "/articles/premier-projet-ia-pme-exemple.html",
+  "/articles/glossaire-ia-dirigeants.html",
+  "/articles/roi-ia-pme-france.html",
 ]);
 const datedResourceArticles = new Set([
   "/articles/comparatif-ia-cloud-locale-pme.html",
@@ -82,8 +146,8 @@ const incomingFromIndexable = new Map(
 );
 const indexableMetadata = [];
 
-if (htmlFiles.length !== 53) {
-  errors.push(`53 pages HTML publiques attendues, ${htmlFiles.length} trouvées`);
+if (htmlFiles.length !== 83) {
+  errors.push(`83 pages HTML publiques attendues, ${htmlFiles.length} trouvées`);
 }
 for (const route of auxiliaryRoutes) {
   if (!htmlByRoute.has(route)) errors.push(`page auxiliaire manquante ${route}`);
@@ -230,7 +294,8 @@ for (const reference of internalReferences) {
     expectedIndexable.has(reference.sourceRoute) &&
     targetRoute &&
     htmlByRoute.has(targetRoute) &&
-    !expectedIndexable.has(targetRoute)
+    !expectedIndexable.has(targetRoute) &&
+    !linkableAuxiliary.has(targetRoute)
   ) {
     errors.push(`${reference.sourceRoute}: lien vers une page noindex ${targetRoute}`);
   }
