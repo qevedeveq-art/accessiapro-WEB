@@ -213,8 +213,8 @@ jobs:
           gsutil stat "$GCS_BUCKET/articles/comparatif-ia-cloud-locale-pme.html" >/dev/null
           SITEMAP_COUNT="$(gsutil cat "$GCS_BUCKET/sitemap.xml" \
             | grep -o '<loc>' | wc -l | tr -d ' ')"
-          if [ "$SITEMAP_COUNT" != "15" ]; then
-            echo "ERROR: deployed sitemap contains $SITEMAP_COUNT URLs, expected 15"
+          if [ "$SITEMAP_COUNT" != "16" ]; then
+            echo "ERROR: deployed sitemap contains $SITEMAP_COUNT URLs, expected 16"
             exit 1
           fi
           echo "Deployed GCS release verified"

@@ -95,8 +95,8 @@ jobs:
             | grep -o '<loc>' | wc -l | tr -d ' ' || true)
           test "$ARTICLE_STATUS" = "200" \
             || { echo "ERROR: comparison article returned $ARTICLE_STATUS"; exit 1; }
-          test "$SITEMAP_COUNT" = "15" \
-            || { echo "ERROR: expected 15 sitemap URLs, found $SITEMAP_COUNT"; exit 1; }
+          test "$SITEMAP_COUNT" = "16" \
+            || { echo "ERROR: expected 16 sitemap URLs, found $SITEMAP_COUNT"; exit 1; }
 
       - name: Notify on failure
         if: failure()
