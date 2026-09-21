@@ -1,4 +1,4 @@
-name: Deploy — GCS + CDN
+name: Build & Deploy
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       deploy:
-        description: Deploy the validated build to the public GCS/CDN target
+        description: Deploy the validated build to production
         required: true
         type: boolean
         default: false
@@ -17,14 +17,9 @@ concurrency:
 
 permissions:
   contents: read
-  id-token: write
 
 env:
   SITE_DIR: /tmp/accessia-site
-  GCS_BUCKET: gs://accessia-pro-web
-  GCP_BACKEND_BUCKET: accessia-pro-backend
-  GCP_URL_MAP: accessia-pro-lb
-  GCP_HTTPS_IP: 34.102.254.53
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
@@ -124,11 +119,11 @@ jobs:
           path: ${{ env.SITE_DIR }}
           retention-days: 7
 
-  deploy-gcs:
+  deploy:
     needs: build
-    if: github.event_name == 'push' || inputs.deploy
+    if: github.event_name == 'workflow_dispatch' && inputs.deploy
     runs-on: ubuntu-latest
-    name: Deploy to Google Cloud Storage + CDN
+    name: Deploy to production
 
     steps:
       - name: Download build artifacts
@@ -137,148 +132,59 @@ jobs:
           name: site-build
           path: ${{ env.SITE_DIR }}
 
-      - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v3
+      - name: Configure SSH
+        uses: webfactory/ssh-agent@v0.9.0
         with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          ssh-private-key: ${{ secrets.SSH_DEPLOY_KEY }}
 
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v3
-
-      - name: Sync files to GCS bucket
+      - name: Trust host key
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
         run: |
-          gsutil -m rsync -r -d "$SITE_DIR" "$GCS_BUCKET"
+          mkdir -p "$HOME/.ssh"
+          TRUSTED="$HOME/.ssh/hosts_trusted"
+          ssh-keyscan -t ed25519,rsa -H "$DEPLOY_HOST" > "$TRUSTED"
+          echo "RSYNC_RSH=ssh -o UserKnownHostsFile=$TRUSTED" >> "$GITHUB_ENV"
 
-      - name: Set content-type for fonts
+      - name: Rsync site to production
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         run: |
-          gsutil -m setmeta \
-            -h "Content-Type:font/woff2" \
-            "$GCS_BUCKET/assets/fonts/*.woff2" || true
+          rsync -avz --delete \
+            --exclude='.git*' \
+            "$SITE_DIR/" \
+            "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}"
 
-      - name: Set cache headers for static assets
-        run: |
-          gsutil -m setmeta \
-            -h "Cache-Control:public, max-age=31536000, immutable" \
-            "$GCS_BUCKET/assets/css/*.css" \
-            "$GCS_BUCKET/assets/js/*.js" \
-            "$GCS_BUCKET/assets/images/*.webp" \
-            "$GCS_BUCKET/assets/images/*.png" \
-            "$GCS_BUCKET/assets/images/*.jpg" \
-            "$GCS_BUCKET/assets/images/*.svg" \
-            "$GCS_BUCKET/assets/fonts/*.woff2" || true
-          gsutil -m setmeta \
-            -h "Cache-Control:public, max-age=3600, must-revalidate" \
-            "$GCS_BUCKET/robots.txt" \
-            "$GCS_BUCKET/sitemap.xml" \
-            "$GCS_BUCKET/favicon.ico"
-          gsutil -m setmeta \
-            -h "Cache-Control:public, max-age=300, must-revalidate" \
-            -h "Content-Type:text/html; charset=utf-8" \
-            "$GCS_BUCKET/*.html" \
-            "$GCS_BUCKET/articles/*.html" \
-            "$GCS_BUCKET/guides/*/*.html" \
-            "$GCS_BUCKET/ressources/*.html"
-          gsutil -m setmeta \
-            -h "Cache-Control:public, max-age=300, must-revalidate" \
-            -h "Content-Type:text/plain; charset=utf-8" \
-            "$GCS_BUCKET/llms.txt"
-
-      - name: Set security response headers on backend bucket
-        run: |
-          gcloud compute backend-buckets describe "$GCP_BACKEND_BUCKET" \
-            --format="value(name)" >/dev/null
-          gcloud compute backend-buckets update "$GCP_BACKEND_BUCKET" \
-            --custom-response-header='Strict-Transport-Security:max-age=63072000' \
-            --custom-response-header="Content-Security-Policy:default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; form-action 'self' mailto:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests" \
-            --custom-response-header='X-Frame-Options:DENY' \
-            --custom-response-header='X-Content-Type-Options:nosniff' \
-            --custom-response-header='Referrer-Policy:strict-origin-when-cross-origin' \
-            --custom-response-header='Permissions-Policy:camera=(), microphone=(), geolocation=(), payment=(), interest-cohort=()' \
-            --custom-response-header='Cross-Origin-Opener-Policy:same-origin' \
-            --custom-response-header='Cross-Origin-Resource-Policy:same-origin'
-          echo "Security headers applied to $GCP_BACKEND_BUCKET"
-
-      - name: Invalidate CDN cache
-        run: |
-          gcloud compute url-maps invalidate-cdn-cache "$GCP_URL_MAP" \
-            --path "/*" \
-            --global \
-            --async
-
-      - name: Verify the deployed GCS release
+      - name: Verify public release
         run: |
           set -euo pipefail
-          gsutil cat "$GCS_BUCKET/index.html" \
-            | grep -qi "projet en préparation"
-          gsutil stat "$GCS_BUCKET/articles/comparatif-ia-cloud-locale-pme.html" >/dev/null
-          SITEMAP_COUNT="$(gsutil cat "$GCS_BUCKET/sitemap.xml" \
-            | grep -o '<loc>' | wc -l | tr -d ' ')"
-          if [ "$SITEMAP_COUNT" != "16" ]; then
-            echo "ERROR: deployed sitemap contains $SITEMAP_COUNT URLs, expected 16"
-            exit 1
-          fi
-          echo "Deployed GCS release verified"
-
-  verify-public:
-    needs: deploy-gcs
-    runs-on: ubuntu-latest
-    name: Verify the public apex
-    outputs:
-      apex_ready: ${{ steps.apex-dns.outputs.ready }}
-
-    steps:
-      - name: Check whether the apex points to the validated GCP frontend
-        id: apex-dns
-        run: |
-          set -euo pipefail
-          APEX_IP="$(getent ahostsv4 access-ia.pro | awk 'NR == 1 { print $1 }' || true)"
-          if [ "$APEX_IP" = "$GCP_HTTPS_IP" ]; then
-            echo "ready=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::Public apex remains on $APEX_IP; GCS deployment succeeded and public verification is deferred."
-          fi
-
-      - name: Wait for the validated release to become public
-        if: steps.apex-dns.outputs.ready == 'true'
-        run: |
-          for attempt in $(seq 1 12); do
+          for attempt in $(seq 1 6); do
             HOME_STATUS=$(curl --silent --show-error --max-time 30 \
-              -o /tmp/accessia-home.html -w "%{http_code}" https://access-ia.pro/ \
-              || true)
-            ARTICLE_STATUS=$(curl --silent --show-error --max-time 30 \
-              -o /tmp/accessia-comparison.html -w "%{http_code}" \
-              https://access-ia.pro/articles/comparatif-ia-cloud-locale-pme.html \
-              || true)
+              -o /tmp/home.html -w "%{http_code}" https://access-ia.pro/ || true)
+            MENACES_STATUS=$(curl --silent --show-error --max-time 30 \
+              -o /dev/null -w "%{http_code}" \
+              https://access-ia.pro/articles/menaces-ia-2026.html || true)
             SITEMAP_COUNT=$(curl --silent --show-error --max-time 30 \
               https://access-ia.pro/sitemap.xml \
               | grep -o '<loc>' | wc -l | tr -d ' ' || true)
             if [ "$HOME_STATUS" = "200" ] \
-              && [ "$ARTICLE_STATUS" = "200" ] \
-              && [ "$SITEMAP_COUNT" = "15" ] \
-              && grep -qi "projet en préparation" /tmp/accessia-home.html; then
+              && [ "$MENACES_STATUS" = "200" ] \
+              && [ "$SITEMAP_COUNT" = "16" ] \
+              && grep -qi "projet en préparation" /tmp/home.html; then
               echo "Public release verified on attempt $attempt"
               exit 0
             fi
-            echo "Attempt $attempt: home=$HOME_STATUS article=$ARTICLE_STATUS sitemap=$SITEMAP_COUNT"
+            echo "Attempt $attempt: home=$HOME_STATUS menaces=$MENACES_STATUS sitemap=$SITEMAP_COUNT"
             sleep 10
           done
-          echo "ERROR: the public apex does not serve the validated release"
+          echo "ERROR: public verification failed"
           exit 1
 
-      - name: Verify public security headers
-        if: steps.apex-dns.outputs.ready == 'true'
-        run: |
-          HEADERS=$(curl --silent --show-error --max-time 30 --head https://access-ia.pro/)
-          for HEADER in strict-transport-security content-security-policy x-content-type-options x-frame-options referrer-policy; do
-            echo "$HEADERS" | grep -qi "$HEADER" \
-              || { echo "ERROR: missing $HEADER"; exit 1; }
-          done
-
-
   notify-indexnow:
-    needs: verify-public
-    if: needs.verify-public.outputs.apex_ready == 'true'
+    needs: deploy
+    if: github.event_name == 'workflow_dispatch' && inputs.deploy
     runs-on: ubuntu-latest
     name: Notify search engines (IndexNow — Bing, Yandex, Naver, Seznam)
     steps:

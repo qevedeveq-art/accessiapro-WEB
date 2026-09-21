@@ -20,11 +20,11 @@ jobs:
       - name: Audit public repository boundaries
         run: node tests/audit-repository.mjs .
 
-      - name: Check HTTPS availability (primary CDN)
+      - name: Check HTTPS availability
         run: |
           STATUS=$(curl --silent --show-error --max-time 30 \
             -o /dev/null -w "%{http_code}" https://access-ia.pro)
-          echo "HTTP status (CDN): $STATUS"
+          echo "HTTP status: $STATUS"
           if [ "$STATUS" != "200" ]; then
             echo "ERROR: Primary domain returned $STATUS" && exit 1
           fi
@@ -38,7 +38,7 @@ jobs:
             echo "ERROR: HTTP does not redirect to HTTPS" && exit 1
           fi
 
-      - name: Check security headers (CDN)
+      - name: Check security headers
         run: |
           HEADERS=$(curl --silent --show-error --max-time 30 \
             --head https://access-ia.pro)
@@ -61,7 +61,7 @@ jobs:
             echo "WARNING: referrer-policy missing (recommended for privacy)"
           fi
 
-      - name: Check SSL certificate expiry (CDN domain)
+      - name: Check SSL certificate expiry
         run: |
           EXPIRY=$(echo | openssl s_client -connect access-ia.pro:443 -servername access-ia.pro 2>/dev/null \
             | openssl x509 -noout -enddate 2>/dev/null | cut -d= -f2)
