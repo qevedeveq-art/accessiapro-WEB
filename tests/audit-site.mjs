@@ -23,6 +23,12 @@ const expectedIndexable = new Set([
   "/articles/formation-equipe-ia.html",
   "/conseil-ia-toulouse.html",
   "/a-propos-quentin-devesa.html",
+  "/articles/prompt-injection-audit-pme.html",
+  "/articles/mcp-agent-ia-pme.html",
+  "/articles/souverainete-ia-france-ue.html",
+  "/articles/journal-usage-ia-pme.html",
+  "/articles/applications-metier-sur-mesure.html",
+  "/articles/rag-interne-securise-pme.html",
 ]);
 const auxiliaryRoutes = new Set([
   "/404.html",
@@ -76,8 +82,8 @@ const incomingFromIndexable = new Map(
 );
 const indexableMetadata = [];
 
-if (htmlFiles.length !== 47) {
-  errors.push(`47 pages HTML publiques attendues, ${htmlFiles.length} trouvées`);
+if (htmlFiles.length !== 53) {
+  errors.push(`53 pages HTML publiques attendues, ${htmlFiles.length} trouvées`);
 }
 for (const route of auxiliaryRoutes) {
   if (!htmlByRoute.has(route)) errors.push(`page auxiliaire manquante ${route}`);

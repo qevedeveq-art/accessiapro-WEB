@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Model Context Protocol en PME : brancher un agent IA sans exfiltrer</title>
+  <meta name="description" content="Le protocole MCP standardise la connexion d'un assistant IA à des outils internes. Vue d'ensemble, cas d'usage PME, garde-fous d'exposition et journalisation avant de déployer un agent au-delà du prompt simple.">
+  <meta name="author" content="Quentin DEVESA">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#0A1530">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://access-ia.pro/articles/mcp-agent-ia-pme.html">
+  <link rel="alternate" type="text/plain" href="https://access-ia.pro/llms.txt" title="Contexte factuel ACCESSIA Pro">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/seo-2026.css">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://access-ia.pro/articles/mcp-agent-ia-pme.html">
+  <meta property="og:title" content="Model Context Protocol en PME : brancher un agent IA sans exfiltrer">
+  <meta property="og:description" content="Le protocole MCP standardise la connexion d'un assistant IA à des outils internes. Vue d'ensemble, cas d'usage PME, garde-fous et journalisation.">
+  <meta property="og:image" content="https://access-ia.pro/assets/images/og-image.jpg">
+  <meta property="og:image:alt" content="ACCESSIA Pro — ressources IA pour PME">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="ACCESSIA Pro">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Model Context Protocol en PME : brancher un agent IA sans exfiltrer">
+  <meta name="twitter:description" content="Le protocole MCP standardise la connexion d'un assistant IA à des outils internes. Garde-fous d'exposition et journalisation.">
+  <meta name="twitter:image" content="https://access-ia.pro/assets/images/og-image.jpg">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; form-action 'self' mailto:; connect-src 'self'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa","name":"Quentin DEVESA","url":"https://access-ia.pro/a-propos-quentin-devesa.html","description":"Porteur du projet ACCESSIA Pro et responsable des ressources éditoriales publiées sur access-ia.pro.","sameAs":["https://www.linkedin.com/in/quentin-devesa-cyber04a069"]},{"@type":"WebSite","@id":"https://access-ia.pro/#website","name":"ACCESSIA Pro","url":"https://access-ia.pro/","inLanguage":"fr-FR","publisher":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"}},{"@type":"Article","@id":"https://access-ia.pro/articles/mcp-agent-ia-pme.html#page","url":"https://access-ia.pro/articles/mcp-agent-ia-pme.html","name":"Model Context Protocol en PME : brancher un agent IA sans exfiltrer","description":"Le protocole MCP standardise la connexion d'un assistant IA à des outils internes.","inLanguage":"fr-FR","dateModified":"2026-09-21","datePublished":"2026-09-21","isPartOf":{"@id":"https://access-ia.pro/#website"},"author":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"},"citation":["https://modelcontextprotocol.io/","https://www.anthropic.com/news/model-context-protocol","https://genai.owasp.org/llmrisk/llm06-excessive-agency/","https://atlas.mitre.org/","https://cyber.gouv.fr/publications/recommandations-de-securite-pour-un-systeme-dia-generative"]},{"@type":"BreadcrumbList","@id":"https://access-ia.pro/articles/mcp-agent-ia-pme.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://access-ia.pro/"},{"@type":"ListItem","position":2,"name":"Ressources","item":"https://access-ia.pro/ressources/"},{"@type":"ListItem","position":3,"name":"Model Context Protocol en PME","item":"https://access-ia.pro/articles/mcp-agent-ia-pme.html"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
+  <div class="seo-prelaunch" role="status">
+    <div class="seo-container"><strong>Pré-lancement :</strong> projet en préparation, ouverture commerciale prévue en janvier 2027.</div>
+  </div>
+
+  <header class="seo-header">
+    <div class="seo-container seo-header-inner">
+      <a class="seo-brand" href="/" aria-label="ACCESSIA Pro — Accueil">
+        <img src="/assets/images/logo-icon.webp" alt="" width="36" height="36">
+        <span>ACCESSIA <strong>Pro</strong></span>
+      </a>
+      <nav aria-label="Navigation principale">
+        <ul class="seo-nav">
+          <li><a href="/guides/ia-pme/">Décider</a></li>
+          <li><a href="/articles/rgpd-ia-entreprise.html">Protéger</a></li>
+          <li><a href="/articles/calculateur-roi-ia-pme.html">Mesurer</a></li>
+          <li><a href="/methodologie.html">Déployer</a></li>
+          <li><a href="/ressources/">Ressources</a></li>
+        </ul>
+      </nav>
+      <a class="seo-button seo-button-small" href="mailto:contact@access-ia.pro?subject=Échange%20exploratoire%20ACCESSIA%20Pro">Échange exploratoire</a>
+    </div>
+  </header>
+
+  <main id="contenu-principal" class="seo-main">
+    <section class="seo-hero">
+      <div class="seo-container seo-reading">
+        <nav class="seo-breadcrumb" aria-label="Fil d’Ariane">
+          <ol>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/ressources/">Ressources</a></li>
+            <li aria-current="page">Model Context Protocol en PME</li>
+          </ol>
+        </nav>
+        <p class="seo-kicker">Pilier 4 — Déployer · architecture agent</p>
+        <h1>Model Context Protocol en PME : brancher un agent IA sans exfiltrer</h1>
+        <p class="seo-lede">Model Context Protocol (MCP) est le protocole ouvert publié fin 2024 par Anthropic pour standardiser la connexion d'un assistant IA à des outils, fichiers et bases internes. Il change la façon d'exposer des données à un agent — et donc la façon de mesurer le risque. Ce dossier expose ce que MCP est, ce qu'il n'est pas, et les garde-fous à écrire avant qu'une PME ne branche son premier serveur MCP.</p>
+        <p class="seo-editorial-meta">Publié le 21 septembre 2026 · Vérifié le 21 septembre 2026 · Prochaine revue : 21 décembre 2026</p>
+      </div>
+    </section>
+
+    <section class="seo-section">
+      <div class="seo-container seo-reading">
+        <h2>Ce que MCP change</h2>
+        <p>Jusqu'à MCP, chaque intégration entre un assistant IA et un système interne demandait un connecteur propriétaire, souvent lié à un éditeur. MCP normalise trois choses : la façon dont un modèle demande à consulter une ressource (lecture d'un fichier, requête vers une base, appel d'une API), la façon dont il déclenche un outil (envoyer un mail, écrire dans un dossier, créer une entrée CRM) et la façon dont un serveur d'outils déclare ses capacités. Concrètement, un serveur MCP est un petit programme local ou distant qui expose un catalogue de ressources et d'outils dans un format commun.</p>
+        <p>Pour une PME, l'intérêt n'est pas la « magie agent » ; c'est la capacité à brancher rapidement plusieurs sources (une base documentaire, un dossier partagé, un CRM open source) sur un même assistant sans redévelopper à chaque changement d'outil. Le prix à payer : chaque serveur MCP étend la surface d'action de l'assistant. Ce que le modèle peut lire, il peut le résumer, l'utiliser, le combiner ailleurs. Ce qu'il peut déclencher, il peut aussi le déclencher au mauvais moment.</p>
+      </div>
+    </section>
+
+    <section class="seo-section seo-section-alt">
+      <div class="seo-container">
+        <h2>Trois cas d'usage typiques en PME</h2>
+        <div class="seo-table-wrap">
+          <table>
+            <thead><tr><th>Cas</th><th>Serveurs MCP mobilisés</th><th>Effet mesurable</th></tr></thead>
+            <tbody>
+              <tr><td>Assistant support niveau 1</td><td>Base de connaissances (lecture), historique tickets (lecture), envoi brouillon (écriture confirmée)</td><td>Réponses standardisées relues par un humain avant envoi</td></tr>
+              <tr><td>Rédaction commerciale</td><td>CRM (lecture fiches), catalogue produits (lecture), stockage brouillons (écriture)</td><td>Devis pré-rédigés avec données à jour, validation manuelle</td></tr>
+              <tr><td>Analyse documentaire</td><td>Dossier partagé (lecture), moteur RAG interne (lecture), tableur (écriture ligne à ligne)</td><td>Synthèse d'un lot de documents avec traçabilité par source</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Les trois patrons partagent la même règle : les serveurs de lecture peuvent être multiples, les serveurs d'écriture doivent rester rares, explicites, et exiger une confirmation utilisateur au moment de l'action.</p>
+      </div>
+    </section>
+
+    <section class="seo-section">
+      <div class="seo-container seo-reading">
+        <h2>Ce que MCP n'est pas</h2>
+        <ul class="seo-check-list">
+          <li>Ce n'est pas un modèle. MCP est un protocole ; il fonctionne avec Claude, avec des modèles locaux ou avec d'autres éditeurs quand ceux-ci l'implémentent.</li>
+          <li>Ce n'est pas une garantie de sécurité. Le protocole transporte des instructions et des résultats ; il n'exécute pas d'analyse de risque à la place de l'entreprise.</li>
+          <li>Ce n'est pas un remplacement d'API métier. Un serveur MCP se pose en général au-dessus d'API existantes ; il ne change pas la logique des droits ni des règles applicatives.</li>
+          <li>Ce n'est pas une abstraction gratuite. Chaque serveur MCP est du code : il faut le tenir à jour, le monitorer et le retirer quand il n'a plus d'usage.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="seo-section seo-section-alt">
+      <div class="seo-container seo-reading">
+        <h2>Garde-fous à écrire avant le premier branchement</h2>
+        <ol class="seo-steps">
+          <li><strong>Cartographier les ressources et outils exposés.</strong> Pour chaque serveur MCP prévu, lister ce qu'il expose en lecture, ce qu'il permet en écriture, quelles identités il utilise côté source et vers quel modèle il parle.</li>
+          <li><strong>Réduire le périmètre par défaut.</strong> Un dossier partagé ne se branche pas en entier. Un CRM ne s'expose pas avec tous ses champs. Chaque champ, chaque dossier justifie sa présence dans le serveur.</li>
+          <li><strong>Séparer lecture et écriture.</strong> Une PME peut se contenter de MCP en lecture pour ses premiers cas et repousser les serveurs d'écriture au moment où la journalisation et la relecture humaine sont en place.</li>
+          <li><strong>Journaliser les appels d'outils.</strong> Chaque invocation MCP doit produire une trace : quel outil, quels arguments, quel résultat, quelle décision. La journalisation devient la preuve d'usage en cas d'incident ou de contrôle.</li>
+          <li><strong>Prévoir un bouton d'arrêt.</strong> Un serveur MCP peut être coupé en une commande. C'est le geste à documenter avant de démarrer, pas après un incident.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="seo-section">
+      <div class="seo-container seo-two-columns">
+        <div>
+          <h2>Risques spécifiques à traiter</h2>
+          <ul class="seo-check-list">
+            <li>Injection indirecte via un document lu par un serveur MCP.</li>
+            <li>Excès d'agence : un modèle qui déclenche une action qu'il ne devrait pas déclencher (OWASP LLM06).</li>
+            <li>Confusion d'identité : un serveur MCP qui parle à une source avec des droits plus larges que ceux de l'utilisateur.</li>
+            <li>Persistance non voulue : des logs de conversation qui contiennent des données sensibles issues du MCP.</li>
+            <li>Dépendance à un serveur tiers non maintenu.</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Ce qui reste à décider par l'entreprise</h2>
+          <p>MCP ne dispense pas d'écrire une politique. La PME doit toujours définir qui peut brancher un serveur, quelles données peuvent y transiter, quelles décisions sortent d'un assistant, quelles opérations exigent un double regard humain et comment le journal d'usage est conservé. Ces choix sont des décisions métier, pas des choix techniques.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="seo-section seo-section-alt">
+      <div class="seo-container seo-reading">
+        <h2>Sources primaires</h2>
+        <ul class="seo-source-list">
+          <li><a href="https://modelcontextprotocol.io/" rel="noopener noreferrer">Spécification Model Context Protocol</a> — Documentation officielle du protocole (ouverte, versionnée).</li>
+          <li><a href="https://www.anthropic.com/news/model-context-protocol" rel="noopener noreferrer">Anthropic — Introducing the Model Context Protocol</a> — Contexte et motivation de la spécification.</li>
+          <li><a href="https://genai.owasp.org/llmrisk/llm06-excessive-agency/" rel="noopener noreferrer">OWASP LLM06 — Excessive Agency</a> — Cadre d'analyse pour les agents dotés d'outils.</li>
+          <li><a href="https://atlas.mitre.org/" rel="noopener noreferrer">MITRE ATLAS — Adversarial Threat Landscape for AI Systems</a> — Techniques d'attaque documentées sur les agents.</li>
+          <li><a href="https://cyber.gouv.fr/publications/recommandations-de-securite-pour-un-systeme-dia-generative" rel="noopener noreferrer">ANSSI — Recommandations de sécurité pour un système d'IA générative</a> — Contrôles applicables aux intégrations avec des sources externes.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="seo-section seo-cta">
+      <div class="seo-container seo-reading">
+        <h2>Continuer sur les architectures agent</h2>
+        <div class="seo-link-row">
+          <a href="/articles/menaces-ia-2026.html">Panorama menaces IA 2025-2026</a>
+          <a href="/articles/prompt-injection-audit-pme.html">Auditer un assistant contre l'injection indirecte</a>
+          <a href="/articles/deployer-ia-locale-pme.html">Déployer une IA locale</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="seo-footer">
+    <div class="seo-container seo-footer-grid">
+      <div>
+        <p class="seo-footer-title">ACCESSIA Pro</p>
+        <p>Projet de cabinet en préparation à Toulouse. Ouverture commerciale prévue en janvier 2027.</p>
+      </div>
+      <div>
+        <p class="seo-footer-title">Repères</p>
+        <ul>
+          <li><a href="/tarifs-ia-pme.html">Construire un budget</a></li>
+          <li><a href="/ressources/">Toutes les ressources</a></li>
+          <li><a href="/conseil-ia-toulouse.html">Le projet à Toulouse</a></li>
+          <li><a href="/a-propos-quentin-devesa.html">À propos de l’auteur</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="seo-footer-title">Contact éditorial</p>
+        <p><a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a></p>
+        <p><a href="/llms.txt">Contexte pour assistants IA</a></p>
+      </div>
+    </div>
+    <div class="seo-container seo-footer-bottom">
+      <span>Dernière révision substantielle : 21 septembre 2026</span>
+      <span>Contenus informatifs — aucune prestation commerciale ouverte à ce jour</span>
+    </div>
+  </footer>
+</body>
+</html>
