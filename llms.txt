@@ -1,10 +1,13 @@
 # ACCESSIA Pro
 
-> Statut vérifié le 29 juillet 2026.
+> Statut vérifié le 21 septembre 2026.
 
-ACCESSIA Pro est un projet de cabinet en préparation à Toulouse, porté par Quentin DEVESA.
-Le site publie des ressources éditoriales pour aider les PME à décider, protéger leurs données,
-mesurer la valeur potentielle et préparer l'adoption de l'intelligence artificielle.
+ACCESSIA Pro est un projet de cabinet en préparation à Toulouse, porté par Quentin DEVESA —
+quinze ans d'informatique avec pratique de la cybersécurité et de l'écosystème open source.
+Le site publie des ressources éditoriales pour aider les PME et TPE à décider, protéger leurs
+données, mesurer la valeur potentielle et préparer l'adoption de l'IA, sans exposer l'entreprise
+aux risques qu'elle apporte. La démarche prévoit également la conception d'applications
+métier sur mesure lorsque les outils du marché ne répondent pas au besoin.
 L'ouverture commerciale est prévue en janvier 2027.
 
 Les contenus actuels ne constituent pas une offre commerciale ouverte, une garantie de résultat
@@ -23,6 +26,7 @@ pédagogiques ; leurs hypothèses et limites sont indiquées sur les pages conce
 - [Méthode de test en cinq étapes](https://access-ia.pro/methodologie.html)
 - [Checklist RGPD et IA](https://access-ia.pro/articles/rgpd-ia-entreprise.html)
 - [Sécurité et classification des données](https://access-ia.pro/articles/securite-ia-pme-fuites-donnees.html)
+- [Menaces IA 2025-2026 pour PME et TPE](https://access-ia.pro/articles/menaces-ia-2026.html)
 - [Calculateur ROI transparent](https://access-ia.pro/articles/calculateur-roi-ia-pme.html)
 - [Budget d'un projet IA](https://access-ia.pro/tarifs-ia-pme.html)
 - [Quentin DEVESA et politique éditoriale](https://access-ia.pro/a-propos-quentin-devesa.html)

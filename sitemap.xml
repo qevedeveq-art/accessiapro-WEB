@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://access-ia.pro/</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-09-21</lastmod>
   </url>
   <url>
     <loc>https://access-ia.pro/ressources/</loc>
@@ -23,6 +23,10 @@
   <url>
     <loc>https://access-ia.pro/articles/securite-ia-pme-fuites-donnees.html</loc>
     <lastmod>2026-07-29</lastmod>
+  </url>
+  <url>
+    <loc>https://access-ia.pro/articles/menaces-ia-2026.html</loc>
+    <lastmod>2026-09-21</lastmod>
   </url>
   <url>
     <loc>https://access-ia.pro/articles/calculateur-roi-ia-pme.html</loc>
