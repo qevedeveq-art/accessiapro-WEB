@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RAG interne sécurisé en PME : indexer sans exfiltrer</title>
+  <meta name="description" content="Un RAG interne connecte un assistant IA aux documents d'une entreprise sans les envoyer à un tiers. Structure d'une chaîne RAG, contrôles d'accès, journalisation et pièges d'exfiltration à éviter pour une PME qui débute.">
+  <meta name="author" content="Quentin DEVESA">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#0A1530">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://access-ia.pro/articles/rag-interne-securise-pme.html">
+  <link rel="alternate" type="text/plain" href="https://access-ia.pro/llms.txt" title="Contexte factuel ACCESSIA Pro">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/seo-2026.css">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://access-ia.pro/articles/rag-interne-securise-pme.html">
+  <meta property="og:title" content="RAG interne sécurisé en PME : indexer sans exfiltrer">
+  <meta property="og:description" content="Structure d'une chaîne RAG interne, contrôles d'accès, journalisation et pièges d'exfiltration à éviter pour une PME.">
+  <meta property="og:image" content="https://access-ia.pro/assets/images/og-image.jpg">
+  <meta property="og:image:alt" content="ACCESSIA Pro — ressources IA pour PME">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="ACCESSIA Pro">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RAG interne sécurisé en PME : indexer sans exfiltrer">
+  <meta name="twitter:description" content="Chaîne RAG interne, contrôles d'accès et pièges d'exfiltration pour une PME.">
+  <meta name="twitter:image" content="https://access-ia.pro/assets/images/og-image.jpg">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; form-action 'self' mailto:; connect-src 'self'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa","name":"Quentin DEVESA","url":"https://access-ia.pro/a-propos-quentin-devesa.html","description":"Porteur du projet ACCESSIA Pro et responsable des ressources éditoriales publiées sur access-ia.pro.","sameAs":["https://www.linkedin.com/in/quentin-devesa-cyber04a069"]},{"@type":"WebSite","@id":"https://access-ia.pro/#website","name":"ACCESSIA Pro","url":"https://access-ia.pro/","inLanguage":"fr-FR","publisher":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"}},{"@type":"Article","@id":"https://access-ia.pro/articles/rag-interne-securise-pme.html#page","url":"https://access-ia.pro/articles/rag-interne-securise-pme.html","name":"RAG interne sécurisé en PME : indexer sans exfiltrer","description":"Chaîne RAG interne, contrôles d'accès et journalisation pour une PME.","inLanguage":"fr-FR","dateModified":"2026-09-21","datePublished":"2026-09-21","isPartOf":{"@id":"https://access-ia.pro/#website"},"author":{"@id":"https://access-ia.pro/a-propos-quentin-devesa.html#quentin-devesa"},"citation":["https://genai.owasp.org/llm-top-10/","https://atlas.mitre.org/","https://cyber.gouv.fr/publications/recommandations-de-securite-pour-un-systeme-dia-generative","https://www.cnil.fr/fr/intelligence-artificielle","https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence"]},{"@type":"BreadcrumbList","@id":"https://access-ia.pro/articles/rag-interne-securise-pme.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://access-ia.pro/"},{"@type":"ListItem","position":2,"name":"Ressources","item":"https://access-ia.pro/ressources/"},{"@type":"ListItem","position":3,"name":"RAG interne sécurisé en PME","item":"https://access-ia.pro/articles/rag-interne-securise-pme.html"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
+  <div class="seo-prelaunch" role="status">
+    <div class="seo-container"><strong>Pré-lancement :</strong> projet en préparation, ouverture commerciale prévue en janvier 2027.</div>
+  </div>
+
+  <header class="seo-header">
+    <div class="seo-container seo-header-inner">
+      <a class="seo-brand" href="/" aria-label="ACCESSIA Pro — Accueil">
+        <img src="/assets/images/logo-icon.webp" alt="" width="36" height="36">
+        <span>ACCESSIA <strong>Pro</strong></span>
+      </a>
+      <nav aria-label="Navigation principale">
+        <ul class="seo-nav">
+          <li><a href="/guides/ia-pme/">Décider</a></li>
+          <li><a href="/articles/rgpd-ia-entreprise.html">Protéger</a></li>
+          <li><a href="/articles/calculateur-roi-ia-pme.html">Mesurer</a></li>
+          <li><a href="/methodologie.html">Déployer</a></li>
+          <li><a href="/ressources/">Ressources</a></li>
+        </ul>
+      </nav>
+      <a class="seo-button seo-button-small" href="mailto:contact@access-ia.pro?subject=Échange%20exploratoire%20ACCESSIA%20Pro">Échange exploratoire</a>
+    </div>
+  </header>
+
+  <main id="contenu-principal" class="seo-main">
+    <section class="seo-hero">
+      <div class="seo-container seo-reading">
+        <nav class="seo-breadcrumb" aria-label="Fil d’Ariane">
+          <ol>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/ressources/">Ressources</a></li>
+            <li aria-current="page">RAG interne sécurisé en PME</li>
+          </ol>
+        </nav>
+        <p class="seo-kicker">Pilier 2 — Protéger · architecture documentaire</p>
+        <h1>RAG interne sécurisé en PME : indexer sans exfiltrer</h1>
+        <p class="seo-lede">Un RAG interne — Retrieval Augmented Generation — permet à un assistant IA de répondre à partir de documents propres à l'entreprise sans envoyer ces documents à un tiers. C'est l'architecture la plus demandée en PME, et l'une de celles où la sécurité est la plus mal comprise. Ce dossier expose la chaîne technique, les contrôles à mettre en place, les pièges classiques d'exfiltration et les questions à poser à un prestataire avant de démarrer.</p>
+        <p class="seo-editorial-meta">Publié le 21 septembre 2026 · Vérifié le 21 septembre 2026 · Prochaine revue : 21 décembre 2026</p>
+      </div>
+    </section>
+
+    <section class="seo-section">
+      <div class="seo-container seo-reading">
+        <h2>Les cinq étapes d'une chaîne RAG</h2>
+        <p>Une chaîne RAG minimale comporte cinq étapes. Comprendre chaque étape est le préalable à toute évaluation de sécurité : la plupart des incidents documentés se logent dans les transitions, pas dans les composants isolés.</p>
+        <ol class="seo-steps">
+          <li><strong>Collecte.</strong> Rassembler les documents à indexer depuis leurs sources : partages réseau, gestionnaire électronique de documents, base de connaissances, tickets, contrats.</li>
+          <li><strong>Segmentation.</strong> Découper chaque document en fragments cohérents (paragraphes, sections). C'est le grain auquel l'assistant retrouvera l'information.</li>
+          <li><strong>Vectorisation.</strong> Passer chaque fragment dans un modèle d'embedding pour produire une représentation numérique. Ce modèle peut être local ou cloud ; le choix change la surface d'exposition.</li>
+          <li><strong>Stockage.</strong> Écrire les vecteurs et les métadonnées dans une base spécialisée. La base contient l'index, mais surtout les métadonnées (chemin, droits, propriétaire).</li>
+          <li><strong>Requête.</strong> Quand un utilisateur pose une question, le système cherche les fragments pertinents, les concatène au prompt, puis appelle le modèle de génération pour rédiger la réponse.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="seo-section seo-section-alt">
+      <div class="seo-container">
+        <h2>Points d'exposition par étape</h2>
+        <div class="seo-table-wrap">
+          <table>
+            <thead><tr><th>Étape</th><th>Risque principal</th><th>Contrôle utile</th></tr></thead>
+            <tbody>
+              <tr><td>Collecte</td><td>Indexer des documents qui ne devraient jamais être vus par un assistant</td><td>Classer les sources avant indexation, exclure explicitement les répertoires sensibles</td></tr>
+              <tr><td>Segmentation</td><td>Perdre le lien entre un fragment et ses droits d'accès d'origine</td><td>Propager les métadonnées de droits à chaque fragment</td></tr>
+              <tr><td>Vectorisation</td><td>Envoyer le contenu à un modèle d'embedding tiers</td><td>Choisir un modèle local ou vérifier le contrat du fournisseur d'embedding</td></tr>
+              <tr><td>Stockage</td><td>Accès non contrôlé à la base vectorielle</td><td>Segmentation par utilisateur ou par groupe, chiffrement au repos, journalisation</td></tr>
+              <tr><td>Requête</td><td>Fuite d'un fragment auquel l'utilisateur n'a pas droit</td><td>Filtrer les fragments retournés par les droits de l'appelant, pas seulement par pertinence</td></tr>
+              <tr><td>Génération</td><td>Injection indirecte depuis un fragment piégé</td><td>Marquer le contenu retrieved comme donnée, isoler des instructions</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="seo-section">
+      <div class="seo-container seo-reading">
+        <h2>Contrôles d'accès : la règle qu'on oublie</h2>
+        <p>Le principe de base est simple à énoncer et souvent violé : un utilisateur ne doit pouvoir consulter, via l'assistant, que les documents qu'il aurait pu consulter directement. Cela suppose que la chaîne RAG connaisse l'identité de l'appelant et que la base vectorielle sache filtrer par droits, pas seulement par similarité.</p>
+        <p>Les implémentations naïves font l'inverse : elles indexent tout, cherchent tout, puis « masquent » ce qui ne convient pas dans la réponse. C'est une politique fragile. Un attaquant, ou simplement un utilisateur curieux, formule une question qui contourne le masquage et récupère une information à laquelle il n'a pas droit. La bonne posture consiste à ne jamais retourner un fragment interdit dès l'étape de recherche.</p>
+      </div>
+    </section>
+
+    <section class="seo-section seo-section-alt">
+      <div class="seo-container seo-reading">
+        <h2>Journalisation attendue</h2>
+        <ul class="seo-check-list">
+          <li>Chaque indexation trace la source, l'auteur, l'horodatage, la version du modèle d'embedding.</li>
+          <li>Chaque requête trace l'appelant, la question, les fragments retournés, la réponse générée.</li>
+          <li>Chaque suppression trace la raison (retrait d'un document, retrait d'un utilisateur, correction d'un droit).</li>
+          <li>Les journaux sont conservés selon la politique interne, séparés des données de production, et accessibles au responsable désigné dans le registre d'usages.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="seo-section">
+      <div class="seo-container seo-two-columns">
+        <div>
+          <h2>Pièges classiques d'exfiltration</h2>
+          <ul class="seo-check-list">
+            <li>Un document piégé dans le corpus qui pousse l'assistant à divulguer d'autres fragments.</li>
+            <li>Une image ou une capture indexée dont le texte OCR contient une consigne cachée.</li>
+            <li>Une base de vecteurs partagée entre utilisateurs sans filtre d'accès en amont.</li>
+            <li>Un modèle d'embedding cloud qui reçoit tout le corpus « pour indexation » sans DPA propre.</li>
+            <li>Un journal de requêtes envoyé au fournisseur du modèle de génération.</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Questions à poser à un prestataire RAG</h2>
+          <p>Un prestataire honnête répond à quatre questions sans détour : où sont physiquement stockés le corpus et l'index, quel modèle d'embedding est utilisé et où il s'exécute, comment sont propagés les droits d'accès à chaque étape, quelles traces sont conservées et pour combien de temps. L'absence de réponse claire sur l'une de ces questions est un signal d'arrêt.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="seo-section seo-section-alt">
+      <div class="seo-container seo-reading">
+        <h2>Sources primaires</h2>
+        <ul class="seo-source-list">
+          <li><a href="https://genai.owasp.org/llm-top-10/" rel="noopener noreferrer">OWASP GenAI — LLM Top 10 (2025)</a> — Notamment LLM02 (fuite d'informations sensibles) et LLM08 (vulnérabilités des embeddings).</li>
+          <li><a href="https://atlas.mitre.org/" rel="noopener noreferrer">MITRE ATLAS</a> — Techniques d'attaque documentées, dont extraction de corpus via requêtes ciblées.</li>
+          <li><a href="https://cyber.gouv.fr/publications/recommandations-de-securite-pour-un-systeme-dia-generative" rel="noopener noreferrer">ANSSI — Recommandations pour un système d'IA générative</a> — Chapitres sur l'isolation et la journalisation.</li>
+          <li><a href="https://www.cnil.fr/fr/intelligence-artificielle" rel="noopener noreferrer">CNIL — Dossier IA</a> — Recommandations sur les bases documentaires alimentant des systèmes IA.</li>
+          <li><a href="https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence" rel="noopener noreferrer">NIST AI 600-1 — Generative AI Profile</a> — Contrôles applicables aux pipelines RAG.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="seo-section seo-cta">
+      <div class="seo-container seo-reading">
+        <h2>Continuer sur la protection</h2>
+        <div class="seo-link-row">
+          <a href="/articles/securite-ia-pme-fuites-donnees.html">Classer les données avant de tester</a>
+          <a href="/articles/prompt-injection-audit-pme.html">Auditer contre l'injection indirecte</a>
+          <a href="/articles/menaces-ia-2026.html">Panorama menaces IA 2025-2026</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="seo-footer">
+    <div class="seo-container seo-footer-grid">
+      <div>
+        <p class="seo-footer-title">ACCESSIA Pro</p>
+        <p>Projet de cabinet en préparation à Toulouse. Ouverture commerciale prévue en janvier 2027.</p>
+      </div>
+      <div>
+        <p class="seo-footer-title">Repères</p>
+        <ul>
+          <li><a href="/tarifs-ia-pme.html">Construire un budget</a></li>
+          <li><a href="/ressources/">Toutes les ressources</a></li>
+          <li><a href="/conseil-ia-toulouse.html">Le projet à Toulouse</a></li>
+          <li><a href="/a-propos-quentin-devesa.html">À propos de l’auteur</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="seo-footer-title">Contact éditorial</p>
+        <p><a href="mailto:contact@access-ia.pro">contact@access-ia.pro</a></p>
+        <p><a href="/llms.txt">Contexte pour assistants IA</a></p>
+      </div>
+    </div>
+    <div class="seo-container seo-footer-bottom">
+      <span>Dernière révision substantielle : 21 septembre 2026</span>
+      <span>Contenus informatifs — aucune prestation commerciale ouverte à ce jour</span>
+    </div>
+  </footer>
+</body>
+</html>

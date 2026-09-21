@@ -6,7 +6,7 @@
   </url>
   <url>
     <loc>https://access-ia.pro/ressources/</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-09-21</lastmod>
   </url>
   <url>
     <loc>https://access-ia.pro/guides/ia-pme/</loc>
@@ -63,5 +63,29 @@
   <url>
     <loc>https://access-ia.pro/a-propos-quentin-devesa.html</loc>
     <lastmod>2026-07-29</lastmod>
+  </url>
+  <url>
+    <loc>https://access-ia.pro/articles/prompt-injection-audit-pme.html</loc>
+    <lastmod>2026-09-21</lastmod>
+  </url>
+  <url>
+    <loc>https://access-ia.pro/articles/mcp-agent-ia-pme.html</loc>
+    <lastmod>2026-09-21</lastmod>
+  </url>
+  <url>
+    <loc>https://access-ia.pro/articles/souverainete-ia-france-ue.html</loc>
+    <lastmod>2026-09-21</lastmod>
+  </url>
+  <url>
+    <loc>https://access-ia.pro/articles/journal-usage-ia-pme.html</loc>
+    <lastmod>2026-09-21</lastmod>
+  </url>
+  <url>
+    <loc>https://access-ia.pro/articles/applications-metier-sur-mesure.html</loc>
+    <lastmod>2026-09-21</lastmod>
+  </url>
+  <url>
+    <loc>https://access-ia.pro/articles/rag-interne-securise-pme.html</loc>
+    <lastmod>2026-09-21</lastmod>
   </url>
 </urlset>
