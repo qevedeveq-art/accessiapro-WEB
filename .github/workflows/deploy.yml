@@ -171,7 +171,7 @@ jobs:
               | grep -o '<loc>' | wc -l | tr -d ' ' || true)
             if [ "$HOME_STATUS" = "200" ] \
               && [ "$MENACES_STATUS" = "200" ] \
-              && [ "$SITEMAP_COUNT" = "50" ] \
+              && [ "$SITEMAP_COUNT" = "53" ] \
               && grep -qi "projet en préparation" /tmp/home.html; then
               echo "Public release verified on attempt $attempt"
               exit 0

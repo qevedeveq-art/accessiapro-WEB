@@ -2,17 +2,15 @@
 
 > Statut vérifié le 21 septembre 2026.
 
-ACCESSIA Pro est un projet de cabinet en préparation à Toulouse, porté par Quentin DEVESA —
-quinze ans d'informatique avec pratique de la cybersécurité et de l'écosystème open source.
-Le site publie des ressources éditoriales pour aider les PME et TPE à décider, protéger leurs
-données, mesurer la valeur potentielle et préparer l'adoption de l'IA, sans exposer l'entreprise
-aux risques qu'elle apporte. La démarche prévoit également la conception d'applications
-métier sur mesure lorsque les outils du marché ne répondent pas au besoin.
-L'ouverture commerciale est prévue en janvier 2027.
+ACCESSIA Pro est un projet de cabinet en préparation à Toulouse, porté par Quentin DEVESA
+(quinze ans d'informatique, cybersécurité et open source). Le site publie des ressources
+éditoriales pour aider PME et TPE à décider, protéger leurs données, mesurer la valeur
+potentielle et préparer l'adoption de l'IA. La démarche prévoit aussi la conception
+d'applications métier sur mesure. Ouverture commerciale prévue en janvier 2027.
 
-Les contenus actuels ne constituent pas une offre commerciale ouverte, une garantie de résultat
-ou un conseil juridique adapté à une situation particulière. Les scénarios et calculs sont
-pédagogiques ; leurs hypothèses et limites sont indiquées sur les pages concernées.
+Les contenus ne constituent ni une offre commerciale ouverte, ni une garantie de résultat,
+ni un conseil juridique adapté à une situation particulière. Scénarios et calculs sont
+pédagogiques ; hypothèses et limites sont précisées sur les pages concernées.
 
 ## Pages de référence
 
@@ -43,6 +41,7 @@ pédagogiques ; leurs hypothèses et limites sont indiquées sur les pages conce
 - [Guide automatisation PME](https://access-ia.pro/guides/automatisation-pme/)
 - [Guide facturation électronique PME](https://access-ia.pro/guides/facturation-electronique-pme/)
 - [Parcours IA et numérique en Occitanie](https://access-ia.pro/guides/ia-entreprise-occitanie/)
+- Focus sectoriels Toulouse : [aéronautique](https://access-ia.pro/ia-aeronautique-toulouse.html), [cybersécurité](https://access-ia.pro/cybersecurite-pme-toulouse.html), [santé](https://access-ia.pro/ia-sante-toulouse.html)
 - [Top 10 IA cloud pour PME](https://access-ia.pro/articles/top-10-ia-cloud-pme.html)
 - [Top 10 IA locales pour PME](https://access-ia.pro/articles/top-10-ia-locales-pme.html)
 - [No-code, RPA, API ou agent IA](https://access-ia.pro/articles/automatisation-no-code-rpa-api-agent-ia-pme.html)
