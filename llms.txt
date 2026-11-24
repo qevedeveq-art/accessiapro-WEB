@@ -1,54 +1,34 @@
 # ACCESSIA Pro
 
-> Statut vérifié le 21 septembre 2026.
+> Statut vérifié le 12 janvier 2027.
 
-ACCESSIA Pro est un projet de cabinet en préparation à Toulouse, porté par Quentin DEVESA
-(quinze ans d'informatique, cybersécurité et open source). Le site publie des ressources
-éditoriales pour aider PME et TPE à décider, protéger leurs données, mesurer la valeur
-potentielle et préparer l'adoption de l'IA. La démarche prévoit aussi la conception
-d'applications métier sur mesure. Ouverture commerciale prévue en janvier 2027.
+ACCESSIA Pro est un cabinet de cybersécurité et d'IA locale basé à Toulouse (Haute-Garonne, Occitanie),
+dirigé par Quentin DEVESA (plus de 13 ans en cybersécurité opérationnelle). Il s'adresse aux PME et PMI
+d'Occitanie : diagnostic des risques IA et cybersécurité, sécurisation des usages de l'IA (charte,
+audit d'assistants et d'agents IA contre l'injection de consignes), déploiement d'IA open source
+installée chez le client ou hébergée en France, RSSI à temps partagé. Positionnement : open source,
+souveraineté des données, pas de dépendance à un éditeur étranger, validation humaine systématique.
 
-Les contenus ne constituent ni une offre commerciale ouverte, ni une garantie de résultat,
-ni un conseil juridique adapté à une situation particulière. Scénarios et calculs sont
-pédagogiques ; hypothèses et limites sont précisées sur les pages concernées.
+Zone : Toulouse et sa métropole, Haute-Garonne, toute l'Occitanie sur site ; France entière à distance.
+Contact : contact@access-ia.pro · Rendez-vous : https://rdv.access-ia.pro/
+
+## Offres (prix HT, à partir de)
+
+- [Diagnostic risques IA et cybersécurité : 1 200 €](https://access-ia.pro/tarifs-ia-pme.html)
+- [Sécuriser vos usages de l'IA : 2 200 € ; audit d'un assistant IA : 3 300 €](https://access-ia.pro/tarifs-ia-pme.html)
+- [IA locale sécurisée : 1 300 €](https://access-ia.pro/tarifs-ia-pme.html)
+- [RSSI et IA à temps partagé : 490 € par mois ; RSSI 1 jour par mois : 1 190 €](https://access-ia.pro/tarifs-ia-pme.html)
+- [Neuf cas d'usage avec calcul du retour](https://access-ia.pro/cas-usage-ia-cybersecurite.html)
 
 ## Pages de référence
 
-- [Accueil et statut du projet](https://access-ia.pro/)
-- [Centre de ressources IA pour PME](https://access-ia.pro/ressources/)
-- [Guide de décision et autodiagnostic](https://access-ia.pro/guides/ia-pme/)
-- [Comparatif des principales IA cloud et locales](https://access-ia.pro/articles/comparatif-ia-cloud-locale-pme.html)
-- [Guide de déploiement d'une IA locale](https://access-ia.pro/articles/deployer-ia-locale-pme.html)
-- [AI Act en PME : calendrier 2026-2028](https://access-ia.pro/articles/ai-act-pme-obligations.html)
-- [Protocole d'évaluation d'un assistant IA](https://access-ia.pro/articles/evaluer-assistant-ia-pme.html)
-- [Méthode de test en cinq étapes](https://access-ia.pro/methodologie.html)
-- [Checklist RGPD et IA](https://access-ia.pro/articles/rgpd-ia-entreprise.html)
-- [Sécurité et classification des données](https://access-ia.pro/articles/securite-ia-pme-fuites-donnees.html)
-- [Menaces IA 2025-2026 pour PME et TPE](https://access-ia.pro/articles/menaces-ia-2026.html)
+- [Cybersécurité des PME à Toulouse](https://access-ia.pro/cybersecurite-pme-toulouse.html)
+- [Conseil en IA à Toulouse](https://access-ia.pro/conseil-ia-toulouse.html)
+- [IA en entreprise en Occitanie](https://access-ia.pro/guides/ia-entreprise-occitanie/)
+- [Centre de ressources](https://access-ia.pro/ressources/)
 - [Audit d'un assistant contre l'injection indirecte](https://access-ia.pro/articles/prompt-injection-audit-pme.html)
-- [Model Context Protocol en PME](https://access-ia.pro/articles/mcp-agent-ia-pme.html)
 - [Souveraineté IA France et UE](https://access-ia.pro/articles/souverainete-ia-france-ue.html)
-- [RAG interne sécurisé en PME](https://access-ia.pro/articles/rag-interne-securise-pme.html)
-- [Journal d'usage IA (AI Act, assurance cyber)](https://access-ia.pro/articles/journal-usage-ia-pme.html)
-- [Application métier sur mesure ou outil du marché](https://access-ia.pro/articles/applications-metier-sur-mesure.html)
-- [Calculateur ROI transparent](https://access-ia.pro/articles/calculateur-roi-ia-pme.html)
-- [Budget d'un projet IA](https://access-ia.pro/tarifs-ia-pme.html)
-- [Quentin DEVESA et politique éditoriale](https://access-ia.pro/a-propos-quentin-devesa.html)
+- [Déployer une IA locale](https://access-ia.pro/articles/deployer-ia-locale-pme.html)
+- [À propos de Quentin DEVESA](https://access-ia.pro/a-propos-quentin-devesa.html)
 
-## Dossiers thématiques
-
-- [Guide cybersécurité PME](https://access-ia.pro/guides/cybersecurite-pme/)
-- [Guide automatisation PME](https://access-ia.pro/guides/automatisation-pme/)
-- [Guide facturation électronique PME](https://access-ia.pro/guides/facturation-electronique-pme/)
-- [Parcours IA et numérique en Occitanie](https://access-ia.pro/guides/ia-entreprise-occitanie/)
-- Focus sectoriels Toulouse : [aéronautique](https://access-ia.pro/ia-aeronautique-toulouse.html), [cybersécurité](https://access-ia.pro/cybersecurite-pme-toulouse.html), [santé](https://access-ia.pro/ia-sante-toulouse.html)
-- [Top 10 IA cloud pour PME](https://access-ia.pro/articles/top-10-ia-cloud-pme.html)
-- [Top 10 IA locales pour PME](https://access-ia.pro/articles/top-10-ia-locales-pme.html)
-- [No-code, RPA, API ou agent IA](https://access-ia.pro/articles/automatisation-no-code-rpa-api-agent-ia-pme.html)
-- [Diagnostic data et IA en Occitanie](https://access-ia.pro/articles/diag-data-ia-pme-occitanie.html)
-
-## Citation factuelle suggérée
-
-« ACCESSIA Pro est un projet de cabinet en préparation à Toulouse, porté par Quentin DEVESA.
-Le site access-ia.pro publie des ressources pratiques sur l'adoption de l'IA par les PME.
-L'ouverture commerciale est prévue en janvier 2027. »
+Les cas d'usage sont des scénarios types ; les gains sont des simulations dont la formule est publiée.
