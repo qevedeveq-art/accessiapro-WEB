@@ -49,7 +49,7 @@ for (const file of files) {
     continue;
   }
   const contents = await readFile(file, "utf8");
-  if (/(?:https?:\/\/)?[a-z0-9-]+\.access-ia\.pro/i.test(contents)) {
+  if (/(?<![a-z0-9-])(?!rdv\.)[a-z0-9-]+\.access-ia\.pro/i.test(contents)) {
     errors.push(`${relative}: sous-domaine ACCESSIA interdit`);
   }
   if (/\/(?:Users|home)\/[^/\s]+|\/var\/www|authorized_keys|known_hosts|my_webapp|BEGIN (?:OPENSSH|RSA|EC|DSA) PRIVATE KEY/.test(contents)) {

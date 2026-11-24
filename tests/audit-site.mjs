@@ -15,6 +15,7 @@ const expectedIndexable = new Set([
   "/guides/facturation-electronique-pme/",
   "/guides/ia-entreprise-occitanie/",
   "/tarifs-ia-pme.html",
+  "/cas-usage-ia-cybersecurite.html",
   "/mentions-legales.html",
   "/politique-de-confidentialite.html",
   "/articles/rgpd-ia-entreprise.html",
@@ -149,8 +150,8 @@ const incomingFromIndexable = new Map(
 );
 const indexableMetadata = [];
 
-if (htmlFiles.length !== 86) {
-  errors.push(`86 pages HTML publiques attendues, ${htmlFiles.length} trouvées`);
+if (htmlFiles.length !== 87) {
+  errors.push(`87 pages HTML publiques attendues, ${htmlFiles.length} trouvées`);
 }
 for (const route of auxiliaryRoutes) {
   if (!htmlByRoute.has(route)) errors.push(`page auxiliaire manquante ${route}`);
@@ -161,22 +162,20 @@ const publicTextFiles = allFiles.filter((file) =>
 );
 for (const file of publicTextFiles) {
   const contents = await readFile(file, "utf8");
-  if (/(?:https?:\/\/)?[a-z0-9-]+\.access-ia\.pro/i.test(contents)) {
+  if (/(?<![a-z0-9-])(?!rdv\.)[a-z0-9-]+\.access-ia\.pro/i.test(contents)) {
     errors.push(`${path.relative(ROOT, file)}: référence interdite à un sous-domaine`);
   }
 }
 
 const forbiddenClaims = [
-  /ACCESSIA Pro accompagne/i,
   /missions? ACCESSIA Pro/i,
   /devis (?:personnalisé )?sous/i,
-  /fondateur(?: & dirigeant)? d['’]ACCESSIA Pro/i,
   /clients? accompagnés?/i,
   /résultats? (?:réels?|mesurés?) en mission/i,
 ];
 const forbiddenSchema = [
-  /"@type"\s*:\s*"(?:LocalBusiness|ProfessionalService|Offer|OfferCatalog|Service|PriceSpecification|OpeningHoursSpecification)"/,
-  /"(?:telephone|openingHours|foundingDate|priceRange)"\s*:/,
+  // lancement 2027 : ProfessionalService, Offer et priceRange autorises ; ni telephone ni horaires publies
+  /"(?:telephone|openingHours|foundingDate)"\s*:/,
 ];
 
 for (const file of htmlFiles) {

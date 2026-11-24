@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://access-ia.pro/</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2027-01-12</lastmod>
   </url>
   <url>
     <loc>https://access-ia.pro/ressources/</loc>
@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://access-ia.pro/tarifs-ia-pme.html</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2027-01-12</lastmod>
   </url>
   <url>
     <loc>https://access-ia.pro/articles/rgpd-ia-entreprise.html</loc>
@@ -211,5 +211,9 @@
   <url>
     <loc>https://access-ia.pro/ia-sante-toulouse.html</loc>
     <lastmod>2026-09-22</lastmod>
+  </url>
+  <url>
+    <loc>https://access-ia.pro/cas-usage-ia-cybersecurite.html</loc>
+    <lastmod>2027-01-12</lastmod>
   </url>
 </urlset>
